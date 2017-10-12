@@ -11,13 +11,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Serialise to, or load games from, json
+ * Also list the in built games available
+ */
 public class MudGameDefinitionSerialiser {
 
-    public List<IdDescriptionPair> getBuildInGamesAsIdDescriptionPairs() {
+    public List<IdDescriptionPair> getBuiltInGamesAsIdDescriptionPairs() {
 
         List<IdDescriptionPair> pairs = new ArrayList<IdDescriptionPair>();
 
-        for(String filename : this.getListOfBuildInGames()){
+        for(String filename : this.getListOfBuiltInGames()){
             pairs.add(new IdDescriptionPair(filename, "/games/"+filename));
         }
         return pairs;
@@ -48,40 +52,38 @@ public class MudGameDefinitionSerialiser {
     public String readJsonFromResource(String path) {
         InputStream jsonStreamToRead = this.getClass().getResourceAsStream(path);
 
-        StringBuilder json = new StringBuilder();
-        try (Reader reader = new BufferedReader(new InputStreamReader
-                (jsonStreamToRead, Charset.forName(StandardCharsets.UTF_8.name())))) {
-            int c = 0;
-            while ((c = reader.read()) != -1) {
-                json.append((char) c);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Failed to read resource " + path);
-        }
-        return json.toString();
+        String fileContentsJson = readResourceStreamIntoString(jsonStreamToRead, path);
+
+        return fileContentsJson;
     }
 
-    public List<String> getListOfBuildInGames(){
+    public List<String> getListOfBuiltInGames(){
         List<String>fileNames = new ArrayList<>();
 
         InputStream jsonStreamToRead = this.getClass().getResourceAsStream("/games");
 
-        StringBuilder files = new StringBuilder();
+        String files = readResourceStreamIntoString(jsonStreamToRead, "/games");
+
+        fileNames.addAll(Arrays.asList(files.split("\n")));
+        
+        return fileNames;
+    }
+
+    private String readResourceStreamIntoString(InputStream streamToRead, String nameOfStream) {
+
+        StringBuilder readStream = new StringBuilder();
         try (Reader reader = new BufferedReader(new InputStreamReader
-                (jsonStreamToRead, Charset.forName(StandardCharsets.UTF_8.name())))) {
+                (streamToRead, Charset.forName(StandardCharsets.UTF_8.name())))) {
             int c = 0;
             while ((c = reader.read()) != -1) {
-                files.append((char) c);
+                readStream.append((char) c);
             }
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Failed to read resource folder /games");
+            System.out.println("Failed to read resource " + nameOfStream);
         }
 
+        return readStream.toString();
 
-        fileNames.addAll(Arrays.asList(files.toString().split("\n")));
-
-        return fileNames;
     }
 }

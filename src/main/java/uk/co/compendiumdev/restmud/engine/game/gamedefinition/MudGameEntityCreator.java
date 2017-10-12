@@ -7,7 +7,7 @@ import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
 
 /**
- * Created by Alan on 17/09/2017.
+ * An interface to allow creation of test DSLs or other classes which can create games
  */
 public interface MudGameEntityCreator {
     MudLocation location(String locationId, String locationName, String locationDescription, String exits);

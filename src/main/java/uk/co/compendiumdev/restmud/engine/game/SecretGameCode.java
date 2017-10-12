@@ -13,16 +13,16 @@ public class SecretGameCode {
         return secretGameCode;
     }
 
-    public boolean isSecretCodeValid(String secretGameCode) {
+    public boolean isSecretCodeValid(String aSecretGameCode) {
 
         // guard code
         if(this.secretGameCode==null)
             return false;
 
-        if(secretGameCode == null)
+        if(aSecretGameCode == null)
             return false;
 
-        if(secretGameCode.contentEquals(secretGameCode))
+        if(this.secretGameCode.contentEquals(aSecretGameCode))
             return true;
 
         // by default return false
