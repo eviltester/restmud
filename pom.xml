@@ -6,8 +6,8 @@
 
     <groupId>uk.co.compendiumdev</groupId>
     <artifactId>restmud-engine</artifactId>
-    <!-- <version>1.4-SNAPSHOT</version>-->
-    <version>1.3</version>
+    <version>1.4-SNAPSHOT</version>
+    <!-- <version>1.3</version>-->
 
     <name>RestMud Game Engine</name>
     <description>The core game engine for RestMud.</description>
