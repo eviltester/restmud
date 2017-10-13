@@ -7,8 +7,8 @@ import java.util.List;
 
 public class ThenClauseCommandList {
 
-    private List<ScriptThenCommand> commandList;
-    private ThenClauseTokenizer tokenizer;
+    private final List<ScriptThenCommand> commandList;
+    private final ThenClauseTokenizer tokenizer;
 
     public ThenClauseCommandList(MudGame mudGame) {
 

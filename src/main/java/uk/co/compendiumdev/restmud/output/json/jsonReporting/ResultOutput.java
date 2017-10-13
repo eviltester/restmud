@@ -4,9 +4,6 @@ import uk.co.compendiumdev.restmud.engine.game.playerevents.BroadcastGameMessage
 
 import java.util.List;
 
-/**
- * Created by Alan on 21/12/2015.
- */
 public class ResultOutput {
 
     public LastAction resultoutput;
@@ -84,7 +81,7 @@ public class ResultOutput {
         }
 
         if (gameMessages == null) {
-            gameMessages = new GameMessages(extraMessages);
+            gameMessages = GameMessages.getEmpty().addAdditionalMessages(extraMessages);
             setGameMessages(gameMessages);
         } else {
             gameMessages.addAdditionalMessages(extraMessages);
@@ -104,7 +101,7 @@ public class ResultOutput {
         }
 
         if (gameMessages == null) {
-            gameMessages = new GameMessages(extraMessages.messages);
+            gameMessages = GameMessages.getEmpty().addAdditionalMessages(extraMessages.messages);
             setGameMessages(gameMessages);
         } else {
             gameMessages.addAdditionalMessages(extraMessages.messages);

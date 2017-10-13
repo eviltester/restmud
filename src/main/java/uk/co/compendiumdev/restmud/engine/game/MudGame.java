@@ -30,11 +30,11 @@ public class MudGame {
     public static final String JUNK_ROOM = "0"; //every game should have a junk room
     // TODO if the game definition does not have one then add it to the game automatically as an unlinked room
 
-    private UserManager userManager = new UserManager();
+    private final UserManager userManager = new UserManager();
 
     private Locations gameLocations = new Locations();
     private Collectables gameCollectables = new Collectables();
-    private SecretGameCode secretGameRegistrationCode = new SecretGameCode();
+    private final SecretGameCode secretGameRegistrationCode = new SecretGameCode();
 
     private BroadcastMessages broadcastMessages = new BroadcastMessages();
 
@@ -53,15 +53,15 @@ public class MudGame {
 
 
 
-    private IdGenerator theIdGenerator = new IdGenerator();
+    private final IdGenerator theIdGenerator = new IdGenerator();
     private Map<Integer, List<VerbCondition>> verbConditions = new HashMap<>();
     private List<PriorityTurnCondition> turnConditions = new ArrayList<>();
     private List<VerbRegexToVerbMatch> localVerbs=new ArrayList<>();
     private List<ScriptClause> startupCommands = new ArrayList<>();
     private String startLocationId;
 
-    RestMudScriptingEngine scriptingEngine;
-    private UserInputParser userInputParser;
+    private final RestMudScriptingEngine scriptingEngine;
+    private final UserInputParser userInputParser;
     private MudGameDefinition gameDefinition;
 
 
@@ -684,7 +684,9 @@ public class MudGame {
     /*
             CODE THAT WAS MOVED TO GAME DEFINITION
      */
-    /***********************************************
+    /*
+
+     **********************************************
      * GATE CREATION
      **********************************************/
 

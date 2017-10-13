@@ -16,11 +16,11 @@ public class MudLocation {
     private final String description;
     private final String routesAndExitsDefinition;
     private boolean allowsTreasureHoarding;
-    private Map<String, MudLocationExit> exits = new HashMap<>();
-    private Inventory collectables = new Inventory();
+    private final Map<String, MudLocationExit> exits = new HashMap<>();
+    private final Inventory collectables = new Inventory();
 
     private boolean isInDarkness;
-    private InventoryLocationObjects theObjects = new InventoryLocationObjects();
+    private final InventoryLocationObjects theObjects = new InventoryLocationObjects();
     private String reason;
 
 

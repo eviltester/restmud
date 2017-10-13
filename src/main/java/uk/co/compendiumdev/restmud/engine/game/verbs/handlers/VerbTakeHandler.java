@@ -25,7 +25,7 @@ public class VerbTakeHandler implements VerbHandler{
         MudLocation whereAmI = game.getGameLocations().get(player.getLocationId());
 
         if(whereAmI.isLocationDark() && !player.canISeeInTheDark()){
-            return  LastAction.createError(String.format("It is too dark for me to try and pick anything up, who knows what I might grab!"));
+            return  LastAction.createError("It is too dark for me to try and pick anything up, who knows what I might grab!");
         }
 
         MudLocationObject theObject = game.getLocationObjects().get(nounPhrase);

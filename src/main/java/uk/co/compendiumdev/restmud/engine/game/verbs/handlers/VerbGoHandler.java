@@ -93,7 +93,7 @@ public class VerbGoHandler   implements VerbHandler {
 
     private LastAction goThroughGate(MudUser user, MudLocationDirectionGate gateBetween, String direction) {
 
-        String goAppendum = "";
+        String goAppendum;
 
         if(!gateBetween.isOpen()){
             // OK we have a problem then because the gate is not open

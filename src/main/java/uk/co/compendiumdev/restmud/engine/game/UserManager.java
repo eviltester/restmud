@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class UserManager {
 
-    private Map<String, MudUser> users;
+    private final Map<String, MudUser> users;
 
     public UserManager() {
         users = new HashMap<>();

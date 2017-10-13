@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomStringGenerator {
 
-    String alphabet_lc = "abcdefghijklmnopqrstuvwxyz";
+    private final String alphabet_lc = "abcdefghijklmnopqrstuvwxyz";
 
     public String generateAlpha(int length) {
 

@@ -2,8 +2,8 @@ package uk.co.compendiumdev.restmud.engine.game.scripting;
 
 public class AttributePair {
 
-    public String name;
-    public String value;
+    public final String name;
+    public final String value;
 
     
     public AttributePair(String thensValue) {

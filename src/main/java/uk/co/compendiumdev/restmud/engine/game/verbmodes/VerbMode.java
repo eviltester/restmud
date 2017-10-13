@@ -8,9 +8,9 @@ import java.util.List;
 public class VerbMode {
 
     private final String name;
-    private List<VerbRegexToVerbMatch> guiMatchers;
-    private List<VerbRegexToVerbMatch> apiGetMatchers;
-    private List<VerbRegexToVerbMatch> apiPostMatchers;
+    private final List<VerbRegexToVerbMatch> guiMatchers;
+    private final List<VerbRegexToVerbMatch> apiGetMatchers;
+    private final List<VerbRegexToVerbMatch> apiPostMatchers;
 
     public VerbMode(String aName) {
         this.name = aName;

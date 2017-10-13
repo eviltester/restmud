@@ -12,7 +12,7 @@ public class BroadcastMessages {
 
     // concurrent queue was giving me intermittent access errors so trying a different collection
     // https://stackoverflow.com/questions/17578299/java-concurrent-array-list-access
-    List<BroadcastGameMessage> broadcasts = Collections.synchronizedList(new ArrayList());
+    private final List<BroadcastGameMessage> broadcasts = Collections.synchronizedList(new ArrayList<BroadcastGameMessage>());
     //private ConcurrentLinkedDeque<BroadcastGameMessage> broadcasts = new ConcurrentLinkedDeque<>();
 
     public void add(String message) {
@@ -33,6 +33,8 @@ public class BroadcastMessages {
 
     public GameMessages getMessagesSince(long startingTimestamp) {
 
+
+
         List<BroadcastGameMessage> gameMessages = new ArrayList<>();
 
         synchronized(broadcasts) {
@@ -43,6 +45,6 @@ public class BroadcastMessages {
             }
         }
 
-        return new GameMessages(gameMessages);
+        return GameMessages.getEmpty().addAdditionalMessages(gameMessages);
     }
 }

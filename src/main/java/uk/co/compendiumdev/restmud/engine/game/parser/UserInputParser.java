@@ -27,7 +27,7 @@ public class UserInputParser {
 
     public void addVerbs(List<VerbRegexToVerbMatch> localVerbs) {
         for(VerbRegexToVerbMatch localVerb : localVerbs){
-            verbList.registerVerb(localVerb.matchingVerb);
+            verbList.registerVerb(localVerb.getMatchingVerb());
         }
     }
 }

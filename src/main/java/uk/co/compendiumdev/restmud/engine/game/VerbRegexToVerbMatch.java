@@ -1,14 +1,21 @@
 package uk.co.compendiumdev.restmud.engine.game;
 
 public class VerbRegexToVerbMatch {
-    public final String verbRegex;
-    public final String matchingVerb;
+    private final String verbRegex;
+    private final String matchingVerb;
 
     public VerbRegexToVerbMatch(String regex, String verb){
         this.verbRegex = regex;
         this.matchingVerb = verb;
     }
 
+    public String getVerbRegex(){
+        return verbRegex;
+    }
+
+    public String getMatchingVerb(){
+        return matchingVerb;
+    }
 
     public VerbRegexToVerbMatch getClonedCopy() {
         return new VerbRegexToVerbMatch(this.verbRegex, this.matchingVerb);

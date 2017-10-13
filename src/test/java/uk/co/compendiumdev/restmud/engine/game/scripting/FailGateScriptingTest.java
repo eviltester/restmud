@@ -13,7 +13,6 @@ import uk.co.compendiumdev.restmud.engine.game.locations.GateStatus;
 import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.Then;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
 import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
-import uk.co.compendiumdev.restmud.output.json.jsonReporting.ResultOutput;
 
 /**
  * Created by alan on 21/08/2016.
@@ -79,9 +78,8 @@ public class FailGateScriptingTest {
     @Test
     public void failToOpenGateBecauseOfWrongNameInScript(){
 
-        ResultOutput result;
-        result = game.teleportUserTo("tester","1");
-        result = dsl.failTo(dsl.doVerb("tester","fail1", "boo"));
+        game.teleportUserTo("tester","1");
+        dsl.failTo(dsl.doVerb("tester","fail1", "boo"));
 
         // TODO: bug - too many last actions shown
         // TODO: remove the need for this test by checking that all gates exist in rules during game setup
@@ -91,9 +89,9 @@ public class FailGateScriptingTest {
     @Test
     public void failToCloseGateBecauseOfWrongNameInScript(){
 
-        ResultOutput result;
-        result = game.teleportUserTo("tester","1");
-        result = dsl.failTo(dsl.doVerb("tester","fail2", "boo"));
+
+        game.teleportUserTo("tester","1");
+        dsl.failTo(dsl.doVerb("tester","fail2", "boo"));
 
         // TODO: bug - too many last actions shown the processing of the verb cond should fail
         // TODO: remove the need for this test by checking that all gates exist in rules during game setup

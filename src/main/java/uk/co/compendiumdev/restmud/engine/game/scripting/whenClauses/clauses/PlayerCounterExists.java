@@ -11,7 +11,7 @@ import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
 public class PlayerCounterExists implements ScriptWhenClause {
 
 
-    ScriptableCounter counter;
+    private final ScriptableCounter counter;
 
     public PlayerCounterExists() {
         this.counter = ScriptableCounter.empty();

@@ -18,11 +18,11 @@ public class RandomTreasureGenerator {
     private List<String> locationKeys;
 
     // randomly generate treasures
-    String[] treasureTypes = {"ring", "crown", "nugget", "pendant", "sceptre", "scarab", "coin", "dagger", "pig"};
-    String[] treasureAdjectives = {"shiny", "exuberant", "glowing", "incredible", "amazing", "expensive"};
-    String[] treasureMaterials = {"gold", "ruby encrusted", "platinum", "silver", "diamond encrusted", "bejeweled"};
-    String[] dudTypes = {"bread", "oranges", "cups", "sweets", "belly button fluff", "old chewing gum", "thing"};
-    String[] dudAdjectives = {"mouldy", "smelly", "rotten", "green"};
+    private final String[] treasureTypes = {"ring", "crown", "nugget", "pendant", "sceptre", "scarab", "coin", "dagger", "pig"};
+    private final String[] treasureAdjectives = {"shiny", "exuberant", "glowing", "incredible", "amazing", "expensive"};
+    private final String[] treasureMaterials = {"gold", "ruby encrusted", "platinum", "silver", "diamond encrusted", "bejeweled"};
+    private final String[] dudTypes = {"bread", "oranges", "cups", "sweets", "belly button fluff", "old chewing gum", "thing"};
+    private final String[] dudAdjectives = {"mouldy", "smelly", "rotten", "green"};
 
     public RandomTreasureGenerator(MudGame game) {
         this.game = game;

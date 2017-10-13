@@ -7,9 +7,9 @@ import java.util.List;
 
 public class GameMessages {
 
-    public List<BroadcastGameMessage> messages;
+    public final List<BroadcastGameMessage> messages;
 
-    public GameMessages(List<BroadcastGameMessage> messages){
+    private GameMessages(List<BroadcastGameMessage> messages){
         this.messages = messages;
     }
 

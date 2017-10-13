@@ -128,7 +128,7 @@ public class MudGameDefinition {
         // find the from location
         MudLocation fromLocation = gameLocations().get(locationID);
 
-        String toLocationId="";
+        String toLocationId;
         String toLocationDirection="";
 
         if(theTooLocationID==null || theTooLocationID.length()==0) {

@@ -8,7 +8,7 @@ public class DefaultVerbModes {
         VerbModes modes = new VerbModes();
 
 
-        /**
+        /*
          * Default is access to everything via everything
          */
         VerbMode defaultMode = new VerbMode("default");
@@ -75,7 +75,7 @@ public class DefaultVerbModes {
         modes.add(defaultMode);
 
 
-        /**
+        /*
          * Split into indempotent so GET is retrieve and POST is for updates
          */
         VerbMode indempotentSplit = new VerbMode("indempotentSplit");
@@ -118,7 +118,7 @@ public class DefaultVerbModes {
         modes.add(indempotentSplit);
 
 
-        /**
+        /*
          * Indempotent split with no GUI at all
          */
         VerbMode noGuiGetsAndApiSplit = new VerbMode("noGuiGetsAndApiSplit");

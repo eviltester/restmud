@@ -14,9 +14,7 @@ public class BasicGameInitializerTest {
         GameInitializer theGameInit = new GameInitializer();
 
         // the game should be empty at this point
-        MudGame game = null;
-
-        game = theGameInit.getGame();
+        MudGame game = theGameInit.getGame();
 
         Assert.assertEquals(0, game.getTotalScore());
         Assert.assertEquals(0, game.getUserManager().numberOfUsers());

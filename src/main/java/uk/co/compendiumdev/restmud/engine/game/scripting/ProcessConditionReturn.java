@@ -12,9 +12,9 @@ import java.util.List;
 public class ProcessConditionReturn {
 
     private final List<LastAction> actions;
-    private List<String> messages;
-    private List<AttributePair> collectables;
-    private List<AttributePair> locationObjects;
+    private final List<String> messages;
+    private final List<AttributePair> collectables;
+    private final List<AttributePair> locationObjects;
     private boolean forceLook;
 
     public ProcessConditionReturn(){

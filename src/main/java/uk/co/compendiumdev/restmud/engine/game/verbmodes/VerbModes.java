@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class VerbModes {
 
-    private Map<String, VerbMode> verbModes = new HashMap<>();
+    private final Map<String, VerbMode> verbModes = new HashMap<>();
 
     public VerbMode get(String verbModeName) {
         return verbModes.get(verbModeName);

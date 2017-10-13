@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Collectables {
 
-    private Map<String, MudCollectable> collectables;
+    private final Map<String, MudCollectable> collectables;
 
     public Collectables(){
         collectables = new HashMap<>();

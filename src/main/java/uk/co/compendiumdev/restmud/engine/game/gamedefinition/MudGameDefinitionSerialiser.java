@@ -74,7 +74,7 @@ public class MudGameDefinitionSerialiser {
         StringBuilder readStream = new StringBuilder();
         try (Reader reader = new BufferedReader(new InputStreamReader
                 (streamToRead, Charset.forName(StandardCharsets.UTF_8.name())))) {
-            int c = 0;
+            int c;
             while ((c = reader.read()) != -1) {
                 readStream.append((char) c);
             }

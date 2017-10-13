@@ -9,7 +9,7 @@ public class ImmutableEmptyProcessConditionReturn extends ProcessConditionReturn
     // At the moment it is just an extend to always return the same EmptyProcessCondition
     // to cut down on objects being created and then thrown away almost immediately
 
-    static final ProcessConditionReturn returnProcessConditionReturn = new ProcessConditionReturn();
+    private static final ProcessConditionReturn returnProcessConditionReturn = new ProcessConditionReturn();
 
     public static ProcessConditionReturn get(){
         return returnProcessConditionReturn;

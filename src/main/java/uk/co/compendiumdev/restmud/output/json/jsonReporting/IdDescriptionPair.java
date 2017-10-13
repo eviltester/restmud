@@ -1,8 +1,8 @@
 package uk.co.compendiumdev.restmud.output.json.jsonReporting;
 
 public class IdDescriptionPair {
-    public String id;
-    public String description;
+    public final String id;
+    public final String description;
 
     public IdDescriptionPair(String id, String description) {
         this.id = id;

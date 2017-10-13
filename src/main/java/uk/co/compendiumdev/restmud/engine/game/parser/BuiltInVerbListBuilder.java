@@ -7,7 +7,7 @@ import uk.co.compendiumdev.restmud.engine.game.MudGame;
  */
 public class BuiltInVerbListBuilder {
 
-    VerbList verbList;
+    private final VerbList verbList;
 
     public BuiltInVerbListBuilder(MudGame game){
         verbList = new VerbList(game);

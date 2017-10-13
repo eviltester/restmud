@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class MudGameGateCollection {
 
-    Map<String, MudLocationDirectionGate> gates = new HashMap<>();
+    private final Map<String, MudLocationDirectionGate> gates = new HashMap<>();
 
     public void addGate(MudLocationDirectionGate gate) {
         gates.put(gate.getGateName(), gate);
@@ -105,7 +105,7 @@ public class MudGameGateCollection {
         MudLocationDirectionGate gateBetween = getGateGoingFromHereInThatDirection(location, baseDirection);
 
         // cannot open a non-existant gate or one that is hidden normally
-        if (gateBetween == null || gateBetween.isVisible()==false) {
+        if (gateBetween == null || !gateBetween.isVisible()) {
             // There is no gate
             // if it is a direction then can I go that way?
             if (!location.canGo(baseDirection)) {

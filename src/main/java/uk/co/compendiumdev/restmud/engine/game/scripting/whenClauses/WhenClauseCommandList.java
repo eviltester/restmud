@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class WhenClauseCommandList {
 
-    private List<ScriptWhenClause> commandList;
-    private WhenClauseTokenizer tokenizer;
+    private final List<ScriptWhenClause> commandList;
+    private final WhenClauseTokenizer tokenizer;
 
     public WhenClauseCommandList() {
         commandList = new ArrayList<>();

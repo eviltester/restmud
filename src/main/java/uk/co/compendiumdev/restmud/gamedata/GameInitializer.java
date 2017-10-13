@@ -16,7 +16,7 @@ public class GameInitializer {
     public static final String WIZAUTHCODE = "WIZAUTHCODE";
 
 
-    MudGame game;
+    private final MudGame game;
     private String wizardAuthHeader;
 
     public GameInitializer(){
@@ -144,17 +144,17 @@ public class GameInitializer {
 
                 String userAttributes[] = username.split(",");
 
-                String displayName = "";
-                String uName = "";
+                String displayName;
+                String uName;
                 String password = "password";
 
                 if(userAttributes.length>0) {
 
-                    if(userAttributes.length>=1){
-                        // by default use for both displayname and username
-                        displayName = userAttributes[0].trim();
-                        uName = displayName.replace(" ", "");
-                    }
+
+                    // by default use for both displayname and username
+                    displayName = userAttributes[0].trim();
+                    uName = displayName.replace(" ", "");
+
 
                     if(userAttributes.length>=2){
                         displayName = userAttributes[0].trim();

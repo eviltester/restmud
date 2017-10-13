@@ -37,15 +37,15 @@ public class RandomlyGenerateTreasure implements ScriptThenCommand {
         // a set of : separated values - first is the number of treasures, optional rest are the locations
 
         String []vals = thensValue.split(":");
-        if(vals==null) {
-            ret.addNewAction(LastAction.createError("Scripting error RandomlyGenerateTreasure - there are no params - shoudld be number and then locations seperated by :"));
+        if(vals.length==0) {
+            ret.addNewAction(LastAction.createError("Scripting error RandomlyGenerateTreasure - there are no params - should be number and then locations seperated by :"));
         }
 
         RandomTreasureGenerator moneygod = new RandomTreasureGenerator(game);
 
         int numberOfTreasures = Integer.parseInt(vals[0]);
 
-        List<String> locations = new ArrayList();
+        List<String> locations = new ArrayList<>();
 
         for(int x=1; x<vals.length; x++){
             locations.add(String.valueOf(vals[x]));

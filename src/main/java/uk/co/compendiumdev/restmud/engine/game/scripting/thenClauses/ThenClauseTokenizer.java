@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ThenClauseTokenizer {
-    private Map<String, Integer> tokenNameIndex;
+    private final Map<String, Integer> tokenNameIndex;
 
     public ThenClauseTokenizer() {
         tokenNameIndex = new HashMap<>();

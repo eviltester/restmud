@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class WhenClauseTokenizer{
 
-    private Map<String, Integer> tokenNameIndex;
+    private final Map<String, Integer> tokenNameIndex;
 
     public WhenClauseTokenizer() {
         tokenNameIndex = new HashMap<>();

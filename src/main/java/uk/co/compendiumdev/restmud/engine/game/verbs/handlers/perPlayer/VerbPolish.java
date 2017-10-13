@@ -31,7 +31,7 @@ public class VerbPolish {
         int maxPower = fullPower/2;
         int minPower = 1;
 
-        int polishPower = 0;
+        int polishPower;
 
         if(fullPower<10){
             polishPower = fullPower;

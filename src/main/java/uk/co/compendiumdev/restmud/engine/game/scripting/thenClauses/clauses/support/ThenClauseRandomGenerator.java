@@ -33,7 +33,7 @@ public class ThenClauseRandomGenerator {
     }
 
     private static List<String> getLocationsFromArguments(String[] vals) {
-        List<String> locations = new ArrayList();
+        List<String> locations = new ArrayList<>();
 
 
         for(int x=1; x<vals.length; x++){
@@ -45,7 +45,7 @@ public class ThenClauseRandomGenerator {
     private static String[] parseThenArguments(String parameter, String thenClauseCommandName, ProcessConditionReturn ret) {
 
         String []vals = parameter.split(":");
-        if(vals==null) {
+        if(vals.length==0) {
             ret.addNewAction(LastAction.createError("Scripting error " + thenClauseCommandName+  " - there are no params - should be number and then optional locations seperated by :"));
         }
 

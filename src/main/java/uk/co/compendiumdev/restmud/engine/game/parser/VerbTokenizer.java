@@ -7,8 +7,8 @@ import java.util.Map;
 public class VerbTokenizer {
 
 
-    private Map<String, Integer> tokenNameIndex;
-    private Map<String, VerbToken> verbTokenNameIndex;
+    private final Map<String, Integer> tokenNameIndex;
+    private final Map<String, VerbToken> verbTokenNameIndex;
 
     public VerbTokenizer() {
         tokenNameIndex = new HashMap<>();

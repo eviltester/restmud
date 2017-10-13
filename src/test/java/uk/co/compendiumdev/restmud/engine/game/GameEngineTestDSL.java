@@ -15,8 +15,8 @@ public class GameEngineTestDSL {
     private final MudGame game;
 
     private class Command{
-        public String verb;
-        public String noun;
+        public final String verb;
+        public final String noun;
 
         public Command(String verb, String noun){
             this.verb = verb;
@@ -24,7 +24,7 @@ public class GameEngineTestDSL {
         }
     }
 
-    private List<Command> commands = new ArrayList<>();
+    private final List<Command> commands = new ArrayList<>();
 
     public GameEngineTestDSL(MudGame aGame){
         this.game= aGame;

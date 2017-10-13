@@ -9,17 +9,15 @@ import uk.co.compendiumdev.restmud.engine.game.things.MudCollectableTemplate;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
 import uk.co.compendiumdev.restmud.engine.game.verbs.VerbGameAbilities;
 
-/**
- * Created by Alan on 17/09/2017.
- */
+
 public class DefaultGameDefinitionGenerator {
     public static void define(MudGameDefinition defn) {
-        VerbCondition cond = null;
+        VerbCondition cond;
         PriorityTurnCondition turn = null;
-        MudLocationObject locationObj = null;
+        MudLocationObject locationObj;
         MudLocation objectLocation = null;
 
-        int total_score = 0;
+        int total_score;
 
 
 

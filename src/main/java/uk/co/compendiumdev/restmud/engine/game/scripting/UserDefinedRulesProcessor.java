@@ -124,7 +124,7 @@ public class UserDefinedRulesProcessor {
                     execute(when, player, nounPhrase.toLowerCase());
 
 
-            if (lastMatch == false) {
+            if (!lastMatch) {
                 return false;
             }
         }

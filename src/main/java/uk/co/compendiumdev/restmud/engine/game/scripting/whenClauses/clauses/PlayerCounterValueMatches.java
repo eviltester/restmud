@@ -11,7 +11,7 @@ import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
 public class PlayerCounterValueMatches implements ScriptWhenClause {
 
 
-    ScriptableCounterCondition counterCondition;
+    private final ScriptableCounterCondition counterCondition;
 
     public PlayerCounterValueMatches() {
         this.counterCondition = ScriptableCounterCondition.empty();

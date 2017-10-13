@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class IdGenerator {
 
-    Map<String, Integer> theIds = new HashMap<>();
+    private final Map<String, Integer> theIds = new HashMap<>();
 
     public String generateId(String thingName) {
 

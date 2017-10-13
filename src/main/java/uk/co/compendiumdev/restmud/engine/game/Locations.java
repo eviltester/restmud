@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Locations {
 
-    private Map<String, MudLocation> locations = new HashMap<>();
+    private final Map<String, MudLocation> locations = new HashMap<>();
 
     public List<String> getLocationKeys() {
         return new ArrayList<String>(locations.keySet());

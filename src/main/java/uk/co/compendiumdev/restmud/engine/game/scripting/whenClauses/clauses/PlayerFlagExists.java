@@ -11,7 +11,7 @@ import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
 public class PlayerFlagExists implements ScriptWhenClause {
 
 
-    ScriptableFlag flag;
+    private final ScriptableFlag flag;
 
     public PlayerFlagExists() {
         this.flag = ScriptableFlag.empty();

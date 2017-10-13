@@ -358,7 +358,7 @@ public class MudUser {
         output.setVisibleGates(visibleGates);
 
 
-        /**
+        /*
          * Location Objects
          */
 
@@ -381,7 +381,7 @@ public class MudUser {
 
 
 
-        /**
+        /*
          *
          * Collectables
          *
@@ -401,14 +401,14 @@ public class MudUser {
         output.setVisibleCollectables(visibleCollectables.toArray(lookVisibleCollectables)) ;
 
 
-        /**
+        /*
          * Hoarding
          */
         if(whereAmI.canHoardTreasureHere()){
             output.setTreasureHoardContents(new InventoryReport(userName(), treasureHoard().asIdDescriptionPairs()));
         }
 
-        /**
+        /*
          *
          * Other Users in the same location
          *
