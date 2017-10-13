@@ -69,8 +69,8 @@ public class MudUser {
         take = new VerbTake(this);
         polish = new VerbPolish(this);
         examine = new VerbExamine(this);
-        illuminate = new VerbIlluminate(this);
-        darken = new VerbDarken(this);
+        illuminate = new VerbIlluminate();
+        darken = new VerbDarken();
         drop = new VerbDrop(this);
         verbHoard = new VerbHoard(this);
         inspect = new VerbInspect(this);

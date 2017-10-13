@@ -17,4 +17,14 @@ public class VerbListTest {
 
         Assert.assertEquals(1, vl.numberOfVerbs());
     }
+
+
+    @Test
+    public void canRegisterABuiltInVerb(){
+
+        VerbList vl = new VerbList(null);
+        Assert.assertEquals(0, vl.numberOfVerbs());
+        vl.registerVerb(Verb.DARKEN);
+        Assert.assertEquals(1, vl.numberOfVerbs());
+    }
 }

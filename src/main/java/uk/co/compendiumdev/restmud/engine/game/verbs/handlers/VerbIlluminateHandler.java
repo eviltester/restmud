@@ -11,11 +11,9 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
  */
 public class VerbIlluminateHandler implements VerbHandler{
 
-    private MudGame game;
 
     @Override
     public void setGame(MudGame mudGame) {
-        this.game = mudGame;
     }
 
     @Override

@@ -36,7 +36,7 @@ public class VerbPolishHandler implements VerbHandler{
         MudCollectable polisher = player.grantedTheAbilityToBy("polish");
 
 
-        return player.polish().now(thing, polisher, game.getGameLocations().get(game.JUNK_ROOM));
+        return player.polish().now(thing, polisher, game.getGameLocations().get(MudGame.JUNK_ROOM));
     }
 
     @Override

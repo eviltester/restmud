@@ -51,9 +51,6 @@ public class VerbList {
         return tokenizer;
     }
 
-    public String getVerbName(int index) {
-        return verbNameList.get(index);
-    }
 
     public int getNextTokenId() {
         return nextToken;
