@@ -1,7 +1,6 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses;
 
 
-import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 
 import java.util.HashMap;
@@ -9,11 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 public class ThenClauseTokenizer {
-    private final MudGame game;
     private Map<String, Integer> tokenNameIndex;
 
-    public ThenClauseTokenizer(MudGame mudGame) {
-        this.game = mudGame;
+    public ThenClauseTokenizer() {
         tokenNameIndex = new HashMap<>();
     }
 
@@ -27,9 +24,7 @@ public class ThenClauseTokenizer {
             }else{
                 throw new RuntimeException(String.format("Could not find Then Clause Command Name %s | %s ", commandName, scriptClause.getParameter()));
             }
-
         }
-
     }
 
     public void add(int token, String commandName) {

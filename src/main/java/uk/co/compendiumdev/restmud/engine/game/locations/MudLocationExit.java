@@ -1,8 +1,6 @@
 package uk.co.compendiumdev.restmud.engine.game.locations;
 
-/**
- * Created by Alan on 26/03/2016.
- */
+
 public class MudLocationExit {
     private final String fromLocationId;
     private final String direction;

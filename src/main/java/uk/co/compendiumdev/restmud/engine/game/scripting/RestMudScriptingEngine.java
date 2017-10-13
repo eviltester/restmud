@@ -2,17 +2,17 @@ package uk.co.compendiumdev.restmud.engine.game.scripting;
 
 
 import uk.co.compendiumdev.restmud.engine.game.MudGame;
-import uk.co.compendiumdev.restmud.engine.game.parser.VerbTokenizer;
-import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.*;
+import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.ThenClauseCommandList;
+import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.ThenClauseTokenizer;
 import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.clauses.*;
-import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.*;
+import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.WhenClauseCommandList;
+import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.WhenClauseTokenizer;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.clauses.*;
 
 public class RestMudScriptingEngine {
 
     private final UserDefinedRulesProcessor rulesProcessor;
     private final ThenClauseTokenizer thenClauseTokenizer;
-    private final VerbTokenizer verbTokenizer;
     private final ThenClauseCommandList thenClauseCommands;
     private final WhenClauseTokenizer whenClauseTokenizer;
     private final WhenClauseCommandList whenClauseCommands;
@@ -20,26 +20,25 @@ public class RestMudScriptingEngine {
     public RestMudScriptingEngine(MudGame mudGame) {
 
         rulesProcessor = new UserDefinedRulesProcessor(mudGame);
-        verbTokenizer = new VerbTokenizer();
         thenClauseCommands = new ThenClauseCommandList(mudGame);
 
         thenClauseCommands.registerCommand(new DeleteUserCounter(mudGame));
         thenClauseCommands.registerCommand(new DeleteUserFlag(mudGame));
-        thenClauseCommands.registerCommand(new DisplayMessage(mudGame));
-        thenClauseCommands.registerCommand(new ForceLook(mudGame));
-        thenClauseCommands.registerCommand(new IncrementScore(mudGame));
-        thenClauseCommands.registerCommand(new IncrementUserCounter(mudGame));
-        thenClauseCommands.registerCommand(new LastActionError(mudGame));
-        thenClauseCommands.registerCommand(new LastActionSuccess(mudGame));
+        thenClauseCommands.registerCommand(new DisplayMessage());
+        thenClauseCommands.registerCommand(new ForceLook());
+        thenClauseCommands.registerCommand(new IncrementScore());
+        thenClauseCommands.registerCommand(new IncrementUserCounter());
+        thenClauseCommands.registerCommand(new LastActionError());
+        thenClauseCommands.registerCommand(new LastActionSuccess());
         thenClauseCommands.registerCommand(new ObjectSetAsSecret(mudGame));
         thenClauseCommands.registerCommand(new OpenGate(mudGame));
-        thenClauseCommands.registerCommand(new SetUserCounter(mudGame));
-        thenClauseCommands.registerCommand(new SetUserFlag(mudGame));
-        thenClauseCommands.registerCommand(new ShowCollectableInLook(mudGame));
+        thenClauseCommands.registerCommand(new SetUserCounter());
+        thenClauseCommands.registerCommand(new SetUserFlag());
+        thenClauseCommands.registerCommand(new ShowCollectableInLook());
         thenClauseCommands.registerCommand(new ShowGate(mudGame));
-        thenClauseCommands.registerCommand(new ShowLocationObjectInLook(mudGame));
+        thenClauseCommands.registerCommand(new ShowLocationObjectInLook());
         thenClauseCommands.registerCommand(new TeleportCollectableToLocation(mudGame));
-        thenClauseCommands.registerCommand(new TeleportUserToLocation(mudGame));
+        thenClauseCommands.registerCommand(new TeleportUserToLocation());
         thenClauseCommands.registerCommand(new RandomlyGenerateTreasure(mudGame));
         thenClauseCommands.registerCommand(new RandomlyGenerateHoardableJunk(mudGame));
         thenClauseCommands.registerCommand(new RandomlyGenerateHoards(mudGame));
@@ -51,21 +50,21 @@ public class RestMudScriptingEngine {
         thenClauseTokenizer = thenClauseCommands.getTokenizer();
 
 
-        whenClauseCommands = new WhenClauseCommandList(mudGame);
+        whenClauseCommands = new WhenClauseCommandList();
 
         whenClauseCommands.registerCommand(new DirectionMatches(mudGame));
-        whenClauseCommands.registerCommand(new LocationIdMatches(mudGame));
+        whenClauseCommands.registerCommand(new LocationIdMatches());
         whenClauseCommands.registerCommand(new LocationObjectIsHere(mudGame));
-        whenClauseCommands.registerCommand(new NounPhraseMatches(mudGame));
-        whenClauseCommands.registerCommand(new PlayerCounterExists(mudGame));
-        whenClauseCommands.registerCommand(new PlayerCounterValueMatches(mudGame));
-        whenClauseCommands.registerCommand(new PlayerFlagExists(mudGame));
-        whenClauseCommands.registerCommand(new PlayerFlagIsSet(mudGame));
-        whenClauseCommands.registerCommand(new UserIsCarrying(mudGame));
+        whenClauseCommands.registerCommand(new NounPhraseMatches());
+        whenClauseCommands.registerCommand(new PlayerCounterExists());
+        whenClauseCommands.registerCommand(new PlayerCounterValueMatches());
+        whenClauseCommands.registerCommand(new PlayerFlagExists());
+        whenClauseCommands.registerCommand(new PlayerFlagIsSet());
+        whenClauseCommands.registerCommand(new UserIsCarrying());
 
         // HTTP extensions for adventure
-        whenClauseCommands.registerCommand(new HttpVerbIs(mudGame));
-        whenClauseCommands.registerCommand(new HttpHeaderExists(mudGame));
+        whenClauseCommands.registerCommand(new HttpVerbIs());
+        whenClauseCommands.registerCommand(new HttpHeaderExists());
 
         whenClauseTokenizer = whenClauseCommands.getTokenizer();
     }

@@ -3,9 +3,6 @@ package uk.co.compendiumdev.restmud.engine.game.scripting;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Alan on 05/06/2016.
- */
 public class VerbCondition implements ScriptCondition{
     private final String verbName;
     private final List<ScriptClause> when;

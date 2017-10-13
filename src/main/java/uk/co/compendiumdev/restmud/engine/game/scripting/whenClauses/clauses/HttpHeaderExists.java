@@ -1,6 +1,5 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.clauses;
 
-import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
 import uk.co.compendiumdev.restmud.engine.game.RestMudHttpRequestDetails;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
@@ -9,12 +8,8 @@ import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
 
 
 public class HttpHeaderExists implements ScriptWhenClause {
-    private final MudGame game;
-    private RestMudHttpRequestDetails httpdetails;
 
-    public HttpHeaderExists(MudGame game) {
-        this.game = game;
-    }
+    private RestMudHttpRequestDetails httpdetails;
 
     public String getCommandName(){
         return When.HTTP_HEADER_EXISTS;

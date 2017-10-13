@@ -1,7 +1,5 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses;
 
-import uk.co.compendiumdev.restmud.engine.game.MudGame;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,16 +8,12 @@ import java.util.List;
  */
 public class WhenClauseCommandList {
 
-    private final MudGame game;
     private List<ScriptWhenClause> commandList;
     private WhenClauseTokenizer tokenizer;
 
-    public WhenClauseCommandList(MudGame mudGame) {
-        this.game = mudGame;
+    public WhenClauseCommandList() {
         commandList = new ArrayList<>();
-        tokenizer = new WhenClauseTokenizer(mudGame);
-
-
+        tokenizer = new WhenClauseTokenizer();
     }
 
     public void registerCommand(ScriptWhenClause command) {

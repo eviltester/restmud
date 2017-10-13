@@ -1,6 +1,5 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.clauses;
 
-import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ProcessConditionReturn;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
@@ -10,13 +9,6 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 
 public class LastActionSuccess implements ScriptThenCommand {
-
-    private final MudGame game;
-
-
-    public LastActionSuccess(MudGame game) {
-        this.game = game;
-    }
 
     public String getCommandName(){
         return Then.LAST_ACTION_SUCCESS;

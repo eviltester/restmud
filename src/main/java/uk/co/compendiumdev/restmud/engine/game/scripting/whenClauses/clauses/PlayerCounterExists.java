@@ -1,6 +1,5 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.clauses;
 
-import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
 import uk.co.compendiumdev.restmud.engine.game.RestMudHttpRequestDetails;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
@@ -10,12 +9,11 @@ import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
 
 
 public class PlayerCounterExists implements ScriptWhenClause {
-    private final MudGame game;
+
 
     ScriptableCounter counter;
 
-    public PlayerCounterExists(MudGame game) {
-        this.game = game;
+    public PlayerCounterExists() {
         this.counter = ScriptableCounter.empty();
     }
 

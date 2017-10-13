@@ -1,6 +1,5 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses;
 
-import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 
 import java.util.HashMap;
@@ -11,11 +10,10 @@ import java.util.Map;
  * Created by Alan on 08/08/2016.
  */
 public class WhenClauseTokenizer{
-    private final MudGame game;
+
     private Map<String, Integer> tokenNameIndex;
 
-    public WhenClauseTokenizer(MudGame mudGame) {
-        this.game = mudGame;
+    public WhenClauseTokenizer() {
         tokenNameIndex = new HashMap<>();
     }
 

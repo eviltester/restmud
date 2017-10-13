@@ -1,7 +1,6 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import uk.co.compendiumdev.restmud.engine.game.GameGenerator;
 import uk.co.compendiumdev.restmud.engine.game.MudGame;
@@ -16,8 +15,6 @@ import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
  * Created by alan on 21/08/2016.
  */
 public class FailTokenisationTest {
-
-    private static MudGame game;
 
     class poorlyWrittenGame implements GameGenerator {
         @Override
@@ -40,11 +37,6 @@ public class FailTokenisationTest {
 
         }
     }
-        @Before
-     public void setupTheGame() {
-
-
-        }
 
     // test should fail because we create a then with wrong name
     @Test(expected = RuntimeException.class)
@@ -53,12 +45,10 @@ public class FailTokenisationTest {
         GameInitializer theGameInit = new GameInitializer();
 
         // the game should be empty at this point
-        game = theGameInit.getGame();
+        MudGame game = theGameInit.getGame();
         Assert.assertEquals(0, game.getUserManager().numberOfUsers());
 
         theGameInit.generate(new poorlyWrittenGame());
-
-
 
     }
 

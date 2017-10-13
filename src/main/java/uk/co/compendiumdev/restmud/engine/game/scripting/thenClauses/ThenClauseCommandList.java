@@ -6,16 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ThenClauseCommandList {
-    private final MudGame game;
+
     private List<ScriptThenCommand> commandList;
     private ThenClauseTokenizer tokenizer;
 
     public ThenClauseCommandList(MudGame mudGame) {
-        this.game = mudGame;
+
         commandList = new ArrayList<>();
-        tokenizer = new ThenClauseTokenizer(mudGame);
-
-
+        tokenizer = new ThenClauseTokenizer();
     }
 
     public void registerCommand(ScriptThenCommand command) {

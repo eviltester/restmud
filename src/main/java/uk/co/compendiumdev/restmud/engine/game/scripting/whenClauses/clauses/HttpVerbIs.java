@@ -1,6 +1,5 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.clauses;
 
-import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
 import uk.co.compendiumdev.restmud.engine.game.RestMudHttpRequestDetails;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
@@ -9,12 +8,8 @@ import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
 
 
 public class HttpVerbIs implements ScriptWhenClause {
-    private final MudGame game;
-    private RestMudHttpRequestDetails httpdetails;
 
-    public HttpVerbIs(MudGame game) {
-        this.game = game;
-    }
+    private RestMudHttpRequestDetails httpdetails;
 
     public String getCommandName(){
         return When.HTTP_VERB_IS;
@@ -22,8 +17,6 @@ public class HttpVerbIs implements ScriptWhenClause {
 
     @Override
     public boolean execute(ScriptClause when, MudUser player, String nounPhrase) {
-
-
 
         if(httpdetails==null){
             return false;

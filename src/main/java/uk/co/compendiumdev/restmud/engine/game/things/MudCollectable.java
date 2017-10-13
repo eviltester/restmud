@@ -1,8 +1,6 @@
 package uk.co.compendiumdev.restmud.engine.game.things;
 
-/**
- * Created by Alan on 15/12/2015.
- */
+
 public class MudCollectable {
     private final String collectableId;
     private final String description;

@@ -3,7 +3,6 @@ package uk.co.compendiumdev.restmud.engine.game.scripting;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import uk.co.compendiumdev.restmud.engine.game.GameEngineTestDSL;
 import uk.co.compendiumdev.restmud.engine.game.GameGenerator;
 import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
@@ -15,7 +14,6 @@ import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
 public class ScriptingVerbsCollectables {
 
     private static MudGame game;
-    private static GameEngineTestDSL dsl;
 
     class simpleWrittenGame implements GameGenerator {
         @Override
@@ -48,7 +46,6 @@ public class ScriptingVerbsCollectables {
 
         game.teleportUserTo("tester", "1"); // set the user back to the central room after each path
 
-        dsl = new GameEngineTestDSL(game);
 
     }
     // fail to open gate because of wrong name

@@ -1,8 +1,10 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.clauses;
 
-import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
-import uk.co.compendiumdev.restmud.engine.game.scripting.*;
+import uk.co.compendiumdev.restmud.engine.game.scripting.ImmutableEmptyProcessConditionReturn;
+import uk.co.compendiumdev.restmud.engine.game.scripting.ProcessConditionReturn;
+import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
+import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableCounter;
 import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.ScriptThenCommand;
 import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.Then;
 
@@ -10,11 +12,6 @@ import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.Then;
  * Created by Alan on 07/08/2016.
  */
 public class SetUserCounter implements ScriptThenCommand {
-    private final MudGame game;
-
-    public SetUserCounter(MudGame game) {
-        this.game = game;
-    }
 
     @Override
     public String getCommandName() {

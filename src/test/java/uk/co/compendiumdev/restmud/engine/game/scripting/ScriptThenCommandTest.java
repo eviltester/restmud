@@ -23,7 +23,7 @@ public class ScriptThenCommandTest {
         MudGame game = theGameInit.getGame();
         MudUser player = game.getUserManager().getUser("tester");
 
-        ScriptThenCommand command = new LastActionSuccess(game);
+        ScriptThenCommand command = new LastActionSuccess();
         Assert.assertEquals("lastaction.success", command.getCommandName());
         ProcessConditionReturn ret = command.execute(success, player);
         Assert.assertTrue(ret.hasAnyActions());
