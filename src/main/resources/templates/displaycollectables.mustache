@@ -1,0 +1,26 @@
+{{^display_collectables_verbs}}
+    {{#collectables.size}}
+        <p>You can see:</p>
+        <ul>
+            {{#collectables}}
+                <li collectableid="{{id}}">{{description}}</li>
+            {{/collectables}}
+        </ul>
+    {{/collectables.size}}
+{{/display_collectables_verbs}}
+
+{{#display_collectables_verbs}}
+    {{#collectables.size}}
+        <p>You can see:</p>
+        <ul>
+            {{#collectables}}
+                <li collectableid="{{id}}">{{description}}
+                    <ul>
+                        <li><a href="/player/$username$/take/{{id}}">take it</a></li>
+                    </ul>
+                </li>
+            {{/collectables}}
+
+        </ul>
+    {{/collectables.size}}
+{{/display_collectables_verbs}}

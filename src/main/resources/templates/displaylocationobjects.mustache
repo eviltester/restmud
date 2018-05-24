@@ -1,0 +1,26 @@
+{{^display_collectables_verbs}}
+    {{#visibleObjects.size}}
+        <p>You notice:</p>
+        <ul>
+            {{#visibleObjects}}
+                <li objectId="{{id}}">{{description}}</li>
+            {{/visibleObjects}}
+        </ul>
+    {{/visibleObjects.size}}
+{{/display_collectables_verbs}}
+
+{{#display_collectables_verbs}}
+    {{#visibleObjects.size}}
+        <p>You notice:</p>
+        <ul>
+            {{#visibleObjects}}
+                <li visibleObjects="{{id}}">{{description}}
+                    <ul>
+                        <li><a href="/player/$username$/examine/{{id}}">Examine it</a></li>
+                    </ul>
+                </li>
+            {{/visibleObjects}}
+
+        </ul>
+    {{/visibleObjects.size}}
+{{/display_collectables_verbs}}

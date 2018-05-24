@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>uk.co.compendiumdev.restmud.engine</groupId>
+    <artifactId>restmud-web</artifactId>
+    <version>1.1-SNAPSHOT</version>
+
+
+    <properties>
+        <!-- dependency versions -->
+        <junit.version>4.12</junit.version>
+        <sparkjava.version>2.3</sparkjava.version>
+        <gson.version>2.8.0</gson.version>
+        <restmud.dsl.version>1.0.0</restmud.dsl.version>
+        <restmud.game-engine.version>1.5</restmud.game-engine.version>
+        <restmud.cli-engine.version>1.0.0</restmud.cli-engine.version>
+        <!-- released -->
+        <!-- <restmud.game-engine.version>1.3</restmud.game-engine.version> -->
+
+        <!-- build -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.jvm.version>1.8</java.jvm.version>
+
+
+        <!-- was 2.3 -->
+        <spark-mustache.version>2.7.1</spark-mustache.version>
+
+    </properties>
+
+
+    <dependencies>
+
+
+        <dependency>
+            <groupId>uk.co.compendiumdev.restmud.engine</groupId>
+            <artifactId>restmud-engine</artifactId>
+            <version>${restmud.game-engine.version}</version>
+
+        </dependency>
+        
+        <dependency>
+            <groupId>com.sparkjava</groupId>
+            <artifactId>spark-core</artifactId>
+            <version>${sparkjava.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Templating Engine -->
+        <dependency>
+            <groupId>com.sparkjava</groupId>
+            <artifactId>spark-template-mustache</artifactId>
+            <version>${spark-mustache.version}</version>
+        </dependency>
+
+        <!--  Gson: Java to Json conversion -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+        <!-- lightweight xml to json conversion -->
+        <!-- https://github.com/stleary/JSON-java -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160212</version>
+        </dependency>
+
+        <dependency>
+            <groupId>uk.co.compendiumdev.restmud</groupId>
+            <artifactId>restmud-game-testing-dsl</artifactId>
+            <version>${restmud.dsl.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java.jvm.version}</source>
+                    <target>${java.jvm.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <!-- This tells Maven to include all dependencies -->
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>uk.co.compendiumdev.restmud.web.MainRestMud</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>1.1.3</version>
+                <configuration>
+                    <jdkVersion>${java.jvm.version}</jdkVersion>
+                    <!-- Use your own application name -->
+                    <appName>restmud</appName>
+                    <processTypes>
+                        <!-- https://devcenter.heroku.com/articles/deploying-java-applications-with-the-heroku-maven-plugin -->
+                        <!-- Tell Heroku how to launch your application -->
+                        <!-- You might have to remove the ./ in front   -->
+                        <!-- <web>java -jar /target/restmud-1.0-jar-with-dependencies.jar</web>-->
+                        <!-- try from procfile -->
+                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* uk.co.compendiumdev.restmud.web.MainRestMud -gamename treasure_hunt_basic -playermode multi</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

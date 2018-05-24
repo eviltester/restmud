@@ -1,0 +1,14 @@
+<script>
+    // quick hack to modify the anchors to add username in place of $username$
+    var anchors = document.links;
+    var i = anchors.length;
+
+    while (i--){
+        var a = anchors[i];
+        var theHref = a.getAttribute("href");
+        if(theHref.indexOf("$username$")){
+            theHref = theHref.replace("\$username\$", "{{username}}");
+            a.setAttribute("href", theHref);
+        }
+    }
+</script>

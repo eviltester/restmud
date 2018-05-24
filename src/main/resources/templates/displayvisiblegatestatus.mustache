@@ -1,0 +1,28 @@
+{{#display_visible_gate_status}}
+{{#visibleGates.size}}
+    <p>You can also see that:</p>
+    <ul>
+        {{#visibleGates}}
+            <li direction="{{direction}}" isOpen="{{open}}">{{description}}</li>
+        {{/visibleGates}}
+
+    </ul>
+{{/visibleGates.size}}
+{{/display_visible_gate_status}}
+
+{{#display_visible_gate_verbs}}
+    {{#visibleGates.size}}
+        <p>You can also see that:</p>
+        <ul>
+            {{#visibleGates}}
+                <li direction="{{direction}}" isOpen="{{open}}">{{description}}
+                    <ul>
+                        <li><a href="/player/$username$/open/{{direction}}">Open {{gateDescription}}</a></li>
+                        <li><a href="/player/$username$/close/{{direction}}">Close {{gateDescription}}</a></li>
+                    </ul>
+                </li>
+            {{/visibleGates}}
+
+        </ul>
+    {{/visibleGates.size}}
+{{/display_visible_gate_verbs}}

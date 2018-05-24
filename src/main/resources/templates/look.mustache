@@ -1,0 +1,49 @@
+{{> lastactionresult}}
+
+{{> displaymessages}}
+
+{{> displaygetuserdetails}}
+
+{{> displayuserscoredetails}}
+
+{{> displayinventory}}
+
+{{> displayobjectinspectionreport}}
+
+{{#look}}
+
+    <h2>Look</h2>
+    <hr/>
+
+
+
+    {{> displaylocationdescription}}
+
+    {{> displaylocationobjects}}
+
+    {{> displayvisibleexists}}
+
+    {{> displaycollectables}}
+
+    {{> displayvisiblegatestatus }}
+
+    {{> displayotherpeoplehere}}
+
+    {{> displaytreasurehoard}}
+
+{{/look}}
+
+
+
+{{#display_youcanalso_verbs}}
+    {{> displayyoucanalso }}
+{{/display_youcanalso_verbs}}
+
+{{#thisIsAWizard}}
+    {{> displaywizthings }}
+{{/thisIsAWizard}}
+
+{{#add_verb_javascript}}
+    {{> displayverbjavascript }}
+{{/add_verb_javascript}}
+

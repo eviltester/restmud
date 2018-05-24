@@ -1,0 +1,122 @@
+<html>
+<head>
+    <title>How to play RestMud</title>
+</head>
+<body>
+
+{{#errormessage}}
+<h1>{{errormessage}}</h1>
+<hr/>
+{{/errormessage}}
+
+
+<h1>How to Play</h1>
+<hr/>
+
+<p>Your aim is to <b>take</b> the treasure, and when you find a place to <b>hoard</b> it, then use the verb <b>hoard</b> to do that.</p>
+
+<p><b>Be careful, not everything that you can pick up can be added to your hoard.
+    Some things you see you shouldn't want to pick up. Some things you should not add to your hoard (because you may reduce your score)</b></p>
+
+<h2>Commands</h2>
+
+<p>To see the scores then <a href="/">visit the home page</a></p>
+{{^single_player_mode}}
+<p>If you are a wizard then <a href="/wiz">you can do wizardly things</a></p>
+{{/single_player_mode}}
+
+<ul>
+    <li>
+        {{#display_player_hrefs}}<a href="/">{{/display_player_hrefs}}
+            /
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    </li>
+    {{^single_player_mode}}
+    <li>
+        {{#display_player_hrefs}}<a href="/register">{{/display_player_hrefs}}
+        /register
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    </li>
+    <li>
+        {{#display_player_hrefs}}<a href="/login">{{/display_player_hrefs}}
+        /login
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    </li>
+    {{/single_player_mode}}
+    <li>
+        {{#display_player_hrefs}}<a href="/help">{{/display_player_hrefs}}
+        /help
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    </li>
+</ul>
+
+{{#username}}
+    {{^single_player_mode}}
+    <p>Once you have registered and logged in, then you can issue player commands</p>
+    {{/single_player_mode}}
+    {{#single_player_mode}}
+        <p>You can issue player commands, no need to register or login</p>
+    {{/single_player_mode}}
+    <ul>
+    <li>{{#display_player_hrefs}}<a href="/player/{{username}}/help">{{/display_player_hrefs}}
+        /player/{{username}}/help
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    </li>
+    <li>{{#display_player_hrefs}}<a href="/player/{{username}}/look">{{/display_player_hrefs}}
+        /player/{{username}}/look
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    </li>
+    <li>{{#display_player_hrefs}}<a href="/player/{{username}}/inventory">{{/display_player_hrefs}}
+        /player/{{username}}/inventory
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    </li>
+    <li>{{#display_player_hrefs}}<a href="/player/{{username}}/take/itemId">{{/display_player_hrefs}}
+        /player/{{username}}/take/<i>itemId</i>
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    </li>
+    <li>{{#display_player_hrefs}}<a href="/player/{{username}}/drop/itemId">{{/display_player_hrefs}}
+        /player/{{username}}/drop/<i>itemId</i>
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    </li>
+    <li>{{#display_player_hrefs}}<a href="/player/{{username}}/hoard/itemId">{{/display_player_hrefs}}
+        /player/{{username}}/hoard/<i>itemId</i>
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    </li>
+    <li>{{#display_player_hrefs}}<a href="/player/{{username}}/go/direction">{{/display_player_hrefs}}
+        /player/{{username}}/go/<i>direction</i>
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    </li>
+</ul>
+
+
+<p>To find the <i>itemId</i> you may need to inspect element the source.</p>
+<p>Directions:
+    {{#display_player_hrefs}}<a href="/player/{{username}}/go/e">{{/display_player_hrefs}}
+    e,
+    {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    {{#display_player_hrefs}}<a href="/player/{{username}}/go/w">{{/display_player_hrefs}}
+    w,
+    {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    {{#display_player_hrefs}}<a href="/player/{{username}}/go/s">{{/display_player_hrefs}}
+    s,
+    {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+    {{#display_player_hrefs}}<a href="/player/{{username}}/go/n">{{/display_player_hrefs}}
+    n
+    {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+</p>
+{{/username}}
+{{^username}}
+    <p>Once you have
+        {{#display_player_hrefs}}<a href="/register">{{/display_player_hrefs}}
+        registered
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+         and
+        {{#display_player_hrefs}}<a href="/login">{{/display_player_hrefs}}
+        logged in
+        {{#display_player_hrefs}}</a>{{/display_player_hrefs}}
+        , then you can issue player commands e.g.</p>
+    <ul>
+        <li>/player/<i>yourUsername</i>/help</li>
+    </ul>
+{{/username}}
+</body>

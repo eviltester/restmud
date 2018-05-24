@@ -1,0 +1,238 @@
+<html>
+<head>
+    <title>Wizard Interface for Wizardy Folks</title>
+</head>
+<body>
+
+{{#errormessage}}
+    <h2>{{errormessage}}</h2>
+{{/errormessage}}
+
+
+{{#infoMessage}}
+    <h2>Result Message</h2>
+    <h3>{{infoMessage}}</h3>
+{{/infoMessage}}
+
+<h2>Wizardy</h2>
+
+<p>I am <a href="/wiz/visibilityToOthers?visible=true"><button>Visible</button></a> <a href="/wiz/visibilityToOthers?visible=false"><button>Invisible</button></a></p>
+
+{{#username}}
+    <ul>
+        <li><a href="/player/{{username}}/look">Look</a></li>
+        <li><a href="/player/{{username}}/scores">Scores</a></li>
+    </ul>
+{{/username}}
+
+
+<h2>Game Secret Code</h2>
+
+{{#GameSecretCode}}
+    <p><strong>Current Game Secret Code is: {{GameSecretCode}}</strong></p>
+
+    <form action="/wiz/changeSecretCode" method="post">
+        <input type="text" name="secret" size="30" maxlength="50" value="{{GameSecretCode}}"/>
+        <input type="submit" value="Change Secret Code"/>
+    </form>
+
+{{/GameSecretCode}}
+
+
+<h2>Game</h2>
+
+<form action="/wiz/resetGameState" method="post">
+    <input type="submit" value="Reset Game State"/>
+</form>
+
+{{#builtInGames}}
+    <form action="/wiz/loadGame" method="post">
+        <input type="text" name="gamename" value="{{id}}">
+        <input type="submit" value="Load Game {{id}}"/>
+    </form>
+{{/builtInGames}}
+
+<form action="/wiz/useGameDefinition" method="post">
+    <input type="text" name="gamedefinition" value="">
+    <input type="submit" value="Use This JSON Game Defn"/>
+</form>
+
+
+<h2>Authentication Modes</h2>
+
+<ul>
+    {{#allow_auth_header}}
+    <li>Allow Auth Header is {{allow_auth_header}}</li>
+    {{/allow_auth_header}}
+
+    {{#allow_basic_auth}}
+        <li>Allow Basic Auth Headers is {{allow_basic_auth}}</li>
+    {{/allow_basic_auth}}
+
+    {{#allow_login_form}}
+        <li>Allow Login Form is {{allow_login_form}}</li>
+    {{/allow_login_form}}
+</ul>
+
+<p>Control Login:</p>
+<ul>
+    <li>Set "Allow Auth Header" to <a href="/wiz/setAuth?mode=header&value=true">TRUE</a> | <a href="/wiz/setAuth?mode=header&value=false">FALSE</a></li>
+    <li>Set "Allow Basic Auth Header" to <a href="/wiz/setAuth?mode=basicauth&value=true">TRUE</a> | <a href="/wiz/setAuth?mode=basicauth&value=false">FALSE</a></li>
+    <li>Set "Allow Login Form" to <a href="/wiz/setAuth?mode=loginform&value=true">TRUE</a> | <a href="/wiz/setAuth?mode=loginform&value=false">FALSE</a></li>
+</ul>
+
+<h2>Locations</h2>
+
+<ul>
+    {{#locations}}
+        <li id="{{id}}">{{description}}  [{{id}}] <a href="/wiz/teleport/{{id}}">Teleport</a> <a href="/wiz/lightlocation/{{id}}">LightUp</a> <a href="/wiz/darkenlocation/{{id}}">Darken</a></li>
+    {{/locations}}
+</ul>
+
+<h2>Gates</h2>
+
+<ul>
+    {{#gates}}
+        <li id="{{id}}">{{description}} [<a href="/wiz/close{{id}}">Close</a> <a href="/wiz/open{{id}}">Open</a>]</li>
+    {{/gates}}
+</ul>
+
+
+<h2>Treasures</h2>
+
+<form action="/wiz/addrandomtreasures" method="post">
+    <input type="text" name="numberoftreasures" value="15"/>
+    <input type="submit" value="Add Treasure"/>
+</form>
+
+<form action="/wiz/addhoardablejunk" method="post">
+    <input type="text" name="numberofjunk" value="15"/>
+    <input type="submit" value="Add Hoardable Junk"/>
+</form>
+
+<form action="/wiz/addrandomjunk" method="post">
+    <input type="text" name="numberofjunk" value="15"/>
+    <input type="submit" value="Add Non-Hoardable Junk"/>
+</form>
+
+<form action="/wiz/addfaketreasure" method="post">
+    <input type="text" name="numberofitems" value="15"/>
+    <input type="submit" value="Add Fake Treasure"/>
+</form>
+
+<form action="/wiz/morehoards" method="post">
+    <input type="text" name="numberofhoards" value="15"/>
+    <input type="submit" value="Add More Hoards"/>
+</form>
+
+<h2>The Voice Of God</h2>
+
+<form action="/wiz/shout" method="post">
+    <input type="textarea" name="shouted" rows="4" cols="50"/>
+    <input type="submit" value="Shout it out!"/>
+</form>
+
+<form action="/wiz/trimmessages" method="post">
+    <input type="text" name="retainmessagecount" value="10"/>
+    <input type="submit" value="Trim message queue length"/>
+</form>
+
+<form action="/wiz/clearmessages" method="post">
+    <input type="submit" value="Clear Message Queue"/>
+</form>
+
+
+<h2>Players</h2>
+
+<ul>
+    {{#players}}
+        <li id="{{id}}"><a href="/player/{{id}}/look">Look - {{description}}</a></li>
+    {{/players}}
+</ul>
+
+<h2>Game GUI Modes</h2>
+
+{{#GuiModeValue}}
+    <p><strong>Current GUI Mode is: {{GuiModeValue}}</strong></p>
+{{/GuiModeValue}}
+
+
+<ul>
+    <li><a href="/wiz/config/playerGuiMode/super">Super Easy Mode</a>
+        <ul>
+            <li>Exits have URLs for GO</li>
+            <li>Collectables have URLs for Take</li>
+            <li>Links for "You can Also"</li>
+            <li>Inventory has IDs and URLs for Verbs</li>
+            <li>Gate Status is shown, with links</li>
+        </ul>
+    </li>
+    <li><a href="/wiz/config/playerGuiMode/easy">Easy Mode</a>
+        <ul>
+            <li>Inventory has IDs</li>
+            <li>Collectables have IDs</li>
+            <li>Gate Status is shown</li>
+            <li>No - you can also</li>
+        </ul>
+    </li>
+    <li><a href="/wiz/config/playerGuiMode/normal">Normal Mode</a>
+        <ul>
+            <li>Inventory does not have IDs</li>
+            <li>No Gate Status is shown</li>
+        </ul>
+    </li>
+<!-- TODO Implement no gui -->
+<!-- <li><a href="/wiz/config/playerGuiMode/none">No GUI</a></li> -->
+</ul>
+
+<hr/>
+
+<h2>Game Verb Modes</h2>
+
+{{#GameVerbModeName}}
+    <p><strong>Current game Verb Mode is : {{GameVerbModeName}}</strong></p>
+{{/GameVerbModeName}}
+
+{{#verbModes.names.size}}
+  <ul>
+      {{#verbModes.verbModes}}
+          <li><a href="/wiz/config/gameVerbMode/{{name}}">{{name}}</a></li>
+      {{/verbModes.verbModes}}
+  </ul>
+
+{{/verbModes.names.size}}
+
+
+{{#verbModes.verbModes.size}}
+<table border="1">
+    <tr>
+    {{#verbModes.verbModes}}
+        <td valign="top">
+            <h2><a href="/wiz/config/gameVerbMode/{{name}}">{{name}}</a></h2>
+            <h3>GUI Verb Mappings</h3>
+            <ul>
+                {{#guiMatchers}}
+                    <li><strong>{{matchingVerb}}</strong> - {{verbRegex}}</li>
+                {{/guiMatchers}}
+            </ul>
+
+            <h3>API Get Verb Mappings</h3>
+            <ul>
+                {{#apiGetVerbMatchers}}
+                    <li><strong>{{matchingVerb}}</strong> - {{verbRegex}}</li>
+                {{/apiGetVerbMatchers}}
+            </ul>
+
+            <h3>API POST Verb Mappings</h3>
+            <ul>
+                {{#apiPostVerbMatchers}}
+                    <li><strong>{{matchingVerb}}</strong> - {{verbRegex}}</li>
+                {{/apiPostVerbMatchers}}
+            </ul>
+        </td>
+    {{/verbModes.verbModes}}
+    </tr>
+</table>
+{{/verbModes.verbModes.size}}
+</body>
+</html>

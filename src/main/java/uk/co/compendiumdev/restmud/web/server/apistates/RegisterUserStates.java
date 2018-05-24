@@ -1,0 +1,5 @@
+package uk.co.compendiumdev.restmud.web.server.apistates;
+
+public enum RegisterUserStates {
+    SUCCESS_REGISTERED_USER, ERROR_INVALID_DETAILS, ERROR_ALREADY_LOGGEDIN, ERROR_ALREADY_REGISTERED, INVALID_GAME_CODE_SUPPLIED, USER_DOES_NOT_EXIST
+}

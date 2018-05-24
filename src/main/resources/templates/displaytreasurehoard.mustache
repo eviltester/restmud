@@ -1,0 +1,12 @@
+{{#treasureHoard.contents.size}}
+    <p>Your treasure hoard is here, you have hoarded:</p>
+    <ul>
+        {{#treasureHoard.contents.isEmpty}}
+            <li>Nothing</li>
+        {{/treasureHoard.contents.isEmpty}}
+        {{#treasureHoard.contents}}
+            <li treasureId="{{id}}">{{description}}</li>
+        {{/treasureHoard.contents}}
+
+    </ul>
+{{/treasureHoard.contents.size}}
