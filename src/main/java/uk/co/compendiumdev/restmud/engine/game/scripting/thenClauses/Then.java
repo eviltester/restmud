@@ -29,4 +29,6 @@ public class Then {
     public static final String RANDOMLY_GENERATE_HOARDABLE_JUNK = "randomly.createhoardablejunk";
     public static final String RANDOMLY_GENERATE_NON_HOARDABLE_JUNK = "randomly.create_nonhoardable_junk";
 
+    public static final String CREATE_EXIT = "exit.create";
+    public static final String REMOVE_EXIT = "exit.remove";
 }

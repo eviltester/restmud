@@ -139,4 +139,14 @@ public class MudLocation {
         this.reason = reason;
         return this;
     }
+
+    public void addExit(String direction, String toLocation) {
+
+        exits.put(direction, new MudLocationExit(locationId, direction, toLocation));
+
+    }
+
+    public void removeExit(String direction) {
+        exits.remove(direction);
+    }
 }

@@ -3,8 +3,10 @@ package uk.co.compendiumdev.restmud.gamedata;
 import uk.co.compendiumdev.restmud.engine.game.GameGenerator;
 import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
+import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinitionSerialiser;
 import uk.co.compendiumdev.restmud.engine.game.verbmodes.DefaultVerbModes;
+import uk.co.compendiumdev.restmud.gamedata.games.gamedefinitions.FromDefinitionGameGenerator;
 import uk.co.compendiumdev.restmud.gamedata.games.gamedefinitions.FromJsonGameGenerator;
 
 import java.util.Map;
@@ -17,10 +19,16 @@ public class GameInitializer {
 
 
     private final MudGame game;
+    private boolean displayStartUpMessages;
     private String wizardAuthHeader;
 
     public GameInitializer(){
         this.game = new MudGame();
+        displayStartUpMessages = true;
+    }
+
+    public void setDisplayStartupMessages(boolean display){
+        this.displayStartUpMessages=display;
     }
 
 
@@ -38,6 +46,12 @@ public class GameInitializer {
 
     }
 
+
+    public void generate(MudGameDefinition aGameDefn) {
+        GameGenerator gameGenerator = new FromDefinitionGameGenerator(aGameDefn);
+        this.generate(gameGenerator);
+    }
+
     public void generateFromJson(String jsonDefn) {
 
         GameGenerator gameGenerator = new FromJsonGameGenerator(jsonDefn);
@@ -48,6 +62,12 @@ public class GameInitializer {
     public void generate(GameGenerator generator) {
 
         generator.generateInto(game);
+        generate();
+
+    }
+
+    public void generate() {
+
         game.tokenizeScriptConditions();
 
 
@@ -65,8 +85,8 @@ public class GameInitializer {
         if(defaultSecretCode!=null){
             secretCode = defaultSecretCode;
         }
-        
-        System.out.println(String.format("SECRET GAME CODE for REGISTRATION is %s", secretCode));
+
+        logStartupMessage(String.format("SECRET GAME CODE for REGISTRATION is %s", secretCode));
         game.getSecretGameRegistrationCode().set(secretCode);
 
     }
@@ -88,7 +108,7 @@ public class GameInitializer {
         }
 
 
-        System.out.println(String.format("Wizard (wiz) password (%s) is %s", wizardAuthHeader, wizard.getAuthToken()));
+        logStartupMessage(String.format("Wizard (wiz) password (%s) is %s", wizardAuthHeader, wizard.getAuthToken()));
         game.getUserManager().add(wizard);
     }
 
@@ -98,11 +118,11 @@ public class GameInitializer {
 
         if(defaultUserNamesEnv!=null){
 
-            System.out.println("Processing Default Users in " + RESTMUDEFAULTUSERS);
+            logStartupMessage("Processing Default Users in " + RESTMUDEFAULTUSERS);
             addUsersFromString(defaultUserNamesEnv);
 
         }else{
-            System.out.println("No Default Users Found in " + RESTMUDEFAULTUSERS);
+            logStartupMessage("No Default Users Found in " + RESTMUDEFAULTUSERS);
         }
     }
 
@@ -112,18 +132,23 @@ public class GameInitializer {
 
     public void addDefaultUser(String displayName, String uName, String password) {
 
-        System.out.println(String.format("Adding user %s(%s)", displayName, uName));
+        logStartupMessage(String.format("Adding user %s(%s)", displayName, uName));
         String gameStartLocation = game.getStartLocationId();
 
         if(displayName.length()>0){
             if(uName.length()>0){
                 game.getUserManager().add(new MudUser(displayName,uName,password).setLocationId(gameStartLocation));
-                System.out.println(String.format("Added user %s(%s)", displayName, uName));
+                logStartupMessage(String.format("Added user %s(%s)", displayName, uName));
                 return;
             }
         }
 
-        System.out.println(String.format("Could not add user %s(%s)", displayName, uName));
+        logStartupMessage(String.format("Could not add user %s(%s)", displayName, uName));
+    }
+
+    public void logStartupMessage(String message){
+        if(displayStartUpMessages)
+            System.out.println(message);
     }
 
     /**

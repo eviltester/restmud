@@ -6,6 +6,7 @@ import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableCounter;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableFlag;
 import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
+import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
 import uk.co.compendiumdev.restmud.engine.game.verbs.VerbGameAbilities;
 import uk.co.compendiumdev.restmud.engine.game.verbs.VerbInspect;
 import uk.co.compendiumdev.restmud.engine.game.verbs.handlers.perPlayer.*;
@@ -40,6 +41,7 @@ public class MudUser {
     private VerbInspect inspect;
     private VerbInventory inventoryVerbHandler;
     private VerbScore scoreVerbHandler;
+    private PlayerCommand currentCommand;
 
 
     public MudUser(String displayName, String userName, String password) {
@@ -441,4 +443,12 @@ public class MudUser {
         return output;
     }
 
+    public MudUser setCurrentCommand(PlayerCommand playerCommand) {
+        this.currentCommand = playerCommand;
+        return this;
+    }
+
+    public PlayerCommand getCurrentCommand() {
+        return this.currentCommand;
+    }
 }

@@ -8,8 +8,7 @@ import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinitionS
 
 /*
 
-This is the game released as the single player demo game. With the maze etc.
-
+This uses a json definition and generates it into the game
 
  */
 public class FromJsonGameGenerator implements GameGenerator {

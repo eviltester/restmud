@@ -5,24 +5,24 @@ import uk.co.compendiumdev.restmud.engine.game.RestMudHttpRequestDetails;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.ScriptWhenClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
+import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
 
 
 public class HttpHeaderExists implements ScriptWhenClause {
 
-    private RestMudHttpRequestDetails httpdetails;
 
     public String getCommandName(){
         return When.HTTP_HEADER_EXISTS;
     }
 
     @Override
-    public boolean execute(ScriptClause when, MudUser player, String nounPhrase) {
+    public boolean execute(ScriptClause when, MudUser player, PlayerCommand command) {
 
-        if(httpdetails==null){
+        if(command.getHttpDetails()==null){
             return false;
         }
 
-        for(String aheader : httpdetails.headers){
+        for(String aheader : command.getHttpDetails().headers){
             if(aheader.toLowerCase().trim().startsWith(when.getParameter().toLowerCase())){
                 return true;
             }
@@ -30,9 +30,4 @@ public class HttpHeaderExists implements ScriptWhenClause {
         return false;
     }
 
-    @Override
-    public ScriptWhenClause addHttpDetails(RestMudHttpRequestDetails details) {
-        this.httpdetails = details;
-        return this;
-    }
 }

@@ -6,6 +6,7 @@ import uk.co.compendiumdev.restmud.engine.game.RestMudHttpRequestDetails;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.parser.VerbToken;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.ScriptWhenClause;
+import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
 
 import java.util.List;
 
@@ -16,8 +17,7 @@ public class UserDefinedRulesProcessor {
         this.game = mudGame;
     }
 
-
-    public ProcessConditionReturn processVerbConditions(MudUser player, VerbToken verbToHandle, String nounPhrase, RestMudHttpRequestDetails httpRequestDetails) {
+    public ProcessConditionReturn processVerbConditions(MudUser player, PlayerCommand currentCommand) {
 
         ProcessConditionReturn ret = new ProcessConditionReturn();
 
@@ -25,11 +25,11 @@ public class UserDefinedRulesProcessor {
             return ret;
         }
 
-        if(verbToHandle==null){
+        if(currentCommand.getVerbToken()==null){
             return ret;
         }
 
-        List<VerbCondition> conditions = game.getVerbConditions().get(verbToHandle.getValue());
+        List<VerbCondition> conditions = game.getVerbConditions().get(currentCommand.getVerbToken().getValue());
 
         if (conditions == null) {
             return ret;
@@ -41,7 +41,7 @@ public class UserDefinedRulesProcessor {
 
         for (VerbCondition condition : conditions) {
 
-            if (conditionWhenClauseMatches(condition, player, whereAmI, nounPhrase, httpRequestDetails)) {
+            if (conditionWhenClauseMatches(condition, player, whereAmI)) {
                 // do the thens
                 ret = processConditionThenActions(condition, player);
             }
@@ -70,7 +70,7 @@ public class UserDefinedRulesProcessor {
 
         for (PriorityTurnCondition condition : conditions) {
 
-            if (conditionWhenClauseMatches(condition, player, whereAmI, "", null)) {
+            if (conditionWhenClauseMatches(condition, player, whereAmI)) {
                 // do the thens
                 ProcessConditionReturn tempRet = processConditionThenActions(condition, player);
 
@@ -103,7 +103,11 @@ public class UserDefinedRulesProcessor {
         return ret;
     }
 
-    private boolean conditionWhenClauseMatches(ScriptCondition condition, MudUser player, MudLocation whereAmI, String nounPhrase, RestMudHttpRequestDetails httpRequestDetails) {
+    private boolean conditionWhenClauseMatches(ScriptCondition condition, MudUser player, MudLocation whereAmI) {
+
+        // 20180520 instead of , String nounPhrase, RestMudHttpRequestDetails httpRequestDetails
+        // use player.currentCommand().getNounPhrase(), player.currentCommand().getHttpRequestDetails()
+
         List<ScriptClause> whens = condition.whenClauses();
 
         // all conditions must match for the when clause to be true
@@ -118,13 +122,11 @@ public class UserDefinedRulesProcessor {
             command = game.scriptingEngine().
                     whenClauseCommandList().getCommand(when.getToken());
 
-            command.addHttpDetails(httpRequestDetails);
-
             lastMatch = command.
-                    execute(when, player, nounPhrase.toLowerCase());
+                    execute(when, player, player.getCurrentCommand());
 
-
-            if (!lastMatch) {
+            if(lastMatch != when.executionMatchValue()){
+            //if (lastMatch) {
                 return false;
             }
         }
@@ -132,6 +134,7 @@ public class UserDefinedRulesProcessor {
         // if we arrived here then everything was true
         return true;
     }
+
 
 
 }

@@ -32,6 +32,7 @@ public class MudGameDefinition {
     private final InventoryLocationObjects locationObjects = new InventoryLocationObjects();
     private final Collectables gameCollectables = new Collectables();
 
+    // transient so not serialised
     private transient UserInputParser userInputParser;
     private String startLocationId;
     private IdGenerator theIdGenerator = new IdGenerator();
@@ -49,6 +50,10 @@ public class MudGameDefinition {
 
     public MudGameDefinition(UserInputParser userInputParser) {
         this();
+        this.userInputParser = userInputParser;
+    }
+
+    public void setUserInputParser(UserInputParser userInputParser) {
         this.userInputParser = userInputParser;
     }
 

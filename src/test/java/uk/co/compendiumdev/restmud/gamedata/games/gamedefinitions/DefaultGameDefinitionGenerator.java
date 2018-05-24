@@ -5,6 +5,7 @@ import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.scripting.PriorityTurnCondition;
 import uk.co.compendiumdev.restmud.engine.game.scripting.VerbCondition;
 import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.Then;
+import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.things.MudCollectableTemplate;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
 import uk.co.compendiumdev.restmud.engine.game.verbs.VerbGameAbilities;
@@ -54,6 +55,9 @@ public class DefaultGameDefinitionGenerator {
         defn.gameLocations().addLocation(new MudLocation("5","The West Room", "This is the room in the west", "E:1,W:6"));
         defn.gameLocations().addLocation(new MudLocation("6","The West of West Room", "This is the room in the most west", "E:5").
                 makeDark());
+
+        // add a gem in location 2
+        defn.addCollectable(new MudCollectable("agem", "A shiny gem"), defn.gameLocations().get("2"));
 
         // create a torch Dispenser
 

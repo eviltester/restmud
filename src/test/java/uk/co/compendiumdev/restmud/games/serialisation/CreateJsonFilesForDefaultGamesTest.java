@@ -1,5 +1,6 @@
 package uk.co.compendiumdev.restmud.games.serialisation;
 
+import org.junit.Assert;
 import org.junit.Test;
 import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
@@ -20,7 +21,18 @@ public class CreateJsonFilesForDefaultGamesTest {
         MudGameDefinition defn = MudGameDefinition.create(game.getUserInputParser());
         DefaultGameDefinitionGenerator.define(defn);
         MudGameDefinitionSerialiser loader = new MudGameDefinitionSerialiser();
-        loader.writeToFile(new File(System.getProperty("user.dir"),"src/main/resources/games/defaultenginegame.json"), defn);
+        File fileToWrite = new File(System.getProperty("user.dir"),"src/main/resources/games/defaultenginegame.json");
+
+        if(fileToWrite.exists()){
+            fileToWrite.delete();
+        }
+
+        Assert.assertFalse(fileToWrite.exists());
+
+        loader.writeToFile(fileToWrite, defn);
+
+        Assert.assertTrue(fileToWrite.exists());
+
 
     }
 

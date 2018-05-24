@@ -6,6 +6,7 @@ import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableCounterCondition;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.ScriptWhenClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
+import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
 
 
 public class PlayerCounterValueMatches implements ScriptWhenClause {
@@ -22,15 +23,11 @@ public class PlayerCounterValueMatches implements ScriptWhenClause {
     }
 
     @Override
-    public boolean execute(ScriptClause when, MudUser player, String nounPhrase) {
+    public boolean execute(ScriptClause when, MudUser player, PlayerCommand command) {
 
         // re-use existing counterCondition
         counterCondition.setFrom(when.getParameter());
         return  counterCondition.comparedTo(player.getUserCounter(counterCondition.name));
     }
 
-    @Override
-    public ScriptWhenClause addHttpDetails(RestMudHttpRequestDetails details) {
-        return this;
-    }
 }

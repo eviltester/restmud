@@ -13,4 +13,5 @@ public class When {
     public static final String DIRECTION = "direction";
     public static final String HTTP_VERB_IS = "httpverbis";
     public static final String HTTP_HEADER_EXISTS = "httpheaderexists";
+    public static final String LOCATION_EXIT_EXISTS = "user.cango";
 }

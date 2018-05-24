@@ -13,6 +13,7 @@ import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
 import uk.co.compendiumdev.restmud.engine.game.verbmodes.VerbMode;
 import uk.co.compendiumdev.restmud.engine.game.verbmodes.VerbModes;
+import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
 import uk.co.compendiumdev.restmud.engine.game.verbs.handlers.VerbHandler;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.*;
 
@@ -209,10 +210,14 @@ public class MudGame {
             return ResultOutput.getLastActionError("Sorry, who are you?");
         }
 
+
+
         // process any verb conditions next
         VerbToken verbToken = userInputParser.getVerbToken(verbToHandle);
 
-        ProcessConditionReturn processed = scriptingEngine.rulesProcessor().processVerbConditions(player, verbToken, nounPhrase, httpRequestDetails);
+        player.setCurrentCommand(new PlayerCommand(verbToHandle, verbToken, nounPhrase, httpRequestDetails));
+
+        ProcessConditionReturn processed = scriptingEngine.rulesProcessor().processVerbConditions(player, player.getCurrentCommand());
 
         if(processed.hasAnyMessages()){
             conditionMessages.addAll(processed.messagesAsBroadcaseMessagesList());

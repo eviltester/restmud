@@ -6,6 +6,7 @@ import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableCounter;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.ScriptWhenClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
+import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
 
 
 public class PlayerCounterExists implements ScriptWhenClause {
@@ -22,7 +23,7 @@ public class PlayerCounterExists implements ScriptWhenClause {
     }
 
     @Override
-    public boolean execute(ScriptClause when, MudUser player, String nounPhrase) {
+    public boolean execute(ScriptClause when, MudUser player, PlayerCommand command) {
 
         // re-use existing counter
         counter.setFrom(when.getParameter());
@@ -30,8 +31,4 @@ public class PlayerCounterExists implements ScriptWhenClause {
         return player.userCounterExists(counter.name);
     }
 
-    @Override
-    public ScriptWhenClause addHttpDetails(RestMudHttpRequestDetails details) {
-        return this;
-    }
 }

@@ -44,6 +44,8 @@ public class RestMudScriptingEngine {
         thenClauseCommands.registerCommand(new RandomlyGenerateHoards(mudGame));
         thenClauseCommands.registerCommand(new RandomlyGenerateNonHoardableJunk(mudGame));
         thenClauseCommands.registerCommand(new RandomlyGenerateNonHoardableTreasure(mudGame));
+        thenClauseCommands.registerCommand(new ExitCreate(mudGame));
+        thenClauseCommands.registerCommand(new ExitRemove(mudGame));
 
 
 
@@ -61,8 +63,10 @@ public class RestMudScriptingEngine {
         whenClauseCommands.registerCommand(new PlayerFlagExists());
         whenClauseCommands.registerCommand(new PlayerFlagIsSet());
         whenClauseCommands.registerCommand(new UserIsCarrying());
+        whenClauseCommands.registerCommand(new LocationExitExists(mudGame));
 
         // HTTP extensions for adventure
+        // TODO consider if this should be more generic and make these attributes on a command e..g attribute "HTTP-VERB" value "PUT"
         whenClauseCommands.registerCommand(new HttpVerbIs());
         whenClauseCommands.registerCommand(new HttpHeaderExists());
 

@@ -23,13 +23,31 @@ public class VerbCondition implements ScriptCondition{
         this.commands = commandClones;
     }
 
+
+
+    public VerbCondition andWhen(String matcher, String value, boolean matchValue) {
+        return when(matcher, value, matchValue);
+    }
+
+    public ScriptCondition andWhenFalse(String matcher, String value) {
+        return when(matcher, value, false);
+    }
+
+    public VerbCondition when(String matcher, String value) {
+        return when(matcher, value, true);
+    }
+
     public VerbCondition andWhen(String matcher, String value) {
         return when(matcher, value);
     }
 
-    public VerbCondition when(String matcher, String value) {
-        this.when.add(new ScriptClause(matcher, value.toLowerCase()));
+    public VerbCondition when(String matcher, String value, boolean matchValue) {
+        this.when.add(new ScriptClause(matcher, value.toLowerCase()).setExecutionMatch(matchValue));
         return this;
+    }
+
+    public VerbCondition whenFalse(String matcher, String value) {
+        return when(matcher, value, false);
     }
 
     public VerbCondition then(String command, String value) {
@@ -71,4 +89,6 @@ public class VerbCondition implements ScriptCondition{
     public void because(String reason) {
         this.reason = reason;
     }
+
+
 }

@@ -6,6 +6,7 @@ import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableFlag;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.ScriptWhenClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
+import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
 
 
 public class PlayerFlagIsSet implements ScriptWhenClause {
@@ -23,7 +24,7 @@ public class PlayerFlagIsSet implements ScriptWhenClause {
     }
 
     @Override
-    public boolean execute(ScriptClause when, MudUser player, String nounPhrase) {
+    public boolean execute(ScriptClause when, MudUser player, PlayerCommand command) {
 
         // re-use existing flag
         flag.setFrom(when.getParameter());
@@ -39,8 +40,4 @@ public class PlayerFlagIsSet implements ScriptWhenClause {
 
     }
 
-    @Override
-    public ScriptWhenClause addHttpDetails(RestMudHttpRequestDetails details) {
-        return this;
-    }
 }

@@ -5,6 +5,7 @@ import uk.co.compendiumdev.restmud.engine.game.RestMudHttpRequestDetails;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.ScriptWhenClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
+import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
 
 
 public class UserIsCarrying implements ScriptWhenClause {
@@ -14,13 +15,9 @@ public class UserIsCarrying implements ScriptWhenClause {
     }
 
     @Override
-    public boolean execute(ScriptClause when, MudUser player, String nounPhrase) {
+    public boolean execute(ScriptClause when, MudUser player, PlayerCommand command) {
 
         return player.inventory().contains(when.getParameter());
     }
 
-    @Override
-    public ScriptWhenClause addHttpDetails(RestMudHttpRequestDetails details) {
-        return this;
-    }
 }
