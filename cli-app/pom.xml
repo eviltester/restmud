@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>uk.co.compendiumdev.restmud.game</groupId>
+    <artifactId>cli-zombie-game</artifactId>
+    <version>1.1.0</version>
+
+    <properties>
+        <!-- dependency versions -->
+        <junit.version>4.12</junit.version>
+        <sparkjava.version>2.3</sparkjava.version>
+        <gson.version>2.8.0</gson.version>
+        <restmud.dsl.version>1.0.0</restmud.dsl.version>
+        <restmud.game-engine.version>1.5</restmud.game-engine.version>
+        <restmud.cli-engine.version>1.0.0</restmud.cli-engine.version>
+        <!-- released -->
+        <!-- <restmud.game-engine.version>1.3</restmud.game-engine.version> -->
+
+        <!-- build -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.jvm.version>1.8</java.jvm.version>
+    </properties>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>uk.co.compendiumdev.restmud.engine</groupId>
+            <artifactId>restmud-engine</artifactId>
+            <version>${restmud.game-engine.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>uk.co.compendiumdev.restmud.game</groupId>
+            <artifactId>zombie-tech-web-test-101-game</artifactId>
+            <version>1.1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>uk.co.compendiumdev.restmud.engine</groupId>
+            <artifactId>cli-game-engine</artifactId>
+            <version>${restmud.cli-engine.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.jvm.version}</source>
+                    <target>${java.jvm.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <!-- This tells Maven to include all dependencies -->
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>uk.co.compendiumdev.restmud.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

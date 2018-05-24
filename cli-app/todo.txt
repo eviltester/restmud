@@ -1,0 +1,12 @@
+20180524 - Day Notes - Thursday
+
+* prevent the messages "SECRET GAME CODE for REGISTRATION is bvrsheioum
+                        Adding user The Test User(playerone)
+                        Added user The Test User(playerone)"
+
+And instead show the ingame help
+
+* Add a title to the game help output
+
+TODO:
+

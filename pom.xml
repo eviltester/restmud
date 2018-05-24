@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- module pom to make it easier to develop the cli game -->
+
+    <!--
+        RestMud backend, CLI front end, and Game definition have been added as gitsubmodules
+
+        https://blog.github.com/2016-02-01-working-with-submodules/
+        
+        All modules are relatively reverenced here to open this pom.xml in IntelliJ
+
+        Can build and release, just the `cli-app` folder
+
+    -->
+
+    <groupId>uk.co.compendiumdev.testing</groupId>
+    <artifactId>zombie-cli-app-root</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <!-- restmud -->
+        <module>game-backend</module>
+        <!-- cli front end -->
+        <module>game-engine</module>
+        <module>test-dsl</module>
+        <!-- game definition -->
+        <!-- could add the json as a resource to avoid the dependency -->
+        <module>game-defn</module>
+        <module>cli-app</module>
+
+    </modules>
+</project>
