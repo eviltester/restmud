@@ -1,0 +1,37 @@
+20180521
+
+* `-v` version of game output at command line (game does not start)
+* `-h` to show options (game does not start)
+- format the output to X chars e.g. 80 chars (currently very crude and splits words in middle)
+- output the results fully
+* `-cols=80` - the text wrap limit for the output
+* `-verbose` add more to the logging output e.g. timestamps, start time etc.
+* `-txtlog` creates a text log file open/append/close on each command/response
+* `-nobackups` overwrite log files rather than create backups
+* `-jsonlog` creates a json log file with json representation of full result object
+* remove html markup - span, bold, strong
+fixed bug where scanner was throwing an exception when automatically processing commands from file and it was end of file
+* I can play in commands
+   - cat commands.txt | java -jar example-cli-game-1.0.0-jar-with-dependencies.jar -txtlog -jsonlog
+   - java -jar example-cli-game-1.0.0-jar-with-dependencies.jar -txtlog -jsonlog < commands.txt
+* -commandslog  create a commands.txt which writes out only the raw input to a txt file including QUIT-GAME
+* ingame `help` command
+
+
+20180524
+* report on all the things effectively - markdown formatting to log improved by new text formatting para
+* make cli initatable from a GameDefinitionPopulator
+
+TODO:
+
+
+For CLI text adventure game:
+
+
+* make the cli game startup a single line that can be embedded in a game
+* have a save command that saves the state of the game to disk
+* `-gamejson=filename` - load in a game file from json
+* make the load param configurable in the executable so that it doesn't always exist on the game executable
+* allow a load command in game that loads the sate of the game from disk
+
+
