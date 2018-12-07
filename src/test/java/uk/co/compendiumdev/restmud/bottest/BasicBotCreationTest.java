@@ -17,7 +17,7 @@ import java.util.Random;
 public class BasicBotCreationTest {
 
     private final String REST_MUD_URL = "http://restmud.herokuapp.com";
-    private final String REGISTRATION_SECRET = "";
+    private final String REGISTRATION_SECRET = "handsontech";
 
     // TODO: Bots that know specific game strategies e.g. push certain buttons in certain locations
     // TODO: Bots that choose stratgies based on conditions e.g. if in room with hoard then hoard stuff, not randomly choose to leave
