@@ -55,11 +55,7 @@ public class BasicBotCreationTest {
 
         for(int x=0;x<2000;x++) {
             myFirstBot.executeARandomActionStrategy();
-            try {
-                myFirstBot.executeARandomWaitingStrategy();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            myFirstBot.waitAWhile();
         }
     }
 
@@ -86,11 +82,7 @@ public class BasicBotCreationTest {
 
         for(int x=0;x<2000;x++) {
             myFirstBot.executeARandomActionStrategy();
-            try {
-                myFirstBot.executeARandomWaitingStrategy();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            myFirstBot.waitAWhile();
         }
     }
 
@@ -128,22 +120,14 @@ public class BasicBotCreationTest {
         mySecondThreadedBot.start();
 
         // give the bots a chance to start
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        justSleep(2000);
 
         int timeToRunInMillis = 20000;
         long startTime = System.currentTimeMillis();
 
         // while bots are running
         while(myFirstThreadedBot.running || mySecondThreadedBot.running){
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            justSleep(500);
             if(System.currentTimeMillis()>(startTime+timeToRunInMillis)){
                 myFirstThreadedBot.stop();
                 mySecondThreadedBot.stop();
@@ -160,6 +144,13 @@ public class BasicBotCreationTest {
 
     }
 
+    public void justSleep(long millis){
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void createRegisterAndUseThreadedRestMudTestBots(){
@@ -193,11 +184,7 @@ public class BasicBotCreationTest {
             myThreadedBot.getBot().addWaitingStrategy(new RandomWaitStrategy().waitTimeBetween(2000,4000));
             myThreadedBot.start();
 
-            //try {
-            //    Thread.sleep(1000);
-            //} catch (InterruptedException e) {
-            //    e.printStackTrace();
-            //}
+            //justSleep(1000);
 
             bots.add(myThreadedBot);
 
@@ -218,11 +205,9 @@ public class BasicBotCreationTest {
 
         // while bots are running
         while(botsAreRunning(bots) && areBotsAlive(bots)){
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+            justSleep(1000);
+
             if(System.currentTimeMillis()>(startTime+timeToRunInMillis)){
                 stopBots(bots);
             }
@@ -235,11 +220,7 @@ public class BasicBotCreationTest {
         }
 
         // give the bots a chance to end
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        justSleep(10000);
 
         reportBots(bots);
 
@@ -284,11 +265,7 @@ public class BasicBotCreationTest {
             if(bot.isRunning() && bot.alive()){
                 System.out.println("Stopping bot " + bot.getBot().getUserName());
                 bot.stop();
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                justSleep(1000);
             }
         }
     }

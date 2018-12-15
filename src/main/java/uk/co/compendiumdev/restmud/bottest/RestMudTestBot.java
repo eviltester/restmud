@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class RestMudTestBot {
     private String userName;
-    RestMudAPI api;
+    final RestMudAPI api;
     private List<RestMudBotStrategy> actionStrategies;
     private List<RestMudBotWaitingStrategy> waitingStrategies;
     private String password;
@@ -32,6 +32,10 @@ public class RestMudTestBot {
         this.userName = userName;
         api.setForUser(userName);
         return this;
+    }
+
+    public RestMudAPI api(){
+        return this.api;
     }
 
     public RestMudTestBot setPassword(String password) {
@@ -72,6 +76,14 @@ public class RestMudTestBot {
 
         int chosenStrategy = new Random().nextInt(waitingStrategies.size());
         waitingStrategies.get(chosenStrategy).execute();
+    }
+
+    public void waitAWhile(){
+        try {
+            executeARandomWaitingStrategy();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 

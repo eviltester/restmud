@@ -21,7 +21,7 @@ public class RandomExaminerStrategy implements RestMudBotStrategy {
 
         System.out.println("EXAMINE RANDOM THING");
 
-        // look then take what I see
+        // look then examine what I see
         RestMudResponseProcessor response = api.look();
         if(response.isSuccessful()) {
 
