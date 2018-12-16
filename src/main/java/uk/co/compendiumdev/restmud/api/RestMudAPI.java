@@ -11,6 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * A simple API written using JSoup
+ *
+ */
 public class RestMudAPI {
     private final ChangeCaseifier changeCase;
     private Connection connection;
@@ -27,6 +31,10 @@ public class RestMudAPI {
     private RestMudResponseProcessor lastResult;
     private int score;
     private int deleteRequestCount;
+    private long rateLimitingMillis;
+    private long lastRequestSentAt;
+    private String proxyhost;
+    private int proxyport;
 
     public RestMudAPI(String restmudUrl) {
         this.registrationNeed = false;  //assume we do not need to register
@@ -42,15 +50,34 @@ public class RestMudAPI {
         errorsCount = 0;
         refreshConnection();
         changeCase = new ChangeCaseifier();
+        addRateLimitingTo(0);
+
     }
 
     public String getUserName() {
         return this.forUser;
     }
 
+    public void setProxy(String host, int port){
+        this.proxyhost = host;
+        this.proxyport = port;
+        refreshConnection();
+    }
+
+    public void clearProxy(){
+        this.proxyhost=null;
+        refreshConnection();
+    }
+
     public void refreshConnection() {
-        this.connection = Jsoup.connect(this.mainUrl).ignoreContentType(true). // for API it is application/json
-                ignoreHttpErrors(true);                  // ignore errors so we don't get an exception if 400 500 etc.
+
+        if(proxyhost==null) {
+            this.connection = Jsoup.connect(this.mainUrl).ignoreContentType(true). // for API it is application/json
+                    ignoreHttpErrors(true);                  // ignore errors so we don't get an exception if 400 500 etc.
+        }else{
+            this.connection = Jsoup.connect(this.mainUrl).proxy(proxyhost, proxyport).ignoreContentType(true). // for API it is application/json
+                    ignoreHttpErrors(true);
+        }
         setBasicAuthHeader();
     }
 
@@ -234,6 +261,8 @@ public class RestMudAPI {
         URL urlToCall = this.restMudURL;
         Connection.Response result = null;
 
+        waitIfRateLimiting();
+
         try {
             urlToCall = new URL(this.restMudURL, urlTemplate);
         } catch (MalformedURLException e) {
@@ -241,6 +270,8 @@ public class RestMudAPI {
         }
 
         connection.url(urlToCall);
+
+        setLastRequestSentAtToCurrentTime();
 
         try {
             System.out.println(connection.request().method().name() +  " " + urlToCall);
@@ -269,6 +300,27 @@ public class RestMudAPI {
             return response;
         }
         return null;
+    }
+
+    private void waitIfRateLimiting() {
+        if(rateLimitingMillis>0){
+
+            long currentTime = System.currentTimeMillis();
+            long timeBetween = currentTime - lastRequestSentAt;
+
+            if(timeBetween<rateLimitingMillis){
+
+                long timeToWait = rateLimitingMillis - timeBetween;
+                //System.out.println("Rate Limiting " + timeToWait);
+
+                try {
+                    Thread.sleep(timeToWait);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 
     private void increaseStatusCodesCount(int statusCode) {
@@ -304,5 +356,14 @@ public class RestMudAPI {
         connection.request().headers().remove(headername);
     }
 
+
+    public void addRateLimitingTo(long millisecondsBetween){
+        this.rateLimitingMillis = millisecondsBetween;
+        setLastRequestSentAtToCurrentTime();
+    }
+
+    private void setLastRequestSentAtToCurrentTime() {
+        this.lastRequestSentAt = System.currentTimeMillis();
+    }
 
 }

@@ -14,7 +14,7 @@ public class RestRoomsTest {
     // make sure the RestRooms are working
 
     static String gameUrl = "http://restmud.herokuapp.com/";
-    static String registrationCode = "handsontech";
+    static String registrationCode = "CHANGEME";
     static String username = "user" + System.currentTimeMillis();
     static String password = "password" + System.currentTimeMillis();
 
