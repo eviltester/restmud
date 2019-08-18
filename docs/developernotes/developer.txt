@@ -1,0 +1,46 @@
+# Notes to the developer
+
+`mvn package` to create the jar file configured in the pom.xml
+
+run from target for local testing
+
+java -jar target\restmud-1.1-SNAPSHOT-jar-with-dependencies.jar -gamename example_game
+
+
+java -jar target\restmud-1.1-SNAPSHOT-jar-with-dependencies.jar -gamename treasure_hunt_basic -playermode multi
+
+see class AppConfigFromArgs and AppConfig for command line options
+
+
+
+For heroku:
+
+mvn heroku:deploy
+heroku local web -f Procfile.windows
+
+
+
+Heroku
+
+- view logs from More - `view logs`
+
+- edit environment variables on `Settings`, `Config Variables`
+   - `Reveal Config Vars`
+   - add variables
+       - `RESTMUDEFAULTUSERS`
+           - `The Mighty Alan,alan|Bob The Mighty,bob`
+       - `GAMESECRETCODE`
+           - `thisconf2016`
+       - `WIZAUTHCODE` to set wiz authcode and password
+           - `thewizpassword`
+
+- start app on Resources page
+    - click edit
+    - flip 'on' switch to 'on'
+    - confirm
+
+- stop app on Resources page
+    - click edit
+    - flip 'on' switch to 'off'
+    - confirm
+
