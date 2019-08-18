@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>uk.co.compendiumdev.testing</groupId>
+    <artifactId>restmud-root</artifactId>
+    <version>1.1.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>restmud-game-engine</module>
+        <module>restmud-game-testing-dsl</module>
+        <module>restmud-cli-game-engine</module>
+
+        <!-- TODO split REST Mud Web from an executable into an engine and an executable -->
+        <module>restmudwebengine</module>
+
+        <!-- game definitions -->
+        <module>basictestgame</module>
+        <module>examplerestmudgame</module>
+        <module>tech-web-test-restmud-game</module>
+        <module>treasurehuntgame</module>
+
+        <!-- stand alone game executables -->
+        <module>zombie-cli-text-adventure/cli-app</module>
+
+        <!-- automating for testing -->
+        <module>restmudbots</module>
+
+    </modules>
+</project>
