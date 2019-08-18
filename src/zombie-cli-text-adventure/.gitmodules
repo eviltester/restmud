@@ -1,0 +1,12 @@
+[submodule "game-defn"]
+	path = game-defn
+	url = https://github.com/eviltester/tech-web-test-restmud-game
+[submodule "game-engine"]
+	path = game-engine
+	url = https://github.com/eviltester/restmud-cli-game-engine
+[submodule "game-backend"]
+	path = game-backend
+	url = https://github.com/eviltester/restmud-game-engine
+[submodule "test-dsl"]
+	path = test-dsl
+	url = https://github.com/eviltester/restmud-game-testing-dsl
