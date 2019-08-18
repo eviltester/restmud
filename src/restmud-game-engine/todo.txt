@@ -1,0 +1,7 @@
+
+TODO:
+
+- game engine should implement save and return a json blob that the game wrapper can deal with -
+i.e. the console version should save it to disk, and then should implement a load function,
+the web version can send it as a file and create an upload the rest has a get and put command.
+- allow save and load of gamestate to be configurable i.e. on/off
