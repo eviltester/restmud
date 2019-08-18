@@ -1,0 +1,23 @@
+{{^display_exits_verbs}}
+{{#exits.size}}
+    <p>Visible Exits that you can see:</p>
+    <ul>
+        {{#exits}}
+            <li direction="{{direction}}">{{direction}}</li>
+        {{/exits}}
+
+    </ul>
+{{/exits.size}}
+{{/display_exits_verbs}}
+
+{{#display_exits_verbs}}
+{{#exits.size}}
+    <p>Visible Exits that you can see:</p>
+    <ul>
+        {{#exits}}
+            <li direction="{{direction}}"><a href="/player/$username$/go/{{direction}}">{{direction}}</a></li>
+        {{/exits}}
+
+    </ul>
+{{/exits.size}}
+{{/display_exits_verbs}}

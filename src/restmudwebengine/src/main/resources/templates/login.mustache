@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Login User For RestMud</title>
+</head>
+<body>
+
+<form action="/login" method="post">
+
+        {{#errormessage}}
+            <h2>{{errormessage}}</h2>
+        {{/errormessage}}
+
+    {{#loggedinas}}
+        <p><a href="/player/{{loggedinas}}/look">Continue Game</a></p>
+    {{/loggedinas}}
+
+    {{^loggedinas}}
+
+        <p>Login User</p>
+        <input type="text" name="username" placeholder="Username" size="30" maxlength="50"/>
+        <input type="password" placeholder="Password" autocomplete="off" name="password" size="30"/>
+
+        <input type="submit" value="Login"/>
+    {{/loggedinas}}
+</form>
+
+
+</body>
+</html>

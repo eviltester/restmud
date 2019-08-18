@@ -1,0 +1,14 @@
+{{#gameMessages}}
+    {{#messages.size}}
+        <p>You are aware that:</p>
+        <ul>
+            {{#messages.isEmpty}}
+                <li>Nothing has happened</li>
+            {{/messages.isEmpty}}
+            {{#messages}}
+                <li messageid="{{timestamp}}">{{& message}}</li>
+            {{/messages}}
+
+        </ul>
+    {{/messages.size}}
+{{/gameMessages}}

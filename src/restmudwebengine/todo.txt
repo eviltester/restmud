@@ -1,0 +1,1004 @@
+# Todo Notes and Readme
+
+mvn heroku:deploy
+heroku local web -f Procfile.windows
+
+view heroku logs in their site using the vertical . menu
+
+
+Currently using http://sparkjava.com/
+    
+     If spark doesn't meet our needs then
+    https://www.reddit.com/r/java/comments/3q7144/spark_framework_who_is_actually_using_it/
+
+     spark examples to have a look at
+     - https://github.com/jOOQ/jOOQ/tree/master/jOOQ-examples/jOOQ-spark-example
+     - https://github.com/lukaseder/minitwit/blob/master/src/main/java/com/minitwit/App.java
+     - above shows basic session management without spring
+
+    More spark articles:
+        https://blog.openshift.com/developing-single-page-web-applications-using-java-8-spark-mongodb-and-angularjs/
+        https://dzone.com/articles/building-simple-restful-api
+        http://www.deadcoderising.com/sparkjava-separating-routing-and-resources/
+        http://www.mscharhag.com/java/building-rest-api-with-spark
+        https://www.boxuk.com/insight/blog-posts/creating-rest-api-quickly-using-pure-java
+        http://nordicapis.com/using-spark-to-create-apis-in-java/
+        https://yobriefca.se/blog/2012/03/20/tinkering-with-spark-a-micro-web-framework-for-java/
+
+    InJava 7
+        http://www.taywils.me/2013/11/05/javasparkframeworktutorial.html
+        http://www.mscharhag.com/java/building-rest-api-with-spark
+
+
+RESEARCH REFERENCES:
+    - see also manual for stac http://www.mocagh.org/miscgame/stac-manual.pdf
+    - see also manual for GAC http://www.cpcwiki.eu/imgs/e/e1/Graphic_Adventure_Creator_%28GAC%29_Manual.pdf
+    - RESEARCH: http://gac.interface1.net/
+    - RESEARCH: http://www.mocagh.org/miscgame/stac-manual.pdf
+        - D:\shared\books\adventuregames\stac-manual.pdf
+    - RESEARCH - what verbs were used in SCUMM adventures https://en.wikipedia.org/wiki/LucasArts_adventure_games
+
+
+     TODO (Done)
+     - create a Game (done)
+     - create a dummy default user (done)
+     - create 5 locations in a game - room with rooms N,S,E,W (done)
+     - user can look (done)
+     - user can GO to different rooms and update state in the game (done)
+     - register a new user (done)
+     - create a session for a user when they join a game (done)
+     - delete dummy user (done)
+     - create register form  (done)
+     - create register API method (done)
+     - prevent register if already logged in (done)
+     - create login form (done)
+     - prevent login if already logged in - go to look instead (done)
+     - create logout method that deletes the user (done as GET)
+     - create login API method  (done)
+     - show registration errors on registration form (done)
+       - do not redirect when it is the api login (done)
+       - do not redirect when it is the api register (done)
+     - better json formats for messages etc. (done: login, register)
+     - delete GET method for registering a user (done)
+     - heroku deploy & local (done)
+        - mvn heroku:deploy
+            - install heroku toolbelt (https://devcenter.heroku.com/articles/getting-started-with-java#set-up) (done)
+            - https://sparktutorials.github.io/2015/08/24/spark-heroku.html
+        - above spark tutorial didn't work - copied the command from the procfile into the mvn pom and then it started
+
+        - local heroku on windows
+            - https://devcenter.heroku.com/articles/getting-started-with-java#define-a-procfile
+
+        - how to stop on heroku
+            - http://stackoverflow.com/questions/2811453/how-to-stop-an-app-on-heroku
+            - on dashboard click pencil the the toggle switch in free plan
+
+
+    - gui and api'ise the rest of the current code (done)
+        - have api'ised the gui rendering
+        - should be easy to add the json output for the api now for look and go
+
+    - create a splat route for the current GET apis to support later randomisation (done)
+
+         - better json formats for messages etc. player actions (done)
+         - create /api equivalent of all gui actions (done)
+           - create /api equivalent of logout with jsessionid
+           - create /api equivalent of logout with basic auth
+           - create /api equivalent of player actions
+
+    - change name to restmud.herokuapp.com (done)
+    - api player can take a single object from a location(done)
+    - api player inventory (done)
+    - location should store the collectible ids, not the collectible (done)
+    - add synchronisation around the 'take' command in a location since this is a multi user action - user might try and 'take' at same time as other person
+
+    - gui GET take (done)
+    - gui GET inventory (done)
+    - add Drop command API (done)
+    - add Drop command GUI (done)
+    - add hoard command (done)
+    - make items hoardable or not (done) (by default not hoardable)
+    - add a hoardable points score to items (done)
+    - add a score to user (done)
+    - count points from hoarding in the user's score (done)
+    - report score on the user page next to each user (done)
+    - add some non-hoardable items to the game (mouldy bread, etc.) (done)
+    - add some hoardable items that are rubbish and so they reduce your score (done)
+    - add location ids into the look screen for mapping (done)
+    - create a help page which 'customises' for the user i.e. links unique to them (but don't make links clickable - too easy) (done)
+    - make map bigger with more treasures (done)
+    - minimum viable product achieved (done)
+    - mvp walk around and collect treasure and take to your base (done)
+    - create game generation objects (done)
+    - create a help page that works without the user being logged in (Done)
+    - create player GUI mode on player (done)
+    - create player GUI mode on game (done)
+    - super easy gui -  help file has links (done)
+    - easy gui - help file has links (done)
+    - normal - help file does not have links (done)
+    - super easy gui - look shows links to go north, take in look (done)
+    - super easy gui - take/drop/hoard in inventory (done)
+    - easy gui - no links in look but gui shows all ids through inspect element (done)
+    - easy gui - no links in inventory but gui shows all ids through inspect element (done)
+    - normal - no links in look but gui shows all ids through inspect element (done)
+    - normal - inventory does not show id's and you have to map or use rest (done)
+    - fix verb handling in the game should return a JsonObject rather than a string (done)
+    - wiz can set user gui mode at a game level (maximum gui level) (done)
+    - can we have a "I don't know how to X" on the GUI for matching anything that hasn't matched previously? (done)
+    - N:1:local  for go verb to delegate 'local' location handling to the game gameBeforeGo(username), gameGo(username), gameAFterGo(username), or just gameGo (bit hacky, but done)
+    - player should store the locationid, not the location (done)
+    - transition messages when you travel between places e.g. "The transporter is broken, you are back in the room again" (done)
+
+    - refactor TreasureGame Generator to implement an interface called verbHandler with verbGo (to start with) (done)
+    - refactor create Game GUI GET route collection with mappings to verb (can randomise in the future) (done)
+    - refactor create Game GET route collection with mapping to verbs (done)
+    - direction synonyms e.g. east west north south (done)
+    - turn the JSON generation in game into objects so only MainRestMud knows about gson and Json (done)
+    - all responses are either json or html (done)
+    - json responses have correct header  (done)
+    - use JSend as the JSON response format http://labs.omniti.com/labs/jsend  (done)
+
+    {
+        status : "success",
+        data : {
+            "post" : { "id" : 1, "title" : "A blog post", "body" : "Some useful content" }
+         }
+    }
+
+    {
+        "status" : "error",
+        "message" : "Unable to communicate with database"
+    }
+
+    - create at least one POST request for api (done) (all verbs are usable as GET and POST)
+
+
+    2016/01/04
+    - add an easy wiz page for game management - set game gui mode links
+    - add an easy wiz page for game management - wiz page shows current GUI mode
+    - refactor look templates so we don't have as much duplication between game modes
+    - create default game verb configs as set of objects and classes to allow
+        - all verbs as GET through GUI
+        - all verbs as GET through API
+        - all verbs as POST through API
+    - create different game verb configs so
+        - no verbs as GET through GUI (noGuiGetsAndApiSplit)
+    - create different game verb configs so
+        - wiz interface can switch between game verb configs
+    - create different game verb configs so
+        - only idempotent 'return' verbs as GET through GUI  (i.e. no take, go, drop, hoard, etc)
+        - only idempotent 'return' verbs as GET through API  (i.e. no take, go, drop, hoard, etc)
+        - only non-idempotent verbs as POST through API  (i.e. take, go, drop, hoard, etc)
+    Wiz Interface:
+        - make wiz interface REST api (currently GET only)
+        - add an easy wiz page for game management
+    (Authentication)
+        - create random password for default 'wiz' user displayed to stdout log when server starts
+        - wiz authentication via login as a wizard
+        - wiz can act on behalf of any user and issue player commands for users
+        - refactor out authentication checking code into a class on its own
+        - add authentication on wiz GUI interface
+        - add authentication on wiz API interface
+
+    2016/01/05
+    - randomly assign an auth token to every user when created
+    - when request has an an X-RESTMUD-WIZ-AUTH then use that to check for wizards as first 'auth' check
+    - fix userLook so that it doesn't assume that the user has a location
+    - X-RESTMUD-USER-AUTH
+        - randomly generate auth on user creation
+        - return authtoken as result during the registration api call
+        - allow user authentication by an authentication header
+    - have login api call return the auth code for the logged in user
+
+
+    2016/03/14
+    - add 'help' /help link to front page
+    - create a 'secret game code' required to allow registration - initially ""
+    - randomise and show 'secret game code' in startup logs
+    - wiz page displays the game secret code
+    - help page links to /wiz
+    - wiz can change the secret game code
+
+    2016/03/18
+    - create an api logout which works from a post to log the user out and return json response
+    - create a broadcast game event queue
+    - show any events to the user that they have not seen
+    - allow the wiz to 'Shout' a message and add to the event queue via gui
+    - allow the wiz to 'Shout' a message and add to the event queue via api
+    - create an api message to return all the broadcast messages
+    - create a verb to return all the broadcast messages
+    - allow wiz to empty the broadcast message queue manually
+
+    2016/03/19
+    - create exits that can be closed
+    - prevent movement if exit is closed
+    - create exits that can be opened
+    - add an open verb  /open/e
+    - add an close verb  /close/e
+    - add a verb for \score - what is my score
+    - add a verb for \scores - return all scores
+    - X-RESTMUD-USER-AUTH
+        - show on a user info screen that shows the auth token player/:username
+        - have a user info api call that shows the auth token and user details
+    - allow wiz to 'look' from wiz gui to see current location in 'look' mode
+    - add a link to wizard interface from 'look' for wizards
+    - allow wiz to jump to a location
+
+    2016/03/26
+    - check location ids exist
+    - can create 'hidden' exits 'not shown in GUI or API'
+         - add a 'secret' attribute to the exit description
+    - display gates as closed and open in the API
+    - display gates as closed and open in the GUI a 'you can see that:' section
+    - make display status of gates open and close as configurable in the GUI through Admin
+    - add open and close links for super easy, only display state in easy, not shown in normal
+    - dark locations
+       - create isInDarkness location flag, on location creation default to isInDarkness = false
+       - allow wizard to set room to darkness or light (if people have made a map, then this isn't a problem for them)
+       - add darkness flag to API
+       - hide dark locations in the GUI description
+       - hide dark descriptions in the API
+    - location flag
+        - it is dark here, you can't see anything without some light source
+        - it is well lit
+        - show location flag in API
+        - when dark and unlit, do not show who is here, what to take etc.
+    - secret exits
+        - not shown in visible exits or api
+        - some have no clues
+    - wiz interface should show if a location is in darkness or not
+    - wiz can close/open gates
+    - wiz interface should show if gates are open or closed
+    - changed rendering on wiz interface to make dark location a little easier to see
+
+    2016/03/27
+    - wiz interface has list of all players and link to 'look' for each player
+    - give wizards the ability to be invisible
+    - default wizards to invisible
+    - toggle wizard visibility on and off in the wiz interface
+    - add an environment variable so we only create default users if it is set
+        - RESTMUDEFAULTUSERS in TreasureHuntBasicGameGenerator
+        - display name,username|another user,withUserName
+
+    2016/03/29
+    - support toggle off different modes e.g.
+                    - toggle off basic auth headers,
+                    - toggle off authentication headers,
+                    - toggle off the \login form
+    - wiz interface shows toggle state of authentication modes
+    - login form does not work if authenticator has it switched off
+    - wiz can always login through the login form, even if it is switch off
+    - switch between authentication modes in wiz interface
+          - toggle off different modes e.g.
+          - toggle off basic auth headers,
+          - toggle off authentication headers,
+          - toggle off the \login form
+                - why? to force API and Automated usage
+    - location objects
+        - can create and add to a location programmatically
+        - can see them in a 'look'
+        - cannot be taken - a sign on the wall
+        - can be examined - e.g. hints at secret passages etc.
+        - examine does not work on objects but reports sensible message
+    - create a 'cloth of shining'
+        - add to secret room
+        - when take an item with a verb ability you see in take, you can now "'polish' things to an ability score of 100"
+        - can only take one thing that grants ability e.g. you can't take another cloth if you have the ability to polish
+    - create a 'cloth of shining'
+        - hide two in the secret room to start with
+        - create verb 'polish'
+        - collectable - verb ability granted 'polish'
+        - collectable - verb action points e.g. polish points - randomly used when you polish  something (increases hoard points by random amount)
+            - disappears when the verb action points = 0 "It vanished, hmm, it must have been magic"
+        - polish shows you the hoard points of something when you polish it
+        - polish shows you if you can hoard it or not "Sorry it would not be worthwhile polishing that!"
+        - polish can make junk hoardable
+    - create hidden location objects e.g.
+        - clock on the wall - examine clock - the clock has hands with fingerprints on them
+        - hands would be a hidden location object not shown in the description but visible in the inspect element in a <span id="" class="locationobject">hands</span> element
+        - gates can be visible or not visible from certain locations
+        - gates can be manipulated even if there is not corresponding direction in the room
+        - some gates can not be opened by players
+        - some gates can not be closed by players
+        - some gates autohide when closed
+        - move/hands
+        - use/hands
+            - opens up a secret gate in the wall
+            - use is always implemented by the gamegenerator not the engine
+        gate, has side in location 3 which goes E to 11 on through - you go through, and side in location 11 which goes W to 3 on through - you go through, it can be opened and closed
+        gate, is secret, it has a side in location 14 which goes E to 16 - on through it closes and hides - the side can open and close
+
+        - create hidden location objects e.g.
+           - some gates can be closed from one direction only
+        - location objects
+            - can be used for local effects - open doors etc.
+            - e.g. there is a grandfather clock to the north - reveals a secret passage? etc.
+
+    2016/03/30
+        - create an 'inspect' verb that uses points to inspect and show you information about a collectable e.g. is hoardable, points etc.
+                - \inspect (costs points)
+                    - shows full details of an object - hoard points, id, etc. edible
+                    - easier to parse for api users
+
+        - create a room that is permanently dark, but directions are hinted at by surrounding rooms, e.g. room 7 dark, hints in 6 and 8
+        [ x ]have ways of turning rubbish into treasure e.g. polish, clean etc.
+
+        - create a 'cloth' dispenser
+            - dispensers 'use' a template to create a collectable
+                - need game level 'use' handling for dispensers
+
+        [-] make garbage shiny to get points
+
+        - create toggle powers e.g. "light/extinguish",
+        - and 'power is active' flag
+
+        - create a torch
+            - toggle powers 'illuminate','darken'
+            - remove torch power on each turn
+            - torch disappears on 0
+            - allow torch to light a room when it is active
+
+        - create a torch dispenser
+
+
+    2016/06/05
+        - refactored code to have most verbs in their own class
+        - added simple VerbCondition to eventually support scripting
+        - moved most of the http processing code into an httpserver and api server class rather than mainrestmud
+        - fixed some security bugs when moving code to api server
+        - create player level events (refactor the broadcast events into a class) - needed to support the scripting
+
+    2016/06/05
+        - add ability to create custom verbs e.g. to allow matching with location objects etc. e.g. lick loosestone
+        - make room 0, the default junk room and add to every 'game' (GAC has 0 as junkroom)
+        - do not prevent people linking to 0 if they want to
+        - implemented userflags, isFlagSet, doesFlagExist, setUserFlag  flagname:value
+        - fixed bug where 'all' verb conditions were being run - stop after first verb condition that triggers an action
+        - allow custom verbs to go through on 'post' interface  all the time e.g. lick/lickfor10
+        - incrementScore, decrementScore,  implemented as incrementScore (use -ve number to decrement)
+        - BUG - conditions are in a hash so are not processed in the order they are added - they need to be
+            - fixed by using a LinkedHashMap instead of a HashMap
+        - split out the scripting parsing and actions into new classes under the scripting package
+        - deleteUserFlag
+        - create PriorityCondition - paradoxically it has to run after the verbs because we may not have moved into the location yet
+
+    2016/06/05
+        - userCounter, setUserCounter(name:value), incrementCounter(name:value)
+        - decrement a counter for the bomb in the game
+        - isCounter > >= < <= == = !=
+        - doesCounterExist
+        - fixed bug where conditions of same command were overwriting others because there were in a hash not a list, fixed by adding to a list
+        - gotoLocation(forces a look) implemented as teleportUserToLocation
+        - in the treasure hunt game, there is now a sign in room 6 which hints at a secret exit n controlled by flags to score points
+
+
+    2016/06/09
+        - when nothing has happened then don't show the "You are aware that: Nothing has happened"
+            - BUG FIX: introduced when creating the scripting conditions messages
+        - create a small default game for testing purposes which is easier to automate and explore the conditions
+        - default game is actually a fun little single player - would be hard as a multiplayer - could release this with minimal docs
+        - could package this as a fun 'single player game' for testers?
+            - added a singlePlayerAuthenticator to handle this
+            - changed help file a little
+            - added some extra routing around /help
+            - and forced login for user in SinglePlayerAuthenticator
+            - just requires switching between MainRestMud and SinglePlayerRestMud when building the app
+            - minor maintenance hassle to keep these up to date and in sync in the short term
+
+    2016/06/10
+        - remove random generation out of the 'game' to allow a wiz to turn any game into a 'TreasureHuntGame' with hoards, treasure etc.
+            - refactored random treasure generator into a new class
+            - started adding unit tests into the code - expand this over time
+            - now have the building blocks to convert any 'game' map into a treasure hunting game: hoards, treasures, junk etc.
+
+        - added look.showcollectable which allows us to show an arbitrary id and description in the Look Collectables section - can expand to directions etc.
+            - this could make some puzzles easier e.g. when an id is stored in a description
+        - also added look.showlocationobject allows us to make location objects which are hidden, visible to certain users based on specific user actions
+            - e.g. after examining a 'thing' we can 'show' another thing that is normally hidden, but only for this user
+
+    2016/06/14
+        - look (forces a look after processing condition)  'forceLook' in scripting and or andThen
+
+    2016/06/16
+        - implemented bringCollectableHere as  then("teleportCollectableToLocation", "treasure2:10")
+            - during creation of tests for ExampleDocumentedGameGenerator
+
+    2016/06/28
+        - added new verb condition user.iscarrying
+        - FOUND BUG: messages are not shown in output when it is a 'fail' - need to fix this as a user can miss messages
+        - FIXED BUG: user can drop a lit torch, and they will have the ability to see in the dark forever
+            - fixed by making the 'canSee' based on current artifact capabilities rather than a flag on the user
+        - added extra @Test code to cover verbs
+        - added a VerbGameAbilities so I don't have to keep writing "illuminate/darken"
+
+
+    2016/07/13
+        - created "object.setsecret" "objectname:true/false"
+        - added TechWebTest1010ZombieZork as a game to use in the Technical Web Testing 101 course as a 'special unique game'
+        - allowed description template to have embedded html in it
+
+    2016/07/16
+        - made it easier to code game by having a create() method on game which has methods to 'create' a new game
+        entity e.g. location, verbCondition, priorityTurnCondition, locationObject, Collectable etc.
+        and these are automatically added to the game - so I don't forget
+        this also makes the game creation code easier to read
+
+
+    2016/07/25
+        - api calls will now return xml if accept: application/xml is sent through and will return json by default
+        - by default a request is assumed to be json unless content-type: is set to application/xml and
+            - <request><verb>v</verb><nounphrase>n</nounphrase></request>
+            - reality only <verb>v</verb><nounphrase>n</nounphrase> is needed
+        - request start and end are essentially optional since they are trimmed out - this could be classed as a BUG
+
+    2016/07/26
+        - added some error handling on delete, put, options, head etc on /api
+        - started the work to push headers and http verb into the game.processVerb... ready for use in game conditions
+
+
+    2016/08/07
+        - started the work of spinning off script commands into their own methods and notes on what we have to do to
+          create a 'ScriptEngine' instantiated once per game
+        - added tokenizing for the when clause commands,
+        - split nounphrase 'when' into nounphrase and direction to avoid hack in the code,
+          so when using a 'go' we can check the 'direction' against all direction aliases
+
+    2016/08/08
+        - finished tokenizing of the when clauses
+
+    2016/08/09
+        - tokenized verbs - although I'm not convinced I needed to
+        - started moving current verb handlers to players
+        - and adding verb handlers at a game level to remove the switch statements
+        - removed all switch statements from process verb
+
+     2016/08/10
+        - create a defaultVerbHandler to add to user defined verbs which does nothing but will help avoid a null check in the processVerb code
+        - tokenize the verb names in the rules so that we can report syntax errors of verbs that have not been added
+        - tokenize the verb names in the rules so they might match faster than string comparisons
+
+    2016/08/11
+        - expanded unit tests
+        - fixed 'bug' in score verb where it didn't add any parsable details in the JSON
+            - now it does
+
+
+    2016/08/21
+        - added tests for show collectable, location object and gate
+        - found bugs in use LastAction.CreateError in scripting error checking
+        - moved names of script then commands to the Then object - these are used in the commands to avoid mismatch errors
+
+    2016/08/22
+        - added test coverage for dispensers and for 'check messages'
+
+
+    2017/01/20
+        - maintaining single player and multi-player is going to be too hard
+            - add some arg processing to configure multi player and single player from the command line
+
+     2017/01/23
+        - fixed some bugs where nouns had to be the correct case - this might still hang around but all unit tests pass
+        - fixed so I can not take things when it is dark
+
+     2017/01/24
+        - fixed bug in example_game where it had no messages when it should have had one on 'say boo'
+        - finished walkthrough
+        - made walkthrough test generate the walkthrough markdown document in docs
+        - exported draw.io map as png
+
+    2017/01/30
+        - created some multi user tests using bot
+        - fixed bug where flags needed to be lowercase - now force lowercase in code so write whatever case you want
+        - started new walkthrough for default single player game
+        - started adding unit tests for default single player game test_basic_game
+
+    2017/05/02
+        - amended treasure hunt multi user game to have a zombie maze and a treasure hunt section in a star shape
+        - exposed Random Treasure Generation as a scripting command
+
+    2017/05/02
+        - allowed configuration of game secret code in an environment variable
+        - added When for http verb and http header name checking
+        - added HTTP REST rooms in the treasure basic game
+        - fixed some bugs in the REST API handling
+        - added a guard in verb processing so if user is not known then it says "who are you?"
+        - create a 'treasure from the sky' button in wiz that randomly generates new treasure
+        - create a 'junk from the sky' button in wiz that randomly generates new junk
+        - create a 'clutter from the sky' button in wiz that randomly generates clutter - stuff that cannot be hoarded
+        - added link to scores for wizard
+        - allow wizard to create more hoards
+        - changed scores html template to have span for easier parsing
+
+     2017/06/13
+        - added an integration test for the REST rooms which runs against heroku deployed
+        - added unit tests for Direction class and amended code to simplify
+        - fixed bug in treasure generator where it generated duplicate ids so treasure was not added
+        - move game code into separate objects where possible to make understanding and testing easier
+
+     2017/09/17
+        - started creating a MudGameDefinition
+        - started with the BasicTestGameGenerator
+        - moved the Example Documented Game into a definition - this was easy because it used a DSL called GameEntityCreator which I converted
+         into an interface and created an implementation using the Game Definition
+        - moved the Tech Web Test 101 game into a definition
+        - moved treasure hunter game into a definition
+        - make game definition serializable by avoiding object references, instead use lookups in the definition to make it serializable
+        - clone the definition objects as game objects when instantiating game from definition, should allow insantiating multiple games from same definition (TODO: still need to test this)
+        - separate game definition from game to allow serialisation of the game definition - location id pointers rather than object pointers
+              - instead of creating a 'game' we want to create a 'game definition' then we serialise that
+              - game initialised from a game definition
+                   - locations, collectables, objects, local verbs, conditions
+              - and we initialise a game from a 'game definition'
+
+    2017/10/04
+        - allow comments in the 'create' mechanism to support self documenting code generation from json
+
+    2017/10/10
+        - can create Json from defn and can initialise a game from json string
+        - allow saving a game definition as json file
+        - allow loading a game from a json definition file
+
+    2017/10/11
+        - can reset a game when running
+        - game has a "name", and "initial welcome message"
+        - can load a new game when running
+        - have default.json game in resources
+        - default.json is loaded by default
+        - if default does not exist then pick the first one in the games list
+        - create admin GUI to create new game from json definition
+        - fixed bug where "The Wizard Says: The Wizard Says: "
+
+         - walkthrough tests now use the JSON files - to allow start trimming down the game initialiser
+         - added a new run at startup script rule in the defn, these are made from Then clauses which run as 'wiz'
+         - moved game definition classes into the test branch as the games are now json files as resources,
+         - also removed the GameEntityCreator as games are created from definitions and cloning the objects
+         - tidied up game a little to remove methods that are now in the game definition
+         - move game definition classes into the test code so it is not released when packaging a jar - just the resources are
+
+        Old requirements now met:
+            - create game from text file - parse a file into the objects
+
+    2017/10/12
+        - refactored random generation Then clauses to reduce code duplication and moved clauses into their own packages
+        - all then clause implementations now use the Then constants as their names
+        - all when clause implementations now use the When constants as their names
+        - instead of code comment create method itBestowsAnAbilityWhichCostsPowerWhenOn
+
+    2018/05/19
+
+        - added additional script clause commands
+            - THEN - ADD EXIT     from:direction:to
+            - THEN - REMOVE EXIT  from:direction:to
+            - WHEN - LocationExit Exists dir:existence
+                - the above commands might remove a reliance on gates which seem complicated
+
+        - added a true, false optional param when setting up the when clause to allow for negative or WhenFalse verbs
+            - add WhenFalse() to allow reversing a when condition to avoid so many :false :true parts in commands
+
+    2018/05/20
+        - simplify
+            - too much stuff flying about in the commands - have the player object know what last command they have issued and make that an object that can be retrieved from the player
+                - use this in all process places to make it easier to expand and amend in the future
+            - moved the Game Test DSL into a separate project to make it easier to split the game definitions and their testing into separate projects
+            - all games are now separate projects
+            - the restMudWeb projet contains games and tests, but these don't actually test the web interface they use the game engine
+                - create a separate project for each game definition
+
+PRINCIPLES:
+      PRINCIPLE: do not redirect when it is the api
+      PRINCIPLE: The gui should not be nice and friendly - force people to amend urls, use proxies, use API
+      PRINCIPLE: embed hints to the API in the GUI responses - but not visible
+
+TODO Ideas:
+
+
+    - have 'game settings' in the game definition e.g. configure templates, different GUI modes etc.
+
+
+
+    - create serialization mechanism for game definition
+        - create Engine as a separate project and open source it
+
+
+    - create a set of slides for 'teaching with the game' then I know what I can cover and what I can't and what I need to add to the game
+
+    - current aim create a playable multi user treasuer hunt game - no killing, but can close doors to slow players down
+
+
+Known bugs in release version for single player - add to an instructor notes so to use when testing:
+- no messages shown when a 'fail' error happens on a user action e.g. if a torch runs out when you do a fail action, you won't know
+- if a user drops a lit torch then they will be able to see in the dark forever
+
+
+[ ] create 'game' as a separate library to allow creating an android front end and release adventure games on android
+   - would force unit tests on 'game' (Game Engine)
+- start by creating entirely new package gameengine which has scripting and 'game'
+- then a 'games' package
+- then a web package with REST and GUI and Wiz etc.
+-would allow me to then do 'mobile' testing and automating training
+
+
+
+    Next:
+        - SIMPLIFY
+
+        - can create a project that packages up a game definition with the web api
+        - create 'maps' and walkthroughs for all hardcoded games   (done test_game_basic, and example_game - TODO: treasure_hunt_basic, tech_web_test_101_zombie_zork)
+        - try using a walkthrough test to create map e.g. wlakthrough.addLocationToMapAfter("10","push button")
+        - create play through tests for all hardcoded games - at the 'game' level - unit tests
+
+        - create verb handlers for verbs that are hard coded in the game class
+        - use the When.constants in each of the When command object getName methods
+        - resolve lastAction.CreateError as error condition in rules - throw error? see FailGateScriptingTest
+        - refactor the whenClause and thenclause tokenizers to be the same class
+
+        - performance test
+        - automate api
+        - document as tutorial
+
+
+
+    - add a 'shutdown' verb that closes the game - useful if double clicked on command line
+
+    BUG: json for fail does not have the result output and the messages in it - need to figure out how to fix this
+         - problem is really in the json output but mus make sure it doesn't image html display when changed
+
+
+    - create a 'game engine version number' e.g. 1.0 was the released single player,
+        increment on each release so we know what bugs are in each
+
+    - SCRIPTING
+
+
+        - create verb rule with multiple verbs e.g. `create.verbCondition("push", "use").` to allow synonyms
+        - tokenizing for faster processing and object code
+        - possibly create 'shared objects' or 'dummy objects' that can be shown in locations but don't 'do' anything by default so we can't drop them etc.
+          but they appear in locations and inventories
+            - allows "examine"
+            - or playerLocationObjects, playerCollectableObjects - location objects that are replicated for each player
+        - add enum for CONDITION and DO for (when and then respectively to avoid typing in 'text')
+        - can show counters in messages
+        - implement simple GAC counters and flags - gameflags, gamecounter for adhoc verbs
+        - implement simple GAC commands
+            - getCollectable, dropCollectable, swapCollectable,
+            - setGameFlag, resetGameFlag
+            - setGameCounter(name:value),
+            - gotoCollectable, gotoLocationObject
+            - move a location object to different locations
+            - describeExitInLook (describe an exit in look, e.g. holding a map reveals an exit)
+
+
+        - create a game with an 'end' e.g. collect all four magic swords and give them to the wizard
+
+        - add a debug mode into the wiz interface to see a user's game flags and conditions
+
+        - warn if any exits lead to rooms that don't exist e.g. new location E:7. but no location 7 defined
+        - handle this as an I can't go that way
+
+
+        - allows us to create 'new' types of games e.g. manhunt, deathmatch, capture the flag, etc. (from an existing game)
+
+        - create gates that are 'breakable' but not openable e.g. a big rock, looks chipped as though people have been hitting it
+            - 'things' that can 'smash' can break it by using hit points on it
+
+        - create junkpiles to 'junk' items that are -ve hoard points
+             - create dustbins to put garbage into
+
+        - create a button which 'hides' a 'hoard'
+        - create a button which 'displays' a 'hoard'
+
+        - create a button which 'hides' a 'junkpile'
+        - create a button which 'displays' a 'junkpile'
+
+
+        - expand map
+            - create a 'cloth' dispenser in a room (random points from 15 to 200)- a janitors room
+            - create a super 'cloth' dispencer in a room (random points from 200 to 1000) - a janitors secret room
+            - create secret rooms that a bot is unlikely to find with more rooms behind them, e.g. south of room 7
+                - make a 'larger' 'hidden' set of rooms
+            - create a maze
+            - create a maze of normal darkness
+            - create light switches that switch on and off lights in corridors
+            - more gates and doors
+
+
+        - create a dark maze - which no torch can light up - create a permadark flag so no torch will help- leads to a teleport ring dispenser
+
+
+
+        - wiz interface has links to all verbs and configurable to act as any player from wiz interface
+
+        - if someone enters - local event for location "so and so entered the room"
+        - if someone leaves - local event for location "so and so left the room"
+        - if a gate opens - local event for location and destination location "you hear a door open"
+        - if a gate closes - local event for location and destination location "you hear a door close"
+
+        - make GUI configuration more granular that SUPEREASY, EASY, NORMAL - allow CUSTOM for switching on and off individual parts
+
+        - automatically generate a 'graphviz map of the dungeon'
+
+        - \info
+            - information supplied by the game about its rules and current config, instead of having that in the \help section
+
+        - fix BUG bad credentials user not found - make a GUI screen rather than a message
+
+
+        - have session timeout after a certain number of commands (configurable by wiz, default to 100)
+            - to force people to use custom headers of basic auth or the auth token
+
+
+
+        - create a generic 'error' page mustache template with an error message, but links to help, register, login, logout etc.
+            - see other GUI states that need this
+
+
+    - allow special handling for collectable with a specialVerbHandlingFor "take,drop" etc.
+
+
+    - secret exits
+        - some secret exits only if holding certain objects e.g. spade, machette - you cut through vines to the north, black barts map - "you read the map and say "bazoomba"
+        - shows if holding a map - may have different maps for different exits e.g. black barts treasure map, only shows his secret exit
+        - CAN IMPLEMENT ABOVE with adding location items into look or special messages
+
+    - artifacts - these could be collectables with 'abilities' and the ability power is added to your score when you use it
+        - ring of teleport player/teleport/locationid  - needs to be in API and displayed on GUI
+        - use of an artifact adds points to the score
+        - teleport incorrectly - e.g. location does not exist then remove some points (mention this in the failure message)
+        - magic keys - the key of "mastaroth" - opens "the chest of mastaroth", the "door of mastaroth"
+
+
+
+
+
+    Refactoring:
+
+        - do not use JSendOutput in api/register use the format from result output instead
+        - fix random generation code to be cleaner
+        - fix authentication gui error messages so they display as a page and not just text
+
+        - can the HTTP Routes be objects instead of closures?
+        - create a UserManager class that the game delegates user management to for finding and deleting and adding users etc. (to move code out of MudGame)
+
+        - add some API documentation
+
+    Verbs
+        - \eat
+            - need some things to be edible, restore hit points, and adds to score
+        - \shout
+            - requires creation of an event queue (or multiple event queues - user, location, game)
+            - allow a maximum number of shouts per player
+            - allow artifacts which increase the shout count
+            - give player points for shouting in certain locations? e.g. if they see a Ghost "BOO" to scare it away? Shout in an 'echo' chamber?
+        - \lock, unlock
+            - requires things that can open and close, and keys (automatically select the correct key)
+        - \open, close\thing
+            - requires containers that can open and close e.g. chests, cupboards etc.
+        - \hurt
+            - requires events and combat
+            - synonyms attack, kill, fight, punch, hit
+        - \put
+            - put something in something requires containers, add limits to containers for size
+            - synonyms add, putin
+        - \up, down
+            - direction for up, down etc.
+        - \examine
+           - hints at status
+           - This would make my treasure hoard look bad
+           - Hmmm, perhaps I should hoard this
+           - Mmmm, tasty
+
+
+
+    Add a thief into the game  (could implement as a bot running in wiz mode, e.g. as player, drops, and then takes, of a wiz function to move objects between inventories)
+        - allow players to hurt thief, if thief is dead then he drops treasure
+        - thief never steals anything that is not hoardable
+
+
+        - have a wind that randomly blows doors shut - create an event that signifies to the player that this has happened
+            - could implement as a wiz bot that closes open gates
+
+
+[ ]Add NPC to RestMud - implement �ghost� and �thief'
+[ ]have npc�s move based on �wizard� command e.g. JS ajax call from wiz page,
+[ ]have npc�s move before every player command
+[ ]config for npc moves every X player commands, every X seconds (but triggered before player command) etc.
+[ ]Add examine to restmud �treasure�,�food�,�rubbish'
+[ ]Add rubbish heap and �dump� command
+[ ]add points for dumped rubbish
+[ ]have treasure chests, keys, lockpicking sets etc. for �puzzles'
+[ ]performance test restmud with gatling
+
+
+    Wiz Interface:
+         - convert normal user to wizard user
+         - create wizard user api
+           - set wizard user password
+           - display all users
+           - delete a user
+           - disable all GUI actions
+           - disable all registrations
+           - allow registrations only from wiz user - allows no external registration but allows wiz to setup users (bulk action, fuzzing, etc.)
+           - disable all logins
+           - amend game?
+           - display map with players on map?
+           - restart game
+           - teleport users to a location id e.g. create a jail location with no exits
+
+    Different URL formats
+        - create an i interface e.g. /i/take/shiny_gold_crown (requires session authentication or basic auth as username is not in url)
+        - random synonyms for i - you,now,do,me, etc.
+
+
+    Bot mode - need to command with a header containing a value sent back as a header in last response
+
+    User Admin Screen
+        - User controlled gui mode - requires a user self admin screen (not changeable via rest api)
+        - allows user to reduce gui mode lower than the 'game' default and therefore get a higher score
+
+     - points divider for player gui levels e.g. super easy / 5, easy /3, slightly harder /2, normal = 1
+     - advertise my stuff in the game if I make it publicly available
+     - sub templates for header footer etc.
+
+    - automatically clean up the event queue somehow so it does not get too long (max 100? broadcast messages)
+
+     - nounphrase can be a collection of nouns separated by conjunctions e.g. e/and/w/then/n/also
+     - allow take all, drop all etc. but this costs score points and is not shown on help until you do a drop all
+
+     - handle multi-user interaction synchronisation - this is bound to cause issues
+     - create a 'startLocation' in game so that when a user is added to the game they start in the start location by default - allow games to override this
+     - hibernate mode for players (when combat and thieving has been added)
+     - player should have a reference to the 'game' they are playing and use that to 'find' the game they are playing (allows support for multiple games in the future)
+
+     format responses based on headers if no content type then respond with html,
+          if 'application/json' then json, if xml them xml
+
+
+    - when adding combat - add a hit point system and don't allow someone to be hit twice by the same person if they haven't seen the event from the first hit
+- websockets on heroku?
+  any other hosting?
+- build game modes around the 'teaching' modules we want to cover
+
+
+- multiple games
+- connect to specific games
+- wiz can upload 'game files' to create and configure a game
+
+
+
+    - dark locations
+        - need a torch
+            - battery powered
+                - extra batteries (piles)
+                - switchon torch
+                - switchoff torch
+            - matches
+                - extra matches (piles)
+                - light torch
+                - extinguish/putout torch
+            -magic torch - works automatically in dark locations (artifact)
+            - torches only last X uses - your torch is flickering and about to go out
+            - old torch - only lasts 1 minute
+            - new torch - last 30 minutes?
+
+
+    - piles of stuff (workaround for the moment are dispensers)
+        - you see a pile of matches
+            - take matches, you take a match from the pile - generates a 'match' in inventory
+            - some objects are limited in how many you can carry e.g. 5 matches - you can't carry any more matches
+        - you see a cloth of shining
+
+
+
+     create some known bug situations that are configurable at startup or dynamically by wiz
+     - insecure, allow users to act on behalf of other users
+     - allow registration while already logged on
+     - disallow GET requests and force API only
+     - notification ids are 'real in GUI' - show as timestamp
+
+     known insecurities
+     - reveals usernames during registration
+     - no https plain text
+     - no limit to the number of registrations you can try to brute force the game secret code
+     - can inject error messages on registration page
+
+
+     jackson or json for json parsing?
+     http://www.doublecloud.org/2015/03/gson-vs-jackson-which-to-use-for-json-in-java/
+     http://wiki.fasterxml.com/JacksonHome
+     https://github.com/google/gson/blob/master/UserGuide.md
+     adhoc json creation - http://www.studytrails.com/java/json/java-google-json-java-to-json.jsp
+
+
+
+
+#Ideas:
+
+##Randomised end points
+
+e.g. all of the following would be the same
+api/me/get
+api/player/bob/take
+api/i/pickup
+
+Game Options:
+
+- API urls Randomised for the game
+- API urls different for different players
+- wiz can trigger the randomisation during a game (for game, for all players, for individual players)
+
+- revealed when using the GUI
+
+- api call for hints
+    - GET api/me/hint/apiequivalent/take
+    - might cost points in some game modes
+
+- api call for cost of things
+    - GET api/me/cost/hint/apiequivalent/take
+    - GET api/me/cost/hint/api/take     (this could me misused to 'find' api calls add a wiz controlled flag to check for this or not)
+
+e.g.
+
+http://localhost:4567/player/bob/take/a_gold_ring
+
+- comment in the page <!-- api equivalent POST player/api/bob/take  {"noun":"a_gold_ring"} -->
+- various X-Headers in response
+- cookie set e.g. apihint
+- these might be encoded in different ways e.g. base64 etc. - to use the text encoders in proxy tools
+
+Then playing the game is part of the game to find out how the game works.
+
+- create a 'model' of the GUI and API
+    - automatically built up when the player plays the game
+    - player has to use api commands to model the api
+
+#Game mode:
+
+- player would need to start with points in these game modes (difficulty level could determine starting points)
+- some gui calls are free, some cost points
+- some api calls are free, some cost points
+
+- wiz can add/remove points as required during a game
+- wiz can also have a handicap list per player which are totalled at end of game and removed from score e.g. handicap: 10, "because asked for api call to take"
+
+
+# create alternative REST Interface for 'proper REST interface'
+
+http://www.restapitutorial.com/lessons/httpmethods.html
+
+Add this for an official REST API
+
+toggle on/off access to different REST APIs
+
+POST - Create, GET - Read, PUT/PATCH - update, DELETE - Delete
+Delete player/alan/inventory/sword (to drop)
+
+Post player/alan/inventory/sword (to take) or
+Delete player/alan/location/collectables/sword (to take)
+
+Post player/alan/location body {go N} to move
+
+Get player/alan/inventory/sword (to examine)
+Get player/alan/location/sword (to examine)
+Get player/alan/location/ (to look)
+Put/Patch player/alan/inventory/sword (to use)
+Get player/alan/inventory (to inventory)
+Put/Patch player/alan/location/hoard  (to hoard)
+
+TODO: Is it possible to make the routings in the code more configurable so that we can amend all this on the fly? Or is that too slow?
+
+- map each verb in game to a combo with end point
+
+other verbs would need a generic endpoint
+POST player/alan/action/verb/noun
+
+wiz interface would be like this...
+game/players/alan
+game/locations
+
+Also allow user to admin themselves with
+DELETE - delete account  - currently logs user out
+POST - register account
+GET - get user details - score etc.
+PUT - rename and change password
+
+for simple REST API example

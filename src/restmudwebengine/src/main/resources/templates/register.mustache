@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Register User For RestMud</title>
+</head>
+<body>
+
+<form action="/register" method="post">
+
+    {{#errormessage}}
+        <h2>{{errormessage}}</h2>
+    {{/errormessage}}
+
+    {{#loggedinas}}
+        <p><a href="/player/{{loggedinas}}/look">Continue Game</a></p>
+    {{/loggedinas}}
+
+    {{^loggedinas}}
+        <p>Register User</p>
+        <input type="text" name="username" placeholder="Username" size="30" maxlength="50"/>
+        <input type="text" name="displayname" placeholder="Display Name" size="30" maxlength="50"/>
+        <input type="password" placeholder="Password" autocomplete="off" name="password" size="30"/>
+        <input type="password" placeholder="Secret Game Code" autocomplete="off" name="secret" size="30"/>
+
+        <input type="submit" value="Register"/>
+    {{/loggedinas}}
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+{{#display_inventory_basicsonly}}
+    {{#inventory.contents.size}}
+        <p>You are carrying:</p>
+        <ul>
+            {{#inventory.contents.isEmpty}}
+                <li>Nothing</li>
+            {{/inventory.contents.isEmpty}}
+            {{#inventory.contents}}
+                <li>{{description}}</li>
+            {{/inventory.contents}}
+
+        </ul>
+    {{/inventory.contents.size}}
+{{/display_inventory_basicsonly}}
+
+
+{{#display_inventory_with_ids}}
+    {{#inventory.contents.size}}
+        <p>You are carrying:</p>
+        <ul>
+            {{#inventory.contents.isEmpty}}
+                <li>Nothing</li>
+            {{/inventory.contents.isEmpty}}
+            {{#inventory.contents}}
+                <li inventoryItemId="{{id}}">{{description}}</li>
+            {{/inventory.contents}}
+
+        </ul>
+    {{/inventory.contents.size}}
+{{/display_inventory_with_ids}}
+
+{{#display_inventory_with_verbs}}
+
+    {{#inventory.contents.size}}
+        <p>You are carrying:</p>
+        <ul>
+            {{#inventory.contents.isEmpty}}
+                <li>Nothing</li>
+            {{/inventory.contents.isEmpty}}
+            {{#inventory.contents}}
+                <li inventoryItemId="{{id}}">{{description}}
+                    <ul>
+                        <li><a href="/player/$username$/drop/{{id}}">drop it</a></li>
+                        <li><a href="/player/$username$/hoard/{{id}}">hoard it</a></li>
+                    </ul>
+                </li>
+            {{/inventory.contents}}
+
+        </ul>
+    {{/inventory.contents.size}}
+
+{{/display_inventory_with_verbs}}

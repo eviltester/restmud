@@ -1,0 +1,21 @@
+<h1>Welcome to RestMud</h1>
+<hr/>
+
+{{#amLoggedOut}}
+    <p>You have been logged out <a href="/login">login again</a></p>
+{{/amLoggedOut}}
+
+{{#displayusers}}
+    <p>Registered Users:</p>
+    <ul>
+{{/displayusers}}
+    {{#users}}
+            <li userid="{{userName}}"> {{displayName}} [{{score}}]</li>
+    {{/users}}
+{{#displayusers}}
+    </ul>
+{{/displayusers}}
+
+<p>Total Possible Score = {{totalscore}}</p>
+
+<p>Do you want some <a href="/help">help</a>?</p>

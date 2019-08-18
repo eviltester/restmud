@@ -1,0 +1,17 @@
+{{#inspectReport}}
+
+<p>At a cost of <span id="inspectionCost">{{costOfInspection}}</span>, <span playerid="{{playerName}}">you</span> inspected <span collectableid="{{collectableId}}">{{collectableDescription}}</span>.</p>
+
+<ul>
+    <li>Can it be hoarded? <strong>{{collectableIsHoardable}}</strong></li>
+    <li>If hoarded it would score? <strong>{{collectableHoardableScore}}</strong></li>
+
+    {{#collectableProvidesAbility}}
+        <li>It provides you with the ability to? <strong>{{collectableProvidesAbility}}</strong></li>
+        <li>Your current ability power given by this is? <strong>{{collectableAbilityPower}}</strong></li>
+    {{/collectableProvidesAbility}}
+</ul>
+
+<p><span playerid="{{playerName}}">Your</span> score is now {{playerScoreIsNow}}.</p>
+
+{{/inspectReport}}
