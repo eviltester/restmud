@@ -1,7 +1,6 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.clauses;
 
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
-import uk.co.compendiumdev.restmud.engine.game.RestMudHttpRequestDetails;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableFlag;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.ScriptWhenClause;
@@ -28,7 +27,7 @@ public class PlayerFlagExists implements ScriptWhenClause {
         // re-use existing flag
         flag.setFrom(when.getParameter());
 
-        return (player.userFlagExists(flag.name)==flag.getValue());
+        return (player.getFlags().flagExists(flag.name) ==flag.getValue());
 
 
     }

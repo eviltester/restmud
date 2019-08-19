@@ -1,7 +1,6 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.clauses;
 
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
-import uk.co.compendiumdev.restmud.engine.game.RestMudHttpRequestDetails;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableCounter;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.ScriptWhenClause;
@@ -28,7 +27,7 @@ public class PlayerCounterExists implements ScriptWhenClause {
         // re-use existing counter
         counter.setFrom(when.getParameter());
 
-        return player.userCounterExists(counter.name);
+        return player.getCounters().counterExists(counter.name);
     }
 
 }

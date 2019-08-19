@@ -18,7 +18,7 @@ public class SetUserFlag implements ScriptThenCommand {
     @Override
     public ProcessConditionReturn execute(ScriptClause scriptClause, MudUser player) {
 
-        player.setUserFlag( new ScriptableFlag(scriptClause.getParameter()));
+        player.getFlags().setFlag(new ScriptableFlag(scriptClause.getParameter()));
         return ImmutableEmptyProcessConditionReturn.get();
     }
 }

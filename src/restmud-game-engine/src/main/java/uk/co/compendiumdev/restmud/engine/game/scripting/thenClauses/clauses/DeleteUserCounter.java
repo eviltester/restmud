@@ -24,7 +24,7 @@ public class DeleteUserCounter implements ScriptThenCommand {
     @Override
     public ProcessConditionReturn execute(ScriptClause scriptClause, MudUser player) {
         ScriptableCounter counter = new ScriptableCounter(scriptClause.getParameter());
-        player.deleteUserCounter(counter.name);
+        player.getCounters().deleteCounter(counter.name);
         return ImmutableEmptyProcessConditionReturn.get();
     }
 }

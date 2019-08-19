@@ -1,7 +1,6 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.clauses;
 
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
-import uk.co.compendiumdev.restmud.engine.game.RestMudHttpRequestDetails;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableCounterCondition;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.ScriptWhenClause;
@@ -27,7 +26,7 @@ public class PlayerCounterValueMatches implements ScriptWhenClause {
 
         // re-use existing counterCondition
         counterCondition.setFrom(when.getParameter());
-        return  counterCondition.comparedTo(player.getUserCounter(counterCondition.name));
+        return  counterCondition.comparedTo(player.getCounters().getCounter(counterCondition.name));
     }
 
 }

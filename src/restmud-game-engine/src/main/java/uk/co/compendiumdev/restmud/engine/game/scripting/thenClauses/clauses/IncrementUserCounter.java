@@ -18,7 +18,7 @@ public class IncrementUserCounter implements ScriptThenCommand {
     @Override
     public ProcessConditionReturn execute(ScriptClause scriptClause, MudUser player) {
         ScriptableCounter counter = new ScriptableCounter(scriptClause.getParameter());
-        player.incrementUserCounter(counter.name, counter.getValue());
+        player.getCounters().incrementCounter(counter.name, counter.getValue());
         return ImmutableEmptyProcessConditionReturn.get();
     }
 }

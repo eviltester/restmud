@@ -1,7 +1,6 @@
 package uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.clauses;
 
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
-import uk.co.compendiumdev.restmud.engine.game.RestMudHttpRequestDetails;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableFlag;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.ScriptWhenClause;
@@ -31,8 +30,8 @@ public class PlayerFlagIsSet implements ScriptWhenClause {
 
         Boolean lastMatch = false;
 
-        if(player.userFlagExists(flag.name)){
-            lastMatch = player.getUserFlag(flag.name)==flag.getValue();
+        if(player.getFlags().flagExists(flag.name)){
+            lastMatch = player.getFlags().getFlagValue(flag.name) ==flag.getValue();
         }
 
         return lastMatch;

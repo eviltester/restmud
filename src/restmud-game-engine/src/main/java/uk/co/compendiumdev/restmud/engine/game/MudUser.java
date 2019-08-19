@@ -2,8 +2,6 @@ package uk.co.compendiumdev.restmud.engine.game;
 
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationDirectionGate;
-import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableCounter;
-import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptableFlag;
 import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
 import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
@@ -14,7 +12,7 @@ import java.util.*;
 
 public class MudUser {
     private final String userName;
-    private Map<String, Boolean> userFlags;
+
     private String password;
     private Inventory inventory;
     private Inventory hoard;
@@ -26,7 +24,10 @@ public class MudUser {
     private String authToken;
     private long lastActionTimeStamp;
     private boolean visibleToOthers;
-    private Map<String, Integer> userCounters;
+
+
+    private BooleanFlags flags;
+    private IntegerCounters counters;
 
     //Player verb handlers
     private PlayerCommand currentCommand;
@@ -61,9 +62,8 @@ public class MudUser {
         this.inventory = new Inventory();
         this.hoard = new Inventory();
         this.score = 0;
-        this.userFlags = new HashMap<String, Boolean>();
-        this.userCounters = new HashMap<String, Integer>();
-
+        flags = new BooleanFlags();
+        counters = new IntegerCounters();
     }
 
 
@@ -193,53 +193,12 @@ public class MudUser {
         return null;
     }
 
-    public boolean userFlagExists(String matchThis) {
-        return userFlags.containsKey(matchThis);
+    public BooleanFlags getFlags(){
+        return flags;
     }
 
-    public boolean getUserFlag(String matchThis) {
-        Boolean flagValue = userFlags.get(matchThis);
-        if(flagValue==null){
-            return false;
-        }
-
-        return flagValue.booleanValue();
-    }
-
-    public void setUserFlag(ScriptableFlag userFlag) {
-        userFlags.put(userFlag.name, userFlag.getValue());
-    }
-
-    public void deleteUserFlag(String name) {
-        userFlags.remove(name);
-    }
-
-    public void setUserCounter(ScriptableCounter counter) {
-        userCounters.put(counter.name, counter.getValue());
-    }
-
-    public void incrementUserCounter(String name, int value) {
-        if(userCounterExists(name)){
-            Integer count = userCounters.get(name);
-            count = count.intValue() + value;
-            userCounters.put(name, count);
-        }
-    }
-
-    public boolean userCounterExists(String matchThis) {
-        return userCounters.containsKey(matchThis);
-    }
-
-    public int getUserCounter(String name) {
-        if(userCounterExists(name)) {
-            return userCounters.get(name);
-        }
-
-        return 0; // by default
-    }
-
-    public void deleteUserCounter(String name) {
-        userCounters.remove(name);
+    public IntegerCounters getCounters(){
+        return counters;
     }
 
     public LookResultOutput look(MudLocation mudLocation, List<MudLocationDirectionGate> gatesHere, List<MudUser> otherUsers) {

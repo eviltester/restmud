@@ -23,7 +23,7 @@ public class DeleteUserFlag implements ScriptThenCommand {
 
     @Override
     public ProcessConditionReturn execute(ScriptClause scriptClause, MudUser player) {
-        player.deleteUserFlag(new ScriptableFlag(scriptClause.getParameter()).name);
+        player.getFlags().deleteFlag(new ScriptableFlag(scriptClause.getParameter()).name);
         return ImmutableEmptyProcessConditionReturn.get();
     }
 }
