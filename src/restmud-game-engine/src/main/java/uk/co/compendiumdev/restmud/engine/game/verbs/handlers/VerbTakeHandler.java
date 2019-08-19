@@ -46,7 +46,31 @@ public class VerbTakeHandler implements VerbHandler{
             }
         }
 
-        return player.take().removeFromLocationAndAddToInventory(whereAmI, thing);
+        return take(player, whereAmI, thing);
+
+    }
+
+    private LastAction take(MudUser player, MudLocation whereAmI, MudCollectable thing) {
+        // does the thing grant any abilities?
+        String extraMessage="";
+        String thingAbility = thing.getAbilityName();
+
+        if(thingAbility.length()>0){
+
+            String abilityOn = "things";
+
+            if(thingAbility.contains("/")){
+                thingAbility = thingAbility.replaceFirst("/", "' and '");
+                abilityOn="";
+            }
+            extraMessage=String.format(" , oooh, and you now have the ability to '%s' %s (power=%d).", thingAbility, abilityOn, thing.getAbilityPower());
+        }
+
+        if(whereAmI.moveCollectableToPlayerInventory(thing.getCollectableId(), player.inventory())){
+            return LastAction.createSuccess(String.format("You took: %s. You now have the %s %s",thing.getCollectableId(), thing.getDescription(), extraMessage));
+        }else{
+            return LastAction.createError(String.format("You took: Nothing (I couldn't take %s)", thing.getCollectableId()));
+        }
 
     }
 

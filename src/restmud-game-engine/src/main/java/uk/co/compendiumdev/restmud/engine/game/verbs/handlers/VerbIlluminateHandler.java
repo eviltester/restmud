@@ -29,7 +29,26 @@ public class VerbIlluminateHandler implements VerbHandler{
         // get the thing that allows me to illuminate
         MudCollectable torch = player.grantedTheAbilityToBy(VerbGameAbilities.ILLUMINATE_DARKEN);
 
-        return player.illuminate().using(torch);
+        return illuminate(torch);
+    }
+
+    public LastAction illuminate(MudCollectable torch) {
+        torch.setAbilityOn(true);
+
+        int power = torch.getAbilityPower();
+
+        if(power>0){
+
+            return LastAction.createSuccess(
+                    String.format("Good work. You illuminated the '%s'. Your '%s' has %d power left.",
+                            torch.getDescription(), torch.getDescription(), power));
+        }else{
+
+            return LastAction.createError(
+                    String.format("No, that won't work. Your '%s' has no power left.",
+                            torch.getDescription()));
+
+        }
     }
 
     @Override

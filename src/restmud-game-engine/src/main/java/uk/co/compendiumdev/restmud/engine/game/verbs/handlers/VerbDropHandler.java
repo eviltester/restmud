@@ -32,9 +32,23 @@ public class VerbDropHandler implements VerbHandler {
 
         MudLocation whereAmI = game.getGameLocations().get(player.getLocationId());
 
+        return drop(player, thing, whereAmI);
+    }
 
+    private LastAction drop(MudUser player, MudCollectable thing, MudLocation whereAmI) {
 
-        return player.drop().thisThingHere(thing, whereAmI);
+        String thingId = thing.getCollectableId();
+        // am I carrying it?
+        if(!player.inventory().contains(thingId)) {
+            return LastAction.createError(String.format("You dropped: Nothing (You are not carrying %s)", thingId));
+        }
+
+        // drop it here? where am i?
+        if(whereAmI.moveCollectableFromPlayerInventory(thingId, player.inventory())){
+            return LastAction.createSuccess(String.format("You dropped: %s. You are no longer carrying %s.", thing.getCollectableId(),thing.getDescription()));
+        }else{
+            return LastAction.createError(String.format("You dropped: Nothing (You couldn't drop %s now)", thingId));
+        }
     }
 
     @Override

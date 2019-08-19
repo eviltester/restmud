@@ -32,7 +32,43 @@ public class VerbHoardHandler  implements VerbHandler{
         MudLocation whereAmI = game.getGameLocations().get(player.getLocationId());
 
 
-        return player.hoard().here(whereAmI, theThing, nounPhrase);
+        return hoard(player, whereAmI, theThing, nounPhrase);
+    }
+
+    private LastAction hoard(MudUser player, MudLocation whereAmI, MudCollectable theThing, String nounPhrase) {
+
+        if(theThing==null){
+            return LastAction.createError(String.format("What? I don't know what a %s is", nounPhrase));
+        }
+
+        String lastActionDescription = "You hoarded:";
+
+        // am I carrying it?
+        if(!player.inventory().contains(theThing.getCollectableId())) {
+            return LastAction.createError(String.format("%s nothing (You are not carrying %s)", lastActionDescription, theThing.getCollectableId()));
+        }
+
+        if(!theThing.isHoardable()) {
+            return LastAction.createError(String.format("%s nothing (%s can not be hoarded)", lastActionDescription, theThing.getCollectableId()));
+        }
+
+        if (!whereAmI.canHoardTreasureHere()) {
+            return LastAction.createError(String.format("%s nothing (you couldn't hoard %s her because there is no hoard here", lastActionDescription, theThing.getCollectableId()));
+        }
+
+        if (!player.inventory().removeItem(theThing.getCollectableId())) {
+            return LastAction.createError(String.format("%s nothing (you don't own %s now)", lastActionDescription, theThing.getCollectableId()));
+        }
+
+        if (!player.treasureHoard().addItem(theThing)) {
+            return LastAction.createError(String.format("%s nothing (you can't hoard %s now)", lastActionDescription, theThing.getCollectableId()));
+        }
+
+        int scored = theThing.getHoardableScore();
+        player.incrementScoreBy(scored);
+
+        return LastAction.createSuccess(String.format("%s %s [scored %d]", lastActionDescription, theThing.getCollectableId(), scored));
+
     }
 
     @Override

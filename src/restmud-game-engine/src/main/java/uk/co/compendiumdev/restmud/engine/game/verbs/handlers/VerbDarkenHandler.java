@@ -24,9 +24,17 @@ public class VerbDarkenHandler  implements VerbHandler {
         MudCollectable torch = player.grantedTheAbilityToBy(VerbGameAbilities.ILLUMINATE_DARKEN);
 
 
+        return darken(player, torch);
+    }
 
+    private LastAction darken(MudUser player, MudCollectable torch) {
+        torch.setAbilityOn(false);
 
-        return player.darken().using(torch);
+        String results =
+                String.format("Good work. You extinguished the '%s'. Your '%s' has %d power left.",
+                        torch.getDescription(), torch.getDescription(), torch.getAbilityPower());
+
+        return LastAction.createSuccess(results);
     }
 
     @Override

@@ -31,8 +31,35 @@ public class VerbExamineHandler implements VerbHandler {
 
         MudCollectable collectable = game.getGameCollectables().get(thingId);
 
-        return player.examine().here(whereAmI, locationObject, collectable, nounPhrase);
+        return examine(player, whereAmI, locationObject, collectable, nounPhrase);
 
+    }
+
+    private LastAction examine(MudUser player, MudLocation whereAmI, MudLocationObject locationObject, MudCollectable collectable, String nounPhrase) {
+
+        // is it a location object here?
+        if(locationObject!=null){
+            if(!whereAmI.objects().contains(locationObject.getObjectId())) {
+                return LastAction.createError(String.format("You wanted to examine %s: but I don't see %s here", locationObject.getObjectId(), locationObject.getDescription()));
+            } else {
+                return LastAction.createSuccess(
+                        String.format("You Examine: %s ... %s",
+                                locationObject.getDescription(),
+                                locationObject.getExamineDescription()));
+            }
+        }
+
+        // it was not a location item, so is it a collectable
+        if(collectable!=null) {
+            // was it here or am I carrying it
+            if(whereAmI.collectables().contains(collectable.getCollectableId()) || player.inventory().contains(collectable.getCollectableId())) {
+                return  LastAction.createError(String.format("You examined %s but there is nothing more to say about %s.", collectable.getCollectableId(), collectable.getDescription()));
+            }else{
+                return LastAction.createError(String.format("You wanted to examine %s: but I don't see that here", collectable.getCollectableId()));
+            }
+        }
+
+        return LastAction.createError(String.format("Sorry, you want to examine what? What is a %s", nounPhrase));
     }
 
     @Override

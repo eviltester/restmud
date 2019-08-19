@@ -8,8 +8,6 @@ import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
 import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
 import uk.co.compendiumdev.restmud.engine.game.verbs.VerbGameAbilities;
-import uk.co.compendiumdev.restmud.engine.game.verbs.VerbInspect;
-import uk.co.compendiumdev.restmud.engine.game.verbs.handlers.perPlayer.*;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.*;
 
 import java.util.*;
@@ -31,16 +29,6 @@ public class MudUser {
     private Map<String, Integer> userCounters;
 
     //Player verb handlers
-    private VerbTake take;
-    private VerbPolish polish;
-    private VerbExamine examine;
-    private VerbIlluminate illuminate;
-    private VerbDarken darken;
-    private VerbDrop drop;
-    private VerbHoard verbHoard;
-    private VerbInspect inspect;
-    private VerbInventory inventoryVerbHandler;
-    private VerbScore scoreVerbHandler;
     private PlayerCommand currentCommand;
 
 
@@ -66,18 +54,6 @@ public class MudUser {
         this.password = this.authToken;
 
         visibleToOthers = true;
-
-
-        take = new VerbTake(this);
-        polish = new VerbPolish(this);
-        examine = new VerbExamine(this);
-        illuminate = new VerbIlluminate();
-        darken = new VerbDarken();
-        drop = new VerbDrop(this);
-        verbHoard = new VerbHoard(this);
-        inspect = new VerbInspect(this);
-        inventoryVerbHandler = new VerbInventory(this);
-        scoreVerbHandler = new VerbScore(this);
     }
 
     public void reset() {
@@ -264,46 +240,6 @@ public class MudUser {
 
     public void deleteUserCounter(String name) {
         userCounters.remove(name);
-    }
-
-    public VerbTake take() {
-        return take;
-    }
-
-    public VerbPolish polish() {
-        return polish;
-    }
-
-    public VerbExamine examine() {
-        return examine;
-    }
-
-    public VerbIlluminate illuminate() {
-        return illuminate;
-    }
-
-    public VerbDarken darken() {
-        return darken;
-    }
-
-    public VerbDrop drop() {
-        return drop;
-    }
-
-    public VerbHoard hoard() {
-        return verbHoard;
-    }
-
-    public VerbInspect inspect() {
-        return inspect;
-    }
-
-    public VerbInventory handleInventoryVerb() {
-        return inventoryVerbHandler;
-    }
-
-    public VerbScore handleScoreVerb() {
-        return scoreVerbHandler;
     }
 
     public LookResultOutput look(MudLocation mudLocation, List<MudLocationDirectionGate> gatesHere, List<MudUser> otherUsers) {
