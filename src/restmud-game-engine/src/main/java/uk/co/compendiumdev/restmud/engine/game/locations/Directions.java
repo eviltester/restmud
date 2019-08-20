@@ -7,6 +7,7 @@ public class Directions {
     private static final String westSynonyms = "|w|west|";
     private static final String eastSynonyms = "|e|east|";
 
+    // Todo: add up, down, in, out, se, sw, ne, nw
 
     public static String findBaseDirection(String lcDirection) {
 

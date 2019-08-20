@@ -23,6 +23,9 @@ public class MudLocationDirectionGate {
     private boolean canPlayerClose;
     private String reason;
 
+    // TODO: can this be simplified? is it easier to use flags for blocking and opening doors etc
+    //       or have blocks which are active on specific flags
+
     public MudLocationDirectionGate createCopy(MudLocation fromLocation, MudLocation toLocation) {
         MudLocationDirectionGate copyGate = new MudLocationDirectionGate(fromLocation, this.fromDirection, toLocation, this.toLocationDirection, this.whichWayDirection, this.gateOpenStatus);
         copyGate.setClosedDescription(this.closedDescription);

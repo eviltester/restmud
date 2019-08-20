@@ -194,6 +194,13 @@ public class MudGameDefinition {
         // add a post matcher
         this.localVerbs.add(new VerbRegexToVerbMatch(verbName, verbName));
         userInputParser.addVerb(verbName);
+
+        // todo: allow creating generic messages if verb used but doesn't match a condition
+        // todo: allow creating properties on objects e.g.
+        //      define an object as a hat with property wearable
+        //      when wear objectHasProperty 'wearable', setObjectProperty 'worn'
+        // todo: allow look conditions for when inventory items have specific properties
+        //      e.g. look if
     }
 
     public List<VerbRegexToVerbMatch> getLocalVerbs() {

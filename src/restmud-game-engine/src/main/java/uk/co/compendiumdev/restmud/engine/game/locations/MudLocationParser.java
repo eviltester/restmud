@@ -36,6 +36,11 @@ public class MudLocationParser {
                             case "secret":
                                 anExit.setSecretRoute(true);
                                 break;
+                            case "local":
+                                // local is purely documentation
+                                // to signify that a condition is used,
+                                // it can also be used as a destination
+                                break;
                         }
                     }
 
@@ -47,3 +52,9 @@ public class MudLocationParser {
         return exits;
     }
 }
+
+// TODO - at the moment all routes are defined on each location e.g. location 1 N:2, and location 2 S:1
+//        allow creating passages e.g. passage(1,2,N) which would create an exit from 1 to 2 going N
+//        and a corresponding South passage from 2 to 1
+//        make this polymorphic and allow passage(1, 2, N, E) which allows creating an exit from
+//        1, 2, going north and 2, 1 going east

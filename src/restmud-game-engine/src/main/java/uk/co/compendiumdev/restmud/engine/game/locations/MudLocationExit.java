@@ -15,6 +15,7 @@ public class MudLocationExit {
         this.secretRoute = false;
     }
 
+    // secret routes are not shown in the description but can be navigated as normal
     public void setSecretRoute(boolean secretRoute) {
         this.secretRoute = secretRoute;
     }

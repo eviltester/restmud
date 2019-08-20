@@ -65,6 +65,9 @@ public class RestMudScriptingEngine {
         whenClauseCommands.registerCommand(new UserIsCarrying());
         whenClauseCommands.registerCommand(new LocationExitExists(mudGame));
 
+        // TODO: these are AND by default, allow OR commands and specific AND commands
+        // TODO: have NOT commands rather than a flag for false true
+
         // HTTP extensions for adventure
         // TODO consider if this should be more generic and make these attributes on a command e..g attribute "HTTP-VERB" value "PUT"
         whenClauseCommands.registerCommand(new HttpVerbIs());

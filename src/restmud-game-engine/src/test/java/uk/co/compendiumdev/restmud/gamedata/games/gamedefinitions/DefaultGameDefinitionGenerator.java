@@ -79,5 +79,7 @@ public class DefaultGameDefinitionGenerator {
         total_score=1000;
 
         defn.setTotalScore(total_score);
+
+
     }
 }
