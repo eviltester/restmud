@@ -19,7 +19,7 @@ public class VerbOpenHandler implements VerbHandler {
     public LastAction doVerb(MudUser player, String nounPhrase) {
 
         // is the nounphrase a direction?
-        String baseDirection = Directions.findBaseDirection(nounPhrase.toLowerCase());
+        String baseDirection = game.getDirections().findBaseDirection(nounPhrase.toLowerCase());
         if(baseDirection.length() == 0){
             return LastAction.createError("I can't open " + nounPhrase);
         }

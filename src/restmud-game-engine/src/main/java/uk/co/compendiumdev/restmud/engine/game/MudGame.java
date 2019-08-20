@@ -65,6 +65,7 @@ public class MudGame {
     private final RestMudScriptingEngine scriptingEngine;
     private final UserInputParser userInputParser;
     private MudGameDefinition gameDefinition;
+    private Directions directions;
 
 
     /*
@@ -106,6 +107,7 @@ public class MudGame {
         turnConditions = new ArrayList<>();
         localVerbs=new ArrayList<>();
         startupCommands = new ArrayList<>();
+        directions = new Directions();
 
 
     }
@@ -606,6 +608,9 @@ public class MudGame {
 
         MudGameDefinition defn = this.gameDefinition;
 
+        // clone all the directions
+        directions = defn.getClonedCopiedDirections();
+
         // clone all the collectables
         gameCollectables.setFrom(defn.getCollectables().getClonedCopiedCollectables());
 
@@ -682,6 +687,10 @@ public class MudGame {
     public void resetFrom(MudGameDefinition defn) {
         this.gameDefinition = defn;
         resetGame();
+    }
+
+    public Directions getDirections() {
+        return directions;
     }
 
 

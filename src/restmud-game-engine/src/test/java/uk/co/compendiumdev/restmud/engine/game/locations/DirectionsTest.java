@@ -5,60 +5,62 @@ import org.junit.Test;
 
 public class DirectionsTest {
 
+    Directions directions = new Directions();
+
     @Test
     public void baseDirectionValuesMapAsExpected(){
 
-        Assert.assertEquals("s",Directions.findBaseDirection("s"));
-        Assert.assertEquals("s",Directions.findBaseDirection("S"));
-        Assert.assertEquals("s",Directions.findBaseDirection("south"));
-        Assert.assertEquals("s",Directions.findBaseDirection("South"));
-        Assert.assertEquals("s",Directions.findBaseDirection("SoUth"));
-        Assert.assertEquals("s",Directions.findBaseDirection("SOUTH"));
+        Assert.assertEquals("s",directions.findBaseDirection("s"));
+        Assert.assertEquals("s",directions.findBaseDirection("S"));
+        Assert.assertEquals("s",directions.findBaseDirection("south"));
+        Assert.assertEquals("s",directions.findBaseDirection("South"));
+        Assert.assertEquals("s",directions.findBaseDirection("SoUth"));
+        Assert.assertEquals("s",directions.findBaseDirection("SOUTH"));
 
-        Assert.assertEquals("n",Directions.findBaseDirection("n"));
-        Assert.assertEquals("n",Directions.findBaseDirection("N"));
-        Assert.assertEquals("n",Directions.findBaseDirection("north"));
-        Assert.assertEquals("n",Directions.findBaseDirection("North"));
-        Assert.assertEquals("n",Directions.findBaseDirection("nOrTH"));
-        Assert.assertEquals("n",Directions.findBaseDirection("NORTH"));
+        Assert.assertEquals("n",directions.findBaseDirection("n"));
+        Assert.assertEquals("n",directions.findBaseDirection("N"));
+        Assert.assertEquals("n",directions.findBaseDirection("north"));
+        Assert.assertEquals("n",directions.findBaseDirection("North"));
+        Assert.assertEquals("n",directions.findBaseDirection("nOrTH"));
+        Assert.assertEquals("n",directions.findBaseDirection("NORTH"));
 
-        Assert.assertEquals("e",Directions.findBaseDirection("e"));
-        Assert.assertEquals("e",Directions.findBaseDirection("E"));
-        Assert.assertEquals("e",Directions.findBaseDirection("east"));
-        Assert.assertEquals("e",Directions.findBaseDirection("East"));
-        Assert.assertEquals("e",Directions.findBaseDirection("eAsT"));
-        Assert.assertEquals("e",Directions.findBaseDirection("EAST"));
+        Assert.assertEquals("e",directions.findBaseDirection("e"));
+        Assert.assertEquals("e",directions.findBaseDirection("E"));
+        Assert.assertEquals("e",directions.findBaseDirection("east"));
+        Assert.assertEquals("e",directions.findBaseDirection("East"));
+        Assert.assertEquals("e",directions.findBaseDirection("eAsT"));
+        Assert.assertEquals("e",directions.findBaseDirection("EAST"));
 
-        Assert.assertEquals("w",Directions.findBaseDirection("w"));
-        Assert.assertEquals("w",Directions.findBaseDirection("W"));
-        Assert.assertEquals("w",Directions.findBaseDirection("west"));
-        Assert.assertEquals("w",Directions.findBaseDirection("West"));
-        Assert.assertEquals("w",Directions.findBaseDirection("WeST"));
-        Assert.assertEquals("w",Directions.findBaseDirection("WEST"));
+        Assert.assertEquals("w",directions.findBaseDirection("w"));
+        Assert.assertEquals("w",directions.findBaseDirection("W"));
+        Assert.assertEquals("w",directions.findBaseDirection("west"));
+        Assert.assertEquals("w",directions.findBaseDirection("West"));
+        Assert.assertEquals("w",directions.findBaseDirection("WeST"));
+        Assert.assertEquals("w",directions.findBaseDirection("WEST"));
     }
 
     @Test
     public void unknownDirectionsReturnEmptyString(){
 
-        Assert.assertEquals("",Directions.findBaseDirection("in"));
+        Assert.assertEquals("",directions.findBaseDirection("in"));
 
-        Assert.assertEquals("",Directions.findOppositeDirection("out"));
+        Assert.assertEquals("",directions.findOppositeDirection("out"));
     }
 
     @Test
     public void oppositeDirections(){
 
         // only do one full pass for root since findOppositeDirection uses findBaseDirection
-        Assert.assertEquals("s",Directions.findOppositeDirection("n"));
-        Assert.assertEquals("s",Directions.findOppositeDirection("N"));
-        Assert.assertEquals("s",Directions.findOppositeDirection("north"));
-        Assert.assertEquals("s",Directions.findOppositeDirection("North"));
-        Assert.assertEquals("s",Directions.findOppositeDirection("nOrTH"));
-        Assert.assertEquals("s",Directions.findOppositeDirection("NORTH"));
+        Assert.assertEquals("s",directions.findOppositeDirection("n"));
+        Assert.assertEquals("s",directions.findOppositeDirection("N"));
+        Assert.assertEquals("s",directions.findOppositeDirection("north"));
+        Assert.assertEquals("s",directions.findOppositeDirection("North"));
+        Assert.assertEquals("s",directions.findOppositeDirection("nOrTH"));
+        Assert.assertEquals("s",directions.findOppositeDirection("NORTH"));
 
-        Assert.assertEquals("e",Directions.findOppositeDirection("west"));
-        Assert.assertEquals("w",Directions.findOppositeDirection("EAST"));
-        Assert.assertEquals("n",Directions.findOppositeDirection("S"));
+        Assert.assertEquals("e",directions.findOppositeDirection("west"));
+        Assert.assertEquals("w",directions.findOppositeDirection("EAST"));
+        Assert.assertEquals("n",directions.findOppositeDirection("S"));
 
 
     }

@@ -13,8 +13,10 @@ import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
 public class DirectionMatches implements ScriptWhenClause {
 
 
-    public DirectionMatches(MudGame game) {
+    private final MudGame game;
 
+    public DirectionMatches(MudGame game) {
+        this.game = game;
     }
 
     public String getCommandName(){
@@ -24,7 +26,7 @@ public class DirectionMatches implements ScriptWhenClause {
     @Override
     public boolean execute(ScriptClause when, MudUser player, PlayerCommand command) {
 
-        return when.getParameter().contentEquals(Directions.findBaseDirection(command.getNounPhrase()));
+        return when.getParameter().contentEquals(game.getDirections().findBaseDirection(command.getNounPhrase()));
     }
 
 }

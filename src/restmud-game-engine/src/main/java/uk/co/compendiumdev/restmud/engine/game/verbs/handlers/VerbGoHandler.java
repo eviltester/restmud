@@ -25,7 +25,7 @@ public class VerbGoHandler   implements VerbHandler {
 
         LastAction lastAction;
 
-        String baseDirection = Directions.findBaseDirection(nounPhrase.toLowerCase());
+        String baseDirection = game.getDirections().findBaseDirection(nounPhrase.toLowerCase());
 
         String goAppendum = "";
 

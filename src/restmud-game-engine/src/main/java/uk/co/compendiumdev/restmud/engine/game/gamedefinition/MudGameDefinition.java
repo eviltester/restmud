@@ -26,6 +26,7 @@ import java.util.Map;
  */
 public class MudGameDefinition {
 
+    private final Directions directions = new Directions();
     private final Locations gameLocations = new Locations();
     private Map<Integer, List<VerbCondition>> verbConditions = new HashMap<>();
     private List<PriorityTurnCondition> turnConditions = new ArrayList<>();
@@ -265,5 +266,9 @@ public class MudGameDefinition {
         }
 
         return clonedStartupRules;
+    }
+
+    public Directions getClonedCopiedDirections() {
+        return directions.createClonedCopy();
     }
 }

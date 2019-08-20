@@ -22,9 +22,8 @@ public class VerbCloseHandler implements VerbHandler {
         // we should be able to close gates between locations
         // at some point we will be able to clolse 'things'
 
-
         // is the nounphrase a direction?
-        String baseDirection = Directions.findBaseDirection(nounPhrase.toLowerCase());
+        String baseDirection = game.getDirections().findBaseDirection(nounPhrase.toLowerCase());
         if(baseDirection.length() == 0){
             return LastAction.createError("I can't close " + nounPhrase);
         }
