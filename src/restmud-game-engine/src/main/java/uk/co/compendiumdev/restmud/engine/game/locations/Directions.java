@@ -12,6 +12,7 @@ public class Directions {
     Map<String, String> opposites; // base direction opposites
 
     // by default have N,S,E,W and if we need: up, down, in, out, se, sw, ne, nw - can do this in game definition
+    // TODO: should allow deleting directions if we need to e.g. to allow ship based games portside, starboard, aft, stern etc.
 
     public Directions(){
         directions = new ArrayList<>();
