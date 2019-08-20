@@ -15,6 +15,7 @@ import uk.co.compendiumdev.restmud.engine.game.verbmodes.VerbMode;
 import uk.co.compendiumdev.restmud.engine.game.verbmodes.VerbModes;
 import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
 import uk.co.compendiumdev.restmud.engine.game.verbs.handlers.VerbHandler;
+import uk.co.compendiumdev.restmud.engine.game.verbs.handlers.VerbLookHandler;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.*;
 
 import java.util.ArrayList;
@@ -150,9 +151,9 @@ public class MudGame {
         MudLocation whereAmI = getGameLocations().get(player.getLocationId());
 
 
-        output = player.look(   whereAmI,
-                                gateManager.getGatesHere(whereAmI),
-                                userManager.getUsers());
+        output = VerbLookHandler.look(player, whereAmI,
+                                        gateManager.getGatesHere(whereAmI),
+                                        userManager.getUsers());
 
         return output;
 
