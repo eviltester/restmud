@@ -4,24 +4,15 @@ import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
 import uk.co.compendiumdev.restmud.engine.game.locations.*;
 import uk.co.compendiumdev.restmud.engine.game.parser.BuiltInVerbListBuilder;
 import uk.co.compendiumdev.restmud.engine.game.parser.UserInputParser;
-import uk.co.compendiumdev.restmud.engine.game.parser.VerbToken;
-import uk.co.compendiumdev.restmud.engine.game.playerevents.BroadcastGameMessage;
-import uk.co.compendiumdev.restmud.engine.game.playerevents.PlayerEvents;
 import uk.co.compendiumdev.restmud.engine.game.scripting.*;
 import uk.co.compendiumdev.restmud.engine.game.things.IdGenerator;
 import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
 import uk.co.compendiumdev.restmud.engine.game.verbmodes.VerbMode;
 import uk.co.compendiumdev.restmud.engine.game.verbmodes.VerbModes;
-import uk.co.compendiumdev.restmud.engine.game.verbs.PlayerCommand;
-import uk.co.compendiumdev.restmud.engine.game.verbs.handlers.VerbHandler;
-import uk.co.compendiumdev.restmud.engine.game.verbs.handlers.VerbLookHandler;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * The main class for a 'Game' of RestMud
@@ -96,7 +87,7 @@ public class MudGame {
         return this.gameDefinition.getWelcomeMessage();
     }
 
-    private void clearGame() {
+    public void clearGame() {
 
         gameLocations = new Locations();
         gameCollectables = new Collectables();
@@ -289,7 +280,13 @@ public class MudGame {
         return locationObjects;
     }
 
+    public Directions getDirections() {
+        return directions;
+    }
 
+    public RestMudScriptingEngine getScriptingEngine() {
+        return scriptingEngine;
+    }
 
     /***********************************************
      * TODO: Verb Modes should not be managed in the game, these are for API and GUI to manage
@@ -352,87 +349,12 @@ public class MudGame {
 
     }
 
-    public void resetGame() {
-
-        // need to clear down any existing things first when reset game
-        clearGame();
-
-        MudGameDefinition defn = this.gameDefinition;
-
-        // clone all the directions
-        directions = defn.getClonedCopiedDirections();
-
-        // clone all the collectables
-        gameCollectables.setFrom(defn.getCollectables().getClonedCopiedCollectables());
-
-        // clone all the location objects
-        locationObjects.setFrom(defn.getLocationObjects().getClonedCopiedLocations());
-
-        // Add clones of the objects to the locations
-        // to allow instantiation of multiple games from the same definition
-        for(MudLocation definedLocation : defn.gameLocations().getLocations()){
-
-            MudLocation gameLocation = definedLocation.getClonedCopy();
-            gameLocations.addLocation(gameLocation);
-
-            // now add the objects from the defined location to the game location
-            for(MudLocationObject definedLocationObject : definedLocation.objects().itemsView()){
-                gameLocation.objects().addItem(locationObjects.get(definedLocationObject.getObjectId()));
-            }
-
-            // now add the collectables in the defined location to the game location collectables
-            for(MudCollectable definedLocationCollectable : definedLocation.collectables().itemsView()){
-                gameLocation.collectables().addItem(gameCollectables.get(definedLocationCollectable.getCollectableId()));
-            }
-        }
-
-        // cloned copy of the verbConditions not the actual set
-        verbConditions.putAll(defn.getClonedVerbConditions());
-
-        // cloned copy of the turnConditions not the actual full set
-        turnConditions.addAll(defn.getClonedPriorityTurnConditions());
-
-        // Clone the gates by creating new ones from the definition
-        for(MudLocationDirectionGate gate : defn.getGates().values()) {
-
-            MudLocation fromLocation = gameLocations.get(gate.getFromLocationId());
-            MudLocation toLocation = gameLocations.get(gate.getToLocationId());
-
-            MudLocationDirectionGate newgate = gate.createCopy(fromLocation, toLocation);
-            newgate.gateIsNamed(gate.getGateName());
-
-            gateManager.addGate(newgate);
-        }
-
-        // clone the verbs
-        localVerbs.addAll(defn.getLocalVerbs());
-        userInputParser.addVerbs(defn.getLocalVerbs());
-
-        this.setStartLocationId(defn.getStartLocationId());
-
-        idGenerator().setFrom(defn.getIdGenerator());
-        totalScore = defn.getTotalScore();
-
-
-        // reset the users
-        for(MudUser user : getUserManager().getUsers()){
-            user.reset();
-            user.setLocationId(this.getStartLocationId());
-        }
-
-        tokenizeScriptConditions();
-
-        startupCommands.addAll(defn.getClonedStartupRules());
-        scriptingEngine.thenClauseCommandList().getTokenizer().tokenize(startupCommands);
-        runStartupCommands();
-
-        broadcastMessages().wizardBroadcaseMessage(getWelcomeMessage());
+    private void resetter(MudGame game, MudGameDefinition defn){
+        new GameResetter(game).resetUsing(defn);
     }
 
-    private void runStartupCommands() {
-        for(ScriptClause command : startupCommands){
-            scriptingEngine.thenClauseCommandList().getCommand(command.getToken()).execute(command,userManager.getUser("wiz"));
-        }
+    public void resetGame() {
+        resetter(this, this.gameDefinition);
     }
 
     public void resetFrom(MudGameDefinition defn) {
@@ -440,12 +362,16 @@ public class MudGame {
         resetGame();
     }
 
-    public Directions getDirections() {
-        return directions;
+
+    public void setDirections(final Directions clonedCopiedDirections) {
+        directions = clonedCopiedDirections;
     }
 
+    public Collection<PriorityTurnCondition> getTurnConditions() {
+        return turnConditions;
+    }
 
-    public RestMudScriptingEngine getScriptingEngine() {
-        return scriptingEngine;
+    public List<ScriptClause> getStartupCommands() {
+        return startupCommands;
     }
 }
