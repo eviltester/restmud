@@ -67,6 +67,7 @@ public class MudGame {
     private MudGameDefinition gameDefinition;
     private Directions directions;
 
+    private GameCommandProcessor commandProcessor;
 
     /*
         TODO: Suspect that Game and Game State should be managed as seperate classes
@@ -83,7 +84,7 @@ public class MudGame {
 
         scriptingEngine = new RestMudScriptingEngine(this);
         userInputParser = new UserInputParser(new BuiltInVerbListBuilder(this).addBuiltInVerbs().getVerbList());
-
+        commandProcessor = new GameCommandProcessor(this);
 
     }
 
@@ -142,43 +143,47 @@ public class MudGame {
         return gateManager.getGatesAsIdDescriptionPairs();
     }
 
-    private LookResultOutput userLook(MudUser player) {
 
-        LookResultOutput output = new LookResultOutput();
-
-        if(player==null){
-            return output;
-        }
-
-        MudLocation whereAmI = getGameLocations().get(player.getLocationId());
-
-
-        output = VerbLookHandler.look(player, whereAmI,
-                                        gateManager.getGatesHere(whereAmI),
-                                        userManager.getUsers());
-
-        return output;
-
-    }
-
-
+    /************************
+     * COMMAND PROCESSING
+     */
 
     public ResultOutput processGetUserDetails(String username) {
 
+        return getCommandProcessor().processGetUserDetails(username);
+    }
 
-        ResultOutput resultOutput;
+    public ResultOutput processTheVerbInGame(String username, String verbToHandle, String theNounPhrase, RestMudHttpRequestDetails httpRequestDetails) {
+        return getCommandProcessor().processTheVerbInGame(username, verbToHandle, theNounPhrase, httpRequestDetails);
+    }
 
-        GetUserDetails userDetails = userManager.getUserDetails(username);
+    /***********************************************
+     * WIZARD COMMANDS
+     **********************************************/
 
-        if(userDetails == null){
-            resultOutput = new ResultOutput(LastAction.createError(String.format("Could not find user %s", username)));
+    public ResultOutput teleportUserTo(String username, String locationId) {
+        return getCommandProcessor().wizardCommands().teleportUserTo(username, locationId);
+    }
 
-        }else{
+    // turn on the lights in the location
+    public ResultOutput lightLocation(String locationId) {
+        return getCommandProcessor().wizardCommands().lightLocation(locationId);
+    }
 
-            resultOutput = new ResultOutput(LastAction.createSuccess("Get User Details")).setUserDetails(userDetails);
-        }
+    public ResultOutput darkenLocation(String locationId) {
+        return getCommandProcessor().wizardCommands().darkenLocation(locationId);
+    }
 
-        return resultOutput;
+    public ResultOutput closeGate(String fromLocation, String toLocation) {
+        return getCommandProcessor().wizardCommands().closeGate(fromLocation, toLocation);
+    }
+
+    public ResultOutput openGate(String fromLocation, String toLocation) {
+        return getCommandProcessor().wizardCommands().openGate(fromLocation, toLocation);
+    }
+
+    private GameCommandProcessor getCommandProcessor() {
+        return commandProcessor;
     }
 
     /***********************************************
@@ -188,148 +193,6 @@ public class MudGame {
     public RestMudScriptingEngine scriptingEngine(){
         return scriptingEngine;
     }
-
-    public ResultOutput processTheVerbInGame(String username, String verbToHandle, String theNounPhrase, RestMudHttpRequestDetails httpRequestDetails) {
-        LastAction lastAction=null;
-        ResultOutput resultOutput;
-
-        String nounPhrase = "";
-
-        if(theNounPhrase!=null){
-            nounPhrase = theNounPhrase.toLowerCase();
-        }
-
-        boolean actionUpdatesTimeStamp;
-        boolean ensureLookHappens = false;
-
-
-        List<BroadcastGameMessage> conditionMessages = new ArrayList<>();
-        List<AttributePair> collectablesToAdd = new ArrayList<>();
-        List<AttributePair> locationObjectsToAdd= new ArrayList<>();
-
-
-        MudUser player = userManager.getUser(username);
-        if(player==null){
-            return ResultOutput.getLastActionError("Sorry, who are you?");
-        }
-
-
-
-        // process any verb conditions next
-        VerbToken verbToken = userInputParser.getVerbToken(verbToHandle);
-
-        player.setCurrentCommand(new PlayerCommand(verbToHandle, verbToken, nounPhrase, httpRequestDetails));
-
-        ProcessConditionReturn processed = scriptingEngine.rulesProcessor().processVerbConditions(player, player.getCurrentCommand());
-
-        if(processed.hasAnyMessages()){
-            conditionMessages.addAll(processed.messagesAsBroadcaseMessagesList());
-        }
-        if(processed.hasAnyCollectables()){
-            collectablesToAdd.addAll(processed.getCollectables());
-        }
-        if(processed.hasAnyLocationObjects()){
-            locationObjectsToAdd.addAll(processed.getLocationObjects());
-        }
-        if(processed.isLookForced()){
-            ensureLookHappens = true;
-        }
-
-
-        // if there was a last action from the conditions then use that
-        if(processed.hasAnyActions()){
-            lastAction = processed.getLastAction();
-        }
-
-
-
-        //userInputParser.getVerbHandler(verbToHandle);
-        //verbHandler.doVerb(username, nounphrase)
-        //verbHandler.createResultOutput(lastAction, username, nounphrase)
-
-        VerbHandler vh=userInputParser.getVerbHandler(verbToHandle);
-
-        if(lastAction==null) {
-
-            // process the last action with generic data
-            if(vh!=null) {
-                lastAction = vh.doVerb(player, nounPhrase);
-            }
-
-        }
-
-
-        // last action might be null if it is a custom Verb because the default verb handler takes no action
-        // and sometimes custom verb rules don't issue a last action (but stuff might happen as a side-effect)
-        if(lastAction==null) {
-            resultOutput = ResultOutput.getLastActionError(String.format("I don't know how to \"%s %s\" here", verbToHandle, nounPhrase));
-        }else{
-            // handle game verbs that matched conditions
-            resultOutput = new ResultOutput(lastAction);
-        }
-
-
-        // by default
-        actionUpdatesTimeStamp = true;
-        
-        if(vh!=null) {
-            if (vh.shouldAddGameMessages()) {
-                resultOutput.addGameMessages(broadcastMessages().getMessagesSince(player.getLastActionTimeStamp()));
-            }
-            if (vh.shouldLookAfterVerb()) {
-                resultOutput.setLook(userLook(player));
-                ensureLookHappens = false;
-            }
-
-            actionUpdatesTimeStamp = vh.actionUpdatesTimeStamp();
-        }
-
-        // process any turn conditions now - turn conditions should not create last actions, if they do, they will be ignored
-        ProcessConditionReturn processedTurns = scriptingEngine.rulesProcessor().processTurnConditions(player);
-        if(processedTurns.hasAnyMessages()){
-            conditionMessages.addAll(processedTurns.messagesAsBroadcaseMessagesList());
-        }
-        if(processedTurns.hasAnyCollectables()){
-            collectablesToAdd.addAll(processedTurns.getCollectables());
-        }
-        if(processedTurns.hasAnyLocationObjects()){
-            locationObjectsToAdd.addAll(processedTurns.getLocationObjects());
-        }
-        if(processed.isLookForced()){
-            ensureLookHappens = true;
-        }
-
-        if(ensureLookHappens){
-            resultOutput.setLook(userLook(player));
-            resultOutput.setGameMessages(broadcastMessages().getMessagesSince(player.getLastActionTimeStamp()));
-        }
-
-        // add any collectables into the ResultOutput
-        if(resultOutput.look != null) {
-            resultOutput.look.addAdditionalCollectables(collectablesToAdd);
-            resultOutput.look.addAdditionalLocationObjects(locationObjectsToAdd);
-        }
-
-        if (actionUpdatesTimeStamp) {
-
-                player.updateLastActionTimeStamp();
-
-                // add local inventory messages
-            List<BroadcastGameMessage> extraMessages = PlayerEvents.updateActivePowerItems(player.inventory().itemsView(), player, getGameLocations().get(JUNK_ROOM));
-
-
-                resultOutput.addGameMessages(extraMessages);
-        }
-
-        // Always see the condition messages
-        resultOutput.addGameMessages(conditionMessages);
-
-        return resultOutput;
-    }
-
- 
-
-
 
 
 
@@ -396,45 +259,7 @@ public class MudGame {
     }
 
 
-    /***********************************************
-     * WIZARD COMMANDS
-     **********************************************/
 
-    public ResultOutput teleportUserTo(String username, String locationId) {
-
-        MudUser user = userManager.getUser(username);
-        user.setLocationId(locationId);
-
-        return new ResultOutput(LastAction.createSuccess("Successfully teleported " + username + " to location " + locationId));
-
-    }
-
-    // turn on the lights in the location
-    public ResultOutput lightLocation(String locationId) {
-        getGameLocations().get(locationId).makeLight();
-        return new ResultOutput(LastAction.createSuccess("Successfully Switched on lights in location " + locationId));
-    }
-
-    public ResultOutput darkenLocation(String locationId) {
-        getGameLocations().get(locationId).makeDark();
-        return new ResultOutput(LastAction.createSuccess("Successfully Turned Off lights in location " + locationId));
-    }
-
-    public ResultOutput closeGate(String fromLocation, String toLocation) {
-
-        MudLocationDirectionGate gate = gateManager.getGateBetween(getGameLocations().get(fromLocation), getGameLocations().get(toLocation));
-        gate.close();
-
-        return new ResultOutput(LastAction.createSuccess("Successfully Closed Gate from " + fromLocation + " to " + toLocation));
-    }
-
-    public ResultOutput openGate(String fromLocation, String toLocation) {
-
-        MudLocationDirectionGate gate = gateManager.getGateBetween(getGameLocations().get(fromLocation), getGameLocations().get(toLocation));
-        gate.open();
-
-        return new ResultOutput(LastAction.createSuccess("Successfully Opened Gate from " + fromLocation + " to " + toLocation));
-    }
 
 
     public void ensureGameHasJunkRoom() {
@@ -590,8 +415,6 @@ public class MudGame {
 
         resetGame();
 
-
-
     }
 
     public void resetGame() {
@@ -687,7 +510,7 @@ public class MudGame {
     }
 
 
-
-
-
+    public RestMudScriptingEngine getScriptingEngine() {
+        return scriptingEngine;
+    }
 }

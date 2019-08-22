@@ -48,7 +48,6 @@ public class ScriptingVerbsCollectables {
 
 
     }
-    // fail to open gate because of wrong name
 
     @Test
     public void canMoveCollectable(){
