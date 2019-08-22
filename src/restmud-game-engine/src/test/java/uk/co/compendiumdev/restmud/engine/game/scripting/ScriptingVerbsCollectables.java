@@ -8,6 +8,7 @@ import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameEntityCreator;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
+import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.clauses.TeleportCollectableToLocation;
 import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
 
@@ -61,7 +62,9 @@ public class ScriptingVerbsCollectables {
         Assert.assertTrue(location1.collectables().contains("shiny1"));
         Assert.assertFalse(location2.collectables().contains("shiny1"));
 
-        game.moveCollectableToLocation(thing, game.getGameLocations().get("2"));
+        new TeleportCollectableToLocation(game).
+                moveCollectableToLocation(
+                        thing, game.getGameLocations().get("2"));
 
         Assert.assertFalse(location1.collectables().contains("shiny1"));
         Assert.assertTrue(location2.collectables().contains("shiny1"));

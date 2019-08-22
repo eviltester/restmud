@@ -253,33 +253,6 @@ public class MudGame {
 
 
 
-    /**
-     * given a collectable, move it to location, ensure that it only exists in this location
-     * @param collectable
-     * @param location
-     */
-    public boolean moveCollectableToLocation(MudCollectable collectable, MudLocation location) {
-
-        // remove the collectable from any other location
-        for(MudLocation otherLocation : getGameLocations().getLocations()){
-            if(otherLocation.collectables().contains(collectable)){
-                otherLocation.collectables().removeItem(collectable);
-                // TODO: create event saying it zapped from the room for any players in the room
-            }
-        }
-
-        // remove the collectable from any player inventories
-        for(MudUser user : userManager.getUsers()){
-            if(user.inventory().contains(collectable)){
-                user.inventory().removeItem(collectable);
-                // TODO: create event for the player saying it has vanished
-            }
-        }
-
-        return location.collectables().addItem(collectable);
-    }
-
-
     public void tokenizeScriptConditions() {
 
         for(List<VerbCondition> verbConditionList : verbConditions.values()){
