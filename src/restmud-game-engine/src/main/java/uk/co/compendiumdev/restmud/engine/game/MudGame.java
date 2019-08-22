@@ -395,13 +395,6 @@ public class MudGame {
         return broadcastMessages;
     }
 
-    public void wizardBroadcastMessage(String message) {
-        broadcastMessages().add(String.format("The Wizard Says: %s", message));
-    }
-
-
-
-
 
     /***********************************************
      * WIZARD COMMANDS
@@ -675,7 +668,7 @@ public class MudGame {
         scriptingEngine.thenClauseCommandList().getTokenizer().tokenize(startupCommands);
         runStartupCommands();
 
-        wizardBroadcastMessage(getWelcomeMessage());
+        broadcastMessages().wizardBroadcaseMessage(getWelcomeMessage());
     }
 
     private void runStartupCommands() {
@@ -695,95 +688,6 @@ public class MudGame {
 
 
 
-
-    /*
-            CODE THAT WAS MOVED TO GAME DEFINITION
-     */
-    /*
-
-     **********************************************
-     * GATE CREATION
-     **********************************************/
-
-//    public MudLocationDirectionGate addGate(String locationID, String fromDirection, GateDirection whichWayDirection, GateStatus startingGateStatus) {
-//        String CALCULATE_TO_DESTINATION="";
-//
-//        return addGate(theIdGenerator.generateId("gate"), locationID, fromDirection, CALCULATE_TO_DESTINATION, whichWayDirection, startingGateStatus);
-//    }
-//
-//    public MudLocationDirectionGate addGate(String gateName, String locationID, String fromDirection, String theTooLocationID, GateDirection whichWayDirection, GateStatus startingGateStatus) {
-//
-//        // find the from location
-//        MudLocation fromLocation = getGameLocations().get(locationID);
-//
-//        String toLocationId="";
-//        String toLocationDirection="";
-//
-//        if(theTooLocationID==null || theTooLocationID.length()==0) {
-//            // find the to Location
-//            toLocationId = fromLocation.destinationFor(fromDirection);
-//            MudLocation toLocation = getGameLocations().get(toLocationId);
-//            toLocationDirection = toLocation.directionWhichLeadsTo(fromLocation.getLocationId());
-//
-//        }else{
-//            toLocationId = theTooLocationID;
-//        }
-//        MudLocation toLocation = getGameLocations().get(toLocationId);
-//
-//
-//        // create a gate for the game that sits between those locations
-//        MudLocationDirectionGate gate = new MudLocationDirectionGate(fromLocation, fromDirection, toLocation, toLocationDirection, whichWayDirection, startingGateStatus);
-//        gate.gateIsNamed(gateName);
-//
-//        gateManager.addGate(gate);
-//
-//        return gate;
-//
-//        //add the gate to the location
-//
-//        // if BOTH_WAYS then find the to location and add a gate to that location
-//
-//
-//    }
-//
-//    public void addLocationObjectIn(MudLocationObject mudLocationObject, String toLocation) {
-//        getLocationObjects().addItem(mudLocationObject);
-//        getGameLocations().get(toLocation).objects().addItem(mudLocationObject);
-//    }
-//
-//    public void addLocationObjectTo(MudLocationObject mudLocationObject, MudLocation toLocation) {
-//        getLocationObjects().addItem(mudLocationObject);
-//        toLocation.objects().addItem(mudLocationObject);
-//    }
-
-//
-//    public void addCondition(VerbCondition verbCondition) {
-//
-//        VerbToken verbToken = userInputParser.getVerbToken(verbCondition.getVerbName());
-//        if(verbToken==null){
-//            throw new RuntimeException(String.format("Could not find verb [%s] mentioned in verb condition, have you added it?", verbCondition.getVerbName()));
-//        }
-//
-//        List<VerbCondition>conditions = this.verbConditions.get(verbToken.getValue());
-//        if(conditions==null){
-//            conditions = new ArrayList<VerbCondition>();
-//            this.verbConditions.put(verbToken.getValue(), conditions);
-//        }
-//        conditions.add(verbCondition);
-//
-//    }
-//
-//    public void addCondition(PriorityTurnCondition turnCondition) {
-//        this.turnConditions.add(turnCondition);
-//    }
-//    // allow a game to have 'verbs' that are implemented via VerbConditions which are not part of the main game
-//    public void addVerb(String verbName) {
-//        // add a get matcher
-//        this.localVerbs.add(new VerbRegexToVerbMatch(verbName+"\\/\\S*", verbName));
-//        // add a post matcher
-//        this.localVerbs.add(new VerbRegexToVerbMatch(verbName, verbName));
-//        userInputParser.addVerb(verbName);
-//    }
 
 
 }

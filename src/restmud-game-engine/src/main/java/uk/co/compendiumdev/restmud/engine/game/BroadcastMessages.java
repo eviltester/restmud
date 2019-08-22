@@ -47,4 +47,8 @@ public class BroadcastMessages {
 
         return GameMessages.getEmpty().addAdditionalMessages(gameMessages);
     }
+
+    public void wizardBroadcaseMessage(final String message) {
+        add(String.format("The Wizard Says: %s",message));
+    }
 }

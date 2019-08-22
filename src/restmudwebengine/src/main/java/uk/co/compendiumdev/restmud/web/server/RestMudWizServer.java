@@ -164,7 +164,7 @@ public class RestMudWizServer {
 
             String shoutyMessage = params.get("shouted").get(0);
 
-            game.wizardBroadcastMessage(shoutyMessage);
+            game.broadcastMessages().wizardBroadcaseMessage(shoutyMessage);
 
             resultOutput = ResultOutput.getLastActionSuccess("The Wizard Shouted " + shoutyMessage);
         }
@@ -235,7 +235,7 @@ public class RestMudWizServer {
             UrlEncoded.decodeTo(request.body(), params, "UTF-8");
             game.resetGame();
             String message = "The Wizard Reset the Game";
-            game.wizardBroadcastMessage(message);
+            game.broadcastMessages().wizardBroadcaseMessage(message);
             resultOutput = ResultOutput.getLastActionSuccess(message);
         }
 
@@ -247,7 +247,7 @@ public class RestMudWizServer {
             MudGameDefinition defn = serialiser.createDefnFromJson(serialiser.readJsonFromResource("/games/" + gameName));
             game.resetFrom(defn);
             String message = "The Wizard Reset the Game";
-            game.wizardBroadcastMessage(message);
+            game.broadcastMessages().wizardBroadcaseMessage(message);
             resultOutput = ResultOutput.getLastActionSuccess(message);
         }
 
@@ -259,7 +259,7 @@ public class RestMudWizServer {
             MudGameDefinition defn = serialiser.createDefnFromJson(jsonDefn);
             game.resetFrom(defn);
             String message = "The Wizard Reset the Game";
-            game.wizardBroadcastMessage(message);
+            game.broadcastMessages().wizardBroadcaseMessage(message);
             resultOutput = ResultOutput.getLastActionSuccess(message);
         }
 

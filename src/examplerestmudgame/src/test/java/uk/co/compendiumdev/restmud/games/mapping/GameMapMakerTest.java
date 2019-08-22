@@ -63,7 +63,7 @@ public class GameMapMakerTest {
                 String direction = exit.direction;
                 String goesTo = location.destinationFor(direction);
 
-                System.out.println(String.format("%s:%s -> %s:%s [ label = \"%s\"];", id, direction.toLowerCase(), goesTo, Directions.findOppositeDirection(direction),direction.toUpperCase()));
+                System.out.println(String.format("%s:%s -> %s:%s [ label = \"%s\"];", id, direction.toLowerCase(), goesTo, new Directions().findOppositeDirection(direction),direction.toUpperCase()));
 
             }
         }

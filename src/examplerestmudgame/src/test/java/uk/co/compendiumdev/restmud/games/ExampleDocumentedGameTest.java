@@ -1104,7 +1104,7 @@ public class ExampleDocumentedGameTest {
         Assert.assertTrue(result.resultoutput.getGameMessages()!=null);
         Assert.assertEquals(0, result.resultoutput.getGameMessages().messages.size());
 
-        game.wizardBroadcastMessage("hello");
+        game.broadcastMessages().wizardBroadcaseMessage("hello");
 
         // use of ConcurrentLinkedDeque seems to make this intermittent because it isn't guaranteed synchronousness
         // might have to have a message id instead of a timestamp, we might miss messages if it is fast
