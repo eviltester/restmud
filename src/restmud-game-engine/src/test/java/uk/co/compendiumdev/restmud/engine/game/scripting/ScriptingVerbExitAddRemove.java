@@ -9,10 +9,8 @@ import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameEntityCreator;
-import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.Then;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
-import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
 
 public class ScriptingVerbExitAddRemove {
@@ -77,7 +75,8 @@ public class ScriptingVerbExitAddRemove {
 
         theGameInit.addDefaultUser("The Test User", "tester", "aPassword");
 
-        game.teleportUserTo("tester", "1"); // set the user back to the central room after each path
+        // set the user back to the central room after each path
+        game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
 
 
     }

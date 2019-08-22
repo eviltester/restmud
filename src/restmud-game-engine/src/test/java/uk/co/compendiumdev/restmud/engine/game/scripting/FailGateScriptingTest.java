@@ -68,9 +68,10 @@ public class FailGateScriptingTest {
 
         theGameInit.addDefaultUser("The Test User", "tester", "aPassword");
 
-        game.teleportUserTo("tester", "1"); // set the user back to the central room after each path
+            // set the user back to the central room after each path
+            game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
 
-        dsl = new GameEngineTestDSL(game);
+            dsl = new GameEngineTestDSL(game);
 
     }
     // fail to open gate because of wrong name
@@ -78,7 +79,7 @@ public class FailGateScriptingTest {
     @Test
     public void failToOpenGateBecauseOfWrongNameInScript(){
 
-        game.teleportUserTo("tester","1");
+        game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
         dsl.failTo(dsl.doVerb("tester","fail1", "boo"));
 
         // TODO: bug - too many last actions shown
@@ -90,7 +91,7 @@ public class FailGateScriptingTest {
     public void failToCloseGateBecauseOfWrongNameInScript(){
 
 
-        game.teleportUserTo("tester","1");
+        game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
         dsl.failTo(dsl.doVerb("tester","fail2", "boo"));
 
         // TODO: bug - too many last actions shown the processing of the verb cond should fail

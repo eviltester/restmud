@@ -88,7 +88,7 @@ public class GameCommandParser {
         }
 
 
-        ResultOutput resultOutput = game.processTheVerbInGame(username, verbToHandle, nounPhrase, useTheseDetails);
+        ResultOutput resultOutput = game.getCommandProcessor().processTheVerbInGame(username, verbToHandle, nounPhrase, useTheseDetails);
 
         if(resultOutput==null){
             resultOutput = new ResultOutput(LastAction.createError(String.format("Sorry, I don't know how to %s", splatter)));
@@ -99,7 +99,7 @@ public class GameCommandParser {
 
     public ResultOutput processThePostVerbInGame(String username, String nounPhrase, String verbToHandle) {
 
-        ResultOutput resultOutput = game.processTheVerbInGame(username, verbToHandle, nounPhrase, new RestMudHttpRequestDetails("post"));
+        ResultOutput resultOutput = game.getCommandProcessor().processTheVerbInGame(username, verbToHandle, nounPhrase, new RestMudHttpRequestDetails("post"));
 
         if(resultOutput==null){
             resultOutput = new ResultOutput(LastAction.createError(String.format("Sorry, I don't know how to  %s %s", verbToHandle, nounPhrase)));
@@ -109,7 +109,7 @@ public class GameCommandParser {
     }
 
     private ResultOutput processTheVerbInGame(String username, String nounPhrase, String verbToHandle, RestMudHttpRequestDetails details) {
-        ResultOutput resultOutput = game.processTheVerbInGame(username, verbToHandle, nounPhrase, details);
+        ResultOutput resultOutput = game.getCommandProcessor().processTheVerbInGame(username, verbToHandle, nounPhrase, details);
 
         if(resultOutput==null){
             resultOutput = new ResultOutput(LastAction.createError(String.format("Sorry, I don't know how to %s %s", verbToHandle, nounPhrase)));

@@ -36,7 +36,7 @@ public class GameEngineTestDSL {
 
     public ResultOutput doVerb(String user, String verb, String noun, RestMudHttpRequestDetails request ){
         System.out.println(String.format("%s: %s %s", user, verb, noun));
-        ResultOutput result = game.processTheVerbInGame(user, verb, noun, request);
+        ResultOutput result = game.getCommandProcessor().processTheVerbInGame(user, verb, noun, request);
         System.out.println(String.format("%s: %s", result.resultoutput.lastactionstate, result.resultoutput.lastactionresult));
         return result;
     }

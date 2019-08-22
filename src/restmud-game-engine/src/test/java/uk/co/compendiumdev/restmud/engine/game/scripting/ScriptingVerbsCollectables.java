@@ -44,10 +44,11 @@ public class ScriptingVerbsCollectables {
 
         theGameInit.addDefaultUser("The Test User", "tester", "aPassword");
 
-        game.teleportUserTo("tester", "1"); // set the user back to the central room after each path
+            // set the user back to the central room after each path
+            game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
 
 
-    }
+        }
 
     @Test
     public void canMoveCollectable(){

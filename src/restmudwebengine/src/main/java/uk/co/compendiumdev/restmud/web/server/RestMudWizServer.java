@@ -45,7 +45,7 @@ public class RestMudWizServer {
 
         String locationId = request.params(":locationid");
 
-        ResultOutput resultOutput =  game.teleportUserTo(authenticator.getAuthenticatedUserFromSession(request).userName(), locationId);
+        ResultOutput resultOutput = game.getCommandProcessor().wizardCommands().teleportUserTo(authenticator.getAuthenticatedUserFromSession(request).userName(), locationId);
         return FormatResultOutputAsJSendOutput.asString(resultOutput, response);
     }
 
@@ -54,7 +54,7 @@ public class RestMudWizServer {
 
         String locationId = request.params(":locationid");
 
-        ResultOutput resultOutput =  game.lightLocation(locationId);
+        ResultOutput resultOutput = game.getCommandProcessor().wizardCommands().lightLocation(locationId);
         return FormatResultOutputAsJSendOutput.asString(resultOutput, response);
     }
 
@@ -63,7 +63,7 @@ public class RestMudWizServer {
 
         String locationId = request.params(":locationid");
 
-        ResultOutput resultOutput =  game.darkenLocation(locationId);
+        ResultOutput resultOutput = game.getCommandProcessor().wizardCommands().darkenLocation(locationId);
         return FormatResultOutputAsJSendOutput.asString(resultOutput, response);
     }
 
@@ -122,7 +122,7 @@ public class RestMudWizServer {
         String fromLocation = request.queryParams("location");
         String toLocation = request.queryParams("toLocation");
 
-        ResultOutput resultOutput = game.closeGate(fromLocation, toLocation);
+        ResultOutput resultOutput = game.getCommandProcessor().wizardCommands().closeGate(fromLocation, toLocation);
         return FormatResultOutputAsJSendOutput.asString(resultOutput, response);
     }
 
@@ -132,7 +132,7 @@ public class RestMudWizServer {
         String fromLocation = request.queryParams("location");
         String toLocation = request.queryParams("toLocation");
 
-        ResultOutput resultOutput = game.openGate(fromLocation, toLocation);
+        ResultOutput resultOutput = game.getCommandProcessor().wizardCommands().openGate(fromLocation, toLocation);
         return FormatResultOutputAsJSendOutput.asString(resultOutput, response);
     }
 

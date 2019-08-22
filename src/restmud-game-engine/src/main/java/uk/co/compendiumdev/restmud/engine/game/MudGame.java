@@ -67,7 +67,7 @@ public class MudGame {
     private MudGameDefinition gameDefinition;
     private Directions directions;
 
-    private GameCommandProcessor commandProcessor;
+    private final GameCommandProcessor commandProcessor;
 
     /*
         TODO: Suspect that Game and Game State should be managed as seperate classes
@@ -144,45 +144,7 @@ public class MudGame {
     }
 
 
-    /************************
-     * COMMAND PROCESSING
-     */
-
-    public ResultOutput processGetUserDetails(String username) {
-
-        return getCommandProcessor().processGetUserDetails(username);
-    }
-
-    public ResultOutput processTheVerbInGame(String username, String verbToHandle, String theNounPhrase, RestMudHttpRequestDetails httpRequestDetails) {
-        return getCommandProcessor().processTheVerbInGame(username, verbToHandle, theNounPhrase, httpRequestDetails);
-    }
-
-    /***********************************************
-     * WIZARD COMMANDS
-     **********************************************/
-
-    public ResultOutput teleportUserTo(String username, String locationId) {
-        return getCommandProcessor().wizardCommands().teleportUserTo(username, locationId);
-    }
-
-    // turn on the lights in the location
-    public ResultOutput lightLocation(String locationId) {
-        return getCommandProcessor().wizardCommands().lightLocation(locationId);
-    }
-
-    public ResultOutput darkenLocation(String locationId) {
-        return getCommandProcessor().wizardCommands().darkenLocation(locationId);
-    }
-
-    public ResultOutput closeGate(String fromLocation, String toLocation) {
-        return getCommandProcessor().wizardCommands().closeGate(fromLocation, toLocation);
-    }
-
-    public ResultOutput openGate(String fromLocation, String toLocation) {
-        return getCommandProcessor().wizardCommands().openGate(fromLocation, toLocation);
-    }
-
-    private GameCommandProcessor getCommandProcessor() {
+    public GameCommandProcessor getCommandProcessor() {
         return commandProcessor;
     }
 

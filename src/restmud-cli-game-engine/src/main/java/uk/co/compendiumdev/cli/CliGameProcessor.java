@@ -41,7 +41,7 @@ public class CliGameProcessor {
 
         // process command in game
         // TODO - avoid the need for null here
-        return game.processTheVerbInGame("playerone", verb, noun, null);
+        return game.getCommandProcessor().processTheVerbInGame("playerone", verb, noun, null);
     }
 
     public String getGameName() {

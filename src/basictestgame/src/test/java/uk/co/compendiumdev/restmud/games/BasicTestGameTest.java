@@ -35,7 +35,8 @@ public class BasicTestGameTest {
 
         theGameInit.addDefaultUser("The Test User", userName, "aPassword");
 
-        game.teleportUserTo(userName, "1"); // set the user back to the central room after each path
+        // set the user back to the central room after each path
+        game.getCommandProcessor().wizardCommands().teleportUserTo(userName, "1");
 
         dsl = new GameTestDSL(game);
 
@@ -58,7 +59,7 @@ public class BasicTestGameTest {
     public void room6(){
 
         ResultOutput result;
-        result = game.teleportUserTo(userName,"6");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo(userName, "6");
         result = doVerb(userName,"look", "");
 
         Assert.assertEquals("There are no collectibles here", 0, result.look.collectables.length);
@@ -70,7 +71,7 @@ public class BasicTestGameTest {
     public void canExamineTinyPipeAndItAppearsAsACollectible(){
 
         ResultOutput result;
-        result = game.teleportUserTo(userName,"9");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo(userName, "9");
         result = doVerb(userName,"look", "");
 
         Assert.assertEquals("There are no collectibles here", 0, result.look.collectables.length);

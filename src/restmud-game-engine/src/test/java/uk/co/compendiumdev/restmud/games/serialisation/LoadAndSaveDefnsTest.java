@@ -40,7 +40,8 @@ public class LoadAndSaveDefnsTest {
 
         theGameInit.addDefaultUser("The Test User", userName, "aPassword");
 
-        game.teleportUserTo(userName, "1"); // set the user back to the central room after each path
+        // set the user back to the central room after each path
+        game.getCommandProcessor().wizardCommands().teleportUserTo(userName, "1");
 
     }
 
@@ -49,10 +50,10 @@ public class LoadAndSaveDefnsTest {
     public void gameLoadingWorkedBecauseWeCanPlayIt(){
 
         ResultOutput result;
-        result = game.teleportUserTo(userName,"1");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo(userName, "1");
         MudUser player = game.getUserManager().getUser(userName);
 
-        game.processTheVerbInGame(userName, "go", "n", null);
+        game.getCommandProcessor().processTheVerbInGame(userName, "go", "n", null);
 
         Assert.assertEquals("2",player.getLocationId());
 
@@ -64,26 +65,26 @@ public class LoadAndSaveDefnsTest {
     public void canResetAGameToRestoreItToOriginalSettings(){
 
         ResultOutput result;
-        result = game.teleportUserTo(userName,"1");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo(userName, "1");
         MudUser player = game.getUserManager().getUser(userName);
 
-        game.processTheVerbInGame(userName, "go", "n", null);
+        game.getCommandProcessor().processTheVerbInGame(userName, "go", "n", null);
 
         Assert.assertEquals("2",player.getLocationId());
 
-        result = game.processTheVerbInGame(userName, "take", "agem", null);
+        result = game.getCommandProcessor().processTheVerbInGame(userName, "take", "agem", null);
         Assert.assertEquals("success",result.resultoutput.lastactionstate);
 
-        result = game.processTheVerbInGame(userName, "take", "agem", null);
+        result = game.getCommandProcessor().processTheVerbInGame(userName, "take", "agem", null);
         Assert.assertEquals("fail",result.resultoutput.lastactionstate);
 
         game.resetGame();
 
         // should be able to take the gem again
-        result = game.teleportUserTo(userName,"2");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo(userName, "2");
         Assert.assertEquals("2",player.getLocationId());
 
-        result = game.processTheVerbInGame(userName, "take", "agem", null);
+        result = game.getCommandProcessor().processTheVerbInGame(userName, "take", "agem", null);
         Assert.assertEquals("success",result.resultoutput.lastactionstate);
     }
 

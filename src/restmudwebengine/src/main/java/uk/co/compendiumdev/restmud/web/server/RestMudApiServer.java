@@ -133,7 +133,7 @@ public class RestMudApiServer {
 
         String username = request.params(":username").toLowerCase();
 
-        return readyTheHttpResponse(response, apiResponse, game.processGetUserDetails(username));
+        return readyTheHttpResponse(response, apiResponse, game.getCommandProcessor().processGetUserDetails(username));
     }
 
     private  void apiUserMustBeAuthenticated(Request request) {
@@ -165,7 +165,8 @@ public class RestMudApiServer {
         // no data in the request
         if(splatter.length()==0){
             // by default return the user details as the result output
-            resultOutput = game.processGetUserDetails(username);
+
+            resultOutput = game.getCommandProcessor().processGetUserDetails(username);
         }else {
             resultOutput = gameParser.processTheVerbForGetRequestSplatterAPI(username, splatter, details);
         }

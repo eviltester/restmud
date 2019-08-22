@@ -220,7 +220,7 @@ public class RestMudHtmlServer {
 
         String username = request.params(":username");
 
-        ResultOutput resultOutput = game.processGetUserDetails(username);
+        ResultOutput resultOutput = game.getCommandProcessor().processGetUserDetails(username);
 
         Gson gson = new Gson();
         String lastActionResponse = gson.toJson(resultOutput);

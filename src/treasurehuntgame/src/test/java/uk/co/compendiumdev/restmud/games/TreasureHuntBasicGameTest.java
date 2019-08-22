@@ -42,7 +42,8 @@ public class TreasureHuntBasicGameTest {
         theGameInit.addDefaultUser("The Test User", "tester", "aPassword");
         theGameInit.addDefaultUser("Another Test User", "tester2", "aPassword");
 
-        game.teleportUserTo("tester", "1"); // set the user back to the central room after each path
+        // set the user back to the central room after each path
+        game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
 
         dsl = new GameTestDSL(game);
 
@@ -65,7 +66,7 @@ public class TreasureHuntBasicGameTest {
     public void toBeAbleToEnterPuzzleLandYouHaveToSayPuzzle(){
         // otherwise bots get lost in there
         ResultOutput result;
-        result = game.teleportUserTo("tester","3");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "3");
         result = doVerb("tester","look", "");
         result = failTo(doVerb("tester","go", "s"));
         result = successfully(doVerb("tester","examine", "puzzlelandsign"));
@@ -94,7 +95,7 @@ public class TreasureHuntBasicGameTest {
     public void solveTheBombPuzzleByDefusingTheBomb(){
 
         ResultOutput result;
-        result = game.teleportUserTo("tester","2");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "2");
         result = doVerb("tester","look", "");
 
         // the bomb puzzle is completely rule based
@@ -121,7 +122,7 @@ public class TreasureHuntBasicGameTest {
     public void solveTheBombPuzzleByWaitingAndLettingTheBombExplode(){
 
         ResultOutput result;
-        result = game.teleportUserTo("tester2","2");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "2");
         result = doVerb("tester2","look", "");
 
         // the bomb puzzle is completely rule based
@@ -149,7 +150,7 @@ public class TreasureHuntBasicGameTest {
     public void theBrokenTransporterDoesNothing(){
 
         ResultOutput result;
-        result = game.teleportUserTo("tester2","4");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "4");
         result = doVerb("tester2","look", "");
 
         // the bomb puzzle is completely rule based
@@ -163,7 +164,7 @@ public class TreasureHuntBasicGameTest {
     public void theLickingTheStoneSection(){
 
         ResultOutput result;
-        result = game.teleportUserTo("tester2","6");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "6");
         result = doVerb("tester2","look", "");
 
         result = failTo(doVerb("tester2","take", "loosestone"));
@@ -224,7 +225,7 @@ public class TreasureHuntBasicGameTest {
     public void canNavigateToTheJewelryRoom() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester2", "6");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "6");
         result = successfullyNavigatedTo("22", doVerb("tester2", "go", "s"));
         result = successfullyNavigatedTo("6", doVerb("tester2", "go", "n"));
     }
@@ -234,7 +235,7 @@ public class TreasureHuntBasicGameTest {
     public void canUseTheJewelryDispenser() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester2", "6");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "6");
         result = successfullyNavigatedTo("22", doVerb("tester2", "go", "s"));
         int numberOfThingsHere = result.look.collectables.length;
 
@@ -255,7 +256,7 @@ public class TreasureHuntBasicGameTest {
 
         result = successfully(doVerb("tester2","take", thingId));
 
-        result = game.teleportUserTo("tester2", "1");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "1");
 
         result = successfully(doVerb("tester2","score", ""));
         Integer score = result.users.get(0).score;
@@ -270,7 +271,7 @@ public class TreasureHuntBasicGameTest {
     public void canNavigateToTheCheapJewelryRoom() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester2", "14");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "14");
         result = successfullyNavigatedTo("23", doVerb("tester2", "go", "n"));
         result = successfullyNavigatedTo("14", doVerb("tester2", "go", "s"));
     }
@@ -280,7 +281,7 @@ public class TreasureHuntBasicGameTest {
     public void canUseTheJewelryDispenserInRoom23() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester2", "23");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "23");
         result = successfully(doVerb("tester2", "look", ""));
         int numberOfThingsHere = result.look.collectables.length;
 
@@ -301,7 +302,7 @@ public class TreasureHuntBasicGameTest {
 
         result = successfully(doVerb("tester2","take", thingId));
 
-        result = game.teleportUserTo("tester2", "1");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "1");
 
         result = successfully(doVerb("tester2","score", ""));
         Integer score = result.users.get(0).score;
@@ -317,7 +318,7 @@ public class TreasureHuntBasicGameTest {
     public void canGoWestFrom9AndGetScoreWhenTeleport() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester2", "8");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "8");
 
         result = successfully(doVerb("tester2","score", ""));
         Integer score = result.users.get(0).score;
@@ -335,7 +336,7 @@ public class TreasureHuntBasicGameTest {
     public void canUseTheMegaClothDispenserInRoom9ToGetACloth() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester2", "9");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "9");
         result = successfully(doVerb("tester2", "look", ""));
         int numberOfThingsHere = result.look.collectables.length;
 
@@ -374,7 +375,7 @@ public class TreasureHuntBasicGameTest {
     public void canNavigateToTheVasePuzzleRoomAndBack(){
 
          ResultOutput result;
-         result = game.teleportUserTo("tester2","3");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "3");
          result = successfullyNavigatedTo("3", doVerb("tester2","look", ""));
          result = successfully(doVerb("tester2","say", "puzzle"));
          result = successfullyNavigatedTo("18", doVerb("tester2","go", "s"));
@@ -393,7 +394,7 @@ public class TreasureHuntBasicGameTest {
      @Test
      public void canExamineHammerAndNotUseItWithoutVase(){
          ResultOutput result;
-         result = game.teleportUserTo("tester2","20");
+         result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester2", "20");
          result = successfullyNavigatedTo("20", doVerb("tester2","look", ""));
 
          result = successfully(doVerb("tester2","examine", "hammer"));
@@ -405,7 +406,7 @@ public class TreasureHuntBasicGameTest {
     @Test
     public void canTakeTreasureAndGetWithHammer(){
 
-        game.teleportUserTo("tester","20");
+        game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "20");
         successfullyNavigatedTo("20", doVerb("tester","look", ""));
         successfullyNavigatedTo("21", doVerb("tester","go", "s"));
 
@@ -427,7 +428,7 @@ public class TreasureHuntBasicGameTest {
     public void cannotUseHammerTwice(){
 
         game.getUserManager().add(new MudUser("hammerhammer", "hammerhammer", "password"));
-        ResultOutput result = game.teleportUserTo("hammerhammer", "21");
+        ResultOutput result = game.getCommandProcessor().wizardCommands().teleportUserTo("hammerhammer", "21");
         result = successfullyNavigatedTo("21", doVerb("hammerhammer","look", ""));
 
         result = successfully(doVerb("hammerhammer","take", "prizevase"));
@@ -458,7 +459,7 @@ public class TreasureHuntBasicGameTest {
     public void canExamineVaseSign(){
 
         game.getUserManager().add(new MudUser("signReader", "signReader", "password"));
-        ResultOutput result = game.teleportUserTo("signReader", "21");
+        ResultOutput result = game.getCommandProcessor().wizardCommands().teleportUserTo("signReader", "21");
         result = successfullyNavigatedTo("21", doVerb("signReader","look", ""));
 
         result = successfully(doVerb("signReader","examine", "vasePuzzleSign"));
@@ -470,7 +471,7 @@ public class TreasureHuntBasicGameTest {
     @Test
     public void prizeVaseHasDifferentCustomExamineMessageAfterTaking(){
         game.getUserManager().add(new MudUser("examinerofvase", "examinerofvase", "password"));
-        ResultOutput result = game.teleportUserTo("examinerofvase", "21");
+        ResultOutput result = game.getCommandProcessor().wizardCommands().teleportUserTo("examinerofvase", "21");
         result = successfullyNavigatedTo("21", doVerb("examinerofvase","look", ""));
 
         result = successfully(doVerb("examinerofvase","examine", "prizevase"));
@@ -487,7 +488,7 @@ public class TreasureHuntBasicGameTest {
     @Test
     public void canOnlyPickUpAVaseOnce(){
          game.getUserManager().add(new MudUser("vaseonce", "vaseonce", "password"));
-        ResultOutput result = game.teleportUserTo("vaseonce", "21");
+        ResultOutput result = game.getCommandProcessor().wizardCommands().teleportUserTo("vaseonce", "21");
         result = successfullyNavigatedTo("21", doVerb("vaseonce","look", ""));
 
         result = successfully(doVerb("vaseonce","take", "prizevase"));
@@ -510,7 +511,7 @@ public class TreasureHuntBasicGameTest {
     @Test
     public void cannotTakeVaseAfterSmashingAlready(){
         game.getUserManager().add(new MudUser("smashtreasuretakertwice", "smashtreasuretakertwice", "password"));
-        game.teleportUserTo("smashtreasuretakertwice", "21");
+        game.getCommandProcessor().wizardCommands().teleportUserTo("smashtreasuretakertwice", "21");
 
         successfully(doVerb("smashtreasuretakertwice","take", "prizevase"));
 
@@ -538,7 +539,7 @@ public class TreasureHuntBasicGameTest {
     public void cannotTakeTreasureWithoutTakingAVase(){
 
         game.getUserManager().add(new MudUser("vasefirst", "vasefirst", "password"));
-        ResultOutput result = game.teleportUserTo("vasefirst", "21");
+        ResultOutput result = game.getCommandProcessor().wizardCommands().teleportUserTo("vasefirst", "21");
         result = successfullyNavigatedTo("21", doVerb("vasefirst","look", ""));
 
         result = failTo(doVerb("vasefirst","take", "prizevasetreasure"));
@@ -551,7 +552,7 @@ public class TreasureHuntBasicGameTest {
     public void cannotTakeTreasureOutOfVaseVase(){
 
         game.getUserManager().add(new MudUser("stuckinvase", "stuckinvase", "password"));
-        game.teleportUserTo("stuckinvase", "21");
+        game.getCommandProcessor().wizardCommands().teleportUserTo("stuckinvase", "21");
         successfullyNavigatedTo("21", doVerb("stuckinvase","look", ""));
         successfully(doVerb("stuckinvase","take", "prizevase"));
         ResultOutput result = failTo(doVerb("stuckinvase", "take", "prizevasetreasure"));
@@ -563,7 +564,7 @@ public class TreasureHuntBasicGameTest {
     @Test
     public void canDropAVaseAndTakeItAgainOnce(){
         game.getUserManager().add(new MudUser("vasedrop", "vasedrop", "password"));
-        ResultOutput result = game.teleportUserTo("vasedrop", "21");
+        ResultOutput result = game.getCommandProcessor().wizardCommands().teleportUserTo("vasedrop", "21");
         result = successfullyNavigatedTo("21", doVerb("vasedrop","look", ""));
 
         result = successfully(doVerb("vasedrop","score", ""));
@@ -582,7 +583,7 @@ public class TreasureHuntBasicGameTest {
     @Test
     public void cannotDropAVaseImNotCarrying(){
         game.getUserManager().add(new MudUser("vasedropnot", "vasedropnot", "password"));
-        ResultOutput result = game.teleportUserTo("vasedropnot", "21");
+        ResultOutput result = game.getCommandProcessor().wizardCommands().teleportUserTo("vasedropnot", "21");
         result = successfullyNavigatedTo("21", doVerb("vasedropnot","look", ""));
 
         result = successfully(doVerb("vasedropnot","score", ""));
@@ -601,7 +602,7 @@ public class TreasureHuntBasicGameTest {
     @Test
     public void customMessageForTryingToTakeATreasureAfterSmash(){
         game.getUserManager().add(new MudUser("smashtreasuretaker", "smashtreasuretaker", "password"));
-        game.teleportUserTo("smashtreasuretaker", "21");
+        game.getCommandProcessor().wizardCommands().teleportUserTo("smashtreasuretaker", "21");
 
         successfully(doVerb("smashtreasuretaker","take", "prizevase"));
         successfullyNavigatedTo("20", doVerb("smashtreasuretaker","go", "n"));
@@ -621,7 +622,7 @@ public class TreasureHuntBasicGameTest {
         String tUser = "zombiemazer";
 
         game.getUserManager().add(new MudUser("zombiemazer", tUser, "password"));
-        game.teleportUserTo(tUser, "11");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "11");
 
         // can examine a zombie maze sign in location 11
         successfully(doVerb(tUser,"examine", "zombiemazesign"));
@@ -657,7 +658,7 @@ public class TreasureHuntBasicGameTest {
         String tUser = "zombiedoorexaminer";
 
         game.getUserManager().add(new MudUser("zombiedoro", tUser, "password"));
-        game.teleportUserTo(tUser, "5");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "5");
 
         // can examine a zombie maze sign in location 11
         successfully(doVerb(tUser, "examine", "rustedshutdoor"));
@@ -680,7 +681,7 @@ public class TreasureHuntBasicGameTest {
         String tUser = "zombiedeath";
 
         game.getUserManager().add(new MudUser("zombiedodro", tUser, "password"));
-        game.teleportUserTo(tUser, "11");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "11");
 
         // when say brains I am transported to the zombie maze
         successfully(doVerb(tUser,"say", "brains"));
@@ -706,7 +707,7 @@ public class TreasureHuntBasicGameTest {
         game.getUserManager().add(new MudUser("ninja", tUser, "password"));
 
         // by teleporting directly into the maze I don't have to worry about zombies
-        game.teleportUserTo(tUser, "24");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "24");
 
         String routes = "s:27, w:26, n:26, w:29, s:30, s:24";
         routes += ",s:27, e:29, s:30, s:24";
@@ -783,19 +784,19 @@ public class TreasureHuntBasicGameTest {
         game.getUserManager().add(new MudUser("explorer", tUser, "password"));
 
         // by teleporting directly into the maze I don't have to worry about zombies
-        game.teleportUserTo(tUser, "27");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "27");
         ResultOutput result = successfully(doVerb(tUser, "examine", "gravestones"));
 
-        game.teleportUserTo(tUser, "28");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "28");
         result = successfully(doVerb(tUser, "examine", "tombstones"));
 
-        game.teleportUserTo(tUser, "26");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "26");
         result = successfully(doVerb(tUser, "examine", "tomb"));
 
-        game.teleportUserTo(tUser, "29");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "29");
         result = successfully(doVerb(tUser, "examine", "pileofbones"));
 
-        game.teleportUserTo(tUser, "30");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "30");
         result = successfully(doVerb(tUser, "examine", "deadbody"));
         result = successfully(doVerb(tUser, "examine", "axeindeadbody"));
     }
@@ -807,7 +808,7 @@ public class TreasureHuntBasicGameTest {
         game.getUserManager().add(new MudUser("drummer", tUser, "password"));
 
         // by teleporting directly into the maze I don't have to worry about zombies
-        game.teleportUserTo(tUser, "28");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "28");
         ResultOutput result = successfully(doVerb(tUser, "say", "voodoo"));
 
         result = successfullyNavigatedTo("25", doVerb(tUser, "look", ""));
@@ -829,7 +830,7 @@ public class TreasureHuntBasicGameTest {
 
         game.getUserManager().add(new MudUser("drummer", tUser, "password"));
 
-        game.teleportUserTo(tUser, "11");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "11");
 
         // when say brains I am transported to the zombie maze
         successfully(doVerb(tUser,"say", "brains"));
@@ -881,7 +882,7 @@ public class TreasureHuntBasicGameTest {
 
         game.getUserManager().add(new MudUser("drummer", tUser, "password"));
 
-        game.teleportUserTo(tUser, "11");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "11");
 
         // when say brains I am transported to the zombie maze
         successfully(doVerb(tUser,"say", "brains"));
@@ -935,7 +936,7 @@ public class TreasureHuntBasicGameTest {
 
         game.getUserManager().add(new MudUser("treasurehunter", tUser, "password"));
 
-        game.teleportUserTo(tUser, "26");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "26");
 
         ResultOutput result = successfully(doVerb(tUser, "look", ""));
 
@@ -975,7 +976,7 @@ public class TreasureHuntBasicGameTest {
 
         MudUser thisUser = game.getUserManager().add(new MudUser(tUser, tUser, "password"));
 
-        game.teleportUserTo(tUser, "31");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "31");
 
         ResultOutput result = successfullyNavigatedTo("32", doVerb(tUser, "go", "n"));
         result = successfullyNavigatedTo("34", doVerb(tUser, "go", "w"));
@@ -1010,7 +1011,7 @@ public class TreasureHuntBasicGameTest {
 
         MudUser thisUser = game.getUserManager().add(new MudUser(tUser, tUser, "password"));
 
-        game.teleportUserTo(tUser, "33");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "33");
 
         ResultOutput result = successfully(doVerb(tUser, "examine", "starsign"));
 
@@ -1082,7 +1083,7 @@ public class TreasureHuntBasicGameTest {
 
         MudUser thisUser = game.getUserManager().add(new MudUser(tUser, tUser, "password"));
 
-        game.teleportUserTo(tUser, "7");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "7");
 
         ResultOutput result = successfully(doVerb(tUser, "examine", "starshapedbutton"));
         result = successfullyNavigatedTo("31", doVerb(tUser, "use", "starshapedbutton"));
@@ -1095,7 +1096,7 @@ public class TreasureHuntBasicGameTest {
 
         MudUser thisUser = game.getUserManager().add(new MudUser(tUser, tUser, "password"));
 
-        game.teleportUserTo(tUser, "9");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "9");
 
         ResultOutput result = successfully(doVerb(tUser, "examine", "starshapedsign"));
 
@@ -1109,7 +1110,7 @@ public class TreasureHuntBasicGameTest {
 
         MudUser thisUser = game.getUserManager().add(new MudUser(tUser, tUser, "password"));
 
-        game.teleportUserTo(tUser, "37");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "37");
 
         successfully(dsl.doVerb(tUser, "examine", "postexplain", new RestMudHttpRequestDetails("get")));
 
@@ -1140,7 +1141,7 @@ public class TreasureHuntBasicGameTest {
 
         MudUser thisUser = game.getUserManager().add(new MudUser(tUser, tUser, "password"));
 
-        game.teleportUserTo(tUser, "2");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "2");
 
         successfullyNavigatedTo("36", doVerb(tUser, "go","e"));
 
@@ -1178,7 +1179,7 @@ public class TreasureHuntBasicGameTest {
 
         MudUser thisUser = game.getUserManager().add(new MudUser(tUser, tUser, "password"));
 
-        game.teleportUserTo(tUser, "37");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "37");
 
         successfully(dsl.doVerb(tUser, "examine", "postheaderexplain", new RestMudHttpRequestDetails("get")));
 
@@ -1221,7 +1222,7 @@ public class TreasureHuntBasicGameTest {
 
         MudUser thisUser = game.getUserManager().add(new MudUser(tUser, tUser, "password"));
 
-        game.teleportUserTo(tUser, "38");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "38");
 
         successfully(dsl.doVerb(tUser, "examine", "getheaderexplain", new RestMudHttpRequestDetails("get")));
 
@@ -1261,7 +1262,7 @@ public class TreasureHuntBasicGameTest {
 
         MudUser thisUser = game.getUserManager().add(new MudUser(tUser, tUser, "password"));
 
-        game.teleportUserTo(tUser, "39");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "39");
 
         successfully(dsl.doVerb(tUser, "examine", "fightsmalltrollsign", new RestMudHttpRequestDetails("get")));
 
@@ -1312,7 +1313,7 @@ public class TreasureHuntBasicGameTest {
 
         MudUser thisUser = game.getUserManager().add(new MudUser(tUser, tUser, "password"));
 
-        game.teleportUserTo(tUser, "40");
+        game.getCommandProcessor().wizardCommands().teleportUserTo(tUser, "40");
 
         successfully(dsl.doVerb(tUser, "examine", "fightlargetrollsign", new RestMudHttpRequestDetails("get")));
 

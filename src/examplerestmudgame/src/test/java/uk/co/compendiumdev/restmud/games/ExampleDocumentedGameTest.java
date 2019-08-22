@@ -35,7 +35,8 @@ public class ExampleDocumentedGameTest {
 
         theGameInit.addDefaultUser("The Test User", "tester", "aPassword");
 
-        game.teleportUserTo("tester", "1"); // set the user back to the central room after each path
+        // set the user back to the central room after each path
+        game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
 
         dsl = new GameTestDSL(game);
 
@@ -47,7 +48,7 @@ public class ExampleDocumentedGameTest {
     public void canSeeFirstRoomHasFourExits(){
 
         ResultOutput result;
-        result = game.teleportUserTo("tester","1");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
         result = doVerb("tester","look", "");
 
         Assert.assertNotEquals("Look should be set after a look verb", null, result.look);
@@ -58,7 +59,7 @@ public class ExampleDocumentedGameTest {
     public void northRoomTwoHasNoVisibleExitsButCanGoSouthBackToOne(){
 
         ResultOutput result;
-        result = game.teleportUserTo("tester","1");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
         result = doVerb("tester","look", "");
 
         result = doVerb("tester", "go", "n");
@@ -79,7 +80,7 @@ public class ExampleDocumentedGameTest {
     public void eastRoomThreeHasAVisibleExitSWhichIsNotCodedFor(){
 
         ResultOutput result;
-        result = game.teleportUserTo("tester","1");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
         result = doVerb("tester","look", "");
 
         result = doVerb("tester", "go", "e");
@@ -103,7 +104,7 @@ public class ExampleDocumentedGameTest {
 
         // Room 1 to 4 is blocked by a two way gate defined in terms of room 4
 
-        result = game.teleportUserTo("tester","1");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
         result = doVerb("tester","look", "");
 
         result = doVerb("tester", "go", "s");
@@ -148,7 +149,7 @@ public class ExampleDocumentedGameTest {
 
         // Room 1 to 4 is blocked by a two way gate defined in terms of room 4
 
-        successfully(game.teleportUserTo("tester","1"));
+        successfully(game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1"));
         successfully(doVerb("tester","look", ""));
 
         result = failTo(doVerb("tester", "go", "s"));
@@ -179,7 +180,7 @@ public class ExampleDocumentedGameTest {
         ResultOutput result;
 
         // Room 1 to 4 is blocked by a two way gate defined in terms of room 4
-        result = game.teleportUserTo("tester","4");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "4");
         result = doVerb("tester","look", "");
         Assert.assertEquals("The One way gate is defined in room 4 going E to 6", "4", result.look.location.locationId);
 
@@ -215,7 +216,7 @@ public class ExampleDocumentedGameTest {
         Assert.assertEquals("The closed gate should stop us",LastAction.FAIL, result.resultoutput.lastactionstate);
         Assert.assertEquals("4", result.look.location.locationId);
 
-        result = game.teleportUserTo("tester","6");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "6");
         result = doVerb("tester","look","");
         Assert.assertEquals("Closed gate should not stop us from room 6", "6", result.look.location.locationId);
         result = doVerb("tester", "go", "w");
@@ -227,7 +228,7 @@ public class ExampleDocumentedGameTest {
     public void westRoomFiveHasATeleporterImplementedByAHiddenGate() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester", "1");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
         result = doVerb("tester", "look", "");
 
         result = doVerb("tester", "go", "w");
@@ -279,7 +280,7 @@ public class ExampleDocumentedGameTest {
     public void buttonsCanTeleportAndLookForced() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester", "1");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "1");
         result = doVerb("tester", "look", "");
 
         result = doVerb("tester", "use", "corridorbutton");
@@ -302,7 +303,7 @@ public class ExampleDocumentedGameTest {
         Assert.assertTrue("Location 7 does not exist", game.getGameLocations().get("7") ==null);
 
         ResultOutput result;
-        result = game.teleportUserTo("tester", "corridor");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "corridor");
         result = doVerb("tester", "go", "e");
         Assert.assertEquals("That location does not exist",LastAction.FAIL, result.resultoutput.lastactionstate);
 
@@ -315,7 +316,7 @@ public class ExampleDocumentedGameTest {
     public void cannotHoardWhenThereIsNoHoard() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester", "8");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "8");
         result = doVerb("tester", "look", "");
 
         Assert.assertNull("I can not hoard here", result.look.treasureHoard);
@@ -341,7 +342,7 @@ public class ExampleDocumentedGameTest {
     public void cannotTakeSomethingThatIsNotHere() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester", "8");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "8");
         result = doVerb("tester", "look", "");
 
         int iAmCarrying = game.getUserManager().getUser("tester").inventory().itemsView().size();
@@ -361,7 +362,7 @@ public class ExampleDocumentedGameTest {
     public void cannotDropSomethingThatIDoNotHave() {
 
         ResultOutput result;
-        successfully(game.teleportUserTo("tester", "8"));
+        successfully(game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "8"));
         successfully(doVerb("tester", "look", ""));
 
         int iAmCarrying = game.getUserManager().getUser("tester").inventory().itemsView().size();
@@ -385,7 +386,7 @@ public class ExampleDocumentedGameTest {
     public void cannotHoardSomethingThatIDoNotHave() {
 
         ResultOutput result;
-        successfully(game.teleportUserTo("tester", "8"));
+        successfully(game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "8"));
         successfully(doVerb("tester", "look", ""));
 
         int iAmCarrying = game.getUserManager().getUser("tester").inventory().itemsView().size();
@@ -403,7 +404,7 @@ public class ExampleDocumentedGameTest {
     public void canTakeAndHoard() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester", "8");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "8");
         result = doVerb("tester", "look", "");
 
         result =doVerb("tester","go","e");
@@ -508,7 +509,7 @@ public class ExampleDocumentedGameTest {
     public void canZapAndTakeAndHoard() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester", "10");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "10");
         result = doVerb("tester", "look", "");
 
         IdDescriptionPair[] collectables = result.look.collectables;
@@ -567,7 +568,7 @@ public class ExampleDocumentedGameTest {
     public void canInspectCollectables() {
 
         ResultOutput result;
-        successfully(game.teleportUserTo("tester", "10"));
+        successfully(game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "10"));
         successfully(doVerb("tester", "go", "s"));
         result = successfully(doVerb("tester", "go", "e"));
         Assert.assertEquals("13",result.look.location.locationId);
@@ -637,7 +638,7 @@ public class ExampleDocumentedGameTest {
     public void canExamineObjects() {
 
         ResultOutput result;
-        successfully(game.teleportUserTo("tester", "12"));
+        successfully(game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "12"));
         successfully(doVerb("tester", "go", "s"));
 
         // cannot examine something that is not here
@@ -671,7 +672,7 @@ public class ExampleDocumentedGameTest {
     public void illuminateDarken() {
 
         ResultOutput result;
-        successfully(game.teleportUserTo("tester", "14"));
+        successfully(game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "14"));
         successfully(doVerb("tester", "go", "s"));
 
         successfully(doVerb("tester", "take", "aTorchOnTheFloor"));
@@ -773,7 +774,7 @@ public class ExampleDocumentedGameTest {
     public void polishAndHoard() {
 
         ResultOutput result;
-        successfully(game.teleportUserTo("tester", "16"));
+        successfully(game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "16"));
         successfully(doVerb("tester", "go", "s"));
 
         successfully(doVerb("tester", "take", "aThingToPolish"));
@@ -832,7 +833,7 @@ public class ExampleDocumentedGameTest {
     public void countersUpAndDown() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester", "8");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "8");
         result = successfully(doVerb("tester", "look", ""));
 
 
@@ -897,7 +898,7 @@ public class ExampleDocumentedGameTest {
     public void buttonsForFlag() {
 
         ResultOutput result;
-        result = game.teleportUserTo("tester", "8");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "8");
         result = successfully(doVerb("tester", "look", ""));
         result = successfully(doVerb("tester", "go", "w"));
 
@@ -939,7 +940,7 @@ public class ExampleDocumentedGameTest {
 
         ResultOutput result;
 
-        result = game.teleportUserTo("tester", "10");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "10");
 
         result = successfully(doVerb("tester", "look", ""));
 
@@ -975,7 +976,7 @@ public class ExampleDocumentedGameTest {
 
         ResultOutput result;
 
-        result = game.teleportUserTo("tester", "12");
+        result = game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "12");
 
         result = successfully(doVerb("tester", "look", ""));
 
@@ -1019,7 +1020,7 @@ public class ExampleDocumentedGameTest {
     public void canUseADispenserToGetATorch(){
 
         ResultOutput result;
-        game.teleportUserTo("tester","14");
+        game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "14");
         successfully(doVerb("tester","look", ""));
         result = successfully(doVerb("tester","go", "w"));
 
@@ -1063,7 +1064,7 @@ public class ExampleDocumentedGameTest {
     public void aDispenserCanDispenseAHoardableThing() {
 
         ResultOutput result;
-        game.teleportUserTo("tester", "14");
+        game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "14");
         successfully(doVerb("tester", "look", ""));
         result = successfully(doVerb("tester", "go", "w"));
 
@@ -1081,7 +1082,7 @@ public class ExampleDocumentedGameTest {
 
         result = successfully(doVerb("tester", "take", goldId));
 
-        game.teleportUserTo("tester", "9");
+        game.getCommandProcessor().wizardCommands().teleportUserTo("tester", "9");
         result = successfully(doVerb("tester", "look", ""));
         Assert.assertEquals("9",result.look.location.locationId);
 
