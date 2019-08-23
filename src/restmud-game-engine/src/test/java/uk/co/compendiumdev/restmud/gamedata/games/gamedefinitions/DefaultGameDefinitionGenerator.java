@@ -5,6 +5,7 @@ import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.scripting.PriorityTurnCondition;
 import uk.co.compendiumdev.restmud.engine.game.scripting.VerbCondition;
 import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.Then;
+import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
 import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.things.MudCollectableTemplate;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
@@ -75,6 +76,22 @@ public class DefaultGameDefinitionGenerator {
         defn.addStartupRule(Then.RANDOMLY_GENERATE_NONHOARDABLE_TREASURES, "15");
         defn.addStartupRule(Then.RANDOMLY_GENERATE_HOARDABLE_JUNK, "15");
         defn.addStartupRule(Then.RANDOMLY_GENERATE_NON_HOARDABLE_JUNK, "15");
+
+
+        // allow creating new verbs as part of verb condition creation
+        cond = new VerbCondition("levitate");
+        cond.when(When.NOUNPHRASE_EQUALS, "self").
+                andWhen("locationId","0").
+                then("message", "You levitate.").
+                because("can add verbs when creating verb conditions");
+        defn.addCondition(cond);
+
+        cond = new VerbCondition("levitate");
+        cond.when(When.NOUNPHRASE_EQUALS, "this").
+                andWhen("locationId","0").
+                then("message", "This levitates.").
+                because("can add verbs when creating verb conditions");
+        defn.addCondition(cond);
 
         total_score=1000;
 

@@ -79,6 +79,12 @@ public class MudGameDefinition {
 
         VerbToken verbToken = userInputParser.getVerbToken(verbCondition.getVerbName());
         if (verbToken == null) {
+            addVerb(verbCondition.getVerbName());
+            verbToken = userInputParser.getVerbToken(verbCondition.getVerbName());
+
+        }
+
+        if (verbToken == null) {
             throw new RuntimeException(String.format("Could not find verb [%s] mentioned in verb condition, have you added it?", verbCondition.getVerbName()));
         }
 
