@@ -21,4 +21,8 @@ public class RestMudHttpRequestDetails {
         headers = new HashSet<String>();
         httpverb = requestMethod;
     }
+
+    public static RestMudHttpRequestDetails EMPTY(){
+        return new RestMudHttpRequestDetails("");
+    }
 }

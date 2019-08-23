@@ -10,6 +10,8 @@ public interface ScriptCondition {
 
     ScriptCondition when(String matcher, String value);
 
+    ScriptCondition when(ScriptClause clause);
+
     ScriptCondition then(String command, String value);
 
     List<ScriptClause> whenClauses();

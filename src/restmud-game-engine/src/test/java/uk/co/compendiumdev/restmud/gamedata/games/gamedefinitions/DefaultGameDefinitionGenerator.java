@@ -3,6 +3,7 @@ package uk.co.compendiumdev.restmud.gamedata.games.gamedefinitions;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.scripting.PriorityTurnCondition;
+import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
 import uk.co.compendiumdev.restmud.engine.game.scripting.VerbCondition;
 import uk.co.compendiumdev.restmud.engine.game.scripting.thenClauses.Then;
 import uk.co.compendiumdev.restmud.engine.game.scripting.whenClauses.When;
@@ -80,17 +81,25 @@ public class DefaultGameDefinitionGenerator {
 
         // allow creating new verbs as part of verb condition creation
         cond = new VerbCondition("levitate");
-        cond.when(When.NOUNPHRASE_EQUALS, "self").
-                andWhen("locationId","0").
+        cond.when(
+                    ScriptClause.and(
+                            ScriptClause.when(
+                                    When.NOUNPHRASE_EQUALS, "self"),
+                            ScriptClause.when("locationId","1")
+                    )).
                 then("message", "You levitate.").
+                andThen("lastAction.success", "It did, you levitated. It worked.").
                 because("can add verbs when creating verb conditions");
         defn.addCondition(cond);
 
         cond = new VerbCondition("levitate");
-        cond.when(When.NOUNPHRASE_EQUALS, "this").
-                andWhen("locationId","0").
+        cond.when(ScriptClause.or(new ScriptClause(When.NOUNPHRASE_EQUALS, "this"),
+                                  new ScriptClause(When.NOUNPHRASE_EQUALS, "that"))).
+                andWhen("locationId","1").
                 then("message", "This levitates.").
+                andThen("lastAction.success", "It did, it levitated. It worked.").
                 because("can add verbs when creating verb conditions");
+
         defn.addCondition(cond);
 
         total_score=1000;

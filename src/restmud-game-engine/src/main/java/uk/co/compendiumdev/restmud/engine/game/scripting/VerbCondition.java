@@ -29,12 +29,18 @@ public class VerbCondition implements ScriptCondition{
         return when(matcher, value, matchValue);
     }
 
-    public ScriptCondition andWhenFalse(String matcher, String value) {
+    public VerbCondition andWhenFalse(String matcher, String value) {
         return when(matcher, value, false);
     }
 
     public VerbCondition when(String matcher, String value) {
         return when(matcher, value, true);
+    }
+
+    @Override
+    public VerbCondition when(final ScriptClause clause) {
+        this.when.add(clause);
+        return this;
     }
 
     public VerbCondition andWhen(String matcher, String value) {

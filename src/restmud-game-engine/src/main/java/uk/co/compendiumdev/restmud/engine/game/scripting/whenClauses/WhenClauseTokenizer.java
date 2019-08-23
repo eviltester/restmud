@@ -28,6 +28,10 @@ public class WhenClauseTokenizer{
                 throw new RuntimeException(String.format("Could not find When Clause Command Name %s | %s", commandName, scriptClause.getParameter()));
             }
 
+            if(scriptClause.isContainer()){
+                tokenize(scriptClause.getClauses());
+            }
+
         }
 
     }

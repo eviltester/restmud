@@ -3,9 +3,6 @@ package uk.co.compendiumdev.restmud.engine.game.scripting;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Alan on 06/06/2016.
- */
 public class PriorityTurnCondition implements ScriptCondition {
 
     private final List<ScriptClause> when;
@@ -28,6 +25,12 @@ public class PriorityTurnCondition implements ScriptCondition {
 
     public PriorityTurnCondition when(String matcher, String value) {
         this.when.add(new ScriptClause(matcher, value));
+        return this;
+    }
+
+    @Override
+    public PriorityTurnCondition when(final ScriptClause clause) {
+        this.when.add(clause);
         return this;
     }
 

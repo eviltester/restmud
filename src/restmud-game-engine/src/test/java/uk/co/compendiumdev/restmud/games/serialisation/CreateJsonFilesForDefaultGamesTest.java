@@ -32,8 +32,6 @@ public class CreateJsonFilesForDefaultGamesTest {
         loader.writeToFile(fileToWrite, defn);
 
         Assert.assertTrue(fileToWrite.exists());
-
-
     }
 
 }
