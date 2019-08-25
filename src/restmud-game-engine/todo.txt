@@ -12,7 +12,6 @@ the web version can send it as a file and create an upload the rest has a get an
 - have player specific objects and location objects to allow puzzles to be solved by multiple players
     - although this can probably be achieved by flags
 - Object name synonyms
-- verb synonyms in Verb conditions e.g. use lever, pull lever, kick lever, bash lever
 - allow global synonyms for verbs, not just at condition level
 - allow location identifiers, not just ids
 - allow location identifiers to be used in conditions and clauses

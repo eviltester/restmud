@@ -89,6 +89,7 @@ public class GameCommandProcessor {
         }
 
 
+        // TODO: get the verb, if it is a synonym for another verb then use the synonym
 
         // process any verb conditions next by matching the verb and seeing if any conditions match
         VerbToken verbToken = game.getUserInputParser().getVerbToken(verbName);
