@@ -13,7 +13,7 @@ public class VerbListTest {
 
         Assert.assertEquals(0, vl.numberOfVerbs());
 
-        vl.registerVerb(Verb.DARKEN.getName());
+        vl.registerVerb(DefaultVerb.DARKEN.getName());
 
         Assert.assertEquals(1, vl.numberOfVerbs());
     }
@@ -24,7 +24,7 @@ public class VerbListTest {
 
         VerbList vl = new VerbList(null);
         Assert.assertEquals(0, vl.numberOfVerbs());
-        vl.registerVerb(Verb.DARKEN);
+        vl.registerVerb(DefaultVerb.DARKEN);
         Assert.assertEquals(1, vl.numberOfVerbs());
     }
 }

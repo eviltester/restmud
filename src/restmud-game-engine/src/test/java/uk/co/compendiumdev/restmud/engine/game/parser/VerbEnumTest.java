@@ -11,25 +11,25 @@ public class VerbEnumTest {
     @Test
     public void checkBuiltInVerbEnumsExist(){
 
-        Assert.assertTrue(Verb.DARKEN.toString().contentEquals("darken"));
-        Assert.assertEquals(1,Verb.DARKEN.getTokenValue());
-        Assert.assertTrue(Verb.DROP.toString().contentEquals("drop"));
-        Assert.assertTrue(Verb.EXAMINE.toString().contentEquals("examine"));
-        Assert.assertTrue(Verb.HOARD.toString().contentEquals("hoard"));
-        Assert.assertTrue(Verb.ILLUMINATE.toString().contentEquals("illuminate"));
-        Assert.assertTrue(Verb.INSPECT.toString().contentEquals("inspect"));
-        Assert.assertTrue(Verb.OPEN.toString().contentEquals("open"));
-        Assert.assertTrue(Verb.CLOSE.toString().contentEquals("close"));
-        Assert.assertTrue(Verb.POLISH.toString().contentEquals("polish"));
-        Assert.assertTrue(Verb.TAKE.toString().contentEquals("take"));
-        Assert.assertTrue(Verb.USE.toString().contentEquals("use"));
-        Assert.assertTrue(Verb.LOOK.toString().contentEquals("look"));
-        Assert.assertTrue(Verb.GO.toString().contentEquals("go"));
-        Assert.assertTrue(Verb.INVENTORY.toString().contentEquals("inventory"));
-        Assert.assertTrue(Verb.MESSAGES.toString().contentEquals("messages"));
-        Assert.assertTrue(Verb.SCORE.toString().contentEquals("score"));
-        Assert.assertTrue(Verb.SCORES.toString().contentEquals("scores"));
-        Assert.assertEquals(17,Verb.SCORES.getTokenValue());
+        Assert.assertTrue(DefaultVerb.DARKEN.toString().contentEquals("darken"));
+        Assert.assertEquals(1, DefaultVerb.DARKEN.getTokenValue());
+        Assert.assertTrue(DefaultVerb.DROP.toString().contentEquals("drop"));
+        Assert.assertTrue(DefaultVerb.EXAMINE.toString().contentEquals("examine"));
+        Assert.assertTrue(DefaultVerb.HOARD.toString().contentEquals("hoard"));
+        Assert.assertTrue(DefaultVerb.ILLUMINATE.toString().contentEquals("illuminate"));
+        Assert.assertTrue(DefaultVerb.INSPECT.toString().contentEquals("inspect"));
+        Assert.assertTrue(DefaultVerb.OPEN.toString().contentEquals("open"));
+        Assert.assertTrue(DefaultVerb.CLOSE.toString().contentEquals("close"));
+        Assert.assertTrue(DefaultVerb.POLISH.toString().contentEquals("polish"));
+        Assert.assertTrue(DefaultVerb.TAKE.toString().contentEquals("take"));
+        Assert.assertTrue(DefaultVerb.USE.toString().contentEquals("use"));
+        Assert.assertTrue(DefaultVerb.LOOK.toString().contentEquals("look"));
+        Assert.assertTrue(DefaultVerb.GO.toString().contentEquals("go"));
+        Assert.assertTrue(DefaultVerb.INVENTORY.toString().contentEquals("inventory"));
+        Assert.assertTrue(DefaultVerb.MESSAGES.toString().contentEquals("messages"));
+        Assert.assertTrue(DefaultVerb.SCORE.toString().contentEquals("score"));
+        Assert.assertTrue(DefaultVerb.SCORES.toString().contentEquals("scores"));
+        Assert.assertEquals(17, DefaultVerb.SCORES.getTokenValue());
 
     }
 }

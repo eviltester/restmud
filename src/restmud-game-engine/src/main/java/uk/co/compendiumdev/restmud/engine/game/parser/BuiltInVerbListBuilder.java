@@ -19,23 +19,23 @@ public class BuiltInVerbListBuilder {
 
     public BuiltInVerbListBuilder addBuiltInVerbs() {
 
-        verbList.registerVerb(Verb.DARKEN);
-        verbList.registerVerb(Verb.DROP);
-        verbList.registerVerb(Verb.EXAMINE);
-        verbList.registerVerb(Verb.HOARD);
-        verbList.registerVerb(Verb.ILLUMINATE);
-        verbList.registerVerb(Verb.INSPECT);
-        verbList.registerVerb(Verb.OPEN);
-        verbList.registerVerb(Verb.CLOSE);
-        verbList.registerVerb(Verb.POLISH);
-        verbList.registerVerb(Verb.TAKE);
-        verbList.registerVerb(Verb.USE);
-        verbList.registerVerb(Verb.LOOK);
-        verbList.registerVerb(Verb.GO);
-        verbList.registerVerb(Verb.INVENTORY);
-        verbList.registerVerb(Verb.MESSAGES);
-        verbList.registerVerb(Verb.SCORE);
-        verbList.registerVerb(Verb.SCORES);
+        verbList.registerVerb(DefaultVerb.DARKEN);
+        verbList.registerVerb(DefaultVerb.DROP);
+        verbList.registerVerb(DefaultVerb.EXAMINE);
+        verbList.registerVerb(DefaultVerb.HOARD);
+        verbList.registerVerb(DefaultVerb.ILLUMINATE);
+        verbList.registerVerb(DefaultVerb.INSPECT);
+        verbList.registerVerb(DefaultVerb.OPEN);
+        verbList.registerVerb(DefaultVerb.CLOSE);
+        verbList.registerVerb(DefaultVerb.POLISH);
+        verbList.registerVerb(DefaultVerb.TAKE);
+        verbList.registerVerb(DefaultVerb.USE);
+        verbList.registerVerb(DefaultVerb.LOOK);
+        verbList.registerVerb(DefaultVerb.GO);
+        verbList.registerVerb(DefaultVerb.INVENTORY);
+        verbList.registerVerb(DefaultVerb.MESSAGES);
+        verbList.registerVerb(DefaultVerb.SCORE);
+        verbList.registerVerb(DefaultVerb.SCORES);
 
         return this;
 

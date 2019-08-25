@@ -748,7 +748,7 @@ Now I will experiment with the gates.
 
 `inspect inspectability1`
 
-> `You inspect inspectability1 at a cost of 10 points`
+> `You inspect inspectability1 at a cost of 7 points`
 
 `take inspecthoardable1`
 
@@ -756,7 +756,7 @@ Now I will experiment with the gates.
 
 `inspect inspecthoardable1`
 
-> `You inspect inspecthoardable1 at a cost of 13 points`
+> `You inspect inspecthoardable1 at a cost of 15 points`
 
  _I will find things I can examine_ 
 
@@ -977,7 +977,7 @@ Now I will experiment with the gates.
 
 `polish athingtopolish`
 
-> `Good work. You polished 'A thing to polish' by 18 and now it is worth 168 hoard points. Your 'A cloth of mighty polishing' has 82 polish power left. `
+> `Good work. You polished 'A thing to polish' by 43 and now it is worth 193 hoard points. Your 'A cloth of mighty polishing' has 57 polish power left. `
 
  _I remember reading about some dispensers of cool stuff_ 
 
@@ -1206,7 +1206,7 @@ Now I will experiment with the gates.
 
 `score `
 
-> `Your Score is: 177`
+> `Your Score is: 178`
 
  _Apparently red is up and blue is down_ 
 
@@ -1236,7 +1236,7 @@ Now I will experiment with the gates.
 
 `score `
 
-> `Your Score is: 197`
+> `Your Score is: 198`
 Could I probably push the blue button and possibly score again?
 
  _But there is a room where I do stuff and things are revealed_ 

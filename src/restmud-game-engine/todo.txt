@@ -4,14 +4,16 @@ TODO:
 - game engine should implement save and return a json blob that the game wrapper can deal with -
 i.e. the console version should save it to disk, and then should implement a load function,
 the web version can send it as a file and create an upload the rest has a get and put command.
+    - requires a game state object
 - allow save and load of gamestate to be configurable i.e. on/off
 - have game level flags and counters as well as player level flags and counters
     - in conditions if there are duplicates between flag and counter names then the player value takes priority
+- have game level timers and conditions for timer ==, >=, etc.
 - have player specific objects and location objects to allow puzzles to be solved by multiple players
     - although this can probably be achieved by flags
-- Have AND, OR, NOT when clauses
 - Object name synonyms
 - verb synonyms in Verb conditions e.g. use lever, pull lever, kick lever, bash lever
+- allow global synonyms for verbs, not just at condition level
 - allow location identifiers, not just ids
 - allow location identifiers to be used in conditions and clauses
 - use markdown or some other syntax for descriptions to avoid putting html in the descriptions, have these parsed to output for various formats

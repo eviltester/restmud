@@ -64,7 +64,7 @@ public class GameCommandProcessor {
 
     }
 
-    public ResultOutput processTheVerbInGame(String username, String verbToHandle, String theNounPhrase, RestMudHttpRequestDetails httpRequestDetails) {
+    public ResultOutput processTheVerbInGame(String username, String verbName, String theNounPhrase, RestMudHttpRequestDetails httpRequestDetails) {
         LastAction lastAction=null;
         ResultOutput resultOutput;
 
@@ -91,9 +91,9 @@ public class GameCommandProcessor {
 
 
         // process any verb conditions next
-        VerbToken verbToken = game.getUserInputParser().getVerbToken(verbToHandle);
+        VerbToken verbToken = game.getUserInputParser().getVerbToken(verbName);
 
-        player.setCurrentCommand(new PlayerCommand(verbToHandle, verbToken, nounPhrase, httpRequestDetails));
+        player.setCurrentCommand(new PlayerCommand(verbName, verbToken, nounPhrase, httpRequestDetails));
 
         ProcessConditionReturn processed = game.getScriptingEngine().rulesProcessor().processVerbConditions(player, player.getCurrentCommand());
 
@@ -122,7 +122,7 @@ public class GameCommandProcessor {
         //verbHandler.doVerb(username, nounphrase)
         //verbHandler.createResultOutput(lastAction, username, nounphrase)
 
-        VerbHandler vh= game.getUserInputParser().getVerbHandler(verbToHandle);
+        VerbHandler vh= game.getUserInputParser().getVerbHandler(verbName);
 
         if(lastAction==null) {
 
@@ -137,7 +137,7 @@ public class GameCommandProcessor {
         // last action might be null if it is a custom Verb because the default verb handler takes no action
         // and sometimes custom verb rules don't issue a last action (but stuff might happen as a side-effect)
         if(lastAction==null) {
-            resultOutput = ResultOutput.getLastActionError(String.format("I don't know how to \"%s %s\" here", verbToHandle, nounPhrase));
+            resultOutput = ResultOutput.getLastActionError(String.format("I don't know how to \"%s %s\" here", verbName, nounPhrase));
         }else{
             // handle game verbs that matched conditions
             resultOutput = new ResultOutput(lastAction);

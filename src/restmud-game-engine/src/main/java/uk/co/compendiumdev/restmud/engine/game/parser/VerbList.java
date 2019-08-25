@@ -4,12 +4,15 @@ import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.verbs.handlers.DefaultVerbHandler;
 import uk.co.compendiumdev.restmud.engine.game.verbs.handlers.VerbHandler;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class VerbList {
 
+
+    // TODO: this should use a Verb object rather than so many tokens and strings
 
     private final ArrayList<String> verbNameList;
     private final Map<Integer, VerbHandler > handlerList;
@@ -28,7 +31,7 @@ public class VerbList {
         return verbNameList.size();
     }
 
-    public void registerVerb(Verb verb) {
+    public void registerVerb(DefaultVerb verb) {
 
         verbNameList.add(verb.getName());
         tokenizer.addVerb(verb.getTokenValue(), verb.getName().toLowerCase());
@@ -36,15 +39,24 @@ public class VerbList {
             nextToken = verb.getTokenValue()+1;
         }
         try {
-                VerbHandler handler = (VerbHandler) verb.getHandlerClass().newInstance();
+                VerbHandler handler = (VerbHandler) verb.getHandlerClass().getDeclaredConstructor().newInstance();
                 handler.setGame(game);
                 handlerList.put(verb.getTokenValue(), handler);
+
+                Verb newVerb = new Verb(verb.getTokenValue(), verb.getName().toLowerCase(), handler);
 
         } catch (InstantiationException e) {
             throw new RuntimeException(String.format("Could not instantiate handler for %s", verb.getName()),e);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(String.format("Could not access class to create handler for %s", verb.getName()),e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(String.format("Could not create class to create handler for %s", verb.getName()),e);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
+
+
+
     }
 
     public VerbTokenizer getTokenizer() {

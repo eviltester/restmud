@@ -35,8 +35,7 @@ public class PlayerFlagIsSet implements ScriptWhenClause {
         }
 
         return lastMatch;
-
-
+        
     }
 
 }

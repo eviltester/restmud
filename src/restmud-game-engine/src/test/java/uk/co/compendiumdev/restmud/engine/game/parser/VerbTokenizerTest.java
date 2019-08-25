@@ -13,7 +13,7 @@ public class VerbTokenizerTest {
         VerbTokenizer tokenizer = new VerbTokenizer();
         Assert.assertEquals(0,tokenizer.getTokenCount());
 
-        tokenizer.addVerb(1, Verb.DARKEN.getName());
+        tokenizer.addVerb(1, DefaultVerb.DARKEN.getName());
         Assert.assertEquals(1,tokenizer.getTokenCount());
 
         Integer t = tokenizer.getTokenValue("darken");
