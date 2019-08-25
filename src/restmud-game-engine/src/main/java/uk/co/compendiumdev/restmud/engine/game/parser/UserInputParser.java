@@ -14,7 +14,7 @@ public class UserInputParser {
     }
 
     public VerbToken getVerbToken(String verbToHandle) {
-        return verbList.getTokenizer().getToken(verbToHandle);
+        return verbList.getToken(verbToHandle);
     }
 
     public VerbHandler getVerbHandler(String verbToHandle) {
@@ -29,5 +29,9 @@ public class UserInputParser {
         for(VerbRegexToVerbMatch localVerb : localVerbs){
             verbList.registerVerb(localVerb.getMatchingVerb());
         }
+    }
+
+    public Verb getVerb(final String verbName) {
+        return verbList.getVerb(verbName);
     }
 }

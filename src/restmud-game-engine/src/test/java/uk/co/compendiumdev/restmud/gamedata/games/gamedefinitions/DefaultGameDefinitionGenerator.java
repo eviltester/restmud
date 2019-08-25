@@ -80,7 +80,7 @@ public class DefaultGameDefinitionGenerator {
 
 
         // allow creating new verbs as part of verb condition creation
-        cond = new VerbCondition("levitate");
+        cond = new VerbCondition("levitate").withSynonyms("fly", "hover");
         cond.when(
                     ScriptClause.and(
                             ScriptClause.when(

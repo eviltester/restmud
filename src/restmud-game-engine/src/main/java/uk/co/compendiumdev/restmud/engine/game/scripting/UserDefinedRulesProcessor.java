@@ -29,9 +29,12 @@ public class UserDefinedRulesProcessor {
             return ret;
         }
 
-        List<VerbCondition> conditions = game.getVerbConditions().get(currentCommand.getVerbToken().getValue());
+        // check for matching verbs and synonyms
+        List<VerbCondition> conditions = game.getMatchingVerbConditions(currentCommand.getVerbToken());
 
-        if (conditions == null) {
+        //List<VerbCondition> conditions = game.getVerbConditions().get(currentCommand.getVerbToken().getValue());
+
+        if (conditions == null || conditions.size()==0) {
             return ret;
         }
 

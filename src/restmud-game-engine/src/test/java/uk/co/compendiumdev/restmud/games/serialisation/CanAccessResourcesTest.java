@@ -7,7 +7,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.IdDescriptionPair;
 
 import java.util.List;
 
-public class CanAccessResources {
+public class CanAccessResourcesTest {
 
     @Test
     public void canGetListOfBuiltInGames(){

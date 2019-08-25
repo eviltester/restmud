@@ -12,7 +12,7 @@ public class Verb {
 
     public Verb(final int tokenValue, final String verbName, final VerbHandler handler) {
         this.tokenValue = tokenValue;
-        this.name = verbName;
+        this.name = verbName.trim().toLowerCase();
         this.handler = handler;
         synonymOf = null;
     }
@@ -21,4 +21,19 @@ public class Verb {
         return synonymOf!=null;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getTokenValue() {
+        return tokenValue;
+    }
+
+    public VerbHandler getHandler() {
+        return handler;
+    }
+
+    public VerbToken getToken() {
+        return new VerbToken(tokenValue, name);
+    }
 }

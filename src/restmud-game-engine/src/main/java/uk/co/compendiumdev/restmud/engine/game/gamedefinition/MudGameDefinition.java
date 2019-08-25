@@ -6,6 +6,7 @@ import uk.co.compendiumdev.restmud.engine.game.Locations;
 import uk.co.compendiumdev.restmud.engine.game.VerbRegexToVerbMatch;
 import uk.co.compendiumdev.restmud.engine.game.locations.*;
 import uk.co.compendiumdev.restmud.engine.game.parser.UserInputParser;
+import uk.co.compendiumdev.restmud.engine.game.parser.Verb;
 import uk.co.compendiumdev.restmud.engine.game.parser.VerbToken;
 import uk.co.compendiumdev.restmud.engine.game.scripting.PriorityTurnCondition;
 import uk.co.compendiumdev.restmud.engine.game.scripting.ScriptClause;
@@ -79,10 +80,20 @@ public class MudGameDefinition {
 
         VerbToken verbToken = userInputParser.getVerbToken(verbCondition.getVerbName());
         if (verbToken == null) {
+            // do not force user to use adVerb directly, allow creation when adding a condition
             addVerb(verbCondition.getVerbName());
             verbToken = userInputParser.getVerbToken(verbCondition.getVerbName());
-
         }
+
+        // handle synonyms as well
+        for(String synonym : verbCondition.getSynonyms()){
+            Verb verb = userInputParser.getVerb(synonym);
+            if(verb==null){
+                addVerb(synonym);   // we don't add it as a synonym because this is rule specific
+                                    // not universal for the game, but we do add it as a verb
+            }
+        }
+
 
         if (verbToken == null) {
             throw new RuntimeException(String.format("Could not find verb [%s] mentioned in verb condition, have you added it?", verbCondition.getVerbName()));

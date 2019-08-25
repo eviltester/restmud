@@ -4,6 +4,7 @@ import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
 import uk.co.compendiumdev.restmud.engine.game.locations.*;
 import uk.co.compendiumdev.restmud.engine.game.parser.BuiltInVerbListBuilder;
 import uk.co.compendiumdev.restmud.engine.game.parser.UserInputParser;
+import uk.co.compendiumdev.restmud.engine.game.parser.VerbToken;
 import uk.co.compendiumdev.restmud.engine.game.scripting.*;
 import uk.co.compendiumdev.restmud.engine.game.things.IdGenerator;
 import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
@@ -373,5 +374,27 @@ public class MudGame {
 
     public List<ScriptClause> getStartupCommands() {
         return startupCommands;
+    }
+
+    public List<VerbCondition> getMatchingVerbConditions(final VerbToken verbToken) {
+        // find all verb conditions that match the verb or any verb conditions with synonyms which match the verb
+        List<VerbCondition> conditions = new ArrayList<>();
+
+        for(int token : verbConditions.keySet()){
+
+            if(token == verbToken.getValue()){
+                conditions.addAll(verbConditions.get(token));
+            }else{
+                // synonyms?
+                for(VerbCondition condition : verbConditions.get(token)){
+                    if(condition.hasSynonym(verbToken)){
+                        conditions.add(condition);
+                    }
+                }
+            }
+
+        }
+
+        return conditions;
     }
 }

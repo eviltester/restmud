@@ -15,10 +15,6 @@ public class UserInputParserTest {
 
         vl.registerVerb("take");
 
-        VerbTokenizer vt = vl.getTokenizer();
-
-        vt.addVerb(1, "take");
-
         UserInputParser parser = new UserInputParser(vl);
 
         VerbToken t = parser.getVerbToken("take");

@@ -27,4 +27,12 @@ public class VerbListTest {
         vl.registerVerb(DefaultVerb.DARKEN);
         Assert.assertEquals(1, vl.numberOfVerbs());
     }
+
+    @Test
+    public void nullIsReturnedWhenVerbDoesNotExist(){
+        VerbList list = new VerbList(null);
+
+        Assert.assertEquals(null,list.getHandler("noverbwiththisname"));
+        Assert.assertEquals(null,list.getToken("noverbwiththisname"));
+    }
 }

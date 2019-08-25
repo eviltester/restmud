@@ -1,6 +1,7 @@
 package uk.co.compendiumdev.restmud.unit;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import uk.co.compendiumdev.restmud.api.ChangeCaseifier;
 
@@ -54,11 +55,12 @@ public class RandomlyChangeCaseTest {
 
         for(int gen=0; gen<1000; gen++) {
             int position = changeCase.selectRandomLetterPosition(testString);
-            System.out.println(position);
+            //System.out.println(position);
             Assert.assertTrue(String.format("Expected 0 <= [%d] <= 2", position), position >= 0 && position <= 2);
         }
     }
 
+    @Ignore("manual test for manual result checking")
     @Test
     public void randomlyMutateCaseOfWord(){
 

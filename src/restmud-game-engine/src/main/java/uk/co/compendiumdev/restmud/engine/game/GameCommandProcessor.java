@@ -90,7 +90,7 @@ public class GameCommandProcessor {
 
 
 
-        // process any verb conditions next
+        // process any verb conditions next by matching the verb and seeing if any conditions match
         VerbToken verbToken = game.getUserInputParser().getVerbToken(verbName);
 
         player.setCurrentCommand(new PlayerCommand(verbName, verbToken, nounPhrase, httpRequestDetails));

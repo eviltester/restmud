@@ -23,14 +23,11 @@ public class BuiltInVerbListBuilderTest {
 
         Assert.assertEquals(17, vl.numberOfVerbs());
 
-        VerbTokenizer tokenizer = vl.getTokenizer();
-
-        VerbToken score = tokenizer.getToken("score");
+        VerbToken score = vl.getToken("score");
 
         Assert.assertEquals("score", score.getName());
 
-
-        VerbToken take = tokenizer.getToken("take");
+        VerbToken take = vl.getToken("take");
 
         Assert.assertTrue(score.getValue()!=0);
         Assert.assertTrue(take.getValue()!=0);
@@ -47,7 +44,7 @@ public class BuiltInVerbListBuilderTest {
         int expectedTokenVal = vl.getNextTokenId();
         vl.registerVerb("eviserate");
 
-        VerbToken t = vl.getTokenizer().getToken("eviserate");
+        VerbToken t = vl.getToken("eviserate");
         Assert.assertTrue(t.getValue()==expectedTokenVal);
         Assert.assertTrue(t.getName().contentEquals("eviserate"));
         Assert.assertEquals(expectedTokenVal+1,vl.getNextTokenId());
