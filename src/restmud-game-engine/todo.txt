@@ -11,8 +11,11 @@ the web version can send it as a file and create an upload the rest has a get an
 - have game level timers and conditions for timer ==, >=, etc.
 - have player specific objects and location objects to allow puzzles to be solved by multiple players
     - although this can probably be achieved by flags
-- Object name synonyms
-- allow global synonyms for verbs, not just at condition level
-- allow location identifiers, not just ids
-- allow location identifiers to be used in conditions and clauses
 - use markdown or some other syntax for descriptions to avoid putting html in the descriptions, have these parsed to output for various formats
+
+Lower Priority:
+
+- Object name synonyms - but this should be configurable because the whole point of the technical web testing interface is that the object names are visible in the DOM and in the JSON so synonyms do not apply for objects or location objects
+- allow global synonyms for verbs, not just at condition level
+- allow location identifiers, not just ids - location identifiers are strings, should we add a unique integer id?
+    - if we create ids, allow location ids to be used in conditions and clauses
