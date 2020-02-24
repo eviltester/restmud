@@ -1,5 +1,9 @@
 # Todo Notes and Readme
 
+ensure there is a mvn install at the root level first
+
+mvn package
+
 mvn heroku:deploy
 heroku local web -f Procfile.windows
 

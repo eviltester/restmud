@@ -137,7 +137,7 @@
                         <!-- You might have to remove the ./ in front   -->
                         <!-- <web>java -jar /target/restmud-1.0-jar-with-dependencies.jar</web>-->
                         <!-- try from procfile -->
-                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* uk.co.compendiumdev.restmud.web.MainRestMud -gamename treasure_hunt_basic -playermode multi</web>
+                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* uk.co.compendiumdev.restmud.web.MainRestMud -gamename treasureHunterGame.json -playermode multi</web>
                     </processTypes>
                 </configuration>
             </plugin>
