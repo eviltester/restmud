@@ -722,6 +722,12 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 > `Good work. You extinguished the 'A Torch of Illumination'. Your 'A Torch of Illumination' has 7 power left.`
 
+> `4` : `The South Room`
+
+> I can see some things here:
+
+* `A sign on the wall` (`adirsign`)
+
  _That must have been a teleporter_ 
 
 
@@ -966,7 +972,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `take torch_2`
 
-> `You took: torch_2. You now have the A Dispensed Torch  , oooh, and you now have the ability to 'illuminate' and 'darken'  (power=5).`
+> `You took: torch_2. You now have the A Dispensed Torch  , oooh, and you now have the ability to 'illuminate' and 'darken'  (power=12).`
 
 `go n`
 
@@ -999,7 +1005,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `illuminate `
 
-> `Good work. You illuminated the 'A Dispensed Torch'. Your 'A Dispensed Torch' has 5 power left.`
+> `Good work. You illuminated the 'A Dispensed Torch'. Your 'A Dispensed Torch' has 12 power left.`
 
 `look `
 
@@ -1033,35 +1039,39 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 94 and now it is worth 494 hoard points. Your 'A Cloth of Shining' has 106 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 11 and now it is worth 411 hoard points. Your 'A Cloth of Shining' has 189 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 11 and now it is worth 505 hoard points. Your 'A Cloth of Shining' has 95 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 26 and now it is worth 437 hoard points. Your 'A Cloth of Shining' has 163 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 43 and now it is worth 548 hoard points. Your 'A Cloth of Shining' has 52 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 67 and now it is worth 504 hoard points. Your 'A Cloth of Shining' has 96 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 23 and now it is worth 571 hoard points. Your 'A Cloth of Shining' has 29 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 32 and now it is worth 536 hoard points. Your 'A Cloth of Shining' has 64 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 8 and now it is worth 579 hoard points. Your 'A Cloth of Shining' has 21 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 18 and now it is worth 554 hoard points. Your 'A Cloth of Shining' has 46 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 10 and now it is worth 589 hoard points. Your 'A Cloth of Shining' has 11 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 17 and now it is worth 571 hoard points. Your 'A Cloth of Shining' has 29 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 5 and now it is worth 594 hoard points. Your 'A Cloth of Shining' has 6 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 12 and now it is worth 583 hoard points. Your 'A Cloth of Shining' has 17 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 6 and now it is worth 600 hoard points. Your 'A Cloth of Shining' has 0 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 8 and now it is worth 591 hoard points. Your 'A Cloth of Shining' has 9 polish power left. `
+
+`polish the_secret_of_the_maze_prize`
+
+> `Good work. You polished 'A very prize like prize' by 9 and now it is worth 600 hoard points. Your 'A Cloth of Shining' has 0 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 

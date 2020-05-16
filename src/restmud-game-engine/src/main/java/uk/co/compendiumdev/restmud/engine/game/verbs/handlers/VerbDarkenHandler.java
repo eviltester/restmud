@@ -6,7 +6,7 @@ import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.verbs.VerbGameAbilities;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
-public class VerbDarkenHandler  implements VerbHandler {
+public class VerbDarkenHandler implements VerbHandler {
 
     private String verbName;
 
@@ -26,11 +26,17 @@ public class VerbDarkenHandler  implements VerbHandler {
         // get the thing that allows me to illuminate
         MudCollectable torch = player.grantedTheAbilityToBy(VerbGameAbilities.ILLUMINATE_DARKEN);
 
+        // TODO: is there a danger that torch is null? If so handle that here
+
+        if(!torch.getIsAbilityOn()){
+            return LastAction.createError("You try to make things darker, but you have not illuminated anything!");
+        }
 
         return darken(player, torch);
     }
 
     private LastAction darken(MudUser player, MudCollectable torch) {
+
         torch.setAbilityOn(false);
 
         String results =
@@ -47,7 +53,7 @@ public class VerbDarkenHandler  implements VerbHandler {
 
     @Override
     public boolean shouldLookAfterVerb() {
-        return false;
+        return true;
     }
 
     @Override
