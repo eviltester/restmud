@@ -8,7 +8,8 @@ public class DefaultVerbHandler implements VerbHandler{
 
 
     @Override
-    public void setGame(MudGame mudGame) {
+    public DefaultVerbHandler setGame(MudGame mudGame) {
+        return this;
     }
 
     @Override

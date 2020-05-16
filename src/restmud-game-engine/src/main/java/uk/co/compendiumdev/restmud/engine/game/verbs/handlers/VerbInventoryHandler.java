@@ -5,14 +5,11 @@ import uk.co.compendiumdev.restmud.engine.game.MudUser;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.InventoryReport;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
-/**
- * Created by Alan on 09/08/2016.
- */
 public class VerbInventoryHandler  implements VerbHandler {
 
     @Override
-    public void setGame(MudGame mudGame) {
-
+    public VerbInventoryHandler setGame(MudGame mudGame) {
+        return this;
     }
 
     @Override

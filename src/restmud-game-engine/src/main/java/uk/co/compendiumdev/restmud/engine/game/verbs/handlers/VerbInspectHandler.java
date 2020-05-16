@@ -13,8 +13,9 @@ public class VerbInspectHandler  implements VerbHandler {
     private MudGame game;
 
     @Override
-    public void setGame(MudGame mudGame) {
+    public VerbInspectHandler setGame(MudGame mudGame) {
         this.game = mudGame;
+        return this;
     }
 
     @Override

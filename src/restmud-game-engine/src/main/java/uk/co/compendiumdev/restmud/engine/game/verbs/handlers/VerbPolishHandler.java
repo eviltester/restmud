@@ -8,15 +8,13 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 import java.util.Random;
 
-/**
- * Created by Alan on 09/08/2016.
- */
 public class VerbPolishHandler implements VerbHandler{
     private MudGame game;
 
     @Override
-    public void setGame(MudGame mudGame) {
+    public VerbPolishHandler setGame(MudGame mudGame) {
         this.game = mudGame;
+        return this;
     }
 
     @Override

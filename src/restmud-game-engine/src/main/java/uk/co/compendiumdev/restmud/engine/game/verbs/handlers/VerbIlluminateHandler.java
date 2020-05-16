@@ -6,14 +6,12 @@ import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.verbs.VerbGameAbilities;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
-/**
- * Created by Alan on 09/08/2016.
- */
 public class VerbIlluminateHandler implements VerbHandler{
 
 
     @Override
-    public void setGame(MudGame mudGame) {
+    public VerbIlluminateHandler setGame(MudGame mudGame) {
+        return this;
     }
 
     @Override

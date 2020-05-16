@@ -11,14 +11,11 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Alan on 09/08/2016.
- */
 public class VerbLookHandler   implements VerbHandler {
 
     @Override
-    public void setGame(MudGame mudGame) {
-
+    public VerbLookHandler setGame(MudGame mudGame) {
+        return this;
     }
 
     @Override

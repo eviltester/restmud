@@ -29,6 +29,8 @@ public class VerbEnumTest {
         Assert.assertTrue(DefaultVerb.MESSAGES.toString().contentEquals("messages"));
         Assert.assertTrue(DefaultVerb.SCORE.toString().contentEquals("score"));
         Assert.assertTrue(DefaultVerb.SCORES.toString().contentEquals("scores"));
+
+        // catch any missing verbs
         Assert.assertEquals(17, DefaultVerb.SCORES.getTokenValue());
 
     }

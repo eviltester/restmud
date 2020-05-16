@@ -7,15 +7,13 @@ import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationDirectionGate;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
-/**
- * Created by Alan on 09/08/2016.
- */
 public class VerbGoHandler   implements VerbHandler {
     private MudGame game;
 
     @Override
-    public void setGame(MudGame mudGame) {
+    public VerbGoHandler setGame(MudGame mudGame) {
         this.game = mudGame;
+        return this;
     }
 
     @Override

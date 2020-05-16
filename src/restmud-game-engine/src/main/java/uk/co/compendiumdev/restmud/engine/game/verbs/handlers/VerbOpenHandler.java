@@ -11,8 +11,9 @@ public class VerbOpenHandler implements VerbHandler {
     private MudGame game;
 
     @Override
-    public void setGame(MudGame mudGame) {
+    public VerbOpenHandler setGame(MudGame mudGame) {
         this.game = mudGame;
+        return this;
     }
 
     @Override

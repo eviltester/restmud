@@ -7,7 +7,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public interface VerbHandler {
 
-    void setGame(MudGame mudGame);
+    VerbHandler setGame(MudGame mudGame);
     LastAction doVerb(MudUser player, String nounPhrase);
 
     boolean shouldAddGameMessages();

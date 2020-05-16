@@ -6,21 +6,19 @@ import uk.co.compendiumdev.restmud.engine.game.locations.Directions;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
-/**
- * Created by Alan on 09/08/2016.
- */
 public class VerbCloseHandler implements VerbHandler {
     private MudGame game;
 
     @Override
-    public void setGame(MudGame mudGame) {
+    public VerbCloseHandler setGame(MudGame mudGame) {
         this.game = mudGame;
+        return this;
     }
 
     @Override
     public LastAction doVerb(MudUser player, String nounPhrase) {
         // we should be able to close gates between locations
-        // at some point we will be able to clolse 'things'
+        // TODO: at some point we will be able to close 'things' e.g. a box
 
         // is the nounphrase a direction?
         String baseDirection = game.getDirections().findBaseDirection(nounPhrase.toLowerCase());

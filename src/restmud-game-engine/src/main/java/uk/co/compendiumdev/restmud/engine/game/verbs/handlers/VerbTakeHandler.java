@@ -7,17 +7,12 @@ import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
-/**
- * Created by Alan on 09/08/2016.
- */
 public class VerbTakeHandler implements VerbHandler{
     private MudGame game;
 
-    public VerbTakeHandler() {
-    }
-
-    public void setGame(MudGame mudGame){
+    public VerbTakeHandler setGame(MudGame mudGame){
         this.game = mudGame;
+        return this;
     }
 
     public LastAction doVerb(MudUser player, String nounPhrase) {

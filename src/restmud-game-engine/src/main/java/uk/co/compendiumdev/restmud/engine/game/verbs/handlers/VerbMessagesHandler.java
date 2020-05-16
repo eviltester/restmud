@@ -9,8 +9,9 @@ public class VerbMessagesHandler implements VerbHandler{
     private MudGame game;
 
     @Override
-    public void setGame(MudGame mudGame) {
+    public VerbMessagesHandler setGame(MudGame mudGame) {
         this.game = mudGame;
+        return this;
     }
 
     @Override

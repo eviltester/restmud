@@ -9,7 +9,8 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 public class VerbDarkenHandler  implements VerbHandler {
 
     @Override
-    public void setGame(MudGame mudGame) {
+    public VerbDarkenHandler setGame(MudGame mudGame) {
+        return this;
     }
 
     @Override

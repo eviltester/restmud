@@ -78,4 +78,12 @@ public class LastAction {
     public void removeGameMessages(){
         optionalGameMessages=null;
     }
+
+    public boolean isFail() {
+        return lastactionstate.contentEquals(FAIL);
+    }
+
+    public boolean isSuccess() {
+        return lastactionstate.contentEquals(SUCCESS);
+    }
 }

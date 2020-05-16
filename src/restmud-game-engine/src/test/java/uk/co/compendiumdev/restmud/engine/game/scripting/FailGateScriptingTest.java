@@ -22,7 +22,7 @@ public class FailGateScriptingTest {
     private static MudGame game;
     private static GameEngineTestDSL dsl;
 
-    class poorlyWrittenGame implements GameGenerator {
+    class PoorlyWrittenGame implements GameGenerator {
         @Override
         public void generateInto(MudGame game) {
 
@@ -61,7 +61,7 @@ public class FailGateScriptingTest {
         game = theGameInit.getGame();
         Assert.assertEquals(0, game.getUserManager().numberOfUsers());
 
-        theGameInit.generate(new poorlyWrittenGame());
+        theGameInit.generate(new PoorlyWrittenGame());
 
         // generate does not add any users
         Assert.assertEquals(0, game.getUserManager().numberOfUsers());
