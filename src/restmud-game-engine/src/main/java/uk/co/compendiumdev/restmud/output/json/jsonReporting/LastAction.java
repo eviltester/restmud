@@ -14,8 +14,6 @@ public class LastAction {
     private List<GetUserDetails> optionalUserDetailsList;
     private GameMessages optionalGameMessages;
 
-    static LastAction NULL_ACTION;
-
     public LastAction(String state, String lastActionMessage) {
         this.lastactionstate = state;
         this.lastactionresult = lastActionMessage;
@@ -23,13 +21,6 @@ public class LastAction {
         this.optionalInventoryReport=null;
         this.optionalUserDetailsList=null;
         this.optionalGameMessages=null;
-    }
-
-    public static LastAction nullAction(){
-        if(NULL_ACTION==null){
-            NULL_ACTION = new LastAction("null","");
-        }
-        return NULL_ACTION;
     }
 
     public static LastAction createSuccess(String lastActionMessage) {
