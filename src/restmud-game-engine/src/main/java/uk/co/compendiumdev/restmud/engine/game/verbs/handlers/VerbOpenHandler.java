@@ -9,6 +9,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class VerbOpenHandler implements VerbHandler {
     private MudGame game;
+    private String verbName;
 
     @Override
     public VerbOpenHandler setGame(MudGame mudGame) {
@@ -53,6 +54,12 @@ public class VerbOpenHandler implements VerbHandler {
     @Override
     public boolean actionUpdatesTimeStamp() {
         return true;
+    }
+
+    @Override
+    public VerbOpenHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
     }
 
 }

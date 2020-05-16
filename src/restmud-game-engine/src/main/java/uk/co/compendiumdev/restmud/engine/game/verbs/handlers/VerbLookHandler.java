@@ -13,6 +13,8 @@ import java.util.List;
 
 public class VerbLookHandler   implements VerbHandler {
 
+    private String verbName;
+
     @Override
     public VerbLookHandler setGame(MudGame mudGame) {
         return this;
@@ -173,5 +175,11 @@ public class VerbLookHandler   implements VerbHandler {
         }
 
         return output;
+    }
+
+    @Override
+    public VerbLookHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
     }
 }

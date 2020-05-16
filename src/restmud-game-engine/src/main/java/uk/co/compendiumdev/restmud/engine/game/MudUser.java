@@ -57,7 +57,7 @@ public class MudUser {
 
         this.inventory = new Inventory();
         this.hoard = new Inventory();
-        this.score = 0;
+        setScore(0);
         flags = new BooleanFlags();
         counters = new IntegerCounters();
     }

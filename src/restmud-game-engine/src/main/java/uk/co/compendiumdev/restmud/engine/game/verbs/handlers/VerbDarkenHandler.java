@@ -8,6 +8,8 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class VerbDarkenHandler  implements VerbHandler {
 
+    private String verbName;
+
     @Override
     public VerbDarkenHandler setGame(MudGame mudGame) {
         return this;
@@ -17,7 +19,7 @@ public class VerbDarkenHandler  implements VerbHandler {
     public LastAction doVerb(MudUser player, String nounPhrase) {
         // User can darken rooms if items in inventory if they have the ability to darken
 
-        if(!player.hasTheAbilityTo(VerbGameAbilities.ILLUMINATE_DARKEN)){
+        if (!player.hasTheAbilityTo(VerbGameAbilities.ILLUMINATE_DARKEN)) {
             return LastAction.createError("You try to make things darker, but it doesn't work. You need to be using something that illuminates first!");
         }
 
@@ -53,4 +55,9 @@ public class VerbDarkenHandler  implements VerbHandler {
         return true;
     }
 
+    @Override
+    public VerbDarkenHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
+    }
 }

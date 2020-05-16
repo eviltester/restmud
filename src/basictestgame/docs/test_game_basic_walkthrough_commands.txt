@@ -41,6 +41,8 @@ checkresult,success
 go,e
 look,
 checkresult,success
+wobble,alever
+checkresult,fail
 examine,alever
 checkresult,success
 examine,leverbutton

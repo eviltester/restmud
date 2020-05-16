@@ -237,10 +237,10 @@ public class Authenticator implements IAuthenticator {
         MudUser existingUser = game.getUserManager().getUserbyUsername(username);
         if (existingUser != null) {
             // user is already registered
-            return new RegisterUserState(RegisterUserStates.ERROR_ALREADY_REGISTERED, String.format("User %s is already registered.\n", username));
+            return new RegisterUserState(RegisterUserStates.ERROR_ALREADY_REGISTERED, String.format("User %s is already registered.%n", username));
         }
 
-        return new RegisterUserState(RegisterUserStates.USER_DOES_NOT_EXIST, String.format("User %s is not registered.\n", username));}
+        return new RegisterUserState(RegisterUserStates.USER_DOES_NOT_EXIST, String.format("User %s is not registered.%n", username));}
 
     @Override
     public boolean usernameMatchesSession(String username, Request request) {

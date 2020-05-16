@@ -105,7 +105,7 @@ public class VerbList {
         String actualVerbName = sanitisedVerbName(verbToHandle);
 
         if(verbsByName.keySet().contains(actualVerbName)){
-            return verbsByName.get(actualVerbName).getHandler();
+            return verbsByName.get(actualVerbName).getHandler().usingCurrentVerb(actualVerbName);
         }
 
         return null;  // perhaps this should be the default handler?

@@ -15,7 +15,7 @@ import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationDirectionGat
 import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
-public class VerbCloseHandlerTest {
+public class VerbOpenHandlerTest {
 
     private static MudGame game;
     private static MudUser player;
@@ -64,86 +64,86 @@ public class VerbCloseHandlerTest {
     }
 
     @Test
-    public void canCloseAnOpenGate(){
+    public void canOpenAClosedGate(){
 
-        final MudLocationDirectionGate gate = game.getGateManager().getGateNamed(openedgatename);
+        final MudLocationDirectionGate gate = game.getGateManager().getGateNamed(closedgatename);
 
-        Assert.assertTrue("Expected Gate Open based on defn", gate.isOpen());
+        Assert.assertFalse("Expected Gate Closed based on defn", gate.isOpen());
 
-        VerbCloseHandler closeHandler =  new VerbCloseHandler().setGame(game);
-        final LastAction action = closeHandler.doVerb(player,"e");
+        VerbOpenHandler openHandler = new VerbOpenHandler().setGame(game);
+        final LastAction action = openHandler.doVerb(player,"s");
 
-        Assert.assertFalse("Expected Gate Closed after handler", gate.isOpen());
+        Assert.assertTrue("Expected Gate Opened after handler", gate.isOpen());
         Assert.assertTrue(action.isSuccess());
     }
 
     @Test
-    public void cannotCloseANonExistantGate(){
+    public void cannotOpenANonExistantGate(){
 
         final MudLocationDirectionGate gate =
                 game.getGateManager().getGateGoingFromHereInThatDirection(room1, "w");
 
         Assert.assertNull("Expected No Gate Going West based on defn", gate);
 
-        VerbCloseHandler closeHandler =  new VerbCloseHandler().setGame(game);
-        final LastAction action = closeHandler.doVerb(player, "w");
+        VerbOpenHandler openHandler =  new VerbOpenHandler().setGame(game);
+        final LastAction action = openHandler.doVerb(player, "w");
 
         Assert.assertTrue( action.isFail());
     }
 
     @Test
-    public void cannotCloseIfNoDirectionProvided(){
+    public void cannotOpenIfNoDirectionProvided(){
 
-        VerbCloseHandler closeHandler =  new VerbCloseHandler().setGame(game);
-        final LastAction action = closeHandler.doVerb(player, "");
+        VerbOpenHandler openHandler =  new VerbOpenHandler().setGame(game);
+        final LastAction action = openHandler.doVerb(player, "");
 
         Assert.assertTrue( action.isFail());
     }
 
     @Test
-    public void cannotCloseIfNounIsNotADirection(){
+    public void cannotOpenIfNounIsNotADirection(){
 
-        VerbCloseHandler closeHandler =  new VerbCloseHandler().setGame(game);
-        final LastAction action = closeHandler.doVerb(player, "Bob");
+        VerbOpenHandler openHandler =  new VerbOpenHandler().setGame(game);
+        final LastAction action = openHandler.doVerb(player, "Bob");
 
         Assert.assertTrue( action.isFail());
     }
 
-    //TODO: add condition handling to allow local close gate conditions
+    //TODO: add condition handling to allow local open gate conditions
     @Test
     public void haveNoAbilityForLocalGateProcessingYet(){
 
-        VerbCloseHandler closeHandler =  new VerbCloseHandler().setGame(game);
-        final LastAction action = closeHandler.doVerb(player, "n");
+        VerbOpenHandler openHandler =  new VerbOpenHandler().setGame(game);
+        final LastAction action = openHandler.doVerb(player, "n");
 
         Assert.assertTrue( action.isFail());
     }
 
     @Test
-    public void cannotCloseAClosedGate(){
+    public void cannotOpenAnOpenGate(){
 
-        final MudLocationDirectionGate gate = game.getGateManager().getGateNamed(closedgatename);
+        final MudLocationDirectionGate gate = game.getGateManager().getGateNamed(openedgatename);
 
-        Assert.assertFalse("Expected Gate Closed based on defn", gate.isOpen());
+        Assert.assertTrue("Expected Gate Opened based on defn", gate.isOpen());
 
-        VerbCloseHandler closeHandler =  new VerbCloseHandler().setGame(game);
-        final LastAction action = closeHandler.doVerb(player,"s");
+        VerbOpenHandler openHandler =  new VerbOpenHandler().setGame(game);
+        final LastAction action = openHandler.doVerb(player,"e");
 
-        Assert.assertFalse("Expected Gate remained Closed after handler", gate.isOpen());
+        Assert.assertTrue("Expected Gate remained Open after handler", gate.isOpen());
         Assert.assertTrue(action.isFail());
     }
 
     @Test
-    public void closeVerbHandlerConditions(){
+    public void openVerbHandlerConditions(){
 
-        VerbCloseHandler closeHandler = new VerbCloseHandler().setGame(game);
-        Assert.assertTrue("Closing a gate should take time",
-                closeHandler.actionUpdatesTimeStamp());
-        Assert.assertTrue("Closing a gate can generate messages",
-                closeHandler.shouldAddGameMessages());
+        VerbOpenHandler openHandler = new VerbOpenHandler().setGame(game);
+        Assert.assertTrue("Opening a gate should take time",
+                openHandler.actionUpdatesTimeStamp());
+        Assert.assertTrue("Opening a gate can generate messages",
+                openHandler.shouldAddGameMessages());
         Assert.assertTrue(
-                "Closing a gate can change environment so we should look after closing",
-                closeHandler.shouldLookAfterVerb());
+                "Opening a gate can change environment so we should look after closing",
+                openHandler.shouldLookAfterVerb());
 
     }
 }

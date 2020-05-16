@@ -92,6 +92,7 @@ public class BasicTestGameGeneratorWalkthroughTest extends AbstractWalkthroughTe
 
         dsl.walkthroughStep("\n## Oooh, a secret room\n");
         successfully(walkthrough("", "look", ""));
+        failTo(walkthrough("I can't wobble levers", "wobble", "alever"));
         successfully(walkthrough("Examine everything", "examine", "alever"));
         successfully(walkthrough("Examine everything", "examine", "leverbutton"));
         successfully(walkthrough("Examine everything", "use", "leverbutton"));

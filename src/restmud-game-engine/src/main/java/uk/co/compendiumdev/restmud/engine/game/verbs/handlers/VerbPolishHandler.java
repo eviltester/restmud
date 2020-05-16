@@ -10,6 +10,7 @@ import java.util.Random;
 
 public class VerbPolishHandler implements VerbHandler{
     private MudGame game;
+    private String verbName;
 
     @Override
     public VerbPolishHandler setGame(MudGame mudGame) {
@@ -99,4 +100,9 @@ public class VerbPolishHandler implements VerbHandler{
         return true;
     }
 
+    @Override
+    public VerbPolishHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
+    }
 }

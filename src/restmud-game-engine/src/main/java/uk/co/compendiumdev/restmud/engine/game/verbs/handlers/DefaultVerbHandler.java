@@ -7,6 +7,8 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 public class DefaultVerbHandler implements VerbHandler{
 
 
+    private String verbName="";
+
     @Override
     public DefaultVerbHandler setGame(MudGame mudGame) {
         return this;
@@ -14,9 +16,8 @@ public class DefaultVerbHandler implements VerbHandler{
 
     @Override
     public LastAction doVerb(MudUser player, String nounPhrase) {
-        // by default we fail to do anything
-        return null;
-        //return LastAction.createError("Sorry I couldn't do that");
+        // by default this is an error if we didn't create a LastAction in the custom verb handling condition
+        return LastAction.createError(String.format("I don't know how to \"%s %s\" here", verbName, nounPhrase));
     }
 
     @Override
@@ -33,4 +34,11 @@ public class DefaultVerbHandler implements VerbHandler{
     public boolean actionUpdatesTimeStamp() {
         return true;
     }
+
+    @Override
+    public DefaultVerbHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
+    }
+
 }

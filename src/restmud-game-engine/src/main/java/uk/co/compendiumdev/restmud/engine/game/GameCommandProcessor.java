@@ -125,19 +125,16 @@ public class GameCommandProcessor {
 
         VerbHandler vh= game.getUserInputParser().getVerbHandler(verbName);
 
-        if(lastAction==null) {
-
+        // if the custom conditions did not create any actions
+        if(lastAction==null && vh!=null) {
             // process the last action with generic data
-            if(vh!=null) {
-                lastAction = vh.doVerb(player, nounPhrase);
-            }
-
+            lastAction = vh.doVerb(player, nounPhrase);
         }
 
 
-        // last action might be null if it is a custom Verb because the default verb handler takes no action
-        // and sometimes custom verb rules don't issue a last action (but stuff might happen as a side-effect)
+        // TODO: last action should not be null, everything should come throu a verbhandler or condition
         if(lastAction==null) {
+            System.out.println(String.format("Warning we did not process the verb noun combo \"%s %s\"", verbName, nounPhrase));
             resultOutput = ResultOutput.getLastActionError(String.format("I don't know how to \"%s %s\" here", verbName, nounPhrase));
         }else{
             // handle game verbs that matched conditions

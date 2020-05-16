@@ -6,11 +6,10 @@ import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
-/**
- * Created by Alan on 09/08/2016.
- */
+
 public class VerbHoardHandler  implements VerbHandler{
     private MudGame game;
+    private String verbName;
 
     @Override
     public VerbHoardHandler setGame(MudGame mudGame) {
@@ -87,4 +86,9 @@ public class VerbHoardHandler  implements VerbHandler{
         return true;
     }
 
+    @Override
+    public VerbHoardHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
+    }
 }

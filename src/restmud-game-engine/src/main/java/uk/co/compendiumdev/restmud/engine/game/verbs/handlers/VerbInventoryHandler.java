@@ -7,6 +7,8 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class VerbInventoryHandler  implements VerbHandler {
 
+    private String verbName;
+
     @Override
     public VerbInventoryHandler setGame(MudGame mudGame) {
         return this;
@@ -44,4 +46,9 @@ public class VerbInventoryHandler  implements VerbHandler {
         return true;
     }
 
+    @Override
+    public VerbInventoryHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
+    }
 }

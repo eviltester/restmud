@@ -11,7 +11,7 @@ public class CliGameConfig {
     }
 
     public String getVersionText() {
-        return String.format("RestMud CLI Game Engine version %s\n%s\n", CLI_ENGINE_VERSION, COPYRIGHT_STRING);
+        return String.format("RestMud CLI Game Engine version %s%n%s%n", CLI_ENGINE_VERSION, COPYRIGHT_STRING);
     }
 
     public String getCliArgumentHelpText(boolean moreinfo) {

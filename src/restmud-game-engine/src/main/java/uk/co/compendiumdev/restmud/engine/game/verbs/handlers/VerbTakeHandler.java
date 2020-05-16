@@ -9,6 +9,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class VerbTakeHandler implements VerbHandler{
     private MudGame game;
+    private String verbName;
 
     public VerbTakeHandler setGame(MudGame mudGame){
         this.game = mudGame;
@@ -84,4 +85,9 @@ public class VerbTakeHandler implements VerbHandler{
         return true;
     }
 
+    @Override
+    public VerbTakeHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
+    }
 }

@@ -88,24 +88,24 @@ public class GameTestDSL {
             ResultOutput result = doVerb(auser, verb, noun);
             commands.add(new Command(verb,noun));
 
-            walkthrough.add(String.format("\n> `%s`", result.resultoutput.lastactionresult));
+            walkthrough.add(String.format("%n> `%s`", result.resultoutput.lastactionresult));
             if(result.look != null){
                 if(result.look.location != null){
-                    walkthrough.add(String.format("\n> `%s` : `%s`", result.look.location.locationId, result.look.location.shortName));
+                    walkthrough.add(String.format("%n> `%s` : `%s`", result.look.location.locationId, result.look.location.shortName));
                     if(!looked.contains(result.look.location.locationId)) {  // only show long description once in walkthrough
-                        walkthrough.add(String.format("\n> `%s` ", result.look.location.description));
+                        walkthrough.add(String.format("%n> `%s` ", result.look.location.description));
                         looked.add(result.look.location.locationId); // remember we have looked here
                     }
                 }
                 if(result.look.visibleObjects !=null){
-                    walkthrough.add(String.format("\n> I can see some things here:\n"));
+                    walkthrough.add(String.format("%n> I can see some things here:%n"));
                     for(IdDescriptionPair thing : result.look.visibleObjects){
                         walkthrough.add(String.format("* `%s` (`%s`)", thing.description, thing.id));
                     }
                 }
             }
             if(result.gameMessages != null && result.gameMessages.messages !=null && result.gameMessages.messages.size()>0){
-                walkthrough.add(String.format("\n> ... messages ...\n"));
+                walkthrough.add(String.format("%n> ... messages ...%n"));
                 for(BroadcastGameMessage aMessage : result.gameMessages.messages){
                     walkthrough.add(String.format("* %s", aMessage.message));
                 }

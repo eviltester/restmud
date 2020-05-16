@@ -9,6 +9,8 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 public class VerbIlluminateHandler implements VerbHandler{
 
 
+    private String verbName;
+
     @Override
     public VerbIlluminateHandler setGame(MudGame mudGame) {
         return this;
@@ -64,4 +66,9 @@ public class VerbIlluminateHandler implements VerbHandler{
         return true;
     }
 
+    @Override
+    public VerbIlluminateHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
+    }
 }

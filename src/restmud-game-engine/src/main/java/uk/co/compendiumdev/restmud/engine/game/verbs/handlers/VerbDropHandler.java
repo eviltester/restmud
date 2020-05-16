@@ -12,6 +12,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 public class VerbDropHandler implements VerbHandler {
 
     private MudGame game;
+    private String verbName;
 
     @Override
     public VerbDropHandler setGame(MudGame mudGame) {
@@ -27,7 +28,7 @@ public class VerbDropHandler implements VerbHandler {
         // does thing exist?
 
         MudCollectable thing = game.getGameCollectables().get(nounPhrase);
-        if(thing==null){
+        if (thing == null) {
             return LastAction.createError((String.format("Sorry, I can't see %s anywhere", nounPhrase)));
         }
 
@@ -40,14 +41,14 @@ public class VerbDropHandler implements VerbHandler {
 
         String thingId = thing.getCollectableId();
         // am I carrying it?
-        if(!player.inventory().contains(thingId)) {
+        if (!player.inventory().contains(thingId)) {
             return LastAction.createError(String.format("You dropped: Nothing (You are not carrying %s)", thingId));
         }
 
         // drop it here? where am i?
-        if(whereAmI.moveCollectableFromPlayerInventory(thingId, player.inventory())){
-            return LastAction.createSuccess(String.format("You dropped: %s. You are no longer carrying %s.", thing.getCollectableId(),thing.getDescription()));
-        }else{
+        if (whereAmI.moveCollectableFromPlayerInventory(thingId, player.inventory())) {
+            return LastAction.createSuccess(String.format("You dropped: %s. You are no longer carrying %s.", thing.getCollectableId(), thing.getDescription()));
+        } else {
             return LastAction.createError(String.format("You dropped: Nothing (You couldn't drop %s now)", thingId));
         }
     }
@@ -67,4 +68,9 @@ public class VerbDropHandler implements VerbHandler {
         return true;
     }
 
+    @Override
+    public VerbDropHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
+    }
 }

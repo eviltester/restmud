@@ -15,4 +15,6 @@ public interface VerbHandler {
     boolean shouldLookAfterVerb();
 
     boolean actionUpdatesTimeStamp();
+
+    VerbHandler usingCurrentVerb(String actualVerbName);
 }

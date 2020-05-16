@@ -13,6 +13,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 public class VerbExamineHandler implements VerbHandler {
 
     private MudGame game;
+    private String verbName;
 
     @Override
     public VerbExamineHandler setGame(MudGame mudGame) {
@@ -39,8 +40,8 @@ public class VerbExamineHandler implements VerbHandler {
     private LastAction examine(MudUser player, MudLocation whereAmI, MudLocationObject locationObject, MudCollectable collectable, String nounPhrase) {
 
         // is it a location object here?
-        if(locationObject!=null){
-            if(!whereAmI.objects().contains(locationObject.getObjectId())) {
+        if (locationObject != null) {
+            if (!whereAmI.objects().contains(locationObject.getObjectId())) {
                 return LastAction.createError(String.format("You wanted to examine %s: but I don't see %s here", locationObject.getObjectId(), locationObject.getDescription()));
             } else {
                 return LastAction.createSuccess(
@@ -51,11 +52,11 @@ public class VerbExamineHandler implements VerbHandler {
         }
 
         // it was not a location item, so is it a collectable
-        if(collectable!=null) {
+        if (collectable != null) {
             // was it here or am I carrying it
-            if(whereAmI.collectables().contains(collectable.getCollectableId()) || player.inventory().contains(collectable.getCollectableId())) {
-                return  LastAction.createError(String.format("You examined %s but there is nothing more to say about %s.", collectable.getCollectableId(), collectable.getDescription()));
-            }else{
+            if (whereAmI.collectables().contains(collectable.getCollectableId()) || player.inventory().contains(collectable.getCollectableId())) {
+                return LastAction.createError(String.format("You examined %s but there is nothing more to say about %s.", collectable.getCollectableId(), collectable.getDescription()));
+            } else {
                 return LastAction.createError(String.format("You wanted to examine %s: but I don't see that here", collectable.getCollectableId()));
             }
         }
@@ -78,4 +79,9 @@ public class VerbExamineHandler implements VerbHandler {
         return true;
     }
 
+    @Override
+    public VerbExamineHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
+    }
 }

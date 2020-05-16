@@ -10,6 +10,8 @@ import java.util.List;
 
 public class VerbScoreHandler implements VerbHandler{
 
+    private String verbName;
+
     @Override
     public VerbScoreHandler setGame(MudGame mudGame) {
         return this;
@@ -47,4 +49,11 @@ public class VerbScoreHandler implements VerbHandler{
     public boolean actionUpdatesTimeStamp() {
         return false;
     }
+
+    @Override
+    public VerbScoreHandler usingCurrentVerb(final String actualVerbName) {
+        verbName = actualVerbName;
+        return this;
+    }
+
 }
