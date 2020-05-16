@@ -29,6 +29,12 @@ public class VerbIlluminateHandler implements VerbHandler{
         // get the thing that allows me to illuminate
         MudCollectable torch = player.grantedTheAbilityToBy(VerbGameAbilities.ILLUMINATE_DARKEN);
 
+        // TODO: if there is danger that torch may be null then address that here
+
+        if(torch.getIsAbilityOn()){
+            return LastAction.createError("You try to make things easier to see, but it doesn't work. You have already illuminated something!");
+        }
+
         return illuminate(torch);
     }
 
@@ -58,7 +64,7 @@ public class VerbIlluminateHandler implements VerbHandler{
 
     @Override
     public boolean shouldLookAfterVerb() {
-        return false;
+        return true;
     }
 
     @Override

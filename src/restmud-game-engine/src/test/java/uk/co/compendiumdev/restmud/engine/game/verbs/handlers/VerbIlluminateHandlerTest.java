@@ -8,22 +8,20 @@ import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameEntityCreator;
-import uk.co.compendiumdev.restmud.engine.game.locations.GateDirection;
-import uk.co.compendiumdev.restmud.engine.game.locations.GateStatus;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
-import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationDirectionGate;
-import uk.co.compendiumdev.restmud.engine.game.parser.Verb;
+import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.verbs.VerbGameAbilities;
 import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.ResultOutput;
 
-public class VerbDarkenHandlerTest {
+public class VerbIlluminateHandlerTest {
 
     private static MudGame game;
     private static MudUser player;
     MudLocation darkroom;
     MudLocation lightroom;
+    private MudCollectable torch;
 
     class VerbHandlerGame implements GameGenerator {
         @Override
@@ -38,13 +36,14 @@ public class VerbDarkenHandlerTest {
             darkroom = create.location("2","Room 2", "the light room to the right", "w:1");
             darkroom.makeDark();
 
-            create.collectable("atorch", "A Torch", "1").
+            torch = create.collectable("atorch", "A Torch", "1").
                     addsToggleAbility(VerbGameAbilities.ILLUMINATE_DARKEN,100, false);
 
             game.initFromDefinition(defn);
 
         }
     }
+
     @Before
     public void setupTheGame(){
         GameInitializer theGameInit = new GameInitializer();
@@ -68,7 +67,7 @@ public class VerbDarkenHandlerTest {
     }
 
     @Test
-    public void canDarkenWhenPickedUpTorchIsOn(){
+    public void canIlluminateWhenPickedUpTorchIsNotOn(){
 
         ResultOutput p = game.getCommandProcessor().processTheVerbInGame("tester",
                 "take", "atorch", null);
@@ -88,15 +87,30 @@ public class VerbDarkenHandlerTest {
         Assert.assertTrue(action.isSuccess());
 
         Assert.assertTrue(player.canISeeInTheDark());
-
-        VerbDarkenHandler handler = new VerbDarkenHandler().setGame(game).usingCurrentVerb("darken");
-        action = handler.doVerb(player, "");
-        Assert.assertFalse(player.canISeeInTheDark());
-        Assert.assertTrue(action.isSuccess());
     }
 
     @Test
-    public void cannotDarkenIfTorchIsNotOn(){
+    public void cannotIlluminateIfNotCarryingTorch(){
+
+//        ResultOutput p = game.getCommandProcessor().processTheVerbInGame("tester",
+//                "take", "atorch", null);
+//        Assert.assertTrue(p.resultoutput.isSuccess());
+
+        final ResultOutput p = game.getCommandProcessor().processTheVerbInGame("tester",
+                "go", "e", null);
+        Assert.assertTrue(p.resultoutput.isSuccess());
+
+        Assert.assertFalse(player.canISeeInTheDark());
+        Assert.assertTrue(game.getGameLocations().get(player.getLocationId()).isLocationDark());
+
+        VerbIlluminateHandler handler = new VerbIlluminateHandler().setGame(game).usingCurrentVerb("illuminate");
+        LastAction switchOn = handler.doVerb(player, "");
+        Assert.assertFalse(switchOn.isSuccess());
+        Assert.assertFalse(player.canISeeInTheDark());
+    }
+
+    @Test
+    public void cannotIlluminateIfTorchIsOn(){
 
         ResultOutput p = game.getCommandProcessor().processTheVerbInGame("tester",
                 "take", "atorch", null);
@@ -109,29 +123,32 @@ public class VerbDarkenHandlerTest {
         Assert.assertFalse(player.canISeeInTheDark());
         Assert.assertTrue(game.getGameLocations().get(player.getLocationId()).isLocationDark());
 
-        VerbDarkenHandler handler = new VerbDarkenHandler().setGame(game).usingCurrentVerb("darken");
-        final LastAction action = handler.doVerb(player, "");
+        VerbIlluminateHandler handler = new VerbIlluminateHandler().setGame(game).usingCurrentVerb("illuminate");
+        LastAction switchOn = handler.doVerb(player, "");
+        Assert.assertTrue(switchOn.isSuccess());
 
-        Assert.assertTrue(action.isFail());
+        final LastAction switchOnAgain = handler.doVerb(player, "");
+        Assert.assertTrue(switchOnAgain.isFail());
 
-        Assert.assertFalse(player.canISeeInTheDark());
+        Assert.assertTrue(player.canISeeInTheDark());
     }
 
     @Test
-    public void cannotDarkenIfIDoNotHaveATorch(){
-
-//        ResultOutput p = game.getCommandProcessor().processTheVerbInGame("tester",
-//                "take", "atorch", null);
-//        Assert.assertTrue(p.resultoutput.isSuccess());
+    public void cannotIlluminateIfTorchHasNoPowerLeft(){
 
         ResultOutput p = game.getCommandProcessor().processTheVerbInGame("tester",
+                "take", "atorch", null);
+        Assert.assertTrue(p.resultoutput.isSuccess());
+        player.inventory().get("atorch").setAbilityPower(0);
+
+        p = game.getCommandProcessor().processTheVerbInGame("tester",
                 "go", "e", null);
         Assert.assertTrue(p.resultoutput.isSuccess());
 
         Assert.assertFalse(player.canISeeInTheDark());
         Assert.assertTrue(game.getGameLocations().get(player.getLocationId()).isLocationDark());
 
-        VerbDarkenHandler handler = new VerbDarkenHandler().setGame(game).usingCurrentVerb("darken");
+        VerbIlluminateHandler handler = new VerbIlluminateHandler().setGame(game).usingCurrentVerb("illuminate");
         final LastAction action = handler.doVerb(player, "");
 
         Assert.assertTrue(action.isFail());
@@ -141,15 +158,15 @@ public class VerbDarkenHandlerTest {
 
 
     @Test
-    public void darkenVerbHandlerConditions(){
+    public void illuminateVerbHandlerConditions(){
 
-        VerbDarkenHandler handler = new VerbDarkenHandler().setGame(game);
-        Assert.assertTrue("Darkening takes time",
+        VerbIlluminateHandler handler = new VerbIlluminateHandler().setGame(game);
+        Assert.assertTrue("Illuminating takes time",
                 handler.actionUpdatesTimeStamp());
-        Assert.assertTrue("Darkening generates messages",
+        Assert.assertTrue("Illuminating generates messages",
                 handler.shouldAddGameMessages());
         Assert.assertTrue(
-                "Darkening can change how we see things so we should look after this",
+                "Iluminating can change how we see things so we should look after this",
                 handler.shouldLookAfterVerb());
 
     }

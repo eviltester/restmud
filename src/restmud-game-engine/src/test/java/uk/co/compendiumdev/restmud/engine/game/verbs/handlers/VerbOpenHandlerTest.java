@@ -85,7 +85,7 @@ public class VerbOpenHandlerTest {
 
         Assert.assertNull("Expected No Gate Going West based on defn", gate);
 
-        VerbOpenHandler openHandler =  new VerbOpenHandler().setGame(game);
+        VerbOpenHandler openHandler =  new VerbOpenHandler().setGame(game).usingCurrentVerb("open");
         final LastAction action = openHandler.doVerb(player, "w");
 
         Assert.assertTrue( action.isFail());

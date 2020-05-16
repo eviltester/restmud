@@ -70,7 +70,7 @@ public class VerbCloseHandlerTest {
 
         Assert.assertTrue("Expected Gate Open based on defn", gate.isOpen());
 
-        VerbCloseHandler closeHandler =  new VerbCloseHandler().setGame(game);
+        VerbCloseHandler closeHandler =  new VerbCloseHandler().setGame(game).usingCurrentVerb("close");
         final LastAction action = closeHandler.doVerb(player,"e");
 
         Assert.assertFalse("Expected Gate Closed after handler", gate.isOpen());
