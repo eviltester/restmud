@@ -6,9 +6,6 @@ import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
-/**
- * Created by Alan on 09/08/2016.
- */
 public class VerbDropHandler implements VerbHandler {
 
     private MudGame game;
@@ -49,6 +46,9 @@ public class VerbDropHandler implements VerbHandler {
         if (whereAmI.moveCollectableFromPlayerInventory(thingId, player.inventory())) {
             return LastAction.createSuccess(String.format("You dropped: %s. You are no longer carrying %s.", thing.getCollectableId(), thing.getDescription()));
         } else {
+            // because it is multi-user, this is to cover the tiny chance that
+            // the object was teleported out of my inventory as I was in the process of dropping it
+            // or the location was blocked from moving items into
             return LastAction.createError(String.format("You dropped: Nothing (You couldn't drop %s now)", thingId));
         }
     }
