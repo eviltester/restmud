@@ -10,7 +10,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 public class VerbUseHandler implements VerbHandler{
 
     private MudGame game;
-    private String verbName;
+    private String verbName="use";
 
     @Override
     public VerbUseHandler setGame(MudGame mudGame) {
@@ -25,10 +25,12 @@ public class VerbUseHandler implements VerbHandler{
 
         // create a VerbConditions for new 'use'ages otherwise this is the default
 
-
         // if nounphrase is a location obj which is a dispenser then we can use it
-        MudLocationObject dispenser = game.getLocationObjects().get(nounPhrase);
+        // provided the dispenser is in the same location that we are!
+        MudLocationObject dispenser = location.objects().get(nounPhrase);
+
         if(dispenser!=null){
+
             if(dispenser.isThisADispenser()){
                 // ok, use the template to create a collectable
                 MudCollectable dispensedItem = dispenser.dispense(game.idGenerator().generateId(dispenser.getTemplateId()));

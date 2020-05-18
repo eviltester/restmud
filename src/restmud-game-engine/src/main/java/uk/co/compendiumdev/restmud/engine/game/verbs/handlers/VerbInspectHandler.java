@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class VerbInspectHandler  implements VerbHandler {
     private MudGame game;
-    private String verbName;
+    private String verbName="inspect";
 
     @Override
     public VerbInspectHandler setGame(MudGame mudGame) {

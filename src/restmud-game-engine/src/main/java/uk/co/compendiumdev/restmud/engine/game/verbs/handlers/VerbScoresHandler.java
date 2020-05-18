@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class VerbScoresHandler implements VerbHandler{
     private MudGame game;
-    private String verbName;
+    private String verbName="scores";
 
     @Override
     public VerbScoresHandler setGame(MudGame mudGame) {

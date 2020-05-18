@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class VerbPolishHandler implements VerbHandler{
     private MudGame game;
-    private String verbName;
+    private String verbName="polish";
 
     @Override
     public VerbPolishHandler setGame(MudGame mudGame) {

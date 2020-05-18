@@ -7,7 +7,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class VerbInventoryHandler  implements VerbHandler {
 
-    private String verbName;
+    private String verbName="i";
 
     @Override
     public VerbInventoryHandler setGame(MudGame mudGame) {

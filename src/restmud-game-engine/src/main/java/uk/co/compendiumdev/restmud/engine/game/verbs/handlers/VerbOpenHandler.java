@@ -9,7 +9,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class VerbOpenHandler implements VerbHandler {
     private MudGame game;
-    private String verbName;
+    private String verbName="open";
 
     @Override
     public VerbOpenHandler setGame(MudGame mudGame) {

@@ -9,7 +9,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class VerbGoHandler   implements VerbHandler {
     private MudGame game;
-    private String verbName;
+    private String verbName="go";
 
     @Override
     public VerbGoHandler setGame(MudGame mudGame) {

@@ -8,7 +8,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class VerbCloseHandler implements VerbHandler {
     private MudGame game;
-    private String verbName;
+    private String verbName="close";
 
     @Override
     public VerbCloseHandler setGame(MudGame mudGame) {

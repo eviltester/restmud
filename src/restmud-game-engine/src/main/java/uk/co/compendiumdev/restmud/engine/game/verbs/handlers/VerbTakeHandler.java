@@ -9,7 +9,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class VerbTakeHandler implements VerbHandler{
     private MudGame game;
-    private String verbName;
+    private String verbName="take";
 
     public VerbTakeHandler setGame(MudGame mudGame){
         this.game = mudGame;

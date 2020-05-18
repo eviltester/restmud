@@ -9,7 +9,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 public class VerbIlluminateHandler implements VerbHandler{
 
 
-    private String verbName;
+    private String verbName="illuminate";
 
     @Override
     public VerbIlluminateHandler setGame(MudGame mudGame) {

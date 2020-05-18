@@ -10,7 +10,7 @@ import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 public class VerbExamineHandler implements VerbHandler {
 
     private MudGame game;
-    private String verbName;
+    private String verbName="examine";
 
     @Override
     public VerbExamineHandler setGame(MudGame mudGame) {

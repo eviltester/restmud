@@ -14,7 +14,7 @@ import java.util.List;
 
 public class VerbLookHandler   implements VerbHandler {
 
-    private String verbName;
+    private String verbName="look";
     private MudGame game;
 
     @Override
