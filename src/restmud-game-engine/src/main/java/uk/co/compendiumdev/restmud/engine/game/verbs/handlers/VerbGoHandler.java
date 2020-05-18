@@ -49,6 +49,9 @@ public class VerbGoHandler   implements VerbHandler {
                     }
                 }
 
+                // TODO: destination would only be null if we could not find it above
+                //  so we should have a syntax check in the definition to make sure that all defined destinations exist
+                // to make this null check unnecessary
                 if(destination==null){
                     lastAction = LastAction.createError("You can't go " + baseDirection + goAppendum);
                 }else {
@@ -103,6 +106,8 @@ public class VerbGoHandler   implements VerbHandler {
         // let's say we went through
         goAppendum = " " + gateBetween.throughDescription() + " " + gateBetween.shortDescription();
         String locationId = gateBetween.getLocationIdFor(direction);
+        // TODO: this guard condition is only required if we got the gate definitions incorrect
+        // and the destination listed does not exist, add syntax checks in definition to avoid this issue
         if(locationId!=null && locationId.length()>0) {
             user.setLocationId(locationId);
             gateBetween.goThrough();
@@ -113,8 +118,6 @@ public class VerbGoHandler   implements VerbHandler {
         }else{
             return LastAction.createError("You can't go " + direction);
         }
-
-
     }
 
     @Override
