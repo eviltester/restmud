@@ -38,7 +38,7 @@ public class VerbScoresHandler implements VerbHandler{
 
     @Override
     public boolean shouldAddGameMessages() {
-        return true;
+        return false;
     }
 
     @Override
