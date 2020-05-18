@@ -38,7 +38,7 @@ public class VerbMessagesHandler implements VerbHandler{
 
     @Override
     public boolean actionUpdatesTimeStamp() {
-        return true;
+        return false;
     }
 
     @Override

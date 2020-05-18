@@ -231,5 +231,10 @@ public class GameCommandProcessor {
 
             return new ResultOutput(LastAction.createSuccess("Successfully Opened Gate from " + fromLocation + " to " + toLocation));
         }
+
+        public ResultOutput broadcast(final String message) {
+            game.broadcastMessages().wizardBroadcaseMessage(message);
+            return new ResultOutput(LastAction.createSuccess("Wizard Broadcast Message: "+message));
+        }
     }
 }
