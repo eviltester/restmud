@@ -68,7 +68,7 @@ public class VerbMessagesHandlerTest {
 
         // wait a little because messages uses milliseconds to check if time has advanced
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -82,7 +82,7 @@ public class VerbMessagesHandlerTest {
 
         // wait a little because messages uses milliseconds to check if time has advanced
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -76,7 +76,7 @@ public class VerbPolishHandler implements VerbHandler{
                         polisher.getDescription(), powerLeft);
 
         String disappearMessage="";
-        if(polishPower<=0){
+        if(powerLeft<=0){
             // it disappears
             disappearMessage = String.format(" Your '%s' vanishes, it must have been magic.", polisher.getDescription());
             junkRoom.moveCollectableFromPlayerInventory(polisher.getCollectableId(), player.inventory());
