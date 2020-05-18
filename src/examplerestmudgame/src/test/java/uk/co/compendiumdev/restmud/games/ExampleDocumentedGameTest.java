@@ -659,10 +659,10 @@ public class ExampleDocumentedGameTest {
         Assert.assertTrue(successfully((doVerb("tester", "examine", "examineme"))).
                             resultoutput.lastactionresult.contains("examined it alright"));
 
-        // cannot examine collectables
-        Assert.assertTrue(failTo(doVerb("tester", "examine", "examineThing2")).
+        // can examine collectables but they have nothing to report
+        Assert.assertTrue(successfully(doVerb("tester", "examine", "examineThing2")).
                 resultoutput.lastactionresult.contains("nothing more to say"));
-        Assert.assertTrue(failTo(doVerb("tester", "examine", "examineThing1")).
+        Assert.assertTrue(successfully(doVerb("tester", "examine", "examineThing1")).
                 resultoutput.lastactionresult.contains("nothing more to say"));
     }
 

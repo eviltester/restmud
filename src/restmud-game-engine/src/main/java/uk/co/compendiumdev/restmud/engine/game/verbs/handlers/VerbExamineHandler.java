@@ -7,9 +7,6 @@ import uk.co.compendiumdev.restmud.engine.game.things.MudCollectable;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
-/**
- * Created by Alan on 09/08/2016.
- */
 public class VerbExamineHandler implements VerbHandler {
 
     private MudGame game;
@@ -55,7 +52,7 @@ public class VerbExamineHandler implements VerbHandler {
         if (collectable != null) {
             // was it here or am I carrying it
             if (whereAmI.collectables().contains(collectable.getCollectableId()) || player.inventory().contains(collectable.getCollectableId())) {
-                return LastAction.createError(String.format("You examined %s but there is nothing more to say about %s.", collectable.getCollectableId(), collectable.getDescription()));
+                return LastAction.createSuccess(String.format("You examined %s but there is nothing more to say about %s.", collectable.getCollectableId(), collectable.getDescription()));
             } else {
                 return LastAction.createError(String.format("You wanted to examine %s: but I don't see that here", collectable.getCollectableId()));
             }
