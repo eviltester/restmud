@@ -59,39 +59,47 @@ public class VerbMessagesHandlerTest {
     public void canSeeAnyNewMessages(){
 
         // consume default messages
-        VerbMessagesHandler messages = new VerbMessagesHandler().setGame(game);
-        LastAction action = messages.doVerb(player, "");
-        Assert.assertTrue(action.isSuccess());
+        game.broadcastMessages().clear();
 
+        player.updateLastActionTimeStamp();
+
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         // send a message
         game.getCommandProcessor().wizardCommands().broadcast("Hello Everybody");
 
-        // wait a little because messages uses milliseconds to check if time has advanced
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        System.out.println(player.getLastActionTimeStamp());
+
         // receive the message
-        messages = new VerbMessagesHandler().setGame(game);
-        action = messages.doVerb(player, "");
+        VerbMessagesHandler messages = new VerbMessagesHandler().setGame(game);
+        LastAction action = messages.doVerb(player, "");
         Assert.assertTrue(action.isSuccess());
         Assert.assertEquals(1, action.getGameMessages().messages.size());
         Assert.assertEquals("The Wizard Says: Hello Everybody", action.getGameMessages().messages.get(0).message);
 
-        // wait a little because messages uses milliseconds to check if time has advanced
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        // wait a little because messages uses milliseconds to check if time has advanced
+        System.out.println(player.getLastActionTimeStamp());
 
-        // no new messages
+        // no new messages since last checked
         messages = new VerbMessagesHandler().setGame(game);
         action = messages.doVerb(player, "");
         Assert.assertTrue(action.isSuccess());
         Assert.assertEquals(0, action.getGameMessages().messages.size());
+        System.out.println(player.getLastActionTimeStamp());
     }
 
 

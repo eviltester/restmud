@@ -112,6 +112,9 @@ public class VerbPolishHandlerTest {
 
         Assert.assertEquals(0, cloth.getAbilityPower());
         Assert.assertTrue(200 <  thing.getHoardableScore());
+
+        Assert.assertFalse(player.inventory().contains("polishcloth"));
+        Assert.assertTrue(player.inventory().contains("athing"));
     }
 
     @Test
