@@ -37,10 +37,6 @@ public class VerbHoardHandler  implements VerbHandler{
 
     private LastAction hoard(MudUser player, MudLocation whereAmI, MudCollectable theThing, String nounPhrase) {
 
-        if(theThing==null){
-            return LastAction.createError(String.format("What? I don't know what a %s is", nounPhrase));
-        }
-
         String lastActionDescription = "You hoarded:";
 
         // am I carrying it?
@@ -56,10 +52,12 @@ public class VerbHoardHandler  implements VerbHandler{
             return LastAction.createError(String.format("%s nothing (you couldn't hoard %s her because there is no hoard here", lastActionDescription, theThing.getCollectableId()));
         }
 
+        // removing it might fail if it was stolen before we get here
         if (!player.inventory().removeItem(theThing.getCollectableId())) {
             return LastAction.createError(String.format("%s nothing (you don't own %s now)", lastActionDescription, theThing.getCollectableId()));
         }
 
+        // if it cannot be added for some reason
         if (!player.treasureHoard().addItem(theThing)) {
             return LastAction.createError(String.format("%s nothing (you can't hoard %s now)", lastActionDescription, theThing.getCollectableId()));
         }
