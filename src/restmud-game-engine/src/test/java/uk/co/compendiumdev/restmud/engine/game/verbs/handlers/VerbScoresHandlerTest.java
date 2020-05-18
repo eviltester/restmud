@@ -1,4 +1,4 @@
-package uk.co.compendiumdev.restmud.engine.game.verbs;
+package uk.co.compendiumdev.restmud.engine.game.verbs.handlers;
 
 import org.junit.Assert;
 import org.junit.Before;
