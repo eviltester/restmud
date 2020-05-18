@@ -40,6 +40,7 @@ public class VerbLookHandler   implements VerbHandler {
         return true;
     }
 
+    // TODO: this 'feels' wrong and is completely different from other verb handlers
     public static LookResultOutput look(MudUser player, MudLocation mudLocation, List<MudLocationDirectionGate> gatesHere, List<MudUser> otherUsers) {
 
         LookResultOutput output = new LookResultOutput();

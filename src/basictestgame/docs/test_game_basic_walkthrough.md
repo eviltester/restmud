@@ -980,7 +980,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `take torch_2`
 
-> `You took: torch_2. You now have the A Dispensed Torch  , oooh, and you now have the ability to 'illuminate' and 'darken'  (power=18).`
+> `You took: torch_2. You now have the A Dispensed Torch  , oooh, and you now have the ability to 'illuminate' and 'darken'  (power=11).`
 
 `go n`
 
@@ -1013,7 +1013,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `illuminate `
 
-> `Good work. You illuminated the 'A Dispensed Torch'. Your 'A Dispensed Torch' has 18 power left.`
+> `Good work. You illuminated the 'A Dispensed Torch'. Your 'A Dispensed Torch' has 11 power left.`
 
 > `2` : `The Dark room in the north`
 
@@ -1049,59 +1049,43 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 8 and now it is worth 408 hoard points. Your 'A Cloth of Shining' has 192 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 3 and now it is worth 403 hoard points. Your 'A Cloth of Shining' has 197 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 36 and now it is worth 444 hoard points. Your 'A Cloth of Shining' has 156 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 11 and now it is worth 414 hoard points. Your 'A Cloth of Shining' has 186 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 7 and now it is worth 451 hoard points. Your 'A Cloth of Shining' has 149 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 78 and now it is worth 492 hoard points. Your 'A Cloth of Shining' has 108 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 71 and now it is worth 522 hoard points. Your 'A Cloth of Shining' has 78 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 27 and now it is worth 519 hoard points. Your 'A Cloth of Shining' has 81 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 13 and now it is worth 535 hoard points. Your 'A Cloth of Shining' has 65 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 37 and now it is worth 556 hoard points. Your 'A Cloth of Shining' has 44 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 14 and now it is worth 549 hoard points. Your 'A Cloth of Shining' has 51 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 6 and now it is worth 562 hoard points. Your 'A Cloth of Shining' has 38 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 23 and now it is worth 572 hoard points. Your 'A Cloth of Shining' has 28 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 12 and now it is worth 574 hoard points. Your 'A Cloth of Shining' has 26 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 4 and now it is worth 576 hoard points. Your 'A Cloth of Shining' has 24 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 11 and now it is worth 585 hoard points. Your 'A Cloth of Shining' has 15 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 3 and now it is worth 579 hoard points. Your 'A Cloth of Shining' has 21 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 6 and now it is worth 591 hoard points. Your 'A Cloth of Shining' has 9 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 1 and now it is worth 580 hoard points. Your 'A Cloth of Shining' has 20 polish power left. `
-
-`polish the_secret_of_the_maze_prize`
-
-> `Good work. You polished 'A very prize like prize' by 8 and now it is worth 588 hoard points. Your 'A Cloth of Shining' has 12 polish power left. `
-
-`polish the_secret_of_the_maze_prize`
-
-> `Good work. You polished 'A very prize like prize' by 2 and now it is worth 590 hoard points. Your 'A Cloth of Shining' has 10 polish power left. `
-
-`polish the_secret_of_the_maze_prize`
-
-> `Good work. You polished 'A very prize like prize' by 3 and now it is worth 593 hoard points. Your 'A Cloth of Shining' has 7 polish power left. `
-
-`polish the_secret_of_the_maze_prize`
-
-> `Good work. You polished 'A very prize like prize' by 7 and now it is worth 600 hoard points. Your 'A Cloth of Shining' has 0 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 9 and now it is worth 600 hoard points. Your 'A Cloth of Shining' has 0 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 

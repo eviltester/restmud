@@ -25,7 +25,6 @@ public class VerbInventoryHandler  implements VerbHandler {
 
         LastAction lastAction = LastAction.createSuccess(lastActionDescription);
 
-
         lastAction.setInventoryReport(new InventoryReport(player.userName(), player.inventory().asIdDescriptionPairs()));
 
         return lastAction;

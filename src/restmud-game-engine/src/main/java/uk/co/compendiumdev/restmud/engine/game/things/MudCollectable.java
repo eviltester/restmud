@@ -75,7 +75,6 @@ public class MudCollectable {
         this.verbActionPoints = abilityPower;
     }
 
-
     public MudCollectable setAbilityOn(boolean abilityOn) {
         this.toggleAbilityIsOn = abilityOn;
         return this;
