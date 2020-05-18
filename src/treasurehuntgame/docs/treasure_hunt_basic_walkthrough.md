@@ -18,7 +18,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Central Room`
 
@@ -406,7 +406,7 @@ I need to find a way in!
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `24` : `The Start of The Zombie Graveyard`
 
@@ -481,7 +481,7 @@ I need to find a way in!
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `26` : `A Tomb`
 
@@ -540,7 +540,7 @@ I need to find a way in!
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `25` : `A Drummers Tomb`
 
@@ -612,7 +612,7 @@ I need to find a way in!
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `2` : `The North Room`
 

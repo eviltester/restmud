@@ -25,6 +25,8 @@ public class ResultOutput {
         lastAction.removeInventoryReport();
         users = lastAction.getUserDetailsList();
         lastAction.removeUserDetailsList();
+        look = lastAction.getLookReport();
+        lastAction.removeLookReport();
     }
 
     public ResultOutput() {
@@ -116,5 +118,9 @@ public class ResultOutput {
         lastAction = LastAction.createError("Sorry, I don't know how to do that : " + splatter);
         resultOutput = new ResultOutput(lastAction);
         return resultOutput;
+    }
+
+    public boolean haveLooked() {
+        return look!=null;
     }
 }

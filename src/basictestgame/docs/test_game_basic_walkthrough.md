@@ -29,7 +29,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Central Test Room`
 
@@ -69,7 +69,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `2` : `The Dark room in the north`
 
@@ -91,7 +91,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Central Test Room`
 
@@ -123,7 +123,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `3` : `The East Room`
 
@@ -169,7 +169,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Central Test Room`
 
@@ -225,7 +225,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `6` : `The West Corridor`
 
@@ -244,7 +244,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `4` : `The South Room`
 
@@ -277,7 +277,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Central Test Room`
 
@@ -305,7 +305,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `5` : `The West Hoard Room`
 
@@ -352,7 +352,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `3` : `The East Room`
 
@@ -386,7 +386,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `7` : `The Secret East Room`
 
@@ -480,7 +480,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `6` : `The West Corridor`
 
@@ -508,7 +508,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `8` : `The Room behind the gate in the East`
 
@@ -554,7 +554,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `9` : `An Eastern Corridor`
 
@@ -605,7 +605,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `10` : `Another Eastern Corridor`
 
@@ -662,7 +662,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `11` : `Another Eastern Corridor but this one is really dark`
 
@@ -684,7 +684,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `11` : `Another Eastern Corridor but this one is really dark`
 
@@ -735,7 +735,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `4` : `The South Room`
 
@@ -773,7 +773,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `14` : `The Start of the Maze`
 
@@ -796,7 +796,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `17` : `In the dark part of the maze`
 
@@ -822,7 +822,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `17` : `In the dark part of the maze`
 
@@ -845,7 +845,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `18` : `Near the end of the maze`
 
@@ -924,7 +924,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `3` : `The East Room`
 
@@ -980,7 +980,7 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `take torch_2`
 
-> `You took: torch_2. You now have the A Dispensed Torch  , oooh, and you now have the ability to 'illuminate' and 'darken'  (power=11).`
+> `You took: torch_2. You now have the A Dispensed Torch  , oooh, and you now have the ability to 'illuminate' and 'darken'  (power=10).`
 
 `go n`
 
@@ -1013,13 +1013,13 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `illuminate `
 
-> `Good work. You illuminated the 'A Dispensed Torch'. Your 'A Dispensed Torch' has 11 power left.`
+> `Good work. You illuminated the 'A Dispensed Torch'. Your 'A Dispensed Torch' has 10 power left.`
 
 > `2` : `The Dark room in the north`
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `2` : `The Dark room in the north`
 
@@ -1049,43 +1049,43 @@ I'm not ready to use the mazesign yet, I'll do that later
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 3 and now it is worth 403 hoard points. Your 'A Cloth of Shining' has 197 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 42 and now it is worth 442 hoard points. Your 'A Cloth of Shining' has 158 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 11 and now it is worth 414 hoard points. Your 'A Cloth of Shining' has 186 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 77 and now it is worth 519 hoard points. Your 'A Cloth of Shining' has 81 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 78 and now it is worth 492 hoard points. Your 'A Cloth of Shining' has 108 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 34 and now it is worth 553 hoard points. Your 'A Cloth of Shining' has 47 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 27 and now it is worth 519 hoard points. Your 'A Cloth of Shining' has 81 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 9 and now it is worth 562 hoard points. Your 'A Cloth of Shining' has 38 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 37 and now it is worth 556 hoard points. Your 'A Cloth of Shining' has 44 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 14 and now it is worth 576 hoard points. Your 'A Cloth of Shining' has 24 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 6 and now it is worth 562 hoard points. Your 'A Cloth of Shining' has 38 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 7 and now it is worth 583 hoard points. Your 'A Cloth of Shining' has 17 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 12 and now it is worth 574 hoard points. Your 'A Cloth of Shining' has 26 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 4 and now it is worth 587 hoard points. Your 'A Cloth of Shining' has 13 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 11 and now it is worth 585 hoard points. Your 'A Cloth of Shining' has 15 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 1 and now it is worth 588 hoard points. Your 'A Cloth of Shining' has 12 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 6 and now it is worth 591 hoard points. Your 'A Cloth of Shining' has 9 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 5 and now it is worth 593 hoard points. Your 'A Cloth of Shining' has 7 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 
-> `Good work. You polished 'A very prize like prize' by 9 and now it is worth 600 hoard points. Your 'A Cloth of Shining' has 0 polish power left. `
+> `Good work. You polished 'A very prize like prize' by 7 and now it is worth 600 hoard points. Your 'A Cloth of Shining' has 0 polish power left. `
 
 `polish the_secret_of_the_maze_prize`
 

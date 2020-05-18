@@ -28,7 +28,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Start Test Room`
 
@@ -55,7 +55,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `2` : `The North Room`
 
@@ -74,7 +74,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Start Test Room`
 
@@ -95,7 +95,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `3` : `The East Room`
 
@@ -123,7 +123,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Start Test Room`
 
@@ -151,7 +151,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `5` : `The West Room`
 
@@ -189,7 +189,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Start Test Room`
 
@@ -212,7 +212,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `5` : `The West Room`
 
@@ -248,7 +248,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Start Test Room`
 
@@ -298,7 +298,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `4` : `The South Room`
 
@@ -345,7 +345,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `6` : `The Room East of the South Room`
 
@@ -369,7 +369,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `4` : `The South Room`
 
@@ -391,7 +391,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Start Test Room`
 
@@ -404,7 +404,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `The Start Test Room`
 
@@ -434,7 +434,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `corridor` : `The North End of the Corridor of Test Rooms`
 
@@ -468,7 +468,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `8` : `South of The Northern most End of the Corridor of Test Rooms`
 
@@ -492,7 +492,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `9` : `The room of hoarding`
 
@@ -558,7 +558,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `8` : `South of The Northern most End of the Corridor of Test Rooms`
 
@@ -576,7 +576,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `10` : `A corridor`
 
@@ -628,7 +628,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `11` : `A room`
 
@@ -662,7 +662,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `10` : `A corridor`
 
@@ -680,7 +680,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `21` : `A room with a southward view`
 
@@ -710,7 +710,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `12` : `A inspect corridor`
 
@@ -728,7 +728,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `13` : `A room`
 
@@ -748,7 +748,7 @@ Now I will experiment with the gates.
 
 `inspect inspectability1`
 
-> `You inspect inspectability1 at a cost of 13 points`
+> `You inspect inspectability1 at a cost of 7 points`
 
 `take inspecthoardable1`
 
@@ -777,7 +777,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `14` : `An examine corridor`
 
@@ -795,7 +795,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `15` : `A room of examining things`
 
@@ -826,7 +826,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `16` : `An corridor of light and dark`
 
@@ -843,7 +843,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `17` : `A room of darkness`
 
@@ -882,7 +882,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `17` : `A room of darkness`
 
@@ -916,7 +916,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `16` : `An corridor of light and dark`
 
@@ -938,7 +938,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `18` : `A corridor of polishing`
 
@@ -969,7 +969,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `19` : `A room of polishing`
 
@@ -979,7 +979,7 @@ Now I will experiment with the gates.
 
 `polish athingtopolish`
 
-> `Good work. You polished 'A thing to polish' by 47 and now it is worth 197 hoard points. Your 'A cloth of mighty polishing' has 53 polish power left. `
+> `Good work. You polished 'A thing to polish' by 19 and now it is worth 169 hoard points. Your 'A cloth of mighty polishing' has 81 polish power left. `
 
  _I remember reading about some dispensers of cool stuff_ 
 
@@ -992,7 +992,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `18` : `A corridor of polishing`
 
@@ -1004,7 +1004,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `16` : `An corridor of light and dark`
 
@@ -1016,7 +1016,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `14` : `An examine corridor`
 
@@ -1038,7 +1038,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `23` : `The dispensery`
 
@@ -1083,7 +1083,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `23` : `The dispensery`
 
@@ -1131,7 +1131,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `14` : `An examine corridor`
 
@@ -1143,7 +1143,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `12` : `A inspect corridor`
 
@@ -1159,7 +1159,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `10` : `A corridor`
 
@@ -1175,7 +1175,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `8` : `South of The Northern most End of the Corridor of Test Rooms`
 
@@ -1197,7 +1197,7 @@ Now I will experiment with the gates.
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `20` : `A counter room`
 
@@ -1208,7 +1208,7 @@ Now I will experiment with the gates.
 
 `score `
 
-> `Your Score is: 179`
+> `Your Score is: 185`
 
  _Apparently red is up and blue is down_ 
 
@@ -1238,7 +1238,7 @@ Now I will experiment with the gates.
 
 `score `
 
-> `Your Score is: 199`
+> `Your Score is: 205`
 Could I probably push the blue button and possibly score again?
 
  _But there is a room where I do stuff and things are revealed_ 
@@ -1252,7 +1252,7 @@ Could I probably push the blue button and possibly score again?
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `8` : `South of The Northern most End of the Corridor of Test Rooms`
 
@@ -1268,7 +1268,7 @@ Could I probably push the blue button and possibly score again?
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `10` : `A corridor`
 
@@ -1284,7 +1284,7 @@ Could I probably push the blue button and possibly score again?
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `12` : `A inspect corridor`
 
@@ -1305,7 +1305,7 @@ Could I probably push the blue button and possibly score again?
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `22` : `A room with shown things`
 
@@ -1353,7 +1353,7 @@ Could I probably push the blue button and possibly score again?
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `12` : `A inspect corridor`
 And with that I have done most of the things. I could keep dispensing and increasing score, but that is really it.

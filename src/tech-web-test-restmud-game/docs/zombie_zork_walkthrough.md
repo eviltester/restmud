@@ -18,7 +18,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `At the House Front Door`
 
@@ -92,7 +92,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `1` : `At the House Front Door`
 
@@ -151,7 +151,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `2` : `At the House Front Garden`
 
@@ -243,7 +243,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `8` : `Somewhere special In the graveyard`
 
@@ -311,7 +311,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `4` : `At the North side of the House`
 
@@ -333,7 +333,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `4` : `At the North side of the House`
 
@@ -366,7 +366,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `5` : `At the West side of the House`
 
@@ -411,7 +411,7 @@ This walkthrough is automatically generated from a 'test'. It is created as the 
 
 `look `
 
-> `You Look.`
+> `You look.`
 
 > `inhouse` : `You are in the house`
 

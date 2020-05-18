@@ -104,6 +104,33 @@ public class VerbHoardHandlerTest {
     }
 
     @Test
+    public void cannotHoardIfNoHoardHere(){
+
+        Assert.assertTrue(game.getGameLocations().get("1").collectables().contains("athing"));
+
+        Assert.assertTrue(game.getGameLocations().get(player.getLocationId()).canHoardTreasureHere());
+
+        ResultOutput p = game.getCommandProcessor().processTheVerbInGame("tester",
+                "take", "athing", null);
+        Assert.assertTrue(p.resultoutput.isSuccess());
+
+        Assert.assertEquals(0,player.getScore());
+
+        p = game.getCommandProcessor().processTheVerbInGame("tester",
+                "go", "e", null);
+        Assert.assertTrue(p.resultoutput.isSuccess());
+
+        Assert.assertEquals("2",player.getLocationId());
+        Assert.assertFalse(game.getGameLocations().get(player.getLocationId()).canHoardTreasureHere());
+
+        VerbHoardHandler hoard = new VerbHoardHandler().setGame(game);
+        LastAction action = hoard.doVerb(player, "athing");
+        Assert.assertTrue(action.isFail());
+        Assert.assertEquals(0,player.getScore());
+    }
+
+
+    @Test
     public void cannotHoardThingsThatCannotBeHoarded(){
 
         Assert.assertTrue(game.getGameLocations().get("1").collectables().contains("somejunk"));

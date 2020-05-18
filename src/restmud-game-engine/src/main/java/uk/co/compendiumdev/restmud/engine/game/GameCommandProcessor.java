@@ -45,25 +45,6 @@ public class GameCommandProcessor {
         return resultOutput;
     }
 
-    private LookResultOutput userLook(MudUser player) {
-
-        LookResultOutput output = new LookResultOutput();
-
-        if(player==null){
-            return output;
-        }
-
-        MudLocation whereAmI = game.getGameLocations().get(player.getLocationId());
-
-
-        output = VerbLookHandler.look(player, whereAmI,
-                game.getGateManager().getGatesHere(whereAmI),
-                game.getUserManager().getUsers());
-
-        return output;
-
-    }
-
     public ResultOutput processTheVerbInGame(String username, String verbName, String theNounPhrase, RestMudHttpRequestDetails httpRequestDetails) {
         LastAction lastAction=null;
         ResultOutput resultOutput;
@@ -150,10 +131,8 @@ public class GameCommandProcessor {
                 resultOutput.addGameMessages(game.broadcastMessages().getMessagesSince(player.getLastActionTimeStamp()));
             }
             if (vh.shouldLookAfterVerb()) {
-                resultOutput.setLook(userLook(player));
-                ensureLookHappens = false;
+                ensureLookHappens = true;
             }
-
             actionUpdatesTimeStamp = vh.actionUpdatesTimeStamp();
         }
 
@@ -173,7 +152,11 @@ public class GameCommandProcessor {
         }
 
         if(ensureLookHappens){
-            resultOutput.setLook(userLook(player));
+            if(!resultOutput.haveLooked()){
+                resultOutput.setLook(
+                        new VerbLookHandler().setGame(game).usingCurrentVerb("look").
+                                doVerb(player,"").getLookReport());
+            }
             resultOutput.setGameMessages(game.broadcastMessages().getMessagesSince(player.getLastActionTimeStamp()));
         }
 

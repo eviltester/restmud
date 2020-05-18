@@ -13,6 +13,7 @@ public class LastAction {
     private InventoryReport optionalInventoryReport;
     private List<GetUserDetails> optionalUserDetailsList;
     private GameMessages optionalGameMessages;
+    private LookResultOutput optionalLookReport;
 
     public LastAction(String state, String lastActionMessage) {
         this.lastactionstate = state;
@@ -21,6 +22,7 @@ public class LastAction {
         this.optionalInventoryReport=null;
         this.optionalUserDetailsList=null;
         this.optionalGameMessages=null;
+        this.optionalLookReport=null;
     }
 
     public static LastAction createSuccess(String lastActionMessage) {
@@ -88,4 +90,16 @@ public class LastAction {
     }
 
 
+    public LastAction setLookOutput(final LookResultOutput lookReport) {
+        this.optionalLookReport = lookReport;
+        return this;
+    }
+
+    public LookResultOutput getLookReport() {
+        return this.optionalLookReport;
+    }
+
+    public void removeLookReport() {
+        optionalLookReport=null;
+    }
 }

@@ -34,6 +34,11 @@ public class MudGameGateCollection {
     public List<MudLocationDirectionGate> getGatesHere(MudLocation location) {
         List<MudLocationDirectionGate> foundGates = new ArrayList<>();
 
+        // if nowhere then no gates
+        if(location==null){
+            return foundGates;
+        }
+
         for (MudLocationDirectionGate aGate : gates.values()) {
             if (location == aGate.fromLocation) {
                 foundGates.add(aGate);
