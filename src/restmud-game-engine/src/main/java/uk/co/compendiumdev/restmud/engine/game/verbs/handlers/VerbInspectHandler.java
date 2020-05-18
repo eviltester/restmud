@@ -27,8 +27,6 @@ public class VerbInspectHandler  implements VerbHandler {
         // does thing exist?
         String thingId = nounPhrase;
 
-        // is it a collectable that is carried?
-
         MudCollectable collectable = game.getGameCollectables().get(thingId);
 
         if(collectable==null) {
@@ -56,11 +54,6 @@ public class VerbInspectHandler  implements VerbHandler {
 
     private LastAction inspect(MudUser player, MudLocation whereAmI, MudCollectable collectable, String nounPhrase) {
 
-        if(collectable==null){
-            return LastAction.createError(String.format("Sorry, What? I can't inspect %s", nounPhrase));
-        }
-
-
         int minCost = 5;
         int maxCost = 20;
         int inspectCost = new Random().nextInt(maxCost - minCost + 1) + minCost;
@@ -76,14 +69,9 @@ public class VerbInspectHandler  implements VerbHandler {
 
         }
 
-
-
         boolean canInspectItHere = false;
 
-
         // is it here?
-
-
         if(whereAmI.collectables().contains(collectable.getCollectableId())){
             canInspectItHere=true;
         }
@@ -101,6 +89,7 @@ public class VerbInspectHandler  implements VerbHandler {
 
         player.incrementScoreBy((inspectCost*-1));
 
+        // TODO: this needs to be pulled out into its own class as I should not have to test this in the InspectHandler
         ObjectInspection inspectReport = new ObjectInspection();
         inspectReport.playerName = player.userName();
         inspectReport.costOfInspection = String.valueOf(inspectCost);
