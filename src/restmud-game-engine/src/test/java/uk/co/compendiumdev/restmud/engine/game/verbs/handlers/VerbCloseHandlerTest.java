@@ -28,11 +28,11 @@ public class VerbCloseHandlerTest {
 
             MudGameEntityCreator create = defn.creator();
 
-            room1 = create.location("1", "Room 1", "the room to the left", "n:local");
+            room1 = create.location("1", "Room 1", "the room to the left", "n:local,e:2:openeastgate,s:2:closedsouthgate");
             create.location("2","Room 2", "the room to the right", "");
 
-            defn.addGate(openedgatename, "1", "e", "2", GateDirection.ONE_WAY, GateStatus.OPEN).gateIsHidden(false);
-            defn.addGate(closedgatename, "1", "s", "2", GateDirection.ONE_WAY, GateStatus.CLOSED).gateIsHidden(false);
+            defn.addGate(openedgatename, GateStatus.OPEN).gateIsHidden(false);
+            defn.addGate(closedgatename, GateStatus.CLOSED).gateIsHidden(false);
 
             game.initFromDefinition(defn);
 

@@ -23,9 +23,9 @@ public class FailTokenisationTest {
 
             MudGameEntityCreator create = defn.creator();
 
-            create.location("1","The room of failure", "the room of failure", "");
+            create.location("1","The room of failure", "the room of failure", "e:22:secret:secretGate22");
 
-            defn.addGate("secretGate22", "22", "e", "12", GateDirection.ONE_WAY, GateStatus.CLOSED).gateIsHidden(true);
+            defn.addGate("secretGate22",  GateStatus.CLOSED).gateIsHidden(true);
 
             defn.addVerb("fail1");
 

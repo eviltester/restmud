@@ -44,7 +44,10 @@ public class TreasureHuntBasicGameDefinitionGenerator implements GameDefinitionP
         startLocation.setCanHoardTreasureHere(true);
         defn.gameLocations().addLocation(startLocation);
         defn.gameLocations().addLocation(new MudLocation("2","The North Room", "This is the room in the north", "S:1,N:12,E:36"));
-        defn.gameLocations().addLocation(new MudLocation("3","The East Room", "This is the room in the east", "W:1,E:11:gate,N:15:secret,S:local"));
+        defn.gameLocations().addLocation(new MudLocation("3","The East Room", "This is the room in the east", "W:1,E:11:eastgate,N:15:secret,S:local"));
+        // used as a simple door between 3 East and 11 West
+        defn.addGate("eastgate", GateStatus.CLOSED);
+
         defn.gameLocations().addLocation(new MudLocation("4","The South Room", "This is the room in the South, there is a broken teleporter to the south", "N:1,S:local"));
         defn.gameLocations().addLocation(new MudLocation("5","The West Room", "This is the room in the West", "E:1,W:6"));
         defn.gameLocations().addLocation(new MudLocation("6","The West Corridor", "This is the eastern end of the western corridor in the West that continues West and East", "E:5,W:7,S:22"));
@@ -52,12 +55,18 @@ public class TreasureHuntBasicGameDefinitionGenerator implements GameDefinitionP
         defn.gameLocations().addLocation(new MudLocation("8","The Furtherest West Corridor", "This is the western end of the western corridor in the West, it continues E, and a teleporter is to the West", "E:7,W:local"));
         defn.gameLocations().addLocation(new MudLocation("9","The Furtherest East Corridor", "This is the eastern end of the eastern corridor in the East", "W:10"));
         defn.gameLocations().addLocation(new MudLocation("10","The Further East Corridor", "This is the middle of the eastern corridor in the East", "E:9,W:11,S:0:secret"));
-        defn.gameLocations().addLocation(new MudLocation("11","The East Corridor", "This is the western end of the eastern corridor in the East", "E:10,W:3:gate"));
+        defn.gameLocations().addLocation(new MudLocation("11","The East Corridor", "This is the western end of the eastern corridor in the East", "E:10,W:3:eastgate"));
         defn.gameLocations().addLocation(new MudLocation("12","The Northern Room", "This is the middle of the room in the north of the North room", "S:2,W:13,E:14"));
         defn.gameLocations().addLocation(new MudLocation("13","The Northern Room (West)", "This is the west of the middle of the room in the north", "S:2,E:12"));
-        defn.gameLocations().addLocation(new MudLocation("14","The Northern Room (east)", "This is the east of the middle of the room in the north", "S:2,W:12,N:23"));
+
+        // TODO: I don't think I created any tests for the secret clock panel
+        defn.gameLocations().addLocation(new MudLocation("14","The Northern Room (east)",
+                "This is the east of the middle of the room in the north", "S:2,W:12,N:23,E:16:secret:secretClockPanel"));
+
+
         defn.gameLocations().addLocation(new MudLocation("15","A Secret Room", "This is a secret room, ssh, don't tell anyone", "S:3"));
-        defn.gameLocations().addLocation(new MudLocation("16","The Secret Clock Room", "This is the secret clock room. There are no clocks here.", "W:14"));
+        defn.gameLocations().addLocation(new MudLocation("16","The Secret Clock Room",
+                "This is the secret clock room. There are no clocks here.", "W:14"));
         defn.gameLocations().addLocation(new MudLocation("17","The Secret Room North of 12", "This is the secret room north of 12 that everyone forgets about.", "S:12"));
         defn.gameLocations().get("17").canHoardTreasureHere();
 
@@ -341,8 +350,8 @@ public class TreasureHuntBasicGameDefinitionGenerator implements GameDefinitionP
 
         defn.addCondition(cond);
 
-        // create a simple door
-        defn.addGate("3", "E", GateDirection.BOTH_WAYS, GateStatus.CLOSED);
+
+
 
 
 
@@ -459,7 +468,8 @@ public class TreasureHuntBasicGameDefinitionGenerator implements GameDefinitionP
          */
 
         // create a one way secret panel which has no corresponding exits
-        defn.addGate("secretClockPanel", "14", "E", "16", GateDirection.ONE_WAY, GateStatus.CLOSED).
+
+        defn.addGate("secretClockPanel",  GateStatus.CLOSED).
                 gateIsHidden(true).    // this gate should be secret true
                 playerCanOpen(false).  // player can not open it
                 playerCanClose(true).  // but they can close it

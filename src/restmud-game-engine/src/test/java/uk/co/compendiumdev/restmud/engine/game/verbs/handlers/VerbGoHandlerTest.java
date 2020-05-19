@@ -42,17 +42,12 @@ public class VerbGoHandlerTest {
             // north from room 1 is a local condition so should fail when no conditions are setup
             // e and west from 1 have one way gates which can be opened and closed
 
-            create.location("1", "Room 1", "the room to the north", "n:local,s:2");
+            create.location("1", "Room 1", "the room to the north", "n:local,s:2,e:2:openeastgate,w:2:closedsouthgate");
             // note e:3 is invalid destination
             create.location("2","Room 2", "the room to the south", "n:1,e:3");
 
-            defn.addGate(openedgatename, "1", "e", "2", GateDirection.ONE_WAY, GateStatus.OPEN).gateIsHidden(false);
-            defn.addGate(closedgatename, "1", "w", "2", GateDirection.ONE_WAY, GateStatus.CLOSED).gateIsHidden(false);
-
-            // invalid gate definition no valid destination
-            // TODO: BUG - this throws a null pointer in game, it is not possible to create gate to invalid location,
-            // but should throw an error not a null pointer to help debug the game
-            //defn.addGate(openedgatename, "2", "s", "3", GateDirection.ONE_WAY, GateStatus.OPEN).gateIsHidden(false);
+            defn.addGate(openedgatename, GateStatus.OPEN).gateIsHidden(false);
+            defn.addGate(closedgatename, GateStatus.CLOSED).gateIsHidden(false);
 
             game.initFromDefinition(defn);
 
@@ -139,23 +134,6 @@ public class VerbGoHandlerTest {
 
         go = new VerbGoHandler().setGame(game);
         action = go.doVerb(player,"e");
-        Assert.assertTrue(action.isFail());
-        Assert.assertEquals("2", player.getLocationId());
-    }
-
-    @Ignore("Setup for this test highlights a bug where trying to define a gate with an invalid destination throws a null pointer exception")
-    @Test
-    public void cannotGoThroughGateWhereThereIsNoDestination() {
-
-        Assert.assertEquals("1", player.getLocationId());
-
-        VerbGoHandler go = new VerbGoHandler().setGame(game);
-        LastAction action = go.doVerb(player,"e");
-        Assert.assertTrue(action.isSuccess());
-        Assert.assertEquals("2", player.getLocationId());
-
-        go = new VerbGoHandler().setGame(game);
-        action = go.doVerb(player,"s");
         Assert.assertTrue(action.isFail());
         Assert.assertEquals("2", player.getLocationId());
     }

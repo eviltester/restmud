@@ -152,54 +152,6 @@ public class MudGameDefinition {
         return gate;
     }
 
-    @Deprecated
-    public MudLocationDirectionGate addGate(String locationID, String fromDirection, GateDirection whichWayDirection, GateStatus startingGateStatus) {
-        String CALCULATE_TO_DESTINATION="";
-
-        return addGate(theIdGenerator.generateId("gate"), locationID, fromDirection, CALCULATE_TO_DESTINATION, whichWayDirection, startingGateStatus);
-    }
-
-    @Deprecated
-    public MudLocationDirectionGate addGate(String gateName, String locationID, String fromDirection, String theTooLocationID, GateDirection whichWayDirection, GateStatus startingGateStatus) {
-
-        // find the from location
-        MudLocation fromLocation = gameLocations().get(locationID);
-
-        String toLocationId;
-        String toLocationDirection="";
-
-        if(theTooLocationID==null || theTooLocationID.length()==0) {
-            // find the to Location
-            MudLocationExit exit = fromLocation.exitFor(fromDirection);
-            toLocationId = exit.getDestinationId();
-            MudLocation toLocation = gameLocations().get(toLocationId);
-
-            MudLocationExit exitLeadingBackToFromLocation = toLocation.exitWhichLeadsTo(fromLocation.getLocationId());
-            toLocationDirection = exitLeadingBackToFromLocation.getDirection();
-
-        }else{
-            toLocationId = theTooLocationID;
-        }
-        MudLocation toLocation = gameLocations().get(toLocationId);
-
-
-        // create a gate for the game that sits between those locations
-        //MudLocationDirectionGate gate = new MudLocationDirectionGate(fromLocation, fromDirection, toLocation, toLocationDirection, whichWayDirection, startingGateStatus);
-        // for definitions we don't store object references, just the ids
-        MudLocationDirectionGate gate = new MudLocationDirectionGate(fromLocation.getLocationId(), fromDirection, toLocation.getLocationId(), toLocationDirection, whichWayDirection, startingGateStatus);
-        gate.gateIsNamed(gateName);
-
-        gateManager.addGate(gate);
-
-        return gate;
-
-        //add the gate to the location
-
-        // if BOTH_WAYS then find the to location and add a gate to that location
-
-
-    }
-
     public IdGenerator getIdGenerator() {
         return this.theIdGenerator;
     }
