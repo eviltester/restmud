@@ -2,6 +2,7 @@ package uk.co.compendiumdev.restmud.engine.game;
 
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationDirectionGate;
+import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationExit;
 import uk.co.compendiumdev.restmud.engine.game.parser.VerbToken;
 import uk.co.compendiumdev.restmud.engine.game.playerevents.BroadcastGameMessage;
 import uk.co.compendiumdev.restmud.engine.game.playerevents.PlayerEvents;
@@ -214,23 +215,40 @@ public class GameCommandProcessor {
             return new ResultOutput(LastAction.createSuccess("Successfully Turned Off lights in location " + locationId));
         }
 
+        // TODO: this should be using exit names rather than to and from locations
         public ResultOutput closeGate(String fromLocation, String toLocation) {
-
-            MudLocationDirectionGate gate = game.getGateManager().getGateBetween(
-                                                game.getGameLocations().get(fromLocation), game.getGameLocations().get(toLocation));
-            gate.close();
-
-            return new ResultOutput(LastAction.createSuccess("Successfully Closed Gate from " + fromLocation + " to " + toLocation));
-        }
+            return openCloseGate(false, fromLocation, toLocation);        }
 
         public ResultOutput openGate(String fromLocation, String toLocation) {
-
-            MudLocationDirectionGate gate = game.getGateManager().getGateBetween(
-                                                    game.getGameLocations().get(fromLocation), game.getGameLocations().get(toLocation));
-            gate.open();
-
-            return new ResultOutput(LastAction.createSuccess("Successfully Opened Gate from " + fromLocation + " to " + toLocation));
+            return openCloseGate(true, fromLocation, toLocation);
         }
+
+        private ResultOutput openCloseGate(boolean openit, String fromLocation, String toLocation) {
+            MudLocationExit exit = game.getGameLocations().get(fromLocation).exitWhichLeadsTo(toLocation);
+
+            if(exit==null){
+                return new ResultOutput(LastAction.createError("Could not find exit " + fromLocation + " to " + toLocation));
+            }
+
+            if(!exit.isGated()){
+                return new ResultOutput(LastAction.createError("Exit is not gated " + fromLocation + " to " + toLocation));
+            }
+
+            MudLocationDirectionGate gate = game.getGateManager().getGateNamed(exit.getGateName());
+
+            if(gate==null){
+                return new ResultOutput(LastAction.createError("Could not find gate named " + exit.getGateName() + " from " + fromLocation + " to " + toLocation));
+            }
+
+            if(openit) {
+                gate.open();
+                return new ResultOutput(LastAction.createSuccess("Successfully Opened Gate from " + fromLocation + " to " + toLocation));
+            }else{
+                gate.close();
+                return new ResultOutput(LastAction.createSuccess("Successfully Closed Gate " + exit.getGateName() + " from " + fromLocation + " to " + toLocation));
+            }
+        }
+
 
         public ResultOutput broadcast(final String message) {
             game.broadcastMessages().wizardBroadcaseMessage(message);

@@ -8,10 +8,7 @@ import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameEntityCreator;
-import uk.co.compendiumdev.restmud.engine.game.locations.GateDirection;
-import uk.co.compendiumdev.restmud.engine.game.locations.GateStatus;
-import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
-import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationDirectionGate;
+import uk.co.compendiumdev.restmud.engine.game.locations.*;
 import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
@@ -78,15 +75,27 @@ public class VerbCloseHandlerTest {
     }
 
     @Test
-    public void cannotCloseANonExistantGate(){
+    public void cannotCloseANonExistantExit(){
 
-        final MudLocationDirectionGate gate =
-                game.getGateManager().getGateGoingFromHereInThatDirection(room1, "w");
+        final MudLocationExit exit = room1.exitFor("w");
 
-        Assert.assertNull("Expected No Gate Going West based on defn", gate);
+        Assert.assertNull("Expected No Gate or exit Going West based on defn", exit);
 
         VerbCloseHandler closeHandler =  new VerbCloseHandler().setGame(game);
         final LastAction action = closeHandler.doVerb(player, "w");
+
+        Assert.assertTrue( action.isFail());
+    }
+
+    @Test
+    public void cannotCloseANonExistantGate(){
+
+        final MudLocationDirectionGate gate = game.getGateManager().getGateNamed("bobsgate");
+
+        Assert.assertNull("Expected No Gate or exit Going West based on defn", gate);
+
+        VerbCloseHandler closeHandler =  new VerbCloseHandler().setGame(game);
+        final LastAction action = closeHandler.doVerb(player, "bobsgate");
 
         Assert.assertTrue( action.isFail());
     }

@@ -17,21 +17,6 @@ public class MudGameGateCollection {
         gates.put(gate.getGateName(), gate);
     }
 
-    public MudLocationDirectionGate getGateBetween(MudLocation location, MudLocation destination) {
-
-        for (MudLocationDirectionGate aGate : gates.values()) {
-            if (location == aGate.fromLocation && destination == aGate.toLocation) {
-                return aGate;
-            }
-
-            if (location == aGate.toLocation && destination == aGate.fromLocation) {
-                return aGate;
-            }
-        }
-
-        return null;
-    }
-
     public List<MudLocationDirectionGate> getGatesHere(MudLocation location) {
 
         // if nowhere then no gates
@@ -41,19 +26,6 @@ public class MudGameGateCollection {
 
         List<String> gateNames = location.getExitGateNames();
         return getGatesNamed(gateNames);
-
-        // TODO: remove old approach for finding gates
-// List<MudLocationDirectionGate> foundGates = new ArrayList<>();
-//        for (MudLocationDirectionGate aGate : gates.values()) {
-//            if (location == aGate.fromLocation) {
-//                foundGates.add(aGate);
-//            }
-//
-//            if (location == aGate.toLocation && aGate.getGateDirection() == GateDirection.BOTH_WAYS) {
-//                foundGates.add(aGate);
-//            }
-//        }
-//        return foundGates;
     }
 
     private List<MudLocationDirectionGate> getGatesNamed(final List<String> gateNames) {
@@ -67,22 +39,6 @@ public class MudGameGateCollection {
             }
         }
         return foundGates;
-    }
-
-    public MudLocationDirectionGate getGateGoingFromHereInThatDirection(MudLocation location, String baseDirection) {
-        for (MudLocationDirectionGate aGate : gates.values()) {
-            if (location == aGate.fromLocation && aGate.getFromDirection().toLowerCase().contentEquals(baseDirection.toLowerCase())) {
-                return aGate;
-            }
-
-            if (location == aGate.toLocation && aGate.getGateDirection() == GateDirection.BOTH_WAYS) {
-                if (aGate.getToDirection().toLowerCase().contentEquals(baseDirection.toLowerCase())) {
-                    return aGate;
-                }
-            }
-        }
-
-        return null;
     }
 
     public List<IdDescriptionPair> getGatesAsIdDescriptionPairs() {
@@ -103,10 +59,6 @@ public class MudGameGateCollection {
 
     public MudLocationDirectionGate getGateNamed(String gateName) {
         return gates.get(gateName);
-    }
-
-    public LastAction closeGate(MudLocation location, String baseDirection) {
-        return swingGateInDirection(false, location, baseDirection);
     }
 
     public LastAction openGate(final String gateName) {
@@ -147,61 +99,6 @@ public class MudGameGateCollection {
         if (!open && !gateBetween.isOpen()) {
             return LastAction.createError("But the way is already closed!");
         }
-
-        // it must be closed, so open it
-        if (open) {
-            if (gateBetween.getCanPlayerOpen()) {
-                gateBetween.open();
-            } else {
-                return LastAction.createError("No, you can't open " + gateBetween.shortDescription() + "!");
-            }
-        } else {
-            if (gateBetween.getCanPlayerClose()) {
-                gateBetween.close();
-            } else {
-                return LastAction.createError("No, you can't close " + gateBetween.shortDescription() + "!");
-            }
-        }
-
-        return LastAction.createSuccess("OK, you " + openClose + " " + gateBetween.shortDescription());
-    }
-
-    @Deprecated
-    private LastAction swingGateInDirection(boolean open, MudLocation location, String baseDirection) {
-
-
-        // TODO: amend the game definitions and code so that this is not used
-        System.out.println("WARNING LEGACY GATE OPENING CODE CALLED");
-
-        String openClose = "open";
-
-        if (!open) {
-            openClose = "close";
-        }
-
-
-        MudLocationDirectionGate gateBetween = getGateGoingFromHereInThatDirection(location, baseDirection);
-
-        // cannot open a non-existant gate or one that is hidden normally
-        if (gateBetween == null || !gateBetween.isVisible()) {
-            // There is no gate
-            // if it is a direction then can I go that way?
-            if (!location.canGo(baseDirection)) {
-                return LastAction.createError("But I can't even go that way, how could I " + openClose + " something there?");
-            } else {
-                return LastAction.createError("There is nothing to " + openClose + " that way");
-            }
-        }
-
-        // is the gate already in the state we want?
-        if (gateBetween.isOpen() && open) {
-            return LastAction.createError("But the way is already open!");
-        }
-
-        if (!open && !gateBetween.isOpen()) {
-            return LastAction.createError("But the way is already closed!");
-        }
-
 
         // it must be closed, so open it
         if (open) {
