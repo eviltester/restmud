@@ -1,18 +1,8 @@
 package uk.co.compendiumdev.restmud.engine.game.verbs.handlers;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import uk.co.compendiumdev.restmud.engine.game.GameGenerator;
-import uk.co.compendiumdev.restmud.engine.game.MudGame;
-import uk.co.compendiumdev.restmud.engine.game.MudUser;
-import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
-import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameEntityCreator;
-import uk.co.compendiumdev.restmud.engine.game.locations.GateDirection;
-import uk.co.compendiumdev.restmud.engine.game.locations.GateStatus;
-import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
-import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationDirectionGate;
-import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
+
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class DefaultVerbHandlerTest {

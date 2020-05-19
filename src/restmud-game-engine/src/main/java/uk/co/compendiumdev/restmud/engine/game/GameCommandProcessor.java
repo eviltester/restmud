@@ -1,7 +1,6 @@
 package uk.co.compendiumdev.restmud.engine.game;
 
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationDirectionGate;
-import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationExit;
 import uk.co.compendiumdev.restmud.engine.game.parser.VerbToken;
 import uk.co.compendiumdev.restmud.engine.game.playerevents.BroadcastGameMessage;
 import uk.co.compendiumdev.restmud.engine.game.playerevents.PlayerEvents;

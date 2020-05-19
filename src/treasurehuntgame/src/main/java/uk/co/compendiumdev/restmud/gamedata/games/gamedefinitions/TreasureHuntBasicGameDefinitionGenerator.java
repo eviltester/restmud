@@ -3,7 +3,6 @@ package uk.co.compendiumdev.restmud.gamedata.games.gamedefinitions;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.GameDefinitionPopulator;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinition;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameEntityCreator;
-import uk.co.compendiumdev.restmud.engine.game.locations.GateDirection;
 import uk.co.compendiumdev.restmud.engine.game.locations.GateStatus;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.scripting.PriorityTurnCondition;
@@ -15,9 +14,6 @@ import uk.co.compendiumdev.restmud.engine.game.things.MudCollectableTemplate;
 import uk.co.compendiumdev.restmud.engine.game.things.MudLocationObject;
 import uk.co.compendiumdev.restmud.engine.game.verbs.VerbGameAbilities;
 
-/**
- * Created by Alan on 17/09/2017.
- */
 public class TreasureHuntBasicGameDefinitionGenerator implements GameDefinitionPopulator {
     public void define(MudGameDefinition defn) {
 
