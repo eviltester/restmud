@@ -20,7 +20,7 @@ public class VerbGoHandlerTest {
 
     private static MudGame game;
     private static MudUser player;
-    MudLocation room1;
+
     String closedgatename = "closedsouthgate";
     String openedgatename = "openeastgate";
 
@@ -42,7 +42,7 @@ public class VerbGoHandlerTest {
             // north from room 1 is a local condition so should fail when no conditions are setup
             // e and west from 1 have one way gates which can be opened and closed
 
-            room1 = create.location("1", "Room 1", "the room to the north", "n:local,s:2");
+            create.location("1", "Room 1", "the room to the north", "n:local,s:2");
             // note e:3 is invalid destination
             create.location("2","Room 2", "the room to the south", "n:1,e:3");
 

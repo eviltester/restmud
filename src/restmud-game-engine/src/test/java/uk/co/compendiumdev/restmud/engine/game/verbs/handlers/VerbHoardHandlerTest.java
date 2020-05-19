@@ -18,9 +18,9 @@ public class VerbHoardHandlerTest {
 
     private static MudGame game;
     private static MudUser player;
-    MudLocation takeroom;
-    MudLocation droproom;
-    private MudCollectable thing;
+
+
+
 
     class VerbHandlerGame implements GameGenerator {
         @Override
@@ -30,12 +30,12 @@ public class VerbHoardHandlerTest {
 
             MudGameEntityCreator create = defn.creator();
 
-            takeroom = create.location("1", "Room 1", "the room to the left", "e:2").setCanHoardTreasureHere(true);
-            droproom = create.location("2","Room 2", "the room to the right", "w:1").setCanHoardTreasureHere(false);
+            create.location("1", "Room 1", "the room to the left", "e:2").setCanHoardTreasureHere(true);
+            create.location("2","Room 2", "the room to the right", "w:1").setCanHoardTreasureHere(false);
 
-            thing = create.collectable("athing", "A Thing", "1").canHoard(true,200);
-            thing = create.collectable("somejunk", "A Piece of Junk", "1").canHoard(false,100);
-            thing = create.collectable("realjunk", "A Real Piece of Junk", "1").canHoard(true,-200);
+            create.collectable("athing", "A Thing", "1").canHoard(true,200);
+            create.collectable("somejunk", "A Piece of Junk", "1").canHoard(false,100);
+            create.collectable("realjunk", "A Real Piece of Junk", "1").canHoard(true,-200);
 
             game.initFromDefinition(defn);
 

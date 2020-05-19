@@ -19,9 +19,7 @@ public class VerbDropHandlerTest {
 
     private static MudGame game;
     private static MudUser player;
-    MudLocation takeroom;
-    MudLocation droproom;
-    private MudCollectable thing;
+
 
     class VerbHandlerGame implements GameGenerator {
         @Override
@@ -31,10 +29,10 @@ public class VerbDropHandlerTest {
 
             MudGameEntityCreator create = defn.creator();
 
-            takeroom = create.location("1", "Room 1", "the room to the left", "e:2");
-            droproom = create.location("2","Room 2", "the room to the right", "w:1");
+            create.location("1", "Room 1", "the room to the left", "e:2");
+            create.location("2","Room 2", "the room to the right", "w:1");
 
-            thing = create.collectable("athing", "A Thing", "1");
+            create.collectable("athing", "A Thing", "1");
 
             game.initFromDefinition(defn);
 

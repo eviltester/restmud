@@ -22,8 +22,6 @@ public class VerbDarkenHandlerTest {
 
     private static MudGame game;
     private static MudUser player;
-    MudLocation darkroom;
-    MudLocation lightroom;
 
     class VerbHandlerGame implements GameGenerator {
         @Override
@@ -33,18 +31,18 @@ public class VerbDarkenHandlerTest {
 
             MudGameEntityCreator create = defn.creator();
 
-            lightroom = create.location("1", "Room 1", "the dark room to the left", "e:2");
-            lightroom.makeLight();
-            darkroom = create.location("2","Room 2", "the light room to the right", "w:1");
-            darkroom.makeDark();
+            create.location("1", "Room 1", "the dark room to the left", "e:2").
+                    makeLight();
+            create.location("2","Room 2", "the light room to the right", "w:1").
+                    makeDark();
 
             create.collectable("atorch", "A Torch", "1").
                     addsToggleAbility(VerbGameAbilities.ILLUMINATE_DARKEN,100, false);
 
             game.initFromDefinition(defn);
-
         }
     }
+
     @Before
     public void setupTheGame(){
         GameInitializer theGameInit = new GameInitializer();
