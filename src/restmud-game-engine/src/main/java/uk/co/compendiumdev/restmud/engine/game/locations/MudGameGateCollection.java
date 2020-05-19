@@ -195,13 +195,18 @@ public class MudGameGateCollection {
                     exitFor(gate.getToDirection());
 
             if(toExit!=null) {
-                toExit.setGateName(gate.getGateName());
+                if(gate.getWhichWayDirection()!=GateDirection.ONE_WAY){
+                    toExit.setGateName(gate.getGateName());
+                }else{
+                    System.out.println("Do not add a gate on exit route if it is one way");
+                }
+
             }else{
                 // may have been a one way gate
                 if(gate.getWhichWayDirection()!=GateDirection.ONE_WAY){
                     // todo: handle and report possible syntax error no to location
                     System.out.println("Found a gate without a way back that is not defined as one way: " + gate.getGateName());
-                }else{
+
                     // handle legacy exit creation
                     toExit = new MudLocationExit(gate.getToLocationId(), gate.getToDirection(), gate.getFromLocationId());
                     // if gate is secret then this exit should also be secret

@@ -73,7 +73,9 @@ public class MudLocationParser {
 
                     MudLocationExit anExit = new MudLocationExit(fromLocationId, direction, destination);
 
-                    for (String attribute : routeExitPair) {
+                    // bug, need to iterate over 2 and beyond, not 0 and 1 because they have been handled
+                    for (int attributeId=2; attributeId<routeExitPair.length; attributeId++) {
+                        String attribute = routeExitPair[attributeId];
                         // look for attributes
                         switch (attribute.toLowerCase()) {
                             case "secret":

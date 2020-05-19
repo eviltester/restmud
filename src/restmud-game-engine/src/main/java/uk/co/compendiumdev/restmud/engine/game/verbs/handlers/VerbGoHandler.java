@@ -36,20 +36,27 @@ public class VerbGoHandler   implements VerbHandler {
             if(exit.isLocal()){
                 // delegate movement to the game itself
                 // handled by a VerbCondition or a LocationCondition
+                // if we are here then the condition didn't handle it and add LastAction so
+                // report that we can't go that way
                 lastAction = LastAction.createError("I can't go that way at the moment");
             }else {
 
-                MudLocation destination = game.getGameLocations().get(exit.getDestinationId());
+                MudLocationDirectionGate gateBetween=null;
 
-                // is there a gate between here and there?
-                MudLocationDirectionGate gateBetween = game.getGateManager().getGateBetween(location, destination);
+                if(exit.isGated()){
+                    // I can only go through visible gates
+                    gateBetween = game.getGateManager().getGateNamed(exit.getGateName());
 
-                if(gateBetween != null) {
-                    // can the gate impact my direction of travel?
-                    if (gateBetween.mightBlock(location, destination, baseDirection)) {
+                    if(gateBetween == null) {
+                        System.out.println(String.format("WARNING EXIT HAS GATE BUT NO GATE FOUND named %s in location %s",
+                                            exit.getGateName(), location.getLocationId()));
+                    }else{
                         return goThroughGate(player, gateBetween, baseDirection);
                     }
                 }
+
+
+                MudLocation destination = game.getGameLocations().get(exit.getDestinationId());
 
                 // TODO: destination would only be null if we could not find it above
                 //  so we should have a syntax check in the definition to make sure that all defined destinations exist
@@ -63,15 +70,6 @@ public class VerbGoHandler   implements VerbHandler {
             }
 
         }else{
-
-            // perhaps it is a secret gate and not a direction?
-            MudLocationDirectionGate gateBetween = game.getGateManager().getGateGoingFromHereInThatDirection(location, baseDirection);
-            if(gateBetween!= null) {
-                if(gateBetween.isVisible()){
-                    return goThroughGate(player, gateBetween, baseDirection);
-                }
-            }
-
             lastAction = LastAction.createError("You can't go " + nounPhrase);
         }
 

@@ -20,6 +20,7 @@ public class MudLocationParserTest {
         Assert.assertEquals("e",exit.getDirection());
         Assert.assertTrue(exit.isVisible());
         Assert.assertFalse(exit.isLocal());
+        Assert.assertFalse(exit.isGated());
     }
 
     @Test
@@ -28,6 +29,7 @@ public class MudLocationParserTest {
         final Map<String, MudLocationExit> exits = new MudLocationParser("1").parse("");
         Assert.assertNotNull(exits);
         Assert.assertEquals(0, exits.size());
+
     }
 
     @Test
@@ -43,6 +45,7 @@ public class MudLocationParserTest {
         Assert.assertEquals("n",exit.getDirection());
         Assert.assertTrue(exit.isVisible());
         Assert.assertFalse(exit.isLocal());
+        Assert.assertFalse(exit.isGated());
 
         exit = exits.get("w");
         Assert.assertNotNull(exit);
@@ -51,6 +54,7 @@ public class MudLocationParserTest {
         Assert.assertEquals("w",exit.getDirection());
         Assert.assertTrue(exit.isVisible());
         Assert.assertFalse(exit.isLocal());
+        Assert.assertFalse(exit.isGated());
     }
 
     @Test
@@ -66,6 +70,7 @@ public class MudLocationParserTest {
         Assert.assertEquals("n",exit.getDirection());
         Assert.assertFalse(exit.isVisible());
         Assert.assertFalse(exit.isLocal());
+        Assert.assertFalse(exit.isGated());
     }
 
     @Test
@@ -80,6 +85,7 @@ public class MudLocationParserTest {
         Assert.assertEquals("n",exit.getDirection());
         Assert.assertTrue(exit.isVisible());
         Assert.assertTrue(exit.isLocal());
+        Assert.assertFalse(exit.isGated());
     }
 
     @Test
@@ -94,6 +100,7 @@ public class MudLocationParserTest {
         Assert.assertEquals("n",exit.getDirection());
         Assert.assertFalse(exit.isVisible());
         Assert.assertTrue(exit.isLocal());
+        Assert.assertFalse(exit.isGated());
     }
 
     // TODO: parser can report errors in the parsing
