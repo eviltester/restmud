@@ -119,20 +119,18 @@ public class RestMudWizServer {
     public String wizClosesExitFromLocationToLocation(Request request, Response response) {
         apiUserMustBeAuthenticatedAsAWizard(request);
 
-        String fromLocation = request.queryParams("location");
-        String toLocation = request.queryParams("toLocation");
+        String gateName = request.queryParams("gatename");
 
-        ResultOutput resultOutput = game.getCommandProcessor().wizardCommands().closeGate(fromLocation, toLocation);
+        ResultOutput resultOutput = game.getCommandProcessor().wizardCommands().closeGate(gateName);
         return FormatResultOutputAsJSendOutput.asString(resultOutput, response);
     }
 
     public String wizOpensExitFromLocationToLocation(Request request, Response response) {
         apiUserMustBeAuthenticatedAsAWizard(request);
 
-        String fromLocation = request.queryParams("location");
-        String toLocation = request.queryParams("toLocation");
+        String gateName = request.queryParams("gatename");
 
-        ResultOutput resultOutput = game.getCommandProcessor().wizardCommands().openGate(fromLocation, toLocation);
+        ResultOutput resultOutput = game.getCommandProcessor().wizardCommands().openGate(gateName);
         return FormatResultOutputAsJSendOutput.asString(resultOutput, response);
     }
 

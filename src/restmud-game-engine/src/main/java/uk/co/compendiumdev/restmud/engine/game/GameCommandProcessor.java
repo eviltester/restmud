@@ -214,37 +214,26 @@ public class GameCommandProcessor {
             return new ResultOutput(LastAction.createSuccess("Successfully Turned Off lights in location " + locationId));
         }
 
-        // TODO: this should be using exit names rather than to and from locations
-        public ResultOutput closeGate(String fromLocation, String toLocation) {
-            return openCloseGate(false, fromLocation, toLocation);        }
+        public ResultOutput closeGate(String gateName) {
+            return openCloseGate(false, gateName);        }
 
-        public ResultOutput openGate(String fromLocation, String toLocation) {
-            return openCloseGate(true, fromLocation, toLocation);
+        public ResultOutput openGate(String gateName) {
+            return openCloseGate(true, gateName);
         }
 
-        private ResultOutput openCloseGate(boolean openit, String fromLocation, String toLocation) {
-            MudLocationExit exit = game.getGameLocations().get(fromLocation).exitWhichLeadsTo(toLocation);
-
-            if(exit==null){
-                return new ResultOutput(LastAction.createError("Could not find exit " + fromLocation + " to " + toLocation));
-            }
-
-            if(!exit.isGated()){
-                return new ResultOutput(LastAction.createError("Exit is not gated " + fromLocation + " to " + toLocation));
-            }
-
-            MudLocationDirectionGate gate = game.getGateManager().getGateNamed(exit.getGateName());
+        private ResultOutput openCloseGate(boolean openit, String gateName) {
+            MudLocationDirectionGate gate = game.getGateManager().getGateNamed(gateName);
 
             if(gate==null){
-                return new ResultOutput(LastAction.createError("Could not find gate named " + exit.getGateName() + " from " + fromLocation + " to " + toLocation));
+                return new ResultOutput(LastAction.createError("Could not find gate named " + gateName));
             }
 
             if(openit) {
                 gate.open();
-                return new ResultOutput(LastAction.createSuccess("Successfully Opened Gate from " + fromLocation + " to " + toLocation));
+                return new ResultOutput(LastAction.createSuccess("Successfully Opened Gate named " + gateName));
             }else{
                 gate.close();
-                return new ResultOutput(LastAction.createSuccess("Successfully Closed Gate " + exit.getGateName() + " from " + fromLocation + " to " + toLocation));
+                return new ResultOutput(LastAction.createSuccess("Successfully Closed Gate named " + gateName));
             }
         }
 

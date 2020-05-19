@@ -1,20 +1,12 @@
 package uk.co.compendiumdev.restmud.engine.game.locations;
 
 /**
- * TODO: a gate should not care where it is going from and to, the exit handles this
+ * A gate does not care where it is going from and to, the exit handles this
  * - the gate should know if it is open, closed, hidden, auto close, auto hide and if player closeable
  * - similarly gate should not know if it one way or two way, it doesn't care
+ *
  */
 public class MudLocationDirectionGate {
-
-    /* TODO: deprecated fields in gate */
-    public MudLocation fromLocation;
-    public MudLocation toLocation;
-    private GateDirection whichWayDirection;
-    private String fromDirection;
-    private String toLocationDirection;
-    private String toLocationId;
-    private String fromLocationId;
 
     /* TODO: these are the fields we actually want in gate - refactor till this is all */
     private GateStatus gateOpenStatus;
@@ -36,25 +28,6 @@ public class MudLocationDirectionGate {
         this.gateOpenStatus = initialStatus;
     }
 
-    // TODO: can this be simplified? is it easier to use flags for blocking and opening doors etc
-    //       or have blocks which are active on specific flags
-
-    /* avoid all location stuff because that is on the exit definitions */
-    @Deprecated
-    public MudLocationDirectionGate createCopy(MudLocation fromLocation, MudLocation toLocation) {
-        MudLocationDirectionGate copyGate = new MudLocationDirectionGate(fromLocation, this.fromDirection, toLocation, this.toLocationDirection, this.whichWayDirection, this.gateOpenStatus);
-        copyGate.setClosedDescription(this.closedDescription);
-        copyGate.setShortDescription(this.shortDescription);
-        copyGate.setThroughDescription(this.throughDescription);
-        copyGate.gateIsHidden(this.isHidden);
-        copyGate.gateAutoCloses(this.autoCloses);
-        copyGate.gateAutoHides(this.autohides);
-        copyGate.gateIsNamed(this.gateName);
-        copyGate.playerCanOpen(this.canPlayerOpen);
-        copyGate.playerCanClose(this.canPlayerClose);
-        return copyGate;
-
-    }
     public MudLocationDirectionGate createCopy() {
         MudLocationDirectionGate copyGate = new MudLocationDirectionGate(this.gateName, this.gateOpenStatus);
         copyGate.setClosedDescription(this.closedDescription);
@@ -68,37 +41,6 @@ public class MudLocationDirectionGate {
         return copyGate;
     }
 
-
-    /* avoid all location stuff because that is on the exit definitions */
-    @Deprecated
-    public MudLocationDirectionGate(MudLocation fromLocation, String fromDirection, MudLocation toLocation, String toLocationDirection, GateDirection whichWayDirection, GateStatus startingGateStatus) {
-
-        setDefaults();
-
-        this.fromLocation = fromLocation;
-        this.fromLocationId = fromLocation.getLocationId();
-        this.toLocation = toLocation;
-        this.toLocationId = toLocation.getLocationId();
-        this.gateOpenStatus = startingGateStatus;
-        this.whichWayDirection = whichWayDirection;
-        this.fromDirection = fromDirection.toLowerCase();  // the direction that goes from -> to
-        this.toLocationDirection= toLocationDirection.toLowerCase();   // the direction that goes to -> from
-    }
-
-    // this constructor used for definitions only, TODO: should really make this a new object I suppose
-    /* avoid all location stuff because that is on the exit definitions */
-    @Deprecated
-    public MudLocationDirectionGate(String fromLocationId, String fromDirection, String toLocationId, String toLocationDirection, GateDirection whichWayDirection, GateStatus startingGateStatus) {
-
-        setDefaults();
-
-        this.fromLocationId = fromLocationId;
-        this.toLocationId = toLocationId;
-        this.gateOpenStatus = startingGateStatus;
-        this.whichWayDirection = whichWayDirection;
-        this.fromDirection = fromDirection.toLowerCase();  // the direction that goes from -> to
-        this.toLocationDirection= toLocationDirection.toLowerCase();   // the direction that goes to -> from
-    }
 
     private void setDefaults() {
         this.shortDescription = "the door";
@@ -179,11 +121,6 @@ public class MudLocationDirectionGate {
         return this;
     }
 
-    public MudLocationDirectionGate gateIsNamed(String aName) {
-        this.gateName = aName.toLowerCase();
-        return this;
-    }
-
     public String getGateName() {
         return gateName.toLowerCase();
     }
@@ -202,14 +139,6 @@ public class MudLocationDirectionGate {
         return !isHidden;
     }
 
-    public String getFromDirection() {
-        return fromDirection;
-    }
-
-    public String getToDirection() {
-        return toLocationDirection;
-    }
-
     public boolean getCanPlayerOpen() {
         return canPlayerOpen;
     }
@@ -220,18 +149,6 @@ public class MudLocationDirectionGate {
 
     public boolean getAutoCloses() {
         return autoCloses;
-    }
-
-    public String getFromLocationId() {
-        return fromLocationId;
-    }
-
-    public String getToLocationId() {
-        return toLocationId;
-    }
-
-    public GateDirection getWhichWayDirection() {
-        return whichWayDirection;
     }
 
     public void because(String reason) {
