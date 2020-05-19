@@ -42,7 +42,7 @@ public class VerbGoHandler   implements VerbHandler {
                 MudLocationDirectionGate gateBetween=null;
 
                 if(exit.isGated()){
-                    // I can only go through visible gates
+
                     gateBetween = game.getGateManager().getGateNamed(exit.getGateName());
 
                     if(gateBetween == null) {

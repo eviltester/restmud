@@ -105,17 +105,73 @@ public class MudGameGateCollection {
         return gates.get(gateName);
     }
 
-
-    public LastAction openGate(MudLocation location, String baseDirection) {
-        return swingGateInDirection(true, location, baseDirection);
-    }
-
     public LastAction closeGate(MudLocation location, String baseDirection) {
         return swingGateInDirection(false, location, baseDirection);
     }
 
+    public LastAction openGate(final String gateName) {
+        return swingGate(true, gateName);
+    }
+
+    public LastAction closeGate(final String gateName) {
+        return swingGate(false, gateName);
+    }
+
+    private LastAction swingGate(boolean open, String gateName) {
+
+
+        String openClose = "open";
+
+        if (!open) {
+            openClose = "close";
+        }
+
+        MudLocationDirectionGate gateBetween = getGateNamed(gateName);
+
+        // cannot open a non-existant gate
+        if (gateBetween == null){
+            return LastAction.createError("Are you sure you can " + openClose + " " + gateName + "?");
+        }
+
+        // cannot open a gate that is hidden normally
+        if (!gateBetween.isVisible()) {
+            // There is no gate... that I can see
+            return LastAction.createError("I don't see anything to " + openClose + " that way");
+        }
+
+        // is the gate already in the state we want?
+        if (gateBetween.isOpen() && open) {
+            return LastAction.createError("But the way is already open!");
+        }
+
+        if (!open && !gateBetween.isOpen()) {
+            return LastAction.createError("But the way is already closed!");
+        }
+
+        // it must be closed, so open it
+        if (open) {
+            if (gateBetween.getCanPlayerOpen()) {
+                gateBetween.open();
+            } else {
+                return LastAction.createError("No, you can't open " + gateBetween.shortDescription() + "!");
+            }
+        } else {
+            if (gateBetween.getCanPlayerClose()) {
+                gateBetween.close();
+            } else {
+                return LastAction.createError("No, you can't close " + gateBetween.shortDescription() + "!");
+            }
+        }
+
+        return LastAction.createSuccess("OK, you " + openClose + " " + gateBetween.shortDescription());
+    }
+
+    @Deprecated
     private LastAction swingGateInDirection(boolean open, MudLocation location, String baseDirection) {
 
+
+        // TODO: amend the game definitions and code so that this is not used
+        System.out.println("WARNING LEGACY GATE OPENING CODE CALLED");
 
         String openClose = "open";
 
@@ -221,4 +277,5 @@ public class MudGameGateCollection {
             }
         }
     }
+
 }

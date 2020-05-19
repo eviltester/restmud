@@ -28,16 +28,21 @@ public class VerbOpenHandler implements VerbHandler {
         }
         MudLocation location = game.getGameLocations().get(player.getLocationId());
 
-        // TODO: this doesn't actually check for gates, it checks for exits
-        if(location.canGo(baseDirection) ){
-            MudLocationExit exit = location.exitFor(baseDirection);
-            if(exit!=null && exit.isLocal()){
-                // no local handling for gates yet
-                return LastAction.createError("I don't know how to open that way");
-            }
+        if(!location.canGo(baseDirection) ) {
+            return LastAction.createError("I don't know how to open that way");
         }
 
-        return game.getGateManager().openGate(location, baseDirection);
+        MudLocationExit exit = location.exitFor(baseDirection);
+        if(exit.isLocal()){
+            // no local handling for gates yet
+            return LastAction.createError("I don't know how to open that way");
+        }
+
+        if(exit.isGated()) {
+            return game.getGateManager().openGate(exit.getGateName());
+        }else{
+            return LastAction.createError("There is nothing to open that way");
+        }
 
     }
 
