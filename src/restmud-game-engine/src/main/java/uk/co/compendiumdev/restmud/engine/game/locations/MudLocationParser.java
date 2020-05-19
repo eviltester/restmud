@@ -4,6 +4,20 @@ package uk.co.compendiumdev.restmud.engine.game.locations;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+
+locations and exists are a string e.g "e:2,n:4"
+
+- comma separated exit definitions
+- where an exit definition has the attributes separated by `:`
+- the first two items are the 'exit' and the 'destination'
+- any remaining items are attributes e.g. secret "e:2:secret"
+- local can be used as the destination
+    - to signify that a local condition handler is used for the exit control
+    - and any verbs that act on destinations will report that they 'cannot'
+    - the condition handlers must output a lastAction otherwise it will fall through to 'cannnot'
+
+ */
 public class MudLocationParser {
     private final String locationId;
 
@@ -37,9 +51,10 @@ public class MudLocationParser {
                                 anExit.setSecretRoute(true);
                                 break;
                             case "local":
-                                // local is purely documentation
-                                // to signify that a condition is used,
-                                // it can also be used as a destination
+                                // local signifies that a local condition should handle
+                                // this and create a lastAction
+                                // if not then go, open and close will report that
+                                // we cannot, go, open or close
                                 break;
                         }
                     }
