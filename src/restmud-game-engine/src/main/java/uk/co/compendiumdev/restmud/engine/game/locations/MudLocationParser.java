@@ -92,7 +92,7 @@ public class MudLocationParser {
                                 if(anExit.isGated()){
                                     syntaxErrors.add("Found additional gate allocation for exit: " + attribute);
                                 }
-                                // gate names can be case sensitive
+                                // gate names can not be case sensitive - they are lowercased before use
                                 anExit.setGateName(attribute);
                                 break;
                         }

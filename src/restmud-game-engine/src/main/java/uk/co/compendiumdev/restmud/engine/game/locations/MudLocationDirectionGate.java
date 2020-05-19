@@ -32,7 +32,7 @@ public class MudLocationDirectionGate {
     /* minimal constructor because gates are added to exits */
     public MudLocationDirectionGate(final String gatename, final GateStatus initialStatus) {
         setDefaults();
-        this.gateName = gatename;
+        this.gateName = gatename.toLowerCase();
         this.gateOpenStatus = initialStatus;
     }
 

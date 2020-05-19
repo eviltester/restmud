@@ -59,7 +59,7 @@ public class MudGameGateCollection {
     }
 
     public MudLocationDirectionGate getGateNamed(String gateName) {
-        return gates.get(gateName);
+        return gates.get(gateName.toLowerCase());
     }
 
     public LastAction openGate(final String gateName) {

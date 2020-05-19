@@ -71,7 +71,9 @@ public class ExampleDocumentedGameDefinitionGenerator implements GameDefinitionP
         create.location("1","The Start Test Room", "This is the room where a user starts",
                 // locations are comma separated list of attributes
                 // attributes are the direction:whereto:optionalflag
-                "N:2,E:3,S:4,W:5");
+                "N:2,E:3,S:4:northgate,W:5");
+
+        // note the northgate reference on the southexit, this says the exit is controlled by the northgate (which is defined later)
 
 
         defn.setStartLocationId("1");
@@ -99,10 +101,11 @@ public class ExampleDocumentedGameDefinitionGenerator implements GameDefinitionP
         /**
          * GATES
          *
-         * Gates can be one way, or both ways
-         * Gates can be created with minimal information e.g. from 4 going north - the gate will look for a corresponding s to match
-         * Gates can have the from, direction and to, and it will work out the 'back' direction if it can
-         *
+         * Gates control if a exit can be blocked or not
+         * Gates can be created with minimal information e.g. name and open or close status*
+         * Gates can have extra properties as to auto closing etc.
+         * Gates are assigned to exits on locations
+         * Gates have to be added to both exits for a two way gate e.g. in location 4 add a gate on an exit, and in location 6 add the gate to an exit
          *
          */
         /**
@@ -111,28 +114,34 @@ public class ExampleDocumentedGameDefinitionGenerator implements GameDefinitionP
          * The local for S:local means that we need to create a VerbCondition to handle the movement but S will always be listed as an exit
          * and if no verb condition matches then the game will trigger lastAction.Error "I can't go that way at the moment"
          */
-        create.location("4","The South Room", "This is the room south of the start room", "N:1,E:6");
+        create.location("4","The South Room", "This is the room south of the start room", "N:1:northgate,E:6:onewayeast");
 
         // a simple gate exit that says there is a gate from north to south, which starts as closed and is accessible
         // from both locations 4 and 1, it will be shown in both locations
-        defn.addGate("4", "n", GateDirection.BOTH_WAYS, GateStatus.CLOSED);
+        // because it has been added to exits on both locations
+        defn.addGate("northgate", GateStatus.CLOSED);
+
 
         create.location("6","The Room East of the South Room", "This is a room south of the start room.", "W:4");
-        // gates need both locations to exist before they are created
+        // gates do not need to exist before being used in an exit definition
         // a one way gate is only shown in the from location i.e. 4 and only impacts the from location
-        // in location 6 we would not even know that a gate existed
-        defn.addGate("4", "e", GateDirection.ONE_WAY, GateStatus.CLOSED);
+        // in location 6 we will not even know that a gate existed
+        // a one way gate is achieved by only adding the gate to a single exit
+        // e.g. see the location definition for location 4 and 6
+        // only location 4 mentions the gate
+        defn.addGate("onewayeast", GateStatus.CLOSED);
+
 
 
         /* even though S:1 is always listed, it is handled by a gate */
         /* priority is local handling with verb condition, gate handling, location handling */
-        create.location("5","The West Room", "This is the room West of the start room", "E:1,S:1");
+        create.location("5","The West Room", "This is the room West of the start room", "E:1,S:1:theTeleporter");
 
         /**
          * We can name gates so that they are accessible from scripting
          * This gate is hidden so that it doesn't show in the gates description, the way south is controlled by a gate so needs a destination e.g. S:1
          */
-        defn.addGate("theTeleporter", "5", "s", "1", GateDirection.ONE_WAY, GateStatus.CLOSED).
+        defn.addGate("theTeleporter", GateStatus.CLOSED).
                 gateIsHidden(true).     // so it never appears in the list of gates displayed
                 gateAutoCloses(true).   // so you have to press the button to activate it each time you go through
                 setShortDescription("the teleporter"). // by default a gate is called door, so this makes it 'the teleporter'
@@ -140,7 +149,7 @@ public class ExampleDocumentedGameDefinitionGenerator implements GameDefinitionP
                 playerCanOpen(false). // by default a gate can be opened by a player e.g. open s (to open the gate to the south)
                 playerCanClose(false). // we don't want the player to be able to open or close this gate - leaving this out would create a bug in the game
                 // by setting a through description we don't have to add custom rules for messages when we go through e.g. The Gate slams shut behind you as you go through
-                        setThroughDescription(". The teleporter makes an awful screeching noise and you feel as if you are being torn limb from limb. Luckily you arrive safely and clamber out");
+                setThroughDescription(". The teleporter makes an awful screeching noise and you feel as if you are being torn limb from limb. Luckily you arrive safely and clamber out");
 
         // add a location object to location "5" which we will use to control the gate
         create.locationObject("teleporterbutton", "A Teleporter Button", "Use the button to switch on the teleporter","5");
@@ -393,11 +402,11 @@ public class ExampleDocumentedGameDefinitionGenerator implements GameDefinitionP
 
 
 
-        create.location("22","A room with shown things", "The room with things that are shown", "E:12");
+        create.location("22","A room with shown things", "The room with things that are shown", "E:12:secretGate22");
         create.locationObject("asignonwall", "A Sign on the Wall", "the sign says say boo","22");
         create.locationObject("hiddensign", "A Hidden Sign", "The sign says 'hidden in plain sight'", "22").setAsSecret(true);
 
-        defn.addGate("secretGate22", "22", "e", "12", GateDirection.ONE_WAY, GateStatus.CLOSED).gateIsHidden(true);
+        defn.addGate("secretGate22", GateStatus.CLOSED).gateIsHidden(true);
 
         defn.addVerb("say");
 

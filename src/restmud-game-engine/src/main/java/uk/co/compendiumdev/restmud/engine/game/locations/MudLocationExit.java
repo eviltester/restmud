@@ -49,7 +49,7 @@ public class MudLocationExit {
     }
 
     public MudLocationExit setGateName(final String gateName) {
-        this.gateName = gateName;
+        this.gateName = gateName.toLowerCase();
         return this;
     }
 }

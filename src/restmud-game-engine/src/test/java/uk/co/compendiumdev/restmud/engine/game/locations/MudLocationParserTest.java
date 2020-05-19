@@ -118,7 +118,9 @@ public class MudLocationParserTest {
         Assert.assertEquals("n",exit.getDirection());
 
         Assert.assertTrue(exit.isGated());
-        Assert.assertEquals("Gate1", exit.getGateName());
+
+        // gate names are lowercased
+        Assert.assertEquals("gate1", exit.getGateName());
 
         Assert.assertTrue(exit.isVisible());
         Assert.assertFalse(exit.isLocal());
