@@ -188,6 +188,7 @@ public class GameCommandProcessor {
         return wizardCommands;
     }
 
+    // TODO : move to own class and add more guard controls to avoid 500 errors in wiz interface
     public class WizardCommands{
 
         private final MudGame game;
