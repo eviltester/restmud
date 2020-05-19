@@ -54,25 +54,22 @@ public class MudLocation {
     }
 
     public boolean canGo(String direction) {
-        return (destinationFor(direction) != null);
+        return (exitFor(direction) != null);
     }
 
-    public String destinationFor(String direction) {
-        if (exits.containsKey(direction.toLowerCase())) {
-            return exits.get(direction.toLowerCase()).getDestinationId();
-        }
-        return null;
+    public MudLocationExit exitFor(String direction){
+        return exits.get(direction.toLowerCase());
     }
 
-    public String directionWhichLeadsTo(String destination) {
+    public MudLocationExit exitWhichLeadsTo(String destination) {
 
         for (Map.Entry<String, MudLocationExit> anExit : exits.entrySet()) {
             MudLocationExit exitLeadsTo = anExit.getValue();
             if (exitLeadsTo.getDestinationId().toLowerCase().contentEquals(destination.toLowerCase())) {
-                return anExit.getKey();
+                return exitLeadsTo;
             }
         }
-        return "";
+        return null;
     }
 
     public Inventory collectables() {

@@ -4,6 +4,7 @@ import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.MudUser;
 import uk.co.compendiumdev.restmud.engine.game.locations.Directions;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
+import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationExit;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class VerbCloseHandler implements VerbHandler {
@@ -30,9 +31,10 @@ public class VerbCloseHandler implements VerbHandler {
         MudLocation location = game.getGameLocations().get(player.getLocationId());
 
         // is there even a gate there?
+        // TODO: this doesn't actually check for gates, it checks for exits
         if(location.canGo(baseDirection) ){
-            String destinationId = location.destinationFor(baseDirection);
-            if (destinationId.contentEquals("local")) {
+            MudLocationExit exit = location.exitFor(baseDirection);
+            if(exit!=null && exit.isLocal()){
                 // no local handling for gates yet
                 return LastAction.createError("I don't know how to close that way");
             }

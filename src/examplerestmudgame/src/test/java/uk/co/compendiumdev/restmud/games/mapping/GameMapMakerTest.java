@@ -3,6 +3,7 @@ package uk.co.compendiumdev.restmud.games.mapping;
 import uk.co.compendiumdev.restmud.engine.game.MudGame;
 import uk.co.compendiumdev.restmud.engine.game.locations.Directions;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
+import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationExit;
 import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.IdDescriptionPair;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.VisibleExit;
@@ -61,8 +62,9 @@ public class GameMapMakerTest {
             List<VisibleExit> exits = location.getVisibleExits();
 
             for( VisibleExit exit : exits){
-                String direction = exit.direction;
-                String goesTo = location.destinationFor(direction);
+                MudLocationExit actualExit = location.exitFor(exit.direction);
+                String direction = actualExit.getDirection();
+                String goesTo = actualExit.getDestinationId();
 
                 System.out.println(String.format("%s:%s -> %s:%s [ label = \"%s\"];", id, direction.toLowerCase(), goesTo, new Directions().findOppositeDirection(direction),direction.toUpperCase()));
 

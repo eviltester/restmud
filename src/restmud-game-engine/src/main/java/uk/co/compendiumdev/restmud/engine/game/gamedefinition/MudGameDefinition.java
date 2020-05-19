@@ -156,9 +156,12 @@ public class MudGameDefinition {
 
         if(theTooLocationID==null || theTooLocationID.length()==0) {
             // find the to Location
-            toLocationId = fromLocation.destinationFor(fromDirection);
+            MudLocationExit exit = fromLocation.exitFor(fromDirection);
+            toLocationId = exit.getDestinationId();
             MudLocation toLocation = gameLocations().get(toLocationId);
-            toLocationDirection = toLocation.directionWhichLeadsTo(fromLocation.getLocationId());
+
+            MudLocationExit exitLeadingBackToFromLocation = toLocation.exitWhichLeadsTo(fromLocation.getLocationId());
+            toLocationDirection = exitLeadingBackToFromLocation.getDirection();
 
         }else{
             toLocationId = theTooLocationID;

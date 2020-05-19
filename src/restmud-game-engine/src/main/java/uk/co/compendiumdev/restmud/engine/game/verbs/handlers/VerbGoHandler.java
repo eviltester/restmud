@@ -5,6 +5,7 @@ import uk.co.compendiumdev.restmud.engine.game.MudUser;
 import uk.co.compendiumdev.restmud.engine.game.locations.Directions;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationDirectionGate;
+import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationExit;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
 
 public class VerbGoHandler   implements VerbHandler {
@@ -30,14 +31,15 @@ public class VerbGoHandler   implements VerbHandler {
 
         if(location.canGo(baseDirection)){
 
-            String destinationId = location.destinationFor(baseDirection);
-            if(destinationId.contentEquals("local")){
+            MudLocationExit exit = location.exitFor(baseDirection);
+
+            if(exit.isLocal()){
                 // delegate movement to the game itself
                 // handled by a VerbCondition or a LocationCondition
                 lastAction = LastAction.createError("I can't go that way at the moment");
             }else {
 
-                MudLocation destination = game.getGameLocations().get(destinationId);
+                MudLocation destination = game.getGameLocations().get(exit.getDestinationId());
 
                 // is there a gate between here and there?
                 MudLocationDirectionGate gateBetween = game.getGateManager().getGateBetween(location, destination);

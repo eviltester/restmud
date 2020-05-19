@@ -77,7 +77,6 @@ public class MudLocationParserTest {
         MudLocationExit exit = exits.get("n");
         Assert.assertNotNull(exit);
 
-        Assert.assertEquals("local",exit.getDestinationId());
         Assert.assertEquals("n",exit.getDirection());
         Assert.assertTrue(exit.isVisible());
         Assert.assertTrue(exit.isLocal());
@@ -92,10 +91,8 @@ public class MudLocationParserTest {
         MudLocationExit exit = exits.get("n");
         Assert.assertNotNull(exit);
 
-        Assert.assertEquals("local",exit.getDestinationId());
         Assert.assertEquals("n",exit.getDirection());
         Assert.assertFalse(exit.isVisible());
-
         Assert.assertTrue(exit.isLocal());
         
     }
