@@ -17,6 +17,28 @@ locations and exists are a string e.g "e:2,n:4"
     - and any verbs that act on destinations will report that they 'cannot'
     - the condition handlers must output a lastAction otherwise it will fall through to 'cannnot'
 
+Consider:
+
+- add gate names into the exit description, this way we don't have to 'find the gates during processing, we know which gates act'
+e.g.
+- "e:2:reddoor" the reddoor would control the access to the gate,
+- secret on gate would not automatically apply to exits
+- need semantic checking on game to detect any gates mentioned which do not exist
+- this should not impact processing because if we couldn't find a gate during processing we would just ignore it
+- the gate would not need to know about to/from because that would be handled by the exit
+   - the gate would control messaging and open/close status
+- gates could be re-used on multiple exists, so when one is open, they are all open, same with closed
+- both-way gates would be created by adding the gate to each exit
+- gates would be default one-way - and not reported in the 'other' side
+- gates could be reported as one-way if it was `:blocked` which would mean it is reported as a gate,
+    but using a `blocked` description, and would not open or close from the blocked side
+- this should make it easier to 'open e', 'open w' etc.
+- would it make it harder to 'open gatename'?
+   - we would need to check for gate exists,
+        check directions to see if gate is listed,
+        check if gate is blocked,
+        if not then open
+
  */
 public class MudLocationParser {
     private final String locationId;

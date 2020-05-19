@@ -15,7 +15,9 @@ public class MudLocationExit {
         this.secretRoute = false;
     }
 
-    // secret routes are not shown in the description but can be navigated as normal
+    // secret routes are not shown in the look exits but can be navigated as normal
+    // game designer should mention them via condition messages or in the location description
+    // if they want the player to know about them
     public void setSecretRoute(boolean secretRoute) {
         this.secretRoute = secretRoute;
     }
