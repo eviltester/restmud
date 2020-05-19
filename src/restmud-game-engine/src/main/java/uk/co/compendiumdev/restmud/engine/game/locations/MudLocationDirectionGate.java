@@ -100,20 +100,6 @@ public class MudLocationDirectionGate {
         return this;
     }
 
-    public boolean mightBlock(MudLocation location, MudLocation destination, String direction) {
-        if(this.whichWayDirection == GateDirection.BOTH_WAYS){
-            return true;
-        }
-
-        if(this.whichWayDirection == GateDirection.ONE_WAY){
-            if(this.fromLocation.equals(location) && this.toLocation.equals(destination) && direction.toLowerCase().contentEquals(this.fromDirection)){
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public boolean isOpen() {
         return (gateOpenStatus == GateStatus.OPEN);
     }
@@ -185,23 +171,8 @@ public class MudLocationDirectionGate {
         return this;
     }
 
-    public GateDirection getGateDirection() {
-        return whichWayDirection;
-    }
-
     public boolean isVisible() {
         return !isHidden;
-    }
-
-    public String getDirectionFor(MudLocation whereAmI) {
-        if(fromLocation.getLocationId().contentEquals(whereAmI.getLocationId())){
-            return fromDirection;
-        }
-
-        if(toLocation.getLocationId().contentEquals(whereAmI.getLocationId())){
-            return toLocationDirection;
-        }
-        return "";
     }
 
     public String getFromDirection() {
@@ -220,18 +191,6 @@ public class MudLocationDirectionGate {
         return canPlayerClose;
     }
 
-    public String getLocationIdFor(String baseDirection) {
-        if(toLocationDirection.toLowerCase().contentEquals(baseDirection.toLowerCase())){
-            return fromLocation.getLocationId();
-        }
-
-        if(fromDirection.toLowerCase().contentEquals(baseDirection.toLowerCase())){
-            return toLocation.getLocationId();
-        }
-
-        return "";
-    }
-
     public boolean getAutoCloses() {
         return autoCloses;
     }
@@ -246,10 +205,6 @@ public class MudLocationDirectionGate {
 
     public GateDirection getWhichWayDirection() {
         return whichWayDirection;
-    }
-
-    public GateStatus getStartingGateStatus() {
-        return gateOpenStatus;
     }
 
     public void because(String reason) {

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LookPrimitive {
 
-    public LookResultOutput perform(final MudUser player, final MudLocation mudLocation, final List<MudLocationDirectionGate> gatesHere, final List<MudUser> otherUsers) {
+    public LookResultOutput perform(final MudUser player, final MudLocation mudLocation, final List<VisibleGate> visibleGates, final List<MudUser> otherUsers) {
 
         LookResultOutput output = new LookResultOutput();
 
@@ -47,23 +47,10 @@ public class LookPrimitive {
 
         // find the gates status for visible exists
 
-        List<VisibleGate> visibleGates = null;
-
-        // TODO: if gates were on the location then this would not be necessary
-        //List<MudLocationDirectionGate> gatesHere = gateManager.getGatesHere(whereAmI);
-
-        for (MudLocationDirectionGate theGate : gatesHere) {
-            if (theGate.isVisible()) {
-                VisibleGate visibleGate = new VisibleGate(theGate.getDirectionFor(whereAmI), theGate.isOpen(), theGate.shortDescription(), theGate.closedDescription());
-                if (visibleGates == null) {
-                    visibleGates = new ArrayList<>();
-                }
-                visibleGates.add(visibleGate);
-            }
+        // TODO: determine if backwards compatibility is important here, i.e. should visibleGates missing from result output if no visible gates
+        if(visibleGates.size()>0) {
+            output.setVisibleGates(visibleGates);
         }
-
-
-        output.setVisibleGates(visibleGates);
 
 
         /*

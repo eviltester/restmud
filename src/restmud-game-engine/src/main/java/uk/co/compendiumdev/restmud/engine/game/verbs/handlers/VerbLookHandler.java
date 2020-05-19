@@ -29,7 +29,7 @@ public class VerbLookHandler   implements VerbHandler {
         // TODO: add the ability to look e, etc.
 
         MudLocation whereAmI = game.getGameLocations().get(player.getLocationId());
-        final List<MudLocationDirectionGate> gates = game.getGateManager().getGatesHere(whereAmI);
+        final List<VisibleGate> gates = game.getGateManager().getVisibleGatesHere(whereAmI);
 
         return LastAction.createSuccess(String.format("You %s.", verbName)).
                     setLookOutput(
@@ -51,7 +51,7 @@ public class VerbLookHandler   implements VerbHandler {
         return true;
     }
 
-    private LookResultOutput look(MudUser player, MudLocation mudLocation, List<MudLocationDirectionGate> gatesHere, List<MudUser> otherUsers) {
+    private LookResultOutput look(MudUser player, MudLocation mudLocation, List<VisibleGate> gatesHere, List<MudUser> otherUsers) {
 
         return new LookPrimitive().perform(player, mudLocation, gatesHere, otherUsers);
 

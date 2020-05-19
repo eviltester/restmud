@@ -3,6 +3,7 @@ package uk.co.compendiumdev.restmud.engine.game.locations;
 import uk.co.compendiumdev.restmud.engine.game.Locations;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.IdDescriptionPair;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
+import uk.co.compendiumdev.restmud.output.json.jsonReporting.VisibleGate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -175,4 +176,21 @@ public class MudGameGateCollection {
         }
     }
 
+    public List<VisibleGate> getVisibleGatesHere(final MudLocation whereAmI) {
+
+
+        List<VisibleGate> visibleGates = new ArrayList<>();
+
+        for (MudLocationExit exit : whereAmI.getExits()) {
+            if(exit.isGated()) {
+                MudLocationDirectionGate theGate = getGateNamed(exit.getGateName());
+                if (theGate != null && theGate.isVisible()) {
+                    VisibleGate visibleGate = new VisibleGate(exit.getDirection(), theGate.isOpen(), theGate.shortDescription(), theGate.closedDescription());
+                    visibleGates.add(visibleGate);
+                }
+            }
+        }
+
+        return visibleGates;
+    }
 }

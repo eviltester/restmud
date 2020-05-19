@@ -5,10 +5,7 @@ import uk.co.compendiumdev.restmud.engine.game.InventoryLocationObjects;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LookLocation;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.VisibleExit;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MudLocation {
     private final String locationId;
@@ -159,4 +156,7 @@ public class MudLocation {
         return names;
     }
 
+    public Collection<MudLocationExit> getExits() {
+        return exits.values();
+    }
 }

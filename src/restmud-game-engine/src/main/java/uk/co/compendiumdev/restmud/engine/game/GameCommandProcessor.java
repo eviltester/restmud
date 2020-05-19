@@ -1,6 +1,5 @@
 package uk.co.compendiumdev.restmud.engine.game;
 
-import uk.co.compendiumdev.restmud.engine.game.locations.MudLocation;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationDirectionGate;
 import uk.co.compendiumdev.restmud.engine.game.locations.MudLocationExit;
 import uk.co.compendiumdev.restmud.engine.game.parser.VerbToken;
@@ -13,7 +12,6 @@ import uk.co.compendiumdev.restmud.engine.game.verbs.handlers.VerbHandler;
 import uk.co.compendiumdev.restmud.engine.game.verbs.handlers.VerbLookHandler;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.GetUserDetails;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.LastAction;
-import uk.co.compendiumdev.restmud.output.json.jsonReporting.LookResultOutput;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.ResultOutput;
 
 import java.util.ArrayList;
