@@ -119,15 +119,16 @@ public class VerbOpenHandlerTest {
         Assert.assertTrue( action.isFail());
     }
 
-    //TODO: add condition handling to allow local open gate conditions
     @Test
-    public void haveNoAbilityForLocalGateProcessingYet(){
+    public void localCloseReportsFailureByDefaultIfNotHandledByCondition(){
 
         VerbOpenHandler openHandler =  new VerbOpenHandler().setGame(game);
         final LastAction action = openHandler.doVerb(player, "n");
 
         Assert.assertTrue( action.isFail());
     }
+
+    // TODO: local condition fires and overrides the :local - add new test
 
     @Test
     public void cannotOpenAnOpenGate(){

@@ -45,7 +45,6 @@ public class ExitRemove implements ScriptThenCommand {
             return ret;
         }
 
-        // TODO: should we check if the exit goes in that location or just delete? just delete for now
         location.removeExit(direction);
 
         return ret;

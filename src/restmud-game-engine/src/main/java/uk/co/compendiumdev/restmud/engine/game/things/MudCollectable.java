@@ -1,12 +1,12 @@
 package uk.co.compendiumdev.restmud.engine.game.things;
 
+// TODO: add attributes in collectable which can be renderd onscreen as html attributes or in JSON for extra hints and clues
 
 public class MudCollectable {
     private final String collectableId;
     private final String description;
     private boolean hoardable;
-    private int hoardableScore
-            ;
+    private int hoardableScore;
     private String abilityVerb;
     private int verbActionPoints;
     private boolean toggleAbilityIsOn;

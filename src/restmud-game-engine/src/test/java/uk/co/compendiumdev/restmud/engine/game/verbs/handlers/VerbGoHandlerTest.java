@@ -21,12 +21,6 @@ public class VerbGoHandlerTest {
     String closedgatename = "closedsouthgate";
     String openedgatename = "openeastgate";
 
-    // TODO: the whole gate, local, secret etc. is too complicated need to simplify movement and definition
-    // e.g. n:1:blocked, n:2:gate  and if gate then look for gate to process, currently possible to override a gate with a e:3 etc.
-    // suspect I created gates before I had implemented conditions could now add conditions to create most gates
-    // but 'gates or doors' are fun in multi-player because they can be closed by players to annoy other players
-    // need a simpler way to define and implement
-
     class VerbHandlerGame implements GameGenerator {
         @Override
         public void generateInto(MudGame game) {

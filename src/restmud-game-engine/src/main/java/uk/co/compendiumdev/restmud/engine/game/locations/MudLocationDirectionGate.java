@@ -8,7 +8,6 @@ package uk.co.compendiumdev.restmud.engine.game.locations;
  */
 public class MudLocationDirectionGate {
 
-    /* TODO: these are the fields we actually want in gate - refactor till this is all */
     private GateStatus gateOpenStatus;
     private String shortDescription;
     private String closedDescription;
