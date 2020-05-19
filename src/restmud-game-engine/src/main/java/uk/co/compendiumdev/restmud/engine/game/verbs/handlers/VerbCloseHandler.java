@@ -30,17 +30,22 @@ public class VerbCloseHandler implements VerbHandler {
 
         MudLocation location = game.getGameLocations().get(player.getLocationId());
 
-        // is there even a gate there?
-        // TODO: this doesn't actually check for gates, it checks for exits
-        if(location.canGo(baseDirection) ){
-            MudLocationExit exit = location.exitFor(baseDirection);
-            if(exit!=null && exit.isLocal()){
-                // no local handling for gates yet
-                return LastAction.createError("I don't know how to close that way");
-            }
+        if(!location.canGo(baseDirection) ) {
+            return LastAction.createError("I don't know how to close that way");
         }
 
-        return game.getGateManager().closeGate(location, baseDirection);
+        MudLocationExit exit = location.exitFor(baseDirection);
+        if(exit.isLocal()){
+            // no local handling for gates yet
+            return LastAction.createError("I don't know how to close that way");
+        }
+
+        // is there even a gate there?
+        if(exit.isGated()) {
+            return game.getGateManager().closeGate(exit.getGateName());
+        }else{
+            return LastAction.createError("There is nothing to close that way");
+        }
     }
 
     @Override
