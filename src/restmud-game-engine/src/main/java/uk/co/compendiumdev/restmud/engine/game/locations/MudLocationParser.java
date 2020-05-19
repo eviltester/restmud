@@ -1,7 +1,11 @@
 package uk.co.compendiumdev.restmud.engine.game.locations;
 
 
+import uk.co.compendiumdev.restmud.engine.game.BroadcastMessages;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,9 +46,11 @@ e.g.
  */
 public class MudLocationParser {
     private final String fromLocationId;
+    private List<String> syntaxErrors;
 
     public MudLocationParser(String fromLocationId) {
         this.fromLocationId=fromLocationId;
+        this.syntaxErrors=new ArrayList<>();
     }
 
     public Map<String, MudLocationExit> parse(String routesAndExits) {
@@ -61,6 +67,7 @@ public class MudLocationParser {
 
                     String[] routeExitPair = aRoute.trim().split(":");
 
+                    // TODO: validate direction as a valid direction
                     String direction = routeExitPair[0];
                     String destination = routeExitPair[1];
 
@@ -78,11 +85,24 @@ public class MudLocationParser {
                                 // if not then go, open and close will report that
                                 // we cannot, go, open or close
                                 break;
+                            default:
+                                // assume that this is a gate name
+                                if(anExit.isGated()){
+                                    syntaxErrors.add("Found additional gate allocation for exit: " + attribute);
+                                }
+                                // gate names can be case sensitive
+                                anExit.setGateName(attribute);
+                                break;
                         }
                     }
 
                     exits.put(direction.toLowerCase(), anExit);
+                }else{
+                    syntaxErrors.add("Declared Route has no separators: " + trimRoute);
                 }
+
+            }else{
+                syntaxErrors.add("Declared Route is not valid: " + trimRoute);
             }
         }
 

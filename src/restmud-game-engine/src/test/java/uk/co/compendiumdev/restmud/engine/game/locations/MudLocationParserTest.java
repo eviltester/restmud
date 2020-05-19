@@ -94,11 +94,26 @@ public class MudLocationParserTest {
         Assert.assertEquals("n",exit.getDirection());
         Assert.assertFalse(exit.isVisible());
         Assert.assertTrue(exit.isLocal());
-        
     }
 
     // TODO: parser can report errors in the parsing
     // TODO: parser validates the directions are valid and only adds valid directions
-    
 
+    @Test
+    public void parserCanAllocateAGateNamed(){
+
+        final Map<String, MudLocationExit> exits = new MudLocationParser("5").parse("n:1:Gate1");
+        Assert.assertEquals(1, exits.size());
+
+        MudLocationExit exit = exits.get("n");
+        Assert.assertNotNull(exit);
+
+        Assert.assertEquals("n",exit.getDirection());
+
+        Assert.assertTrue(exit.isGated());
+        Assert.assertEquals("Gate1", exit.getGateName());
+
+        Assert.assertTrue(exit.isVisible());
+        Assert.assertFalse(exit.isLocal());
+    }
 }

@@ -64,6 +64,8 @@ public class GameResetter {
             game.getGateManager().addGate(newgate);
         }
 
+        game.getGateManager().addAllGatesToLocations(game.getGameLocations());
+
         // clone the verbs
         game.getLocalVerbs().addAll(defn.getLocalVerbs());
         game.getUserInputParser().addVerbs(defn.getLocalVerbs());

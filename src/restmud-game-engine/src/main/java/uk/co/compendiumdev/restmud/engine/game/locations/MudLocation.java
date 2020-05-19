@@ -138,9 +138,11 @@ public class MudLocation {
     }
 
     public void addExit(String direction, String toLocation) {
-
         exits.put(direction, new MudLocationExit(locationId, direction, toLocation));
+    }
 
+    public void addExit(MudLocationExit anExit) {
+        exits.put(anExit.getDirection(), anExit);
     }
 
     public void removeExit(String direction) {
