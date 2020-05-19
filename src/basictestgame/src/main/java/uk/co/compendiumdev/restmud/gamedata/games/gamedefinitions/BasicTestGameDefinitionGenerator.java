@@ -152,10 +152,19 @@ public class BasicTestGameDefinitionGenerator implements GameDefinitionPopulator
 
 
 
-        defn.gameLocations().addLocation(new MudLocation("6","The West Corridor", "This is the western corridor", "W:4:westerngate"));
+        defn.gameLocations().addLocation(new MudLocation("6","The West Corridor", "This is the western corridor",
+                            "W:4:westerngate,E:8:secret:secretLeverPanel"));
 
         defn.addGate("westerngate", GateStatus.CLOSED).because("create a simple door between 4 and 6");
 
+        defn.addGate("secretLeverPanel", GateStatus.CLOSED).
+                gateIsHidden(true).    // this gate should be secret true
+                playerCanOpen(false).  // player can not open it
+                playerCanClose(true).  // but they can close it
+                setShortDescription("Secret Panel").
+                gateAutoCloses(true).  // it will auto close when player goes through
+                gateAutoHides(true).   // gate will auto hide when closed
+                because("create a one way secret panel which has no corresponding exits to room 8, see 7 for how to open");
 
         defn.gameLocations().addLocation(new MudLocation("7","The Secret East Room", "This is the secret room in the east, there is a lever on the wall", "W:3"));
 
@@ -213,14 +222,7 @@ public class BasicTestGameDefinitionGenerator implements GameDefinitionPopulator
         defn.gameLocations().addLocation(new MudLocation("8","The Room behind the gate in the East", "This is the room behind the secret gate, you see no reason for the fuss", "W:6,E:9"));
 
 
-        defn.addGate("secretLeverPanel", "6", "E", "8", GateDirection.ONE_WAY, GateStatus.CLOSED).
-                gateIsHidden(true).    // this gate should be secret true
-                playerCanOpen(false).  // player can not open it
-                playerCanClose(true).  // but they can close it
-                setShortDescription("Secret Panel").
-                gateAutoCloses(true).  // it will auto close when player goes through
-                gateAutoHides(true).   // gate will auto hide when closed
-                because("create a one way secret panel which has no corresponding exits to room 8, see 7 for how to open");
+
 
 
 

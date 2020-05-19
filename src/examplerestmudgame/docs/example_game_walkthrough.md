@@ -748,7 +748,7 @@ Now I will experiment with the gates.
 
 `inspect inspectability1`
 
-> `You inspect inspectability1 at a cost of 17 points`
+> `You inspect inspectability1 at a cost of 13 points`
 
 `take inspecthoardable1`
 
@@ -756,7 +756,7 @@ Now I will experiment with the gates.
 
 `inspect inspecthoardable1`
 
-> `You inspect inspecthoardable1 at a cost of 10 points`
+> `You inspect inspecthoardable1 at a cost of 14 points`
 
  _I will find things I can examine_ 
 
@@ -979,7 +979,7 @@ Now I will experiment with the gates.
 
 `polish athingtopolish`
 
-> `Good work. You polished 'A thing to polish' by 28 and now it is worth 178 hoard points. Your 'A cloth of mighty polishing' has 72 polish power left. `
+> `Good work. You polished 'A thing to polish' by 41 and now it is worth 191 hoard points. Your 'A cloth of mighty polishing' has 59 polish power left. `
 
  _I remember reading about some dispensers of cool stuff_ 
 
