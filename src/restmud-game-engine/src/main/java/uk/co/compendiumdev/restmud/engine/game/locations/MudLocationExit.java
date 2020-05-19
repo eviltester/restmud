@@ -34,4 +34,8 @@ public class MudLocationExit {
         return !secretRoute;
     }
 
+    public boolean isLocal() {
+        // TODO: this should be a proper attribute, not based on the destination
+        return (this.destinationLocationId.contentEquals("local"));
+    }
 }

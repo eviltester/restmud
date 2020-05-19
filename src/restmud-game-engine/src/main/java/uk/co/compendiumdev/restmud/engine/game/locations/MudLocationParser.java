@@ -41,10 +41,10 @@ e.g.
 
  */
 public class MudLocationParser {
-    private final String locationId;
+    private final String fromLocationId;
 
-    public MudLocationParser(String locationId) {
-        this.locationId=locationId;
+    public MudLocationParser(String fromLocationId) {
+        this.fromLocationId=fromLocationId;
     }
 
     public Map<String, MudLocationExit> parse(String routesAndExits) {
@@ -64,7 +64,7 @@ public class MudLocationParser {
                     String direction = routeExitPair[0];
                     String destination = routeExitPair[1];
 
-                    MudLocationExit anExit = new MudLocationExit(locationId, direction, destination);
+                    MudLocationExit anExit = new MudLocationExit(fromLocationId, direction, destination);
 
                     for (String attribute : routeExitPair) {
                         // look for attributes
