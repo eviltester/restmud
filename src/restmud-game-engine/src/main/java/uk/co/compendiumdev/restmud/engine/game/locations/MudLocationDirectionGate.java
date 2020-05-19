@@ -1,9 +1,13 @@
 package uk.co.compendiumdev.restmud.engine.game.locations;
 
 /**
- * Created by Alan on 19/03/2016.
+ * TODO: a gate should not care where it is going from and to, the exit handles this
+ * - the gate should know if it is open, closed, hidden, auto close, auto hide and if player closeable
+ * - similarly gate should not know if it one way or two way, it doesn't care
  */
 public class MudLocationDirectionGate {
+
+    /* TODO: deprecated fields in gate */
     public MudLocation fromLocation;
     public MudLocation toLocation;
     private final GateDirection whichWayDirection;
@@ -11,6 +15,8 @@ public class MudLocationDirectionGate {
     private final String toLocationDirection;
     private String toLocationId;
     private String fromLocationId;
+
+    /* TODO: these are the fields we actually want in gate - refactor till this is all */
     private GateStatus gateOpenStatus;
     private String shortDescription;
     private String closedDescription;

@@ -148,4 +148,14 @@ public class MudLocation {
     public void removeExit(String direction) {
         exits.remove(direction);
     }
+
+    public List<String> getExitGateNames() {
+        final ArrayList<String> names = new ArrayList<>();
+        for(MudLocationExit exit : exits.values()){
+            if(exit.isGated()){
+                names.add(exit.getGateName());
+            }
+        }
+        return names;
+    }
 }

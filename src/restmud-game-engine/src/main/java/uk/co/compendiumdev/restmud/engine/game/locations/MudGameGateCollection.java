@@ -33,23 +33,39 @@ public class MudGameGateCollection {
     }
 
     public List<MudLocationDirectionGate> getGatesHere(MudLocation location) {
-        List<MudLocationDirectionGate> foundGates = new ArrayList<>();
 
         // if nowhere then no gates
         if(location==null){
-            return foundGates;
+            return new ArrayList<MudLocationDirectionGate>();
         }
 
-        for (MudLocationDirectionGate aGate : gates.values()) {
-            if (location == aGate.fromLocation) {
-                foundGates.add(aGate);
-            }
+        List<String> gateNames = location.getExitGateNames();
+        return getGatesNamed(gateNames);
 
-            if (location == aGate.toLocation && aGate.getGateDirection() == GateDirection.BOTH_WAYS) {
-                foundGates.add(aGate);
+        // TODO: remove old approach for finding gates
+// List<MudLocationDirectionGate> foundGates = new ArrayList<>();
+//        for (MudLocationDirectionGate aGate : gates.values()) {
+//            if (location == aGate.fromLocation) {
+//                foundGates.add(aGate);
+//            }
+//
+//            if (location == aGate.toLocation && aGate.getGateDirection() == GateDirection.BOTH_WAYS) {
+//                foundGates.add(aGate);
+//            }
+//        }
+//        return foundGates;
+    }
+
+    private List<MudLocationDirectionGate> getGatesNamed(final List<String> gateNames) {
+        List<MudLocationDirectionGate> foundGates = new ArrayList<>();
+        for (String aGateName : gateNames){
+            MudLocationDirectionGate gate =gates.get(aGateName);
+            if(gate!=null) {
+                foundGates.add(gate);
+            }else{
+                System.out.println("Warning went looking for non-existant gate in getGatesNamed: " + aGateName);
             }
         }
-
         return foundGates;
     }
 
