@@ -27,8 +27,6 @@ public class VerbGoHandler   implements VerbHandler {
 
         String baseDirection = game.getDirections().findBaseDirection(nounPhrase.toLowerCase());
 
-        String goAppendum = "";
-
         if(location.canGo(baseDirection)){
 
             MudLocationExit exit = location.exitFor(baseDirection);
@@ -51,10 +49,14 @@ public class VerbGoHandler   implements VerbHandler {
                         System.out.println(String.format("WARNING EXIT HAS GATE BUT NO GATE FOUND named %s in location %s",
                                             exit.getGateName(), location.getLocationId()));
                     }else{
-                        return goThroughGate(player, gateBetween, baseDirection);
+                        final LastAction action = goThroughGate(player, gateBetween, baseDirection);
+                        // the gate handles messages, not movement, so if going through was success then change user location
+                        if(action.isSuccess()){
+                            player.setLocationId(exit.getDestinationId());
+                        }
+                        return action;
                     }
                 }
-
 
                 MudLocation destination = game.getGameLocations().get(exit.getDestinationId());
 
@@ -62,10 +64,12 @@ public class VerbGoHandler   implements VerbHandler {
                 //  so we should have a syntax check in the definition to make sure that all defined destinations exist
                 // to make this null check unnecessary
                 if(destination==null){
-                    lastAction = LastAction.createError("You can't go " + baseDirection + goAppendum);
+                    System.out.println(String.format("WARNING EXIT DESTINATION NOT FOUND named %s in location %s for direction %s",
+                            exit.getDestinationId(), location.getLocationId(), baseDirection));
+                    lastAction = LastAction.createError("You can't go " + baseDirection + " I don't know where that goes. You better tell the programmer to finish writing the game!");
                 }else {
                     player.setLocationId(destination.getLocationId());
-                    lastAction = LastAction.createSuccess("You go " + baseDirection + goAppendum);
+                    lastAction = LastAction.createSuccess("You go " + baseDirection);
                 }
             }
 
@@ -100,24 +104,15 @@ public class VerbGoHandler   implements VerbHandler {
         if(!gateBetween.isOpen()){
             // OK we have a problem then because the gate is not open
             return LastAction.createError("You can't go " + direction + " because " + gateBetween.shortDescription() + " is " + gateBetween.closedDescription());
-
         }
 
         // let's say we went through
         goAppendum = " " + gateBetween.throughDescription() + " " + gateBetween.shortDescription();
-        String locationId = gateBetween.getLocationIdFor(direction);
-        // TODO: this guard condition is only required if we got the gate definitions incorrect
-        // and the destination listed does not exist, add syntax checks in definition to avoid this issue
-        if(locationId!=null && locationId.length()>0) {
-            user.setLocationId(locationId);
-            gateBetween.goThrough();
-            if(gateBetween.getAutoCloses()){
-                goAppendum += ". And " + gateBetween.shortDescription() + " closes behind you.";
-            }
-            return LastAction.createSuccess("You go " + direction + goAppendum);
-        }else{
-            return LastAction.createError("You can't go " + direction);
+        gateBetween.goThrough();
+        if(gateBetween.getAutoCloses()){
+            goAppendum += ". And " + gateBetween.shortDescription() + " closes behind you.";
         }
+        return LastAction.createSuccess("You go " + direction + goAppendum);
     }
 
     @Override
