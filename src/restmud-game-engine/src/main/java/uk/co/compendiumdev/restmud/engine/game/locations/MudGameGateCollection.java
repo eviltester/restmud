@@ -130,47 +130,55 @@ public class MudGameGateCollection {
     public void addAllGatesToLocations(final Locations gameLocations) {
 
         for(MudLocationDirectionGate gate : gates.values()){
-            MudLocationExit fromExit = gameLocations.get(gate.fromLocation.getLocationId()).
-                                                    exitFor(gate.getFromDirection());
 
-            if(fromExit==null){
-                // if from exit is null then we may have been relying on the old gate definition to create it
-                fromExit = new MudLocationExit(gate.getFromLocationId(), gate.getFromDirection(), gate.getToLocationId());
-                // if gate is secret then this exit should also be secret
-                fromExit.setSecretRoute(!gate.isVisible());
-                gameLocations.get(gate.getFromLocationId()).addExit(fromExit);
-                // TODO: amend all games to remove this warning, then change the code to remove this creation and throw an error instead
-                System.out.println("WARNING LEGACY GAME CREATION APPROACH: creating from exits from gates is legacy and will be removed in a future version: " + gate.getGateName());
-            }
-            // todo: handle and report possible syntax error no from location
-            fromExit.setGateName(gate.getGateName());
+            if(gate.getFromLocationId()==null){
+                // gate is supposed to already be allocated to location
+            }else {
+                // using old format of gates so location might not know about the gate
 
-            MudLocationExit toExit = gameLocations.get(gate.toLocation.getLocationId()).
-                    exitFor(gate.getToDirection());
 
-            if(toExit!=null) {
-                if(gate.getWhichWayDirection()!=GateDirection.ONE_WAY){
-                    toExit.setGateName(gate.getGateName());
-                }else{
-                    System.out.println("Do not add a gate on exit route if it is one way");
-                }
+                MudLocationExit fromExit = gameLocations.get(gate.fromLocation.getLocationId()).
+                        exitFor(gate.getFromDirection());
 
-            }else{
-                // may have been a one way gate
-                if(gate.getWhichWayDirection()!=GateDirection.ONE_WAY){
-                    // todo: handle and report possible syntax error no to location
-                    System.out.println("Found a gate without a way back that is not defined as one way: " + gate.getGateName());
-
-                    // handle legacy exit creation
-                    toExit = new MudLocationExit(gate.getToLocationId(), gate.getToDirection(), gate.getFromLocationId());
+                if (fromExit == null) {
+                    // if from exit is null then we may have been relying on the old gate definition to create it
+                    fromExit = new MudLocationExit(gate.getFromLocationId(), gate.getFromDirection(), gate.getToLocationId());
                     // if gate is secret then this exit should also be secret
-                    toExit.setSecretRoute(!gate.isVisible());
-                    gameLocations.get(gate.getToLocationId()).addExit(toExit);
-                    toExit.setGateName(gate.getGateName());
-
-                    // not a one way gate, need to create as using old gate definition approach
+                    fromExit.setSecretRoute(!gate.isVisible());
+                    gameLocations.get(gate.getFromLocationId()).addExit(fromExit);
                     // TODO: amend all games to remove this warning, then change the code to remove this creation and throw an error instead
-                    System.out.println("WARNING LEGACY GAME CREATION APPROACH: creating to exits from gates is legacy and will be removed in a future version: " + gate.getGateName());
+                    System.out.println("WARNING LEGACY GAME CREATION APPROACH: creating from exits from gates is legacy and will be removed in a future version: " + gate.getGateName());
+                }
+                // todo: handle and report possible syntax error no from location
+                fromExit.setGateName(gate.getGateName());
+
+                MudLocationExit toExit = gameLocations.get(gate.toLocation.getLocationId()).
+                        exitFor(gate.getToDirection());
+
+                if (toExit != null) {
+                    if (gate.getWhichWayDirection() != GateDirection.ONE_WAY) {
+                        toExit.setGateName(gate.getGateName());
+                    } else {
+                        System.out.println("Do not add a gate on exit route if it is one way");
+                    }
+
+                } else {
+                    // may have been a one way gate
+                    if (gate.getWhichWayDirection() != GateDirection.ONE_WAY) {
+                        // todo: handle and report possible syntax error no to location
+                        System.out.println("Found a gate without a way back that is not defined as one way: " + gate.getGateName());
+
+                        // handle legacy exit creation
+                        toExit = new MudLocationExit(gate.getToLocationId(), gate.getToDirection(), gate.getFromLocationId());
+                        // if gate is secret then this exit should also be secret
+                        toExit.setSecretRoute(!gate.isVisible());
+                        gameLocations.get(gate.getToLocationId()).addExit(toExit);
+                        toExit.setGateName(gate.getGateName());
+
+                        // not a one way gate, need to create as using old gate definition approach
+                        // TODO: amend all games to remove this warning, then change the code to remove this creation and throw an error instead
+                        System.out.println("WARNING LEGACY GAME CREATION APPROACH: creating to exits from gates is legacy and will be removed in a future version: " + gate.getGateName());
+                    }
                 }
             }
         }

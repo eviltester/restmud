@@ -10,9 +10,9 @@ public class MudLocationDirectionGate {
     /* TODO: deprecated fields in gate */
     public MudLocation fromLocation;
     public MudLocation toLocation;
-    private final GateDirection whichWayDirection;
-    private final String fromDirection;
-    private final String toLocationDirection;
+    private GateDirection whichWayDirection;
+    private String fromDirection;
+    private String toLocationDirection;
     private String toLocationId;
     private String fromLocationId;
 
@@ -29,9 +29,18 @@ public class MudLocationDirectionGate {
     private boolean canPlayerClose;
     private String reason;
 
+    /* minimal constructor because gates are added to exits */
+    public MudLocationDirectionGate(final String gatename, final GateStatus initialStatus) {
+        setDefaults();
+        this.gateName = gatename;
+        this.gateOpenStatus = initialStatus;
+    }
+
     // TODO: can this be simplified? is it easier to use flags for blocking and opening doors etc
     //       or have blocks which are active on specific flags
 
+    /* avoid all location stuff because that is on the exit definitions */
+    @Deprecated
     public MudLocationDirectionGate createCopy(MudLocation fromLocation, MudLocation toLocation) {
         MudLocationDirectionGate copyGate = new MudLocationDirectionGate(fromLocation, this.fromDirection, toLocation, this.toLocationDirection, this.whichWayDirection, this.gateOpenStatus);
         copyGate.setClosedDescription(this.closedDescription);
@@ -44,8 +53,24 @@ public class MudLocationDirectionGate {
         copyGate.playerCanOpen(this.canPlayerOpen);
         copyGate.playerCanClose(this.canPlayerClose);
         return copyGate;
+
+    }
+    public MudLocationDirectionGate createCopy() {
+        MudLocationDirectionGate copyGate = new MudLocationDirectionGate(this.gateName, this.gateOpenStatus);
+        copyGate.setClosedDescription(this.closedDescription);
+        copyGate.setShortDescription(this.shortDescription);
+        copyGate.setThroughDescription(this.throughDescription);
+        copyGate.gateIsHidden(this.isHidden);
+        copyGate.gateAutoCloses(this.autoCloses);
+        copyGate.gateAutoHides(this.autohides);
+        copyGate.playerCanOpen(this.canPlayerOpen);
+        copyGate.playerCanClose(this.canPlayerClose);
+        return copyGate;
     }
 
+
+    /* avoid all location stuff because that is on the exit definitions */
+    @Deprecated
     public MudLocationDirectionGate(MudLocation fromLocation, String fromDirection, MudLocation toLocation, String toLocationDirection, GateDirection whichWayDirection, GateStatus startingGateStatus) {
 
         setDefaults();
@@ -61,6 +86,8 @@ public class MudLocationDirectionGate {
     }
 
     // this constructor used for definitions only, TODO: should really make this a new object I suppose
+    /* avoid all location stuff because that is on the exit definitions */
+    @Deprecated
     public MudLocationDirectionGate(String fromLocationId, String fromDirection, String toLocationId, String toLocationDirection, GateDirection whichWayDirection, GateStatus startingGateStatus) {
 
         setDefaults();
@@ -80,7 +107,7 @@ public class MudLocationDirectionGate {
         this.isHidden=false; // visible by default
         this.autoCloses=false; // by default it does not autoclose
         this.autohides=false; // by default it does not autohide
-        this.gateName=""; // most gates do not need a name
+        this.gateName=""; // gates now need names
         this.canPlayerOpen=true;
         this.canPlayerClose=true;
     }
@@ -210,4 +237,5 @@ public class MudLocationDirectionGate {
     public void because(String reason) {
         this.reason = reason;
     }
+
 }

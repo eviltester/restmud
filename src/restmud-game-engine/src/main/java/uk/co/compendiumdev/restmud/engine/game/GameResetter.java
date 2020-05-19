@@ -55,13 +55,21 @@ public class GameResetter {
         // Clone the gates by creating new ones from the definition
         for(MudLocationDirectionGate gate : defn.getGates().values()) {
 
-            MudLocation fromLocation = game.getGameLocations().get(gate.getFromLocationId());
-            MudLocation toLocation = game.getGameLocations().get(gate.getToLocationId());
+            if(gate.getFromLocationId()==null){
+                // new way of creating gates has no location information
+                MudLocationDirectionGate newgate = gate.createCopy();
+                game.getGateManager().addGate(newgate);
+            }else{
+                System.out.println("WARNING GAME HAS LEGACY GATE Creation used");
+                MudLocation fromLocation = game.getGameLocations().get(gate.getFromLocationId());
+                MudLocation toLocation = game.getGameLocations().get(gate.getToLocationId());
 
-            MudLocationDirectionGate newgate = gate.createCopy(fromLocation, toLocation);
-            newgate.gateIsNamed(gate.getGateName());
+                MudLocationDirectionGate newgate = gate.createCopy(fromLocation, toLocation);
+                newgate.gateIsNamed(gate.getGateName());
 
-            game.getGateManager().addGate(newgate);
+                game.getGateManager().addGate(newgate);
+
+            }
         }
 
         game.getGateManager().addAllGatesToLocations(game.getGameLocations());

@@ -140,12 +140,26 @@ public class MudGameDefinition {
      * GATE CREATION
      **********************************************/
 
+    /**
+     * gate should only need a name and start status to create, and then add extra information
+     * @param gatename
+     * @param initialStatus
+     * @return
+     */
+    public MudLocationDirectionGate addGate(final String gatename, final GateStatus initialStatus) {
+        MudLocationDirectionGate gate = new MudLocationDirectionGate(gatename, initialStatus);
+        gateManager.addGate(gate);
+        return gate;
+    }
+
+    @Deprecated
     public MudLocationDirectionGate addGate(String locationID, String fromDirection, GateDirection whichWayDirection, GateStatus startingGateStatus) {
         String CALCULATE_TO_DESTINATION="";
 
         return addGate(theIdGenerator.generateId("gate"), locationID, fromDirection, CALCULATE_TO_DESTINATION, whichWayDirection, startingGateStatus);
     }
 
+    @Deprecated
     public MudLocationDirectionGate addGate(String gateName, String locationID, String fromDirection, String theTooLocationID, GateDirection whichWayDirection, GateStatus startingGateStatus) {
 
         // find the from location
@@ -291,4 +305,6 @@ public class MudGameDefinition {
     public Directions getClonedCopiedDirections() {
         return directions.createClonedCopy();
     }
+
+
 }

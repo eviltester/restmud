@@ -114,7 +114,7 @@ public class BasicTestGameDefinitionGenerator implements GameDefinitionPopulator
 
 
 
-        defn.gameLocations().addLocation(new MudLocation("4","The South Room", "This is the room in the South", "N:1,E:6"));
+        defn.gameLocations().addLocation(new MudLocation("4","The South Room", "This is the room in the South", "N:1,E:6:westerngate"));
 
 
 
@@ -152,13 +152,9 @@ public class BasicTestGameDefinitionGenerator implements GameDefinitionPopulator
 
 
 
-        defn.gameLocations().addLocation(new MudLocation("6","The West Corridor", "This is the western corridor", "W:4"));
+        defn.gameLocations().addLocation(new MudLocation("6","The West Corridor", "This is the western corridor", "W:4:westerngate"));
 
-
-
-        defn.addGate("4", "E", GateDirection.BOTH_WAYS, GateStatus.CLOSED).
-                because("create a simple door between 4 and 6");
-
+        defn.addGate("westerngate", GateStatus.CLOSED).because("create a simple door between 4 and 6");
 
 
         defn.gameLocations().addLocation(new MudLocation("7","The Secret East Room", "This is the secret room in the east, there is a lever on the wall", "W:3"));
