@@ -68,6 +68,7 @@ public class MudGameDefinitionSerialiser {
         if(files.trim().length()==0){
             // no games
             // TODO: bug does not load list when packaged in a jar on mac, but can load a given game with -gamename
+            System.out.println("could not read build in games folder - using cached list");
             files = readJsonFromResource("/games/cachedgameslist.txt");
         }
 
