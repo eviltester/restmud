@@ -278,6 +278,7 @@ public class RestMudHtmlServer {
     public String getPlayerVerbHandler(Request request, Response response) {
         handleGuiUsernameMustBeRegisteredAndLoggedInToPlay(request);
 
+        // TODO: why not pick up the username from the session?
         String username = request.params(":username");
 
         String splatter = RequestDataExtractor.getSplatterFromRequest(request);
@@ -304,6 +305,7 @@ public class RestMudHtmlServer {
 
         map.put("jsonlastaction", lastActionResponse);
 
+        // TODO: allow an extra url param for a wizard to override the username on the gui e.g. ?wizasuser=bob
         map.put("username", username);
 
         if(authenticator.isWizard(request, game)){
