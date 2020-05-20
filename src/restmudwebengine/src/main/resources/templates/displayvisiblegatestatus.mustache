@@ -17,8 +17,8 @@
             {{#visibleGates}}
                 <li direction="{{direction}}" isOpen="{{open}}">{{description}}
                     <ul>
-                        <li><a href="/player/$username$/open/{{direction}}">Open {{gateDescription}}</a></li>
-                        <li><a href="/player/$username$/close/{{direction}}">Close {{gateDescription}}</a></li>
+                        <li><a href="/player/{{username}}/open/{{direction}}">Open {{gateDescription}}</a></li>
+                        <li><a href="/player/{{username}}/close/{{direction}}">Close {{gateDescription}}</a></li>
                     </ul>
                 </li>
             {{/visibleGates}}

@@ -40,8 +40,8 @@
             {{#inventory.contents}}
                 <li inventoryItemId="{{id}}">{{description}}
                     <ul>
-                        <li><a href="/player/$username$/drop/{{id}}">drop it</a></li>
-                        <li><a href="/player/$username$/hoard/{{id}}">hoard it</a></li>
+                        <li><a href="/player/{{username}}/drop/{{id}}">drop it</a></li>
+                        <li><a href="/player/{{username}}/hoard/{{id}}">hoard it</a></li>
                     </ul>
                 </li>
             {{/inventory.contents}}
