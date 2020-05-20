@@ -151,8 +151,6 @@ polish,the_secret_of_the_maze_prize
 polish,the_secret_of_the_maze_prize
 polish,the_secret_of_the_maze_prize
 polish,the_secret_of_the_maze_prize
-polish,the_secret_of_the_maze_prize
-polish,the_secret_of_the_maze_prize
 hoard,the_secret_of_the_maze_prize
 checkresult,success
 score,

@@ -10,6 +10,7 @@ import uk.co.compendiumdev.restmud.gamedata.games.gamedefinitions.FromDefinition
 import uk.co.compendiumdev.restmud.gamedata.games.gamedefinitions.FromJsonGameGenerator;
 
 import java.util.Map;
+import java.util.Properties;
 
 public class GameInitializer {
 
@@ -76,9 +77,17 @@ public class GameInitializer {
 
         RandomStringGenerator randomStringG = new RandomStringGenerator();
 
-        // TODO set secret code from environment variable if present
+        // TODO set secret code from commandline argument variable if present
+        String defaultSecretCode=null;
         Map<String, String> env = System.getenv();
-        String defaultSecretCode = env.get(GAMESECRETCODE);
+        if(env.containsKey(GAMESECRETCODE)) {
+            defaultSecretCode = env.get(GAMESECRETCODE);
+        }
+        final Properties properties = System.getProperties();
+        if(properties.containsKey(GAMESECRETCODE)){
+            defaultSecretCode = (String)properties.get(GAMESECRETCODE);
+        }
+
 
         String secretCode = randomStringG.generateAlpha(10);
 

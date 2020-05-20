@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Alan on 20/01/2017.
  */
 public class AppConfigFromArgs {
-    public static AppConfig getAppConfig(String[] args) {
+    public static AppConfig  getAppConfig(String[] args) {
         AppConfig config = new AppConfig();
         List<String> processedKeys = new ArrayList<String>();
 

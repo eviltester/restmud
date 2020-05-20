@@ -19,9 +19,6 @@ import java.net.URLEncoder;
 
 import static spark.Spark.*;
 
-/**
- * Created by alan on 14/12/2015.
- */
 public class MainRestMud {
 
 
@@ -98,7 +95,8 @@ public class MainRestMud {
             if(hasHerokuAssignedPort()) {
                 config.setPort(getHerokuAssignedPort());
                 port(config.port());
-
+            }else{
+                port(config.port());
             }
 
             // default to single player - set as multiplayer with -playermode multi
