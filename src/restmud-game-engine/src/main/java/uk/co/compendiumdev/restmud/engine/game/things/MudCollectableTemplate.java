@@ -1,7 +1,9 @@
 package uk.co.compendiumdev.restmud.engine.game.things;
 
 /**
- * Created by Alan on 30/03/2016.
+ * TODO: why have template and non-template?
+ * Could I use a MudCollectable as the template and the Template class as
+ * something which converts a collectable into a dispensable?
  */
 public class MudCollectableTemplate {
     public final String idPrefix;

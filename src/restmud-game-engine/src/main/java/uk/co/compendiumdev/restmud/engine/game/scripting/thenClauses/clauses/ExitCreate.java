@@ -26,7 +26,6 @@ public class ExitCreate implements ScriptThenCommand {
         return Then.CREATE_EXIT;
     }
 
-    // will open gate even if it is hidden
     @Override
     public ProcessConditionReturn execute(ScriptClause scriptClause, MudUser player) {
         ProcessConditionReturn ret = new ProcessConditionReturn();

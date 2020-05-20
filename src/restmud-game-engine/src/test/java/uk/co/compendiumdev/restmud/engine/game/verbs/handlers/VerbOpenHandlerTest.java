@@ -20,6 +20,9 @@ public class VerbOpenHandlerTest {
     String closedgatename = "closedsouthgate";
     String openedgatename = "openeastgate";
 
+    // TODO: should we be able to open a gate e.g. open reddoor?
+    // TODO: if so then we need to show the gatename in the look description
+
     class VerbHandlerGame implements GameGenerator {
         @Override
         public void generateInto(MudGame game) {
