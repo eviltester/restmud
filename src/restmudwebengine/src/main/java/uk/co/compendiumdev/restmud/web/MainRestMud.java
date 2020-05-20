@@ -229,6 +229,8 @@ public class MainRestMud {
             // generic splat GUI GET handler
             get("/player/:username/*", (request, response) -> {   return html.getPlayerVerbHandler(request, response); });
 
+            // TODO: why is $username$ handled by javascript and not {{username}} in the template files?
+
             /*
             * The game API interfaces
             */

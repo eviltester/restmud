@@ -226,7 +226,6 @@ public class RestMudHtmlServer {
         String lastActionResponse = gson.toJson(resultOutput);
 
         Map map = gson.fromJson(lastActionResponse, Map.class);
-
         map.put("username", username);
 
         return new MustacheTemplateEngine().render(new ModelAndView(map, "look.mustache"));
@@ -302,6 +301,8 @@ public class RestMudHtmlServer {
         PlayerGuiMode guiMode = game.getGuiMode(username);
 
         Map map = gson.fromJson(lastActionResponse, Map.class);
+
+        map.put("jsonlastaction", lastActionResponse);
 
         map.put("username", username);
 

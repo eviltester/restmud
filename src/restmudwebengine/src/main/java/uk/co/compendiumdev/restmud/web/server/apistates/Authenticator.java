@@ -226,7 +226,7 @@ public class Authenticator implements IAuthenticator {
         }
 
         // is game secret code valid?
-        if(game.getSecretGameRegistrationCode().isSecretCodeValid(secretGameCode)){
+        if(!game.getSecretGameRegistrationCode().isSecretCodeValid(secretGameCode)){
             return new RegisterUserState(RegisterUserStates.INVALID_GAME_CODE_SUPPLIED,
                     String.format("You cannot register this game does not have this code %s", secretGameCode));
         }
