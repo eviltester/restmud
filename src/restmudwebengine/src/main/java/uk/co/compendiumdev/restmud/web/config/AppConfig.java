@@ -56,10 +56,17 @@ public class AppConfig {
         if(gameName.length()==0){
             MudGameDefinitionSerialiser games = new MudGameDefinitionSerialiser();
             List<String> gamesList = games.getListOfBuiltInGames();
+            System.out.println("found " + gamesList.size() + " games");
+            for(String gameName : gamesList){
+                System.out.println(gameName);
+            }
             if(gamesList.contains("default.json")){
                 return "default.json";
             }else{
-                return gamesList.get(0);
+                if(gamesList.size()>0) {
+                    return gamesList.get(0);
+                }
+                // TODO: generate a cached list of games in a test and write cachedlist to a txt file in resources
             }
         }
 

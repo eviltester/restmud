@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.IdDescriptionPair;
 
 import java.io.*;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -60,11 +61,25 @@ public class MudGameDefinitionSerialiser {
     public List<String> getListOfBuiltInGames(){
         List<String>fileNames = new ArrayList<>();
 
-        InputStream jsonStreamToRead = this.getClass().getResourceAsStream("/games");
+        InputStream jsonStreamToRead = this.getClass().getResourceAsStream("/games/");
 
         String files = readResourceStreamIntoString(jsonStreamToRead, "/games");
 
-        fileNames.addAll(Arrays.asList(files.split("\n")));
+        if(files.trim().length()==0){
+            // no games
+            // TODO: bug does not load list when packaged in a jar on mac, but can load a given game with -gamename
+            files = readJsonFromResource("/games/cachedgameslist.txt");
+        }
+
+
+        final String[] filenames = files.split("\n");
+        for(String filename : filenames){
+            filename = filename.trim();
+            if(filename.length()>0 && filename.endsWith(".json")){
+                fileNames.add(filename);
+            }
+        }
+        //fileNames.addAll(Arrays.asList(files.split("\n")));
         
         return fileNames;
     }
@@ -72,13 +87,14 @@ public class MudGameDefinitionSerialiser {
     private String readResourceStreamIntoString(InputStream streamToRead, String nameOfStream) {
 
         StringBuilder readStream = new StringBuilder();
-        try (Reader reader = new BufferedReader(new InputStreamReader
-                (streamToRead, Charset.forName(StandardCharsets.UTF_8.name())))) {
+        try{
+            Reader reader = new BufferedReader(new InputStreamReader(streamToRead));
             int c;
             while ((c = reader.read()) != -1) {
                 readStream.append((char) c);
             }
-        } catch (IOException e) {
+            reader.close();
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Failed to read resource " + nameOfStream);
         }

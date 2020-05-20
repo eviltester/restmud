@@ -1,6 +1,7 @@
 package uk.co.compendiumdev.restmud.games.serialisation;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinitionSerialiser;
 import uk.co.compendiumdev.restmud.output.json.jsonReporting.IdDescriptionPair;
