@@ -102,6 +102,48 @@
                 </configuration>
             </plugin>
             <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/src/main/resources/games</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../tech-web-test-restmud-game/src/main/resources/games</directory>
+                                    <includes>
+                                        <include>techWebTest101Game.json</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>${basedir}/../basictestgame/src/main/resources/games</directory>
+                                    <includes>
+                                        <include>basicTestGame.json</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>${basedir}/../examplerestmudgame/src/main/resources/games</directory>
+                                    <includes>
+                                        <include>exampleDocumentedGame.json</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>${basedir}/../treasurehuntgame/src/main/resources/games</directory>
+                                    <includes>
+                                        <include>treasureHunterGame.json</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
