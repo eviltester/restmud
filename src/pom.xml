@@ -26,7 +26,9 @@
 
         <!-- automating for testing -->
         <module>restmudbots</module>
-        <module>restmud-http-testing</module>
+        <module>restmud-test-starter</module>
+        <module>restmud-http-gui-testing</module>
+
 
     </modules>
 </project>

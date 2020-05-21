@@ -1,6 +1,5 @@
 package uk.co.compendiumdev.sparktesting;
 
-import spark.Spark;
 import uk.co.compendiumdev.restmud.web.MainRestMud;
 
 import java.net.HttpURLConnection;
@@ -10,8 +9,19 @@ public class RestMudStarter extends SparkStarter{
 
     String[] args;
 
+    static RestMudStarter storedStarter;
+
     public RestMudStarter(String[] args){
         this.args = args;
+    }
+
+    public static RestMudStarter singleton(final String[] args) {
+
+        if(storedStarter == null) {
+            storedStarter = new RestMudStarter(args);
+        }
+
+        return storedStarter;
     }
 
     public boolean isRunning() {
@@ -32,6 +42,7 @@ public class RestMudStarter extends SparkStarter{
     @Override
     public void startServer() {
 
+        // TODO: have MainRestMud be a 'new' instance and expose the 'game' for inner manipulation by hybrid tests
         MainRestMud.main(args);
 
         System.out.println("Run main to start");

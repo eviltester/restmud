@@ -8,8 +8,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import uk.co.compendiumdev.sparktesting.RestMudStarter;
 
+
 import java.io.IOException;
-import java.util.Map;
 
 public class CanRegisterMultiUserTest {
 
@@ -26,7 +26,7 @@ public class CanRegisterMultiUserTest {
 
         System.setProperty(GAMESECRETCODE,"1234567");
 
-        final RestMudStarter restmud = new RestMudStarter(args);
+        final RestMudStarter restmud = RestMudStarter.singleton(args);
 
         restmud.startSparkAppIfNotRunning(1234);
 
