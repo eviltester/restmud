@@ -28,6 +28,7 @@
         <module>restmudbots</module>
         <module>restmud-test-starter</module>
         <module>restmud-http-gui-testing</module>
+        <module>restmud-api-testing</module>
 
 
     </modules>

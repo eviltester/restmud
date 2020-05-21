@@ -53,7 +53,7 @@ public class RandomlyChangeCaseTest {
 
         String testString = "AbC";
 
-        for(int gen=0; gen<1000; gen++) {
+        for(int gen=0; gen<100; gen++) {
             int position = changeCase.selectRandomLetterPosition(testString);
             //System.out.println(position);
             Assert.assertTrue(String.format("Expected 0 <= [%d] <= 2", position), position >= 0 && position <= 2);
@@ -62,7 +62,7 @@ public class RandomlyChangeCaseTest {
 
     @Ignore("manual test for manual result checking")
     @Test
-    public void randomlyMutateCaseOfWord(){
+    public void humanVerificationOfRandomlyMutateCaseOfWord(){
 
         ChangeCaseifier changeCase = new ChangeCaseifier();
 

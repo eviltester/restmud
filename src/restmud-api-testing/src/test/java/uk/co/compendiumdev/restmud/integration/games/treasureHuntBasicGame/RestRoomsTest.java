@@ -1,4 +1,4 @@
-package uk.co.compendiumdev.restmud.games.treasureHuntBasicGame;
+package uk.co.compendiumdev.restmud.integration.games.treasureHuntBasicGame;
 
 
 import org.junit.Assert;
@@ -13,6 +13,7 @@ public class RestRoomsTest {
     // using a running version of TreasureHuntBasicGenerator game
     // make sure the RestRooms are working
 
+    // TODO: change this to use local server and change game in server to match the tests
     static String gameUrl = "http://restmud.herokuapp.com/";
     static String registrationCode = "CHANGEME";
     static String username = "user" + System.currentTimeMillis();
