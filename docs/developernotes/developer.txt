@@ -4,16 +4,28 @@
 
 run from target for local testing
 
-java -jar target\restmud-1.1-SNAPSHOT-jar-with-dependencies.jar -gamename example_game
+java -jar restmud-web-games-bundle\target\restmud-1.1-SNAPSHOT-jar-with-dependencies.jar -gamename example_game
 
 
-java -jar target\restmud-1.1-SNAPSHOT-jar-with-dependencies.jar -gamename treasure_hunt_basic -playermode multi
+java -jar target\restmud-1.1-SNAPSHOT-jar-with-dependencies.jar -gamename treasureHuntBasic.json -playermode multi
+
+
+Command line options
+
+- `-port` to set the port
+    - e.g. `-port 1234`
+- `-playermode` to set multi or single player
+    - e.g. `-playermode multi`
+    - e.g `-playermode single`
+- `-gamename` to load a build in game, if not inlcuded it will load a default or the first game it finds packaged if no default defined
+    - e.g. `-gamename treasureHuntBasic.json`
 
 see class AppConfigFromArgs and AppConfig for command line options
 
 
-
 For heroku:
+
+Deploy the restmud-web-games-bundle
 
 mvn heroku:deploy
 heroku local web -f Procfile.windows
@@ -30,9 +42,9 @@ Heroku
        - `RESTMUDEFAULTUSERS`
            - `The Mighty Alan,alan|Bob The Mighty,bob`
        - `GAMESECRETCODE`
-           - `thisconf2016`
+           - e.g. `thisconf2016`
        - `WIZAUTHCODE` to set wiz authcode and password
-           - `thewizpassword`
+           - e.g. `thewizpassword`
 
 - start app on Resources page
     - click edit
