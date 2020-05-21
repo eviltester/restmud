@@ -38,6 +38,7 @@ public class GameInitializer {
 
         if(game_name.endsWith(".json")) {
             String defn = new MudGameDefinitionSerialiser().readJsonFromResource("/games/" + game_name);
+            System.out.println("Generating game " + game_name);
             gameGenerator = new FromJsonGameGenerator(defn);
         }else{
             throw new RuntimeException("Unrecognised Game Name " + game_name);

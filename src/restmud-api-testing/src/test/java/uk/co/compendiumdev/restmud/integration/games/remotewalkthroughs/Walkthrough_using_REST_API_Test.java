@@ -1,4 +1,4 @@
-package uk.co.compendiumdev.restmud.integration.games.walkthroughs;
+package uk.co.compendiumdev.restmud.integration.games.remotewalkthroughs;
 
 import org.junit.Ignore;
 import org.junit.Test;

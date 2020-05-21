@@ -1,5 +1,6 @@
 package uk.co.compendiumdev.restmud.web;
 
+import spark.Spark;
 import uk.co.compendiumdev.restmud.web.config.AppConfig;
 import uk.co.compendiumdev.restmud.web.config.AppConfigFromArgs;
 import uk.co.compendiumdev.restmud.engine.game.PlayerMode;
@@ -29,12 +30,11 @@ public class MainRestMud {
         public static RestMudWizServer wiz;
 
 
-
-
         static boolean hasHerokuAssignedPort(){
             ProcessBuilder processBuilder = new ProcessBuilder();
             return (processBuilder.environment().get("PORT") != null);
         }
+
         static int getHerokuAssignedPort() {
             ProcessBuilder processBuilder = new ProcessBuilder();
             if (hasHerokuAssignedPort()) {
@@ -85,6 +85,8 @@ public class MainRestMud {
 
         }
 
+        // TODO: avoid a 'main' and have a class that starts it all up, but leave the 'main' to a deployable istance of an engine
+        //      this will allow creation of different versions with a subset or custom set of games
         public static void main(String[] args) {
 
             // configure multi-player, single player etc. from command line
@@ -94,15 +96,21 @@ public class MainRestMud {
             // environment can override config for port
             if(hasHerokuAssignedPort()) {
                 config.setPort(getHerokuAssignedPort());
+                System.out.println("Configuring heroku assigned port " + config.port());
                 port(config.port());
             }else{
+                System.out.println("Configuring port " + config.port());
                 port(config.port());
             }
 
+            System.out.println("Configured to port: " + config.port());
+
             // default to single player - set as multiplayer with -playermode multi
             if(config.playerMode() == PlayerMode.MULTI) {
+                System.out.println("Setting up multi player");
                 multiPlayerSetup(config);
             }else{
+                System.out.println("Setting up single player");
                 singlePlayerSetup(config);
             }
 

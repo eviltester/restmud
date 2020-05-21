@@ -18,7 +18,7 @@ public class CommandListFile {
             fileContents = new String(Files.readAllBytes(Paths.get(filepath)));
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error reading file " + filepath);
+            throw new RuntimeException("Error reading file " + filepath, e);
         }
 
         String[] parsedCommandList = fileContents.split(System.lineSeparator());

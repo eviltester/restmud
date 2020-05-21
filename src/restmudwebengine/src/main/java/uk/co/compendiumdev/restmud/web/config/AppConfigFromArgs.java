@@ -40,16 +40,22 @@ public class AppConfigFromArgs {
 
                 switch(key){
                     case "port":
+                        System.out.println("CONFIG SETTING PORT " + value);
                         config.setPort(value);
                         break;
                     case "playermode":
+                        System.out.println("CONFIG SETTING PLAYERMODE " + value);
                         config.setPlayerMode(value);
                         if(config.playerMode() == PlayerMode.MULTI && !processedKeys.contains("gamename")){
                             // multiplayer has a different default game name
-                            config.setGameName(AppConfig.DEFAULT_MULTI_USER_GAME);
+                            if(config.gameName()==null || config.gameName().contentEquals(AppConfig.DEFAULT_SINGLE_USER_GAME)) {
+                                System.out.println("CONFIGURING GAME NAME FOR MULTI " + AppConfig.DEFAULT_MULTI_USER_GAME);
+                                config.setGameName(AppConfig.DEFAULT_MULTI_USER_GAME);
+                            }
                         }
                         break;
                     case "gamename":
+                        System.out.println("CONFIG SETTING GAME NAME " + value);
                         config.setGameName(value);
                         break;
                     default:

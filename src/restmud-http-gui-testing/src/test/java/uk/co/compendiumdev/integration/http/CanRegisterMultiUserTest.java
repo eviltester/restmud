@@ -16,17 +16,14 @@ public class CanRegisterMultiUserTest {
     @Test
     public void canRegisterAUser() throws IOException {
 
-        // env variables
-        final String RESTMUDEFAULTUSERS = "RESTMUDEFAULTUSERS";
-        final String GAMESECRETCODE = "GAMESECRETCODE";
-        final String WIZAUTHCODE = "WIZAUTHCODE";
 
-        // start app
-        String[] args = {"-playermode", "multi", "-port", "1234"};
 
-        System.setProperty(GAMESECRETCODE,"1234567");
+        RestMudInMemoryConfig config = new RestMudInMemoryConfig()
+                                            .port("1234")
+                                            .playerMode("multi")
+                                            .registrationCode("1234567");
 
-        final RestMudStarter restmud = RestMudStarter.singleton(args);
+        final RestMudStarter restmud = RestMudStarter.singleton(config);
 
         restmud.startSparkAppIfNotRunning(1234);
 

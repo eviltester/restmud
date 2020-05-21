@@ -1,29 +1,41 @@
 package uk.co.compendiumdev.restmud.integration.games.treasureHuntBasicGame;
 
 
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
+import uk.co.compendiumdev.integration.http.RestMudInMemoryConfig;
 import uk.co.compendiumdev.restmud.api.RestMudAPI;
+import uk.co.compendiumdev.sparktesting.RestMudStarter;
 
-@Ignore("Integration test using heroku")
 public class RestRoomsTest {
 
     // using a running version of TreasureHuntBasicGenerator game
     // make sure the RestRooms are working
 
-    // TODO: change this to use local server and change game in server to match the tests
-    static String gameUrl = "http://restmud.herokuapp.com/";
+    //static String gameUrl = "http://restmud.herokuapp.com/";
+    static String gameUrl = "http://localhost";
     static String registrationCode = "CHANGEME";
     static String username = "user" + System.currentTimeMillis();
     static String password = "password" + System.currentTimeMillis();
 
-    static RestMudAPI api = new RestMudAPI(gameUrl);
+    static RestMudAPI api;
+    static RestMudStarter starter;
 
     @BeforeClass
     public static void createAUser(){
 
+        // setup a local instance here
+        RestMudInMemoryConfig config = new RestMudInMemoryConfig()
+                .port("1234")
+                .playerMode("multi")
+                .registrationCode("CHANGEME")
+                .gameNamed("treasureHunterGame.json");
+
+        starter = RestMudStarter.singleton(config);
+        starter.startSparkAppIfNotRunning(Integer.parseInt(config.port()));
+
+        gameUrl = gameUrl + ":" + config.port() + "/";
+
+        api = new RestMudAPI(gameUrl);
         api.setRegistrationSecretCode(registrationCode);
         api.userNeedsToRegister(true);
         api.setForUser(username);
@@ -33,7 +45,6 @@ public class RestRoomsTest {
         System.out.println(password);
 
         api.register();
-
 
     }
 
@@ -49,7 +60,6 @@ public class RestRoomsTest {
         int currentScore = api.getScore();
 
 
-
         api.http_POST_Request( "api/player/" + username, "{\"verb\" : \"examine\", \"nounphrase\" : \"postsign\"}");
 
         int score = api.getScore();
@@ -57,7 +67,6 @@ public class RestRoomsTest {
         currentScore = score;
 
 
-        
         api.setCustomHeader("X-REST-MUD-POST-EXAMINE","anyvalue");
         api.http_POST_Request( "api/player/" + username, "{\"verb\" : \"examine\", \"nounphrase\" : \"postheader\"}");
 
@@ -92,7 +101,10 @@ public class RestRoomsTest {
         score = api.getScore();
         Assert.assertTrue(String.format("%d > %d", score, currentScore), score > currentScore);
         currentScore = score;
+    }
 
-
+    @AfterClass
+    public static void closeServer(){
+        starter.stopServer();
     }
 }

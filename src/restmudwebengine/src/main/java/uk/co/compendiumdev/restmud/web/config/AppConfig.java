@@ -5,9 +5,6 @@ import uk.co.compendiumdev.restmud.engine.game.gamedefinition.MudGameDefinitionS
 
 import java.util.List;
 
-/**
- * Created by Alan on 20/01/2017.
- */
 public class AppConfig {
 
     // can hard code a particular game for release, or just use the default.json
@@ -66,7 +63,6 @@ public class AppConfig {
                 if(gamesList.size()>0) {
                     return gamesList.get(0);
                 }
-                // TODO: generate a cached list of games in a test and write cachedlist to a txt file in resources
             }
         }
 

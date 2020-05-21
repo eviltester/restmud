@@ -65,15 +65,20 @@ public abstract class SparkStarter {
     public void killServer(){
 
         Spark.stop();
-        //Spark.halt();
+        Spark.awaitStop();
+        // TODO: investigate this in more detail because I should probably trust awaitStop and not try to connect again
 
         // wait until server has stopped
         int tries = 10;
+        boolean connectionsStillWork=true;
+
         while(tries>0) {
 
             System.out.println("Checking if server has stopped");
 
-            if(isRunning()){
+            connectionsStillWork = isRunning();
+
+            if(connectionsStillWork){
                 try {
 
                     System.out.println("Spark threads " + Spark.activeThreadCount());
@@ -82,13 +87,14 @@ public abstract class SparkStarter {
                     e1.printStackTrace();
                 }
             }else{
+                System.out.println("Spark threads " + Spark.activeThreadCount());
                 System.out.println("Server has stopped");
                 return;
             }
             tries --;
         }
 
-        System.out.println("Server might not have stopped");
+        System.out.println(String.format("Server might not have stopped isRunning %b", connectionsStillWork));
     }
 
     public int getPort() {

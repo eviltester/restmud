@@ -863,7 +863,7 @@ public class TreasureHuntBasicGameDefinitionGenerator implements GameDefinitionP
                 andThen(Then.LAST_ACTION_SUCCESS,"You punch the large troll in the stomache and it looks at you, then slowly fades away. You win the fight. You Super Fighter All Win Fight");
 
 
-
+        // TODO: what if I don't have the header for the large troll?
 
         /*
             Some unique collectables in secret room 17
