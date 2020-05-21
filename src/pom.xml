@@ -30,6 +30,12 @@
         <module>restmud-http-gui-testing</module>
         <module>restmud-api-testing</module>
 
+        <!-- bundle with games for releasing to heroku -->
+        <module>restmud-web-games-bundle</module>
+
+        <!-- games for releasing as standalone -->
+        <module>app-basic-test-game-web</module>
+
 
     </modules>
 </project>

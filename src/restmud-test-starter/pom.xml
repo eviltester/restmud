@@ -10,7 +10,7 @@
     <version>1.0.0</version>
 
     <properties>
-        <restmud.engine.version>1.1-SNAPSHOT</restmud.engine.version>
+        <restmud.engine.version>1.2</restmud.engine.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.jvm.version>1.8</java.jvm.version>
     </properties>

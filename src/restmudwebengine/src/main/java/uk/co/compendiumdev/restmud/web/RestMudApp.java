@@ -1,26 +1,25 @@
 package uk.co.compendiumdev.restmud.web;
 
-import spark.Spark;
+import spark.Response;
+import uk.co.compendiumdev.restmud.engine.game.MudGame;
+import uk.co.compendiumdev.restmud.engine.game.PlayerMode;
+import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
 import uk.co.compendiumdev.restmud.web.config.AppConfig;
 import uk.co.compendiumdev.restmud.web.config.AppConfigFromArgs;
-import uk.co.compendiumdev.restmud.engine.game.PlayerMode;
+import uk.co.compendiumdev.restmud.web.server.RestMudApiServer;
+import uk.co.compendiumdev.restmud.web.server.RestMudHtmlServer;
 import uk.co.compendiumdev.restmud.web.server.RestMudWizServer;
 import uk.co.compendiumdev.restmud.web.server.apistates.Authenticator;
 import uk.co.compendiumdev.restmud.web.server.apistates.IAuthenticator;
 import uk.co.compendiumdev.restmud.web.server.apistates.SinglePlayerAuthenticator;
-import uk.co.compendiumdev.restmud.engine.game.MudGame;
-import uk.co.compendiumdev.restmud.gamedata.GameInitializer;
 import uk.co.compendiumdev.restmud.web.server.httpmessages.RequestDataExtractor;
-import uk.co.compendiumdev.restmud.web.server.RestMudApiServer;
-import uk.co.compendiumdev.restmud.web.server.RestMudHtmlServer;
-import spark.Response;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import static spark.Spark.*;
 
-public class MainRestMud {
+public class RestMudApp {
 
 
         public static MudGame game;
@@ -85,9 +84,7 @@ public class MainRestMud {
 
         }
 
-        // TODO: avoid a 'main' and have a class that starts it all up, but leave the 'main' to a deployable istance of an engine
-        //      this will allow creation of different versions with a subset or custom set of games
-        public static void main(String[] args) {
+        public static void start(String[] args) {
 
             // configure multi-player, single player etc. from command line
             AppConfig config = AppConfigFromArgs.getAppConfig(args);
@@ -113,6 +110,7 @@ public class MainRestMud {
                 System.out.println("Setting up single player");
                 singlePlayerSetup(config);
             }
+
 
 
             /**

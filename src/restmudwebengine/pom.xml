@@ -6,7 +6,7 @@
 
     <groupId>uk.co.compendiumdev.restmud.engine</groupId>
     <artifactId>restmud-web</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
 
@@ -18,28 +18,20 @@
         <restmud.dsl.version>1.0.0</restmud.dsl.version>
         <restmud.game-engine.version>1.5</restmud.game-engine.version>
         <restmud.cli-engine.version>1.0.0</restmud.cli-engine.version>
-        <!-- released -->
-        <!-- <restmud.game-engine.version>1.3</restmud.game-engine.version> -->
 
         <!-- build -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.jvm.version>1.8</java.jvm.version>
-
-
-        <!-- was 2.3 -->
         <spark-mustache.version>2.7.1</spark-mustache.version>
 
     </properties>
 
 
     <dependencies>
-
-
         <dependency>
             <groupId>uk.co.compendiumdev.restmud.engine</groupId>
             <artifactId>restmud-engine</artifactId>
             <version>${restmud.game-engine.version}</version>
-
         </dependency>
         
         <dependency>
@@ -47,7 +39,6 @@
             <artifactId>spark-core</artifactId>
             <version>${sparkjava.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>junit</groupId>
@@ -100,88 +91,6 @@
                     <source>${java.jvm.version}</source>
                     <target>${java.jvm.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/src/main/resources/games</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${basedir}/../tech-web-test-restmud-game/src/main/resources/games</directory>
-                                    <includes>
-                                        <include>techWebTest101Game.json</include>
-                                    </includes>
-                                </resource>
-                                <resource>
-                                    <directory>${basedir}/../basictestgame/src/main/resources/games</directory>
-                                    <includes>
-                                        <include>basicTestGame.json</include>
-                                    </includes>
-                                </resource>
-                                <resource>
-                                    <directory>${basedir}/../examplerestmudgame/src/main/resources/games</directory>
-                                    <includes>
-                                        <include>exampleDocumentedGame.json</include>
-                                    </includes>
-                                </resource>
-                                <resource>
-                                    <directory>${basedir}/../treasurehuntgame/src/main/resources/games</directory>
-                                    <includes>
-                                        <include>treasureHunterGame.json</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <descriptorRefs>
-                        <!-- This tells Maven to include all dependencies -->
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>uk.co.compendiumdev.restmud.web.MainRestMud</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.heroku.sdk</groupId>
-                <artifactId>heroku-maven-plugin</artifactId>
-                <version>1.1.3</version>
-                <configuration>
-                    <jdkVersion>${java.jvm.version}</jdkVersion>
-                    <!-- Use your own application name -->
-                    <appName>restmud</appName>
-                    <processTypes>
-                        <!-- https://devcenter.heroku.com/articles/deploying-java-applications-with-the-heroku-maven-plugin -->
-                        <!-- Tell Heroku how to launch your application -->
-                        <!-- You might have to remove the ./ in front   -->
-                        <!-- <web>java -jar /target/restmud-1.0-jar-with-dependencies.jar</web>-->
-                        <!-- try from procfile -->
-                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* uk.co.compendiumdev.restmud.web.MainRestMud -gamename treasureHunterGame.json -playermode multi</web>
-                    </processTypes>
                 </configuration>
             </plugin>
         </plugins>
