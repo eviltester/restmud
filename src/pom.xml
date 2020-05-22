@@ -56,7 +56,6 @@
         <module>restmud-web-games-bundle</module>
 
         <!-- games for releasing as standalone executables -->
-        <module>app-basic-test-game-web</module>
         <module>zombie-cli-text-adventure</module>
 
 
