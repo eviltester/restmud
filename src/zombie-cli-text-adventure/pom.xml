@@ -1,35 +1,87 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>uk.co.compendiumdev.restmud</groupId>
+        <artifactId>restmud-root</artifactId>
+        <version>1.1.0</version>
+    </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- module pom to make it easier to develop the cli game -->
+    <groupId>uk.co.compendiumdev.restmud.game</groupId>
+    <artifactId>cli-zombie-game</artifactId>
+    <version>1.1.0</version>
+    <packaging>jar</packaging>
 
-    <!--
-        RestMud backend, CLI front end, and Game definition have been added as gitsubmodules
 
-        https://blog.github.com/2016-02-01-working-with-submodules/
-        
-        All modules are relatively reverenced here to open this pom.xml in IntelliJ
+    <dependencies>
 
-        Can build and release, just the `cli-app` folder
+        <dependency>
+            <groupId>uk.co.compendiumdev.restmud.engine</groupId>
+            <artifactId>restmud-engine</artifactId>
+            <version>${restmud.game-engine.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>uk.co.compendiumdev.restmud.game</groupId>
+            <artifactId>zombie-tech-web-test-101-game</artifactId>
+            <version>1.1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>uk.co.compendiumdev.restmud.engine</groupId>
+            <artifactId>cli-game-engine</artifactId>
+            <version>${restmud.cli-engine.version}</version>
+            <scope>compile</scope>
+        </dependency>
 
-    -->
 
-    <groupId>uk.co.compendiumdev.testing</groupId>
-    <artifactId>zombie-cli-app-root</artifactId>
-    <version>1.0.0</version>
-    <packaging>pom</packaging>
+    </dependencies>
 
-    <modules>
-        <!-- restmud -->
-        <module>game-backend</module>
-        <!-- cli front end -->
-        <module>game-engine</module>
-        <module>test-dsl</module>
-        <!-- game definition -->
-        <!-- could add the json as a resource to avoid the dependency -->
-        <module>game-defn</module>
-        <module>cli-app</module>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${java.jvm.version}</source>
+                    <target>${java.jvm.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <!-- This tells Maven to include all dependencies -->
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>uk.co.compendiumdev.restmud.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-    </modules>
 </project>

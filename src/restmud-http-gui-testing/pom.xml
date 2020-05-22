@@ -2,31 +2,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
+        <groupId>uk.co.compendiumdev.restmud</groupId>
         <artifactId>restmud-root</artifactId>
-        <groupId>uk.co.compendiumdev.testing</groupId>
         <version>1.1.0</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>uk.co.compendiumdev.restmud</groupId>
+
+    <groupId>uk.co.compendiumdev.restmud.testing</groupId>
     <artifactId>restmud-http-gui-testing</artifactId>
     <version>1.0.0</version>
 
-    <properties>
-        <junit.version>4.12</junit.version>
 
-        <!-- build -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.jvm.version>1.8</java.jvm.version>
-        <jsoup.version>1.13.1</jsoup.version>
-    </properties>
 
     <dependencies>
         <dependency>
             <groupId>uk.co.compendiumdev.restmud.engine</groupId>
             <artifactId>restmud-web</artifactId>
-            <version>1.2</version>
+            <version>${restmud-web-engine.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -42,9 +38,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>uk.co.compendiumdev.testing</groupId>
+            <groupId>uk.co.compendiumdev.restmud.testing</groupId>
             <artifactId>restmud-test-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${restmud-test-spark-starter.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -54,6 +50,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
                 <configuration>
                     <source>${java.jvm.version}</source>
                     <target>${java.jvm.version}</target>

@@ -2,10 +2,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>uk.co.compendiumdev.testing</groupId>
+    <groupId>uk.co.compendiumdev.restmud</groupId>
     <artifactId>restmud-root</artifactId>
     <version>1.1.0</version>
     <packaging>pom</packaging>
+
+    <properties>
+        <!-- dependency versions -->
+        <junit.version>4.12</junit.version>
+        <sparkjava.version>2.8.0</sparkjava.version>
+        <gson.version>2.8.0</gson.version>
+        <jsoup.version>1.13.1</jsoup.version>
+
+        <!-- internal dependencies -->
+
+        <restmud.dsl.version>1.0.0</restmud.dsl.version>
+        <restmud.game-engine.version>1.5</restmud.game-engine.version>
+        <restmud.cli-engine.version>1.0.0</restmud.cli-engine.version>
+        <restmud-api.version>1.0.0</restmud-api.version>
+        <restmud-web-engine.version>1.2</restmud-web-engine.version>
+        <restmud-test-spark-starter.version>1.0.0</restmud-test-spark-starter.version>
+        <restmud-api-testing.version>1.0.0</restmud-api-testing.version>
+
+        <!-- build -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.jvm.version>1.8</java.jvm.version>
+        <spark-mustache.version>2.7.1</spark-mustache.version>
+        <maven.compiler.version>3.3</maven.compiler.version>
+
+    </properties>
 
     <modules>
         <module>restmud-game-engine</module>
@@ -21,20 +46,18 @@
         <module>tech-web-test-restmud-game</module>
         <module>treasurehuntgame</module>
 
-        <!-- stand alone game executables -->
-        <module>zombie-cli-text-adventure/cli-app</module>
-
         <!-- automating for testing -->
         <module>restmudbots</module>
         <module>restmud-test-starter</module>
         <module>restmud-http-gui-testing</module>
         <module>restmud-api-testing</module>
 
-        <!-- bundle with games for releasing to heroku -->
+        <!-- bundle with games for releasing to heroku and standalone executables-->
         <module>restmud-web-games-bundle</module>
 
-        <!-- games for releasing as standalone -->
+        <!-- games for releasing as standalone executables -->
         <module>app-basic-test-game-web</module>
+        <module>zombie-cli-text-adventure</module>
 
 
     </modules>
